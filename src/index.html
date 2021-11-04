@@ -1,13 +1,46 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Admin</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <head>
+        <base href="/" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="application-name" content="Kaos" />
+        <meta name="robots" content="no-follow, no-index">
+        <title>Pclconsult - Administrative Management Systems</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="assets/icon/favicon.png">
+
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 </head>
-<body>
-  <app-root></app-root>
-</body>
+
+    <body>
+        <app-root></app-root>
+        <script>        
+            (function() {
+                if (!sessionStorage.length) {
+                    // Ask other tabs for session storage
+                    localStorage.setItem('getSessionStorage', Date.now());
+                };
+                window.addEventListener('storage', function(event) {
+                    if (event.key == 'getSessionStorage') {
+                        localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+                        localStorage.removeItem('sessionStorage');
+
+                    } else if (event.key == 'sessionStorage' && !sessionStorage.length) {
+                        var data = JSON.parse(event.newValue),
+                                    value;
+
+                        for (key in data) {
+                            sessionStorage.setItem(key, data[key]);
+                        }
+                    }
+                });
+                window.onbeforeunload = function() {
+                    //sessionStorage.clear();
+                };
+
+            })();
+        </script>
+    </body>
 </html>
