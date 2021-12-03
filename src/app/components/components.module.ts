@@ -5,23 +5,22 @@ import { RouterModule } from '@angular/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { environment } from 'src/environments/environment.prod';
 
-import { HeaderLayoutComponent } from './layout/header-layout/header-layout.component';
-import { SidebarLayoutComponent } from './layout/sidebar-layout/sidebar-layout.component';
-import { FooterLayoutComponent } from './layout/footer-layout/footer-layout.component';
 
 import { LoadingComponent } from './ui/loading/loading.component';
-import { DatatablesComponent } from './ui/datatables/datatables.component';
-
 import { ErrorComponent } from './ui/error/error.component';
 import { NoContentComponent } from './ui/no-content/no-content.component';
 
 import { LoginFormComponent } from './forms/login-form/login-form.component';
+import { IndexLayoutComponent } from './layout/index-layout/index-layout.component';
+import { ListingsLayoutComponent } from './layout/listings-layout/listings-layout.component';
+import { NavbarComponent } from './ui/navbar/navbar.component';
+import { FooterComponent } from './ui/footer/footer.component';
 
 export const component: Array<any> = [
-	HeaderLayoutComponent, SidebarLayoutComponent, FooterLayoutComponent,
-	LoadingComponent, DatatablesComponent, NoContentComponent,
+	LoadingComponent,  NoContentComponent, NavbarComponent, FooterComponent,
 	ErrorComponent,
 	LoginFormComponent,
+	IndexLayoutComponent, ListingsLayoutComponent
 ]
 
 @NgModule({

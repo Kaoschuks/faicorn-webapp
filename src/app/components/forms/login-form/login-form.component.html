@@ -1,23 +1,61 @@
 
-        <div class="login">
-            <div class="login__block active no-shadow">
-              <div class="no-padding" align="left" id="l-register">
-                <div class="login__block__header bg-white no-shadow mt-5" align="left">
-                  <!-- <img style="width: 130px;border-radius: 0px;" class="ml-0" src="../assets/icon/logo.png" /> -->
-                  <h1 class="fs-20 bold mb-2">
-                    Welcome Back User
-                  </h1>
-                  <p class="fs-10 bold text-muted">
-                    Sign into your account to track your activities.
-                  </p>
-                  <p *ngIf="error" class="fs-14 mb-4 bold text-danger">
-                    {{error}}
-                  </p>
-                </div>
-        
-                <div style="margin-top:-20px" align="left" class="login__block__body">
-                  <!-- <app-loading *ngIf="globals.loader"></app-loading> -->
-                </div>
-              </div>
+          <div class="flex-grow-1 mx-auto">
+
+            <div class="d-grid gap-2 mx-auto">
+              <button class="btn btn-primary btn-sm" type="button">Continue with Facebook</button>
+              <button class="btn btn-danger btn-sm" type="button">Continue with Google</button>
             </div>
+            <br />
+            <br />
+
+            <div class="text-center fs-14 bold">
+              <p>Or Continue Using Email.</p>
+            </div>
+            <br />
+
+
+            <!-- Form -->
+            <form class="js-validate needs-validation" novalidate>
+              <!-- Form -->
+              <div class="mb-4">
+                <label class="form-label" for="signupModalFormLoginEmail">Your email</label>
+                <input type="email" class="form-control form-control-lg" name="email" id="signupModalFormLoginEmail" placeholder="email@site.com" aria-label="email@site.com" required>
+                <span class="invalid-feedback">Please enter a valid email address.</span>
+              </div>
+              <!-- End Form -->
+
+              <!-- Form -->
+              <div class="mb-4">
+                <div class="d-flex justify-content-between align-items-center">
+                  <label class="form-label" for="signupModalFormLoginPassword">Password</label>
+
+                  <a class="form-label-link" href="./page-reset-password.html">Forgot Password?</a>
+                </div>
+
+                <div class="input-group input-group-merge" data-hs-validation-validate-class>
+                  <input type="password" class="js-toggle-password form-control form-control-lg" name="password" id="signupModalFormLoginPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8"
+                        data-hs-toggle-password-options='{
+                         "target": "#changePassTarget",
+                         "defaultClass": "bi-eye-slash",
+                         "showClass": "bi-eye",
+                         "classChangeTarget": "#changePassIcon"
+                       }'>
+                  <a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;">
+                    <i id="changePassIcon" class="bi-eye"></i>
+                  </a>
+                </div>
+
+                <span class="invalid-feedback">Please enter a valid password.</span>
+              </div>
+              <!-- End Form -->
+
+              <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-secondary">Access Your Account</button>
+              </div>
+
+              <div class="text-center">
+                <p>Don't have an account yet? <a class="link" href="./page-signup.html">Sign up here</a></p>
+              </div>
+            </form>
+            <!-- End Form -->
           </div>
