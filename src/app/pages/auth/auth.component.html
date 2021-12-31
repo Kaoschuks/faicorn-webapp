@@ -1,63 +1,23 @@
 
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main" class="flex-grow-1">
-    <!-- Form -->
-    <div class="container-fluid">
+    <div class="container content-space-3 content-space-t-lg-4" style="margin-bottom: -100px;">
       <div class="row">
-        <div class="col-lg-5 col-xl-6 d-flex justify-content-center align-items-center min-vh-lg-100">
-          <login-form></login-form>
+        <div class="col-md-5">
+          <h2 style="margin-top: 70px;" class="fs-50 text-danger">Log on and<br /> enjoy personalized skits</h2>
+          <p class="fs-16">Easy share laugther and skits across the world<br />  Easy share laugther and skits across the world
+            between your friendLog on and enjoy personalized skitsLog on and enjoy personalized skitsLog on and enjoy personalized skitss</p>
         </div>
-        <!-- End Col -->
-
-        <div class="col-lg-7 col-xl-6 d-none d-lg-flex justify-content-center align-items-center min-vh-lg-100 position-relative bg-dark" style="background-image: url();">
-          <div class="flex-grow-1 p-5">
-            <!-- Blockquote -->
-            <figure class="text-center">
-              <div class="mb-4">
-                <img class="avatar avatar-xl avatar-4x3" alt="Logo">
-              </div>
-
-              <blockquote class="blockquote blockquote-light">“ It has many landing page variations to choose from, which one is always a big advantage. ”</blockquote>
-
-              <figcaption class="blockquote-footer blockquote-light">
-                <div class="mb-3">
-                  <img class="avatar avatar-circle" alt="Image Description">
-                </div>
-
-                Lida Reidy
-                <span class="blockquote-footer-source">Project Manager | Mailchimp</span>
-              </figcaption>        
-            </figure>
-            <!-- End Blockquote -->
-
-            <!-- Clients -->
-            <div class="position-absolute start-0 end-0 bottom-0 text-center p-5">
-              <div class="row justify-content-center">
-                <div class="col text-center py-3">
-                  <img class="avatar avatar-lg avatar-4x3" alt="Logo">
-                </div>
-                <!-- End Col -->
-
-                <div class="col text-center py-3">
-                  <img class="avatar avatar-lg avatar-4x3" alt="Logo">
-                </div>
-                <!-- End Col -->
-
-                <div class="col text-center py-3">
-                  <img class="avatar avatar-lg avatar-4x3" alt="Logo">
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </div>
-            <!-- End Clients -->
+        <div class="col-md-4 offset-md-2">
+          <div class="flex-grow-1 mx-auto">
+            <!-- Form -->
+            <forgot-form *ngIf="_global.url.split('/')[2] == 'forgot'"></forgot-form>
+            <login-form *ngIf="_global.url.split('/')[2] == 'login'"></login-form>
+            <register-form *ngIf="_global.url.split('/')[2] == 'register'"></register-form>
+            <!-- End Form -->
           </div>
         </div>
-        <!-- End Col -->
-
       </div>
-      <!-- End Row -->
     </div>
-    <!-- End Form -->
   </main>
   <!-- ========== END MAIN CONTENT ========== -->

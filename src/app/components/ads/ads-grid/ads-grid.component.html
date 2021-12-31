@@ -1,0 +1,42 @@
+<!-- Card Grid -->
+<div class="container-fluid">
+
+  <div class="row mb-5">
+    <div *ngFor="let ad of ads" class="col-lg-3 col-md-4 col-xs-6  mb-5">
+      <!-- Card -->
+      <a routerLink="/{{ad?.category?.name.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.brands.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.ads_id}}" class="card card-bordered h-100">
+        <!-- Card Pinned -->
+        <div class="card-pinned">
+          <img style="height: 150px" class="card-img-top" [src]="ad?.images[0]" alt="Image Description">
+
+          <div class="card-pinned-top-start" *ngIf="ad.isFeatured">
+            <small class="badge bg-success fs-12 rounded-pill">{{ad?.featuredName}}</small>
+          </div>
+        </div>
+        <!-- End Card Pinned -->
+
+        <!-- Card Body -->
+        <div class="card-body no-padding" style="padding: 10px !important">
+          <small class="card-subtitle fs-10 bold">
+            <span class="d-block text-muted small"><del>{{(ad?.price + 100)}}</del></span>
+            <h5 class="card-title fs-12">{{ad?.price}}</h5>
+          </small>
+
+          <div class="mb-3">
+            <h3 class="card-title bold">
+              <a class="text-dark fs-14">{{ad?.name | slice: 0: 40}}</a>
+            </h3>
+          </div>
+        </div>
+        <!-- End Card Body -->
+      </a>
+      <!-- End Card -->
+    </div>
+  </div>
+  <!-- End Row -->
+
+  <!-- <div class="text-center">
+    <a class="btn btn-link" href="https://htmlstream.com/front-v4.0/demo-course/courses.html">See all courses <i class="bi-chevron-right small ms-1"></i></a>
+  </div> -->
+</div>
+<!-- End Card Grid -->

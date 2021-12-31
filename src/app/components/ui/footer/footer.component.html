@@ -1,36 +1,34 @@
 
-    <!-- Subscribe -->
-    <div class="bg-light">
-        <div class="container content-space-2">
-          <div class="w-md-75 w-lg-50 text-center mx-md-auto">
-            <div class="row justify-content-lg-between">
-              <!-- Heading -->
-              <div class="mb-5">
-                <span class="text-cap">Subscribe</span>
-                <h2>Get the latest from Front</h2>
-              </div>
-              <!-- End Heading -->
-  
-              <form>
-                <!-- Input Card -->
-                <div class="input-card input-card-pill input-card-sm border mb-3">
-                  <div class="input-card-form">
-                    <label for="subscribeForm" class="form-label visually-hidden">Enter email</label>
-                    <input type="text" class="form-control form-control-lg" id="subscribeForm" placeholder="Enter email" aria-label="Enter email">
-                  </div>
-                  <button type="button" class="btn btn-primary btn-lg rounded-pill">Subscribe</button>
-                </div>
-                <!-- End Input Card -->
-              </form>
-  
-              <p class="small">You can unsubscribe at any time. Read our <a href="#">privacy policy</a></p>
-            </div>
-          </div>
+  <!-- Extra Text -->
+  <section *ngIf="_global.url.split('/')[1] != 'accounts'" class="container bg-transparent">
+    <h5 class="font-weight-bold pb-5">Buy Laptops Online At Low Prices in Ghana</h5>
+
+    <p class="pb-3 font-3" style="font-weight: 500;">We cannot imagine a world without computers and laptops. It has
+      become a part of our daily lives whether you are a student, parent, professional or business person, etc. Ubuy is
+      the best place to buy laptops online. We offer laptops at very low prices when compared to the competition.</p>
+
+    <p class="pb-5 font-3" style="font-weight: 500;"> Now complete your work on time and be more successful with our
+      interesting range of laptops to suit all your personal and professional requirements. laptop computers for sale
+      can be found in our special sale and offers category depending on daily sale offers or special occasion sales.
+      Find your dream laptop online whether you are upgrading or a first time buyer we have all price ranges and
+      specifications.
+    </p>
+
+  </section>
+
+  <!-- <div class="container"> -->
+    <div class="row">
+      <div class="col-12">
+        <div class="footer_bg">
+          <div class="footer_bg_one"></div>
+          <div class="footer_bg_two"></div>
         </div>
       </div>
-      <!-- End Subscribe -->
-  <footer class="bg-dark">
-    <div class="container-fluid pb-1 pb-lg-7">
+    </div>
+  <!-- </div> -->
+
+  <footer class="bg-soft-secondary">
+    <div class="container pb-1 pb-lg-7">
       <div class="row content-space-t-2">
         <div class="col-lg-3 mb-7 mb-lg-0">
           <!-- Logo -->
@@ -116,13 +114,13 @@
           <!-- Socials -->
           <ul class="list-inline list-separator mb-0">
             <li class="list-inline-item">
-              <a class="text-body" href="#">Privacy &amp; Policy</a>
+              <a class="text-body" routerLink="/privacy-policy">Privacy &amp; Policy</a>
             </li>
             <li class="list-inline-item">
-              <a class="text-body" href="#">Terms</a>
+              <a class="text-body" routerLink="/terms-conditions">Terms</a>
             </li>
             <li class="list-inline-item">
-              <a class="text-body" href="#">Site Map</a>
+              <a class="text-body" routerLink="sitemap">Site Map</a>
             </li>
           </ul>
           <!-- End Socials -->

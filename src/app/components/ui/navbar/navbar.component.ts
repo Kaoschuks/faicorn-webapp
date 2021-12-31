@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ListingsService } from 'src/app/services/features/listings/listings.service';
+import { UsersService } from 'src/app/services/features/users';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public _userService: UsersService,
+    public _listingservices: ListingsService,
+  ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this._listingservices.getlistingscategories()
   }
 
 }

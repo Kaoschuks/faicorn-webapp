@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChange } from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-root',

@@ -17,18 +17,14 @@ export class AuthGuardsService implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return new Promise((resolve, reject) => {
-      let page = 'login' ;
       this.uData.isLoggedOn()
       .then((res: boolean) => {
-        if(!res) {
-          this.router.navigateByUrl(page)
-          reject(res);
-        } 
+        if(!res) throw new Error('Access required');
         resolve(res);
       })
       .catch((err: boolean) => {
         console.log(err);
-        this.router.navigateByUrl(page)
+        this.router.navigateByUrl('/login')
         reject(err);
       });
     })

@@ -2,24 +2,22 @@
           <div class="flex-grow-1 mx-auto">
 
             <div class="d-grid gap-2 mx-auto">
-              <button class="btn btn-primary btn-sm" type="button">Continue with Facebook</button>
-              <button class="btn btn-danger btn-sm" type="button">Continue with Google</button>
+              <button (click)="socialLogin('facebook')" class="btn btn-outline-dark btn-sm bold fs-16" type="button">Continue with Facebook</button>
+              <button (click)="socialLogin('google')" class="btn btn-outline-danger btn-sm bold fs-16" type="button">Continue with Google</button>
             </div>
-            <br />
             <br />
 
             <div class="text-center fs-14 bold">
               <p>Or Continue Using Email.</p>
             </div>
-            <br />
 
 
             <!-- Form -->
-            <form class="js-validate needs-validation" novalidate>
+            <form [formGroup]="loginForm" (ngSubmit)="login()" class="js-validate needs-validation" novalidate>
               <!-- Form -->
               <div class="mb-4">
                 <label class="form-label" for="signupModalFormLoginEmail">Your email</label>
-                <input type="email" class="form-control form-control-lg" name="email" id="signupModalFormLoginEmail" placeholder="email@site.com" aria-label="email@site.com" required>
+                <input type="email" class="form-control form-control-lg" formControlName="email" id="signupModalFormLoginEmail" placeholder="email@site.com" aria-label="email@site.com" required>
                 <span class="invalid-feedback">Please enter a valid email address.</span>
               </div>
               <!-- End Form -->
@@ -29,32 +27,24 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <label class="form-label" for="signupModalFormLoginPassword">Password</label>
 
-                  <a class="form-label-link" href="./page-reset-password.html">Forgot Password?</a>
+                  <a class="form-label-link" routerLink="/accounts/forgot">Forgot Password?</a>
                 </div>
 
                 <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                  <input type="password" class="js-toggle-password form-control form-control-lg" name="password" id="signupModalFormLoginPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8"
-                        data-hs-toggle-password-options='{
-                         "target": "#changePassTarget",
-                         "defaultClass": "bi-eye-slash",
-                         "showClass": "bi-eye",
-                         "classChangeTarget": "#changePassIcon"
-                       }'>
+                  <input type="password" class="js-toggle-password form-control form-control-lg" formControlName="password" id="signupModalFormLoginPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8">
                   <a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;">
                     <i id="changePassIcon" class="bi-eye"></i>
                   </a>
                 </div>
-
-                <span class="invalid-feedback">Please enter a valid password.</span>
               </div>
               <!-- End Form -->
 
               <div class="d-grid mb-3">
-                <button type="submit" class="btn btn-secondary">Access Your Account</button>
+                <button type="submit" class="btn btn-secondary btn-sm">Access Your Account</button>
               </div>
 
               <div class="text-center">
-                <p>Don't have an account yet? <a class="link" href="./page-signup.html">Sign up here</a></p>
+                <p class="fs-14">Don't have an account yet? <a class="link" routerLink="/register">Sign up here</a></p>
               </div>
             </form>
             <!-- End Form -->

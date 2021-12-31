@@ -1,0 +1,228 @@
+<div class="navbar-expand-lg mb-5">
+    <!-- Navbar Toggle -->
+    <div class="d-grid">
+        <button type="button" class="navbar-toggler btn btn-white mb-3" data-bs-toggle="collapse"
+            data-bs-target="#navbarVerticalNavMenu" aria-label="Toggle navigation" aria-expanded="false"
+            aria-controls="navbarVerticalNavMenu">
+            <span class="d-flex justify-content-between align-items-center">
+                <span class="text-dark">Filter</span>
+
+                <span class="navbar-toggler-default">
+                    <i class="bi-list"></i>
+                </span>
+
+                <span class="navbar-toggler-toggled">
+                    <i class="bi-x"></i>
+                </span>
+            </span>
+        </button>
+    </div>
+    
+    <!-- End Navbar Toggle -->
+    <div class="mb-5">
+        <h5 class="mb-3">Last updated</h5>
+
+        <!-- Select -->
+        <select class="form-select form-select-sm">
+            <option value="within last day">within last day</option>
+            <option value="within last week">within last week</option>
+            <option value="within last month">within last month</option>
+            <option value="within last 3 months">within last 3 months</option>
+            <option value="within last 6 months" selected>within last 6 months</option>
+            <option value="show all resumes">show all resumes</option>
+        </select>
+        <!-- End Select -->
+    </div>
+
+    <div id="navbarVerticalNavMenu" class="collapse navbar-collapse">
+        <div id="shopNavCategories" class="nav nav-pills nav-vertical">
+            <h5>Categories Listing</h5>
+
+            <div *ngFor="let category of categories">
+                <!-- Collapse -->
+                <a *ngIf="category?.subcategory?.length > 0" class="nav-link collapsed" [ngClass]="(category?.subcategory?.length > 0) ? 'dropdown-toggle' : ''" [attr.data-bs-target]="generateID('#' + category?.name)" role="button" data-bs-toggle="collapse"
+                    aria-expanded="false" [attr.aria-controls]="generateID(category?.name)">
+                     {{category?.name | titlecase}}
+                </a>
+                <a *ngIf="category?.subcategory?.length == 0" class="nav-link collapsed" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">
+                     {{category?.name | titlecase}}
+                </a>
+    
+                <div *ngIf="category?.subcategory?.length > 0" [id]="generateID(category?.name)" class="nav-collapse collapse" data-bs-parent="#shopNavCategories">
+                    <div id="shopNavCategoriesOne">
+                        <a class="nav-link" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">All {{category?.name | titlecase}}</a>
+                        <a *ngFor="let subcategory of category?.subcategory" class="nav-link" routerLink="/{{subcategory?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">{{subcategory?.name | titlecase}}</a>
+                    </div>
+                </div>
+                <!-- End Collapse -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar Collapse -->
+    <div id="navbarVerticalNavMenu" class="collapse navbar-collapse mt-5">
+        <div class="w-100">
+            <!-- Form -->
+            <form>
+                <div class="border-bottom pb-4 mb-4">
+                    <h5>Price Range</h5>
+
+                    <div class="d-grid gap-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menCheckbox" checked="">
+                            <label class="form-check-label" for="menCheckbox">GHS 615 and under </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menCheckbox" checked="">
+                            <label class="form-check-label" for="menCheckbox">GHS 615 to GHS 1538</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menCheckbox" checked="">
+                            <label class="form-check-label" for="menCheckbox">GHS 615 and under </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menCheckbox" checked="">
+                            <label class="form-check-label" for="menCheckbox">GHS 615 to GHS 1538</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-bottom pb-4 mb-4">
+                    <h5>Gender</h5>
+
+                    <div class="d-grid gap-2">
+                        <!-- Checkboxes -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menCheckbox" checked="">
+                            <label class="form-check-label" for="menCheckbox">Men (73)</label>
+                        </div>
+                        <!-- End Checkboxes -->
+
+                        <!-- Checkboxes -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="womenCheckbox" checked="">
+                            <label class="form-check-label" for="womenCheckbox">Women (51)</label>
+                        </div>
+                        <!-- End Checkboxes -->
+                    </div>
+                </div>
+
+                <div class="border-bottom pb-4 mb-4">
+                    <h5>Brand</h5>
+
+                    <div class="d-grid gap-2">
+                        <!-- Checkboxes -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="adidasCheckbox">
+                            <label class="form-check-label" for="adidasCheckbox">Adidas (16)</label>
+                        </div>
+                        <!-- End Checkboxes -->
+
+                        <!-- Checkboxes -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="newBalanceCheckbox">
+                            <label class="form-check-label" for="newBalanceCheckbox">New Balance (8)</label>
+                        </div>
+                        <!-- End Checkboxes -->
+
+                        <!-- Checkboxes -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="nikeCheckbox">
+                            <label class="form-check-label" for="nikeCheckbox">Nike (35)</label>
+                        </div>
+                        <!-- End Checkboxes -->
+
+                        <!-- Checkboxes -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="fredPerryCheckbox">
+                            <label class="form-check-label" for="fredPerryCheckbox">Fred Perry (5)</label>
+                        </div>
+                        <!-- End Checkboxes -->
+
+                        <!-- Checkboxes -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="tnfCheckbox">
+                            <label class="form-check-label" for="tnfCheckbox">The North Face (1)</label>
+                        </div>
+                        <!-- End Checkboxes -->
+                    </div>
+
+                    <!-- View More - Collapse -->
+                    <div class="collapse" id="collapseBrand">
+                        <div class="d-grid gap-2">
+                            <!-- Checkboxes -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="gucciCheckbox">
+                                <label class="form-check-label" for="gucciCheckbox">Gucci (5)</label>
+                            </div>
+                            <!-- End Checkboxes -->
+
+                            <!-- Checkboxes -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mangoCheckbox">
+                                <label class="form-check-label" for="mangoCheckbox">Mango (1)</label>
+                            </div>
+                            <!-- End Checkboxes -->
+                        </div>
+                    </div>
+                    <!-- End View More - Collapse -->
+
+                    <!-- Link -->
+                    <a class="link-sm link-collapse" href="#collapseBrand" role="button" data-bs-toggle="collapse"
+                        aria-expanded="false" aria-controls="collapseBrand">
+                        <span class="link-collapse-default">View more</span>
+                        <span class="link-collapse-active">View less</span>
+                    </a>
+                    <!-- End Link -->
+                </div>
+
+                <div class="border-bottom pb-4 mb-4">
+                    <h5>Size</h5>
+
+                    <div class="d-grid gap-2">
+                        <!-- Checkboxes -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="sizeSCheckbox" checked="">
+                            <label class="form-check-label" for="sizeSCheckbox">S (27)</label>
+                        </div>
+                        <!-- End Checkboxes -->
+
+                        <!-- Checkboxes -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="sizeMCheckbox">
+                            <label class="form-check-label" for="sizeMCheckbox">M (18)</label>
+                        </div>
+                        <!-- End Checkboxes -->
+
+                        <!-- Checkboxes -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="sizeLCheckbox" checked="">
+                            <label class="form-check-label" for="sizeLCheckbox">L (0)</label>
+                        </div>
+                        <!-- End Checkboxes -->
+
+                        <!-- Checkboxes -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="sizeXLCheckbox">
+                            <label class="form-check-label" for="sizeXLCheckbox">XL (1)</label>
+                        </div>
+                        <!-- End Checkboxes -->
+
+                        <!-- Checkboxes -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="sizeXXLCheckbox">
+                            <label class="form-check-label" for="sizeXXLCheckbox">XXL (2)</label>
+                        </div>
+                        <!-- End Checkboxes -->
+                    </div>
+                </div>
+
+                <div class="d-grid">
+                    <button type="button" class="btn btn-white btn-transition">Clear all</button>
+                </div>
+            </form>
+            <!-- End Form -->
+        </div>
+    </div>
+    <!-- End Navbar Collapse -->
+</div>

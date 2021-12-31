@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +16,9 @@ export class RequestService
   };
   url: string = environment.url;
   constructor(
-    private routing: Router
   ) { }
 
-  setJwt(jwt: string): void {
+  setJwt(jwt: any = null): void {
     this.jwt = jwt;
     if(!jwt) {
       delete this.headers.headers["Authorization"]

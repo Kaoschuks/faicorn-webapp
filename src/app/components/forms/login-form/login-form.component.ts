@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { GlobalsService } from 'src/app/services/core/globals.service';
+import { UsersService } from 'src/app/services/features/users';
 
 @Component({
   selector: 'login-form',
@@ -42,10 +44,40 @@ export class LoginFormComponent implements OnInit {
 
   error: string = ''
   constructor(
+    private _userService: UsersService,
+    private _globals: GlobalsService
   ) {
   }
 
   ngOnInit() {
+  }
+
+  async login() {
+    const res: any = await this._userService.login(this.loginForm.value)
+    this._globals.spinner.hide();
+
+    if(res.error) this.error = res.error;
+    if(res == "logged in") this._globals.router.navigate(['/accounts/overview'])
+  }
+
+  async socialLogin(provider: string) {
+    this._globals.spinner.show();
+
+    const resp: any = await this._userService.socialregister(
+      (provider == 'google') ? 'GoogleAuthProvider' : 'FacebookAuthProvider'
+    );
+    if(resp.error) {
+      console.log(resp.error);
+      this._globals.spinner.hide();
+    } 
+
+    if(!resp.error) {
+      const res: any = await this._userService.login(resp, provider);
+      if(res.error) console.log(res.error);
+      if(res == "logged in") this._globals.router.navigate(['/accounts/overview'])
+      this._globals.spinner.hide();
+    }
+
   }
 
 }

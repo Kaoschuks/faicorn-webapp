@@ -9,16 +9,11 @@ const routes: Routes = [
     component: IndexLayoutComponent,
     loadChildren: () => import('./pages/website/website.module').then( m => m.WebsiteModule) 
   },
-  { 
-    path: 'auth', 
-    // component: IndexLayoutComponent,
-    loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthModule) 
-  },
   { path: '**', redirectTo: '404' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled', preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

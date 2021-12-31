@@ -1,1 +1,108 @@
-<p>index-pages works!</p>
+
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron bg-danger">
+    <div class="snowflake" *ngFor="let i of snowcount"></div>
+    <div class="container position-relative content-space-t-7 content-space-t-lg-3 content-space-b-1">
+      <br />
+      <br />
+      <div class="row position-relative zi-2">
+        <!-- <div class="col-md-3 hidden-xs" align="left">
+          <img class="img-fluid" style="margin-bottom: -200px" src="/assets/img/svg/undraw_shopping_app_flsj.svg" alt="Image Description">
+        </div> -->
+        <div class="col-md-8 offset-md-2">
+          <!-- Heading -->
+          <br />
+          <div class="text-left mb-5">
+            <h1 class="fs-30 text-white" align="center">What are you
+              <span class="text-warning text-highlight-danger">
+                <span class="js-typedjs"
+                    data-hs-typed-options='{
+                      "strings": ["shopping  ", "looking", "in need of ", "interested in "],
+                      "typeSpeed": 90,
+                      "loop": true,
+                      "backSpeed": 30,
+                      "backDelay": 2500
+                    }'></span>
+            </span> for today?</h1>
+          </div>
+          <!-- End Heading -->
+  
+          <form>
+            <!-- Input Card -->
+            <div class="input-card input-card-sm">
+              <div class="input-card-form">
+                <label for="jobTitleForm" class="form-label visually-hidden">Job, title, skills, or company</label>
+                <div class="input-group input-group-merge">
+                  <span class="input-group-prepend input-group-text">
+                    <i class="bi-search"></i>
+                  </span>
+                  <input type="text" class="form-control" id="jobTitleForm" placeholder="Search through our global store and categories listing ..." aria-label="Job, title, skills, or company">
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary btn-xs">Search</button>
+            </div>
+            <!-- End Input Card -->
+          </form>
+  
+          <p class="form-text text-white text-center">Search through over 125,000 listings</p>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row mb-10 mt-5">
+      <div class="col-lg-3">
+        <div class="navbar-expand-lg">
+            <div id="navbarVerticalNavMenu" class="collapse navbar-collapse">
+                <div id="shopNavCategories" class="nav nav-pills nav-vertical">
+                    <h5>Categories Listing</h5>
+                    <!-- Collapse -->
+                            
+                    <div *ngFor="let category of _listingservices?.categories">
+                      <!-- Collapse -->
+                      <a class="nav-link collapsed" [ngClass]="(category?.subcategory?.length > 0) ? 'dropdown-toggle' : ''" [attr.data-bs-target]="generateID('#' + category?.name)" role="button" data-bs-toggle="collapse"
+                          aria-expanded="false" [attr.aria-controls]="generateID(category?.name)">
+                          {{category?.name | titlecase}}
+                      </a>
+          
+                      <div [id]="generateID(category?.name)" class="nav-collapse collapse" [ngClass]="(category?.subcategory?.length > 0) ? 'show' : ''" data-bs-parent="#shopNavCategories">
+                          <div id="shopNavCategoriesOne">
+                              <a *ngFor="let subcategory of category?.subcategory" class="nav-link" routerLink="/{{subcategory?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">{{subcategory?.name | titlecase}}</a>
+                          </div>
+                      </div>
+                      <!-- End Collapse -->
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <ads-category-scroll [categories]="_listingservices?.categories || []"></ads-category-scroll>
+        <div class="bg-img-start rounded-2 p-5 mb-5" style="background-image: url(https://htmlstream.com/front-v4.0/assets/img/1920x800/img9.jpg);">
+            <div class="row align-items-md-center">
+              <div class="col-sm mb-3 mb-md-0">
+                <h1 class="h4 mb-0">Save up to 30% with orders above $50</h1>
+              </div>
+              <div class="col-sm-auto">
+                <a class="btn btn-primary btn-sm btn-transition rounded-pill" href="#">Shop now</a>
+              </div>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-sm mb-9 mb-sm-0">
+              <h6 class="mb-2 fs-20 bold">Trending Ads</h6>
+            </div>
+        </div>
+        <ads-grid [ads]="_listingservices?.listings"></ads-grid>
+        <no-content *ngIf="_listingservices?.listings.length == 0">
+          <h2>No listing found</h2>
+          <p>The content you requested is not available.</p>
+        </no-content>
+      </div>
+    </div>
+  </div>

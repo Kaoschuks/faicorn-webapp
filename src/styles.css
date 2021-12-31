@@ -1,0 +1,141 @@
+
+.footer_bg {
+position: relative;
+bottom: -35px;
+background: url("http://droitthemes.com/html/saasland/img/seo/footer_bg.png") no-repeat scroll center 0;
+width: 100%;
+height: 266px;
+}
+
+.footer_bg .footer_bg_one {
+background: url("https://1.bp.blogspot.com/-mvKUJFGEc-k/XclCOUSvCnI/AAAAAAAAUAE/jnBSf6Fe5_8tjjlKrunLBXwceSNvPcp3wCLcBGAsYHQ/s1600/volks.gif") no-repeat center center;
+width: 330px;
+height: 105px;
+background-size:100%;
+position: relative;
+bottom: -150px;
+left: 30%;
+-webkit-animation: myfirst 22s linear infinite;
+animation: myfirst 22s linear infinite;
+}
+
+.footer_bg .footer_bg_two {
+background: url("https://1.bp.blogspot.com/-hjgfxUW1o1g/Xck--XOdlxI/AAAAAAAAT_4/JWYFJl83usgRFMvRfoKkSDGd--_Sv04UQCLcBGAsYHQ/s1600/cyclist.gif") no-repeat center center;
+width: 88px;
+height: 100px;
+background-size:100%;
+bottom: -60px;
+left: 38%;
+position: relative;
+-webkit-animation: myfirst 30s linear infinite;
+animation: myfirst 30s linear infinite;
+}
+
+
+
+@-moz-keyframes myfirst {
+0% {
+    left: -25%;
+}
+100% {
+    left: 100%;
+}
+}
+
+@-webkit-keyframes myfirst {
+0% {
+    left: -25%;
+}
+100% {
+    left: 100%;
+}
+}
+
+@keyframes myfirst {
+0% {
+    left: -25%;
+}
+100% {
+    left: 100%;
+}
+}
+
+
+.fs-60 {
+    font-size: 60px !important;
+}
+.text-capitalize{
+    text-transform: capitalize !important;
+}
+.fs-12 {
+    font-size: 12px !important;
+}
+.fs-14 {
+    font-size: 14px !important;
+}
+.fs-16 {
+    font-size: 16px !important;
+}
+.fs-18 {
+    font-size: 18px !important;
+}
+.fs-20 {
+    font-size: 20px !important;
+}
+.fs-22 {
+    font-size: 22px !important;
+}
+.fs-25 {
+    font-size: 25px !important;
+}
+.fs-30 {
+    font-size: 30px !important;
+}
+.fs-40 {
+    font-size: 40px !important;
+}
+.fs-50 {
+    font-size: 50px !important;
+}
+.bold {
+    font-weight: 600 !important;
+}
+.b-b {
+    border-bottom: 1px solid --ion-color-light !important;
+}
+
+.no-shadow {
+    box-shadow: none !important;
+}
+
+
+@media screen and (min-width: 992px) {
+    .product-imgs {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .product-content {
+      padding-top: 0;
+    }
+  }
+  .breadcrumb-item+.breadcrumb-item::before {
+    content: var(--bs-breadcrumb-divider, "/");
+}
+
+.bg-danger {
+    background-color: #c00000 !important;
+}
+.text-danger {
+    color: #c00000 !important;
+}
+.no-padding {
+    padding: 0px !important;
+}
+.card-title {
+    line-height: 14px !important;
+}
+.card-pinned-top-start {
+    margin-top: -5px !important;
+    margin-left: -10px !important;
+}

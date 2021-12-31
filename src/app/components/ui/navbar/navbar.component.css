@@ -2,3 +2,10 @@ header nav .container-fluid {
     width: 90vw !important;
     margin: 0px auto !important;
 }
+form input {
+    margin-top: 7px !important;
+    width: 20vw !important;
+}
+.nav-item {
+    width: 120px !important;
+}

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Event, NavigationStart} from '@angular/router';
+import { GlobalsService } from 'src/app/services/core/globals.service';
+import { ListingsService } from 'src/app/services/features/listings/listings.service';
 
 @Component({
   selector: 'app-detail-pages',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailPagesComponent implements OnInit {
 
-  constructor() { }
+  url: any = this._global.url.split('/')
+  constructor(
+    private _global: GlobalsService,
+    public _listingservices: ListingsService,
+  ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this._listingservices.getlistings('/all', `?brands=${this.url[this.url.length - 2]}&limit=1000`)
+    await this._listingservices.getlistings(`/${this.url[this.url.length - 1]}`, ``, 'single')
+    this.getAds()
+  }
+
+  getAds() {
+    this._global.router.events.subscribe(async (event: Event) => {
+      if (event instanceof NavigationStart) {
+        let url = event.url.split('/');
+        await this._listingservices.getlistings('/all', `?brands=${url[url.length - 2]}&limit=1000`)
+        await this._listingservices.getlistings(`/${url[url.length - 1]}`, ``, 'single')
+      }
+    });
   }
 
 }

@@ -1,9 +1,9 @@
 <header>
-    <nav class="navbar navbar-expand-xl fixed-top navbar-white bg-white navbar-shadow" aria-label="Sixth navbar example">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-              <img alt="" width="30" height="24" class="d-inline-block align-text-top">
-              Bootstrap
+    <nav class="navbar navbar-expand-xl fixed-top navbar-light text-white bg-danger" aria-label="Sixth navbar example">
+        <div class="container">
+            <a class="navbar-brand" routerLink="/">
+              <img src="assets/img/red-logo.jpeg" alt="" width="120" height="45" class="d-inline-block align-text-top">
+              <!-- Faicorn -->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample06"
                 aria-controls="navbarsExample06" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,49 +13,95 @@
             <div class="collapse navbar-collapse" id="navbarsExample06">
                 <ul class="navbar-nav me-auto mb-2 mb-xl-0">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="bi-journals me-2"></i> Explore</a>
+                        <a class="nav-link dropdown-toggle fs-14 bold text-white" href="#" id="dropdown06" data-bs-toggle="dropdown"
+                            aria-expanded="false"> Categories</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown06">
-                            <a class="dropdown-item" href="#">All Design</a>
-                            <a class="dropdown-item" href="#">Web design</a>
-                            <a class="dropdown-item" href="#">Graphic design</a>
-                            <a class="dropdown-item" href="#">Design tools</a>
-                            <a class="dropdown-item" href="#">User experience</a>
-                            <a class="dropdown-item" href="#">Game design</a>
-                            <a class="dropdown-item" href="#">Design thinking</a>
-                            <a class="dropdown-item" href="#">3D &amp; animation</a>
-                            <a class="dropdown-item" href="#">Fashion</a>
-                            <a class="dropdown-item" href="#">Architectural design</a>
-                            <a class="dropdown-item" href="#">Interior design</a>
-                            <a class="dropdown-item" href="#">Other</a>
+                          <a *ngFor="let category of _listingservices?.categories" class="dropdown-item" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">{{category?.name | titlecase}}</a>
                         </ul>
                     </li>
                 </ul>
 
+                <form onsubmit="event.preventDefault()" class="form-inline"><input type="search" placeholder="Search for a product" class="form-control form-control-sm bg-soft-light mt-1"></form>
 
-                <ul class="navbar-nav justify-content-end">
+                <ul class="navbar-nav justify-content-end mt-2">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-bs-toggle="dropdown"
-                            aria-expanded="false">English</a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdown06">
-                            <li><a class="dropdown-item" href="#">French</a></li>
-                            <li><a class="dropdown-item" href="#">Japanese</a></li>
-                        </ul>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-xs dropdown-toggle" id="footerSelectLanguage" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
+                            <span class="d-flex align-items-center">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/>
+                              <span class="fs-14  text-white">English (US)</span>
+                            </span>
+                          </button>
+          
+                          <div class="dropdown-menu" aria-labelledby="footerSelectLanguage">
+                            <a class="dropdown-item d-flex align-items-center active" href="#">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/>
+                              <span>English (US)</span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Image description" width="16"/>
+                              <span>Deutsch</span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/es.svg" alt="Image description" width="16"/>
+                              <span>Español</span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Image description" width="16"/>
+                              <span>中文 (繁體)</span>
+                            </a>
+                          </div>
+                        </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="bi-journals me-2"></i> Account</a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdown06">
-                            <li><a class="dropdown-item" href="#">Sign In</a></li>
-                            <li><a class="dropdown-item" href="#">Sign Up action</a></li>
-                        </ul>
+                        <div class="btn-group">
+                          <button type="button" class="btn dropdown-toggle" id="footerAccount" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
+                            <span class="d-flex align-items-center">
+                              <!-- <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/> -->
+                              <span class="fs-14 text-white">Accounts</span>
+                            </span>
+                          </button>
+          
+                          <div class="dropdown-menu" aria-labelledby="footerAccount">
+                            <div *ngIf="!_userService.user">
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/login">
+                                <span>Sign In</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/register">
+                                <span>Register</span>
+                              </a>
+                            </div>
+
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/overview">
+                                <span>Overview</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/profile">
+                                <span>Profile</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/listings">
+                                <span>Listings</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/messages">
+                                <span>Messages</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/orders">
+                                <span>Orders</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/settings">
+                                <span>Settings</span>
+                              </a>
+                          </div>
+                        </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="bi-journals me-2"></i> Cart</a>
+                            aria-expanded="false"> Cart</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown06">
-                            <li><a class="dropdown-item" href="#">Checkout</a></li>
+                            <li><a class="dropdown-item" routerLink="/checkout">Checkout</a></li>
                         </ul>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="fs-14 btn bg-white text-danger btn-xs bold">Post an Ad</a>
                     </li>
                 </ul>
             </div>
@@ -63,3 +109,5 @@
     </nav>
 
 </header>
+
+<br />

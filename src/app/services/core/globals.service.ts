@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { RequestService } from './request-service';
 import { StorageServices } from './storage-services.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var $ :any;
 
 @Injectable({
@@ -12,12 +13,16 @@ export class GlobalsService
 {
   loading: boolean = false;
   loader: any;
-  url:string;
+  url: string = this.router.url;
   title:string = '';
+  
   constructor(
+    public spinner: NgxSpinnerService,
     public router: Router, private location: Location, public storage: StorageServices, public api: RequestService
   ) {
-    this.url = this.location.path();
+    this.location.onUrlChange(x => {
+      this.url = x;
+    });
   }
 
   preloader = (status: string) =>
