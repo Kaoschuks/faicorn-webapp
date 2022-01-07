@@ -16,33 +16,35 @@ export class AdsCategoryScrollComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      var owl = $('.owl-carousel');
-      owl.owlCarousel({
-        items: 4,
-        margin: 10,
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 3000,
-        autoplayHoverPause: true,
-        responsive: {
-          0: {
-            items: 3,
-            nav: true,
-            loop: true,
-          },
-          600: {
-            items: 3,
-            nav: false,
-            loop: true,
-          },
-          1000: {
-            items: 7,
-            nav: true,
-            loop: true
+      if(this.categories.length > 0) {
+        const owl = $('.owl-carousel');
+        owl.owlCarousel({
+          items: 4,
+          margin: 10,
+          loop: true,
+          autoplay: true,
+          autoplayTimeout: 1000,
+          autoplayHoverPause: true,
+          responsive: {
+            0: {
+              items: 3,
+              nav: true,
+              loop: true,
+            },
+            600: {
+              items: 3,
+              nav: false,
+              loop: true,
+            },
+            1000: {
+              items: 7,
+              nav: true,
+              loop: true
+            }
           }
-        }
-      });
-    }, 100)
+        });
+      }
+    }, 1000)
   }
 
 }

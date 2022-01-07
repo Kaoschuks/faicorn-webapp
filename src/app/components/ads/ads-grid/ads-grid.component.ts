@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AdsGridComponent implements OnInit {
 
-  @Input() ads: Array<any> = [];
+  @Input() ads: any = [];
   // adscount: Array<any> = Array.from(Array(20).keys())
   constructor() { }
 

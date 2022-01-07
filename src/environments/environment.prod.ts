@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    url: 'apis.faicorn.com:5000/',
+    url: 'https://apis.faicorn.com/',
     secretKey: 'MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8',
     firebase: {
         apiKey: "AIzaSyBS3Y-qGHEtojlrvG5fB7FGRR9SykOjWB0",

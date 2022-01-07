@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AdsListsComponent implements OnInit {
 
   p: number = 1;
-  @Input() ads: Array<any> = [];
+  @Input() ads: any = [];
   @Input() limit: number = 10;
   constructor() { }
 

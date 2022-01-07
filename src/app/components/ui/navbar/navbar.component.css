@@ -9,3 +9,6 @@ form input {
 .nav-item {
     width: 120px !important;
 }
+.navbar-collapse {
+    background-color: transparent !important;
+}

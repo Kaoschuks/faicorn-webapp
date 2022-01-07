@@ -2,15 +2,15 @@
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron bg-danger">
-    <div class="snowflake" *ngFor="let i of snowcount"></div>
+    <div *ngFor="let i of snowcount"></div>
     <div class="container position-relative content-space-t-7 content-space-t-lg-3 content-space-b-1">
       <br />
       <br />
       <div class="row position-relative zi-2">
-        <!-- <div class="col-md-3 hidden-xs" align="left">
+        <div class="col-md-3 col-0" align="left">
           <img class="img-fluid" style="margin-bottom: -200px" src="/assets/img/svg/undraw_shopping_app_flsj.svg" alt="Image Description">
-        </div> -->
-        <div class="col-md-8 offset-md-2">
+        </div>
+        <div class="col-md-6">
           <!-- Heading -->
           <br />
           <div class="text-left mb-5">
@@ -47,6 +47,9 @@
   
           <p class="form-text text-white text-center">Search through over 125,000 listings</p>
         </div>
+        <div class="col-md-3 col-0" align="right">
+          <img class="img-fluid" style="margin-bottom: -200px" src="/assets/img/svg/undraw_web_shopping_re_owap.svg" alt="Image Description">
+        </div>
       </div>
       <br />
       <br />
@@ -82,7 +85,7 @@
         </div>
       </div>
       <div class="col-lg-9">
-        <ads-category-scroll [categories]="_listingservices?.categories || []"></ads-category-scroll>
+        <ads-category-scroll *ngIf="_listingservices.categories.length > 0" [categories]="_listingservices?.categories || []"></ads-category-scroll>
         <div class="bg-img-start rounded-2 p-5 mb-5" style="background-image: url(https://htmlstream.com/front-v4.0/assets/img/1920x800/img9.jpg);">
             <div class="row align-items-md-center">
               <div class="col-sm mb-3 mb-md-0">
@@ -94,12 +97,12 @@
             </div>
         </div>
         <div class="row align-items-center">
-            <div class="col-sm mb-9 mb-sm-0">
+            <div class="col-sm mb-2 mb-sm-0">
               <h6 class="mb-2 fs-20 bold">Trending Ads</h6>
             </div>
         </div>
         <ads-grid [ads]="_listingservices?.listings"></ads-grid>
-        <no-content *ngIf="_listingservices?.listings.length == 0">
+        <no-content *ngIf="_listingservices?.listings?.length == 0">
           <h2>No listing found</h2>
           <p>The content you requested is not available.</p>
         </no-content>
