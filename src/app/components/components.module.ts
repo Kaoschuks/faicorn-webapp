@@ -2,7 +2,10 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 import { LoadingComponent } from './ui/loading/loading.component';
@@ -36,7 +39,6 @@ import { SecurityComponent } from './accounts/security/security.component';
 import { OverviewComponent } from './accounts/overview/overview.component';
 import { ListingsComponent } from './accounts/listings/listings.component';
 import { OrdersComponent } from './accounts/orders/orders.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 export const component: Array<any> = [
 	LoadingComponent,  NoContentComponent, NavbarComponent, FooterComponent, 
@@ -54,6 +56,7 @@ export const component: Array<any> = [
 		CommonModule,
 		FormsModule,
 		NgxPaginationModule,
+		NgxSkeletonLoaderModule,
 		RouterModule,
 		NgxSpinnerModule,
 		ReactiveFormsModule,

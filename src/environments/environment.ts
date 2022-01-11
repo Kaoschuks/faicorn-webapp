@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'http://127.0.0.1:8000/',
+  url: 'https://apis.faicorn.com/',
+  // url: 'http://127.0.0.1:8000/',
   secretKey: 'MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8',
   firebase: {
     apiKey: "AIzaSyBS3Y-qGHEtojlrvG5fB7FGRR9SykOjWB0",

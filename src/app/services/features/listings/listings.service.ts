@@ -7,7 +7,11 @@ import { RequestService } from '../../core/request-service';
 })
 export class ListingsService {
 
-  loader: boolean = false;
+  loader: any = {
+    category: false,
+    listings: false,
+    detail: false
+  };
   listings: Array<any> = []
   listingInfo: any
   categories: Array<any> = []
@@ -18,7 +22,7 @@ export class ListingsService {
 
   async getlistings(route: string = '/all', params: string = "", type: string = "all") {
     return await new Promise(async (resolve: any, reject: any) => {
-      this.globals.spinner.show();
+      this.loader.listings = true;
       try {
         const resp: any = await this.api.get('listings' + route + params)
         if(resp.error) throw new Error(resp.error);
@@ -26,10 +30,10 @@ export class ListingsService {
         if(type == 'all') this.listings = resp.message;
         if(type == 'single') this.listingInfo = resp.message[0];
 
-        this.globals.spinner.hide();
+        this.loader.listings = false;
         resolve( resp.message);
       }catch(ex: any) {
-        this.globals.spinner.hide();
+        this.loader.listings = false;
         reject({
           error: ex.message || ex.error || ex || "Error getting listings"
         })
@@ -39,13 +43,16 @@ export class ListingsService {
 
   async getlistingscategories() {
     return await new Promise(async (resolve: any, reject: any) => {
+      this.loader.category = true;
       try {
         const resp: any = await this.api.get('listings/categories/all')
         if(resp.error) throw new Error(resp.error);
 
         this.categories = resp
+        this.loader.category = false;
         resolve(this.categories)
       }catch(ex: any) {
+        this.loader.category = false;
         reject({
           error: ex.message || ex.error || ex || "Error getting listings"
         })
