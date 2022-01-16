@@ -10,6 +10,7 @@ import { ListingsService } from 'src/app/services/features/listings/listings.ser
 })
 export class DetailPagesComponent implements OnInit {
 
+  showContact: boolean = false;
   url: any = this._global.url.split('/')
   constructor(
     private _global: GlobalsService,
@@ -30,6 +31,11 @@ export class DetailPagesComponent implements OnInit {
         await this._listingservices.getlistings(`/${url[url.length - 1]}`, ``, 'single')
       }
     });
+  }
+
+  toogle() {
+    console.log(this._listingservices?.listingInfo?.user)
+    this.showContact = (!this.showContact) ? true : false ;
   }
 
 }

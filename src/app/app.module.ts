@@ -25,6 +25,7 @@ import 'firebase/firestore';
     BrowserAnimationsModule,
     BrowserModule, CommonModule, HttpClientModule,
     NgxSpinnerModule, AppRoutingModule,
+		NgxSpinnerModule,
     ComponentsModule, ServicesModule,
   ],
   bootstrap: [AppComponent]

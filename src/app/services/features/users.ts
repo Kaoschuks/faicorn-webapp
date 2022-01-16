@@ -30,7 +30,8 @@ export class UsersService {
                     if (res) {
                         this.user = res;
                         const jwt = await this.globals.storage.getItem('jwt')
-                        this.api.setJwt(jwt)
+                        // console.log(jwt)
+                        this.api.setJwt(jwt.access_token)
                         resolve(true);
                     } else {
                         reject(false)

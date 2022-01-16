@@ -1,7 +1,7 @@
 <section class="container content-space-t-md-2 content-space-b-2 content-space-b-lg-3">
-    <br />
-    <br />
-    <br />
+    <br class="d-lg-none" />
+    <br class="d-lg-none" />
+    <br class="d-lg-none" />
     <breadcrumb></breadcrumb>
 
     <div class="row">
@@ -74,7 +74,9 @@
                       </div>
                   </div>
                   <div class="d-grid gap-2" style="margin-top: -15px">
-                      <button class="btn btn-success btn-xs fs-16 bold" type="button">Show Contact</button>
+                      <button (click)="toogle()" *ngIf="!showContact" class="btn btn-success btn-xs fs-16 bold" type="button">Show Contact</button>
+                      <a *ngIf="showContact" class="btn btn-outlink-success btn-xs fs-16 bold" href="tel://{{_listingservices?.listingInfo?.user?.phone}}">Call {{_listingservices?.listingInfo?.user?.phone}}</a>
+                      <!-- <a *ngIf="showContact && _listingservices?.listingInfo?.user?.phone == ''" class="btn btn-outlink-success btn-xs fs-16 bold" href="mailto://{{_listingservices?.listingInfo?.user?.email}}">Email {{_listingservices?.listingInfo?.user?.username}}</a> -->
                       <button routerLink="/accounts/messages?uid={{_listingservices?.listingInfo?.user?.uid}}" class="btn btn-outline-dark btn-xs fs-16 bold" type="button">Send a Message</button>
                   </div>
                 </div>
