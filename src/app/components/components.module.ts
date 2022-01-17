@@ -39,7 +39,6 @@ import { SecurityComponent } from './accounts/security/security.component';
 import { OverviewComponent } from './accounts/overview/overview.component';
 import { ListingsComponent } from './accounts/listings/listings.component';
 import { OrdersComponent } from './accounts/orders/orders.component';
-import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 export const component: Array<any> = [
 	LoadingComponent,  NoContentComponent, NavbarComponent, FooterComponent, 
@@ -58,7 +57,6 @@ export const component: Array<any> = [
 		FormsModule,
 		NgxPaginationModule,
 		NgxSkeletonLoaderModule,
-		NgxIntlTelInputModule,
 		RouterModule,
 		NgxSpinnerModule,
 		ReactiveFormsModule,

@@ -1,6 +1,6 @@
 <!-- <ads-listing></ads-listing> -->
 
-<accounts-listings *ngIf="_global.url.split('/')[2] == 'listings'"></accounts-listings>
+<accounts-listings *ngIf="_global.url.split('/')[2] == 'listings' && !_global.url.split('/')[3]"></accounts-listings>
 <accounts-overview *ngIf="_global.url.split('/')[2] == 'overview'"></accounts-overview>
 <accounts-payments *ngIf="_global.url.split('/')[2] == 'payments'"></accounts-payments>
 <accounts-security *ngIf="_global.url.split('/')[2] == 'security'"></accounts-security>

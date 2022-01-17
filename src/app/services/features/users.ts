@@ -114,10 +114,44 @@ export class UsersService {
                 const user: any = await this.api.get(`user`);
                 if (user.error) throw new Error(user.error || user);
 
-                this.user = user;
-                this.globals.storage.saveItem('user', user);
-                resolve(user)
+                this.user = user[0];
+                this.globals.storage.saveItem('user', user[0]);
+                resolve(user[0])
             } catch (ex: any) {
+                console.log(ex)
+                reject({ error: ex.error || ex.message || ex })
+            }
+        })
+    }
+
+    async updateUserInfo(form: any) {
+        return await new Promise(async (resolve, reject) => {
+            this.globals.spinner.show()
+            try {
+                const resp: any = await this.api.update(`user`, form);
+                if (resp.error) throw new Error(resp.error || resp);
+
+                this.globals.spinner.hide()
+                resolve(resp.message)
+            } catch (ex: any) {
+                this.globals.spinner.hide()
+                console.log(ex)
+                reject({ error: ex.error || ex.message || ex })
+            }
+        })
+    }
+
+    async upload(form: any) {
+        return await new Promise(async (resolve, reject) => {
+            this.globals.spinner.show()
+            try {
+                const resp: any = await this.api.uploadImg(`upload`, form);
+                if (resp.error) throw new Error(resp.error || resp);
+
+                this.globals.spinner.hide()
+                console.log(resp.message)
+            } catch (ex: any) {
+                this.globals.spinner.hide()
                 console.log(ex)
                 reject({ error: ex.error || ex.message || ex })
             }

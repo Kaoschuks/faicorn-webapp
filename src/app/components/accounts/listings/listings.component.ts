@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalsService } from 'src/app/services/core/globals.service';
+import { ListingsService } from 'src/app/services/features/listings/listings.service';
 
 @Component({
   selector: 'accounts-listings',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListingsComponent implements OnInit {
 
-  constructor() { }
+  limit: any = 10
+  constructor(
+    private _global: GlobalsService,
+    public _listingservices: ListingsService
+  ){}
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this._listingservices.getlistings('', ``)
+    console.log(this._listingservices?.listings);
   }
 
 }
