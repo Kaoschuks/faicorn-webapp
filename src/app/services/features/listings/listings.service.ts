@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { GlobalsService } from '../../core/globals.service';
 import { RequestService } from '../../core/request-service';
 
@@ -58,5 +59,27 @@ export class ListingsService {
         })
       }
     })
+  }
+
+  async upload(file: any) {
+      return await new Promise(async (resolve, reject) => {
+          this.globals.spinner.show()
+          try {
+              const myFormData = new FormData();
+              myFormData.append("file", file);
+              myFormData.append("upload_preset", environment.cloudinary.upload_preset);
+              myFormData.append("skipAuthorization", "true");
+
+              const resp: any = await this.api.upload(``, myFormData);
+              if (resp.error) throw new Error(resp.error || resp);
+
+              this.globals.spinner.hide()
+              console.log(resp)
+          } catch (ex: any) {
+              this.globals.spinner.hide()
+              console.log(ex)
+              reject({ error: ex.error || ex.message || ex })
+          }
+      })
   }
 }

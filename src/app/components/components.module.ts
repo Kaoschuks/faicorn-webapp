@@ -39,12 +39,13 @@ import { SecurityComponent } from './accounts/security/security.component';
 import { OverviewComponent } from './accounts/overview/overview.component';
 import { ListingsComponent } from './accounts/listings/listings.component';
 import { OrdersComponent } from './accounts/orders/orders.component';
+import { ListingFormComponent } from './forms/listing-form/listing-form.component';
 
 export const component: Array<any> = [
 	LoadingComponent,  NoContentComponent, NavbarComponent, FooterComponent, 
 	BreadcrumbComponent, FilterComponent, ReviewListingComponent, AccountsSidebarComponent,
 	ErrorComponent,
-	LoginFormComponent, RegisterFormComponent, ForgotFormComponent, ChangepasswordFormComponent, ProfileFormComponent,
+	LoginFormComponent, RegisterFormComponent, ForgotFormComponent, ChangepasswordFormComponent, ProfileFormComponent, ListingFormComponent,
 	IndexLayoutComponent, ListingsLayoutComponent, AccountsLayoutComponent,
 	AdsListsComponent, AdsGridComponent, AdsInfoComponent, AdsCategoryScrollComponent,
 	PaymentsComponent, SecurityComponent, OverviewComponent, ListingsComponent, OrdersComponent

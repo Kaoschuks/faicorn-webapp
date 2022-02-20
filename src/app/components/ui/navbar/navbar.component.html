@@ -68,6 +68,11 @@
                               <a class="dropdown-item d-flex align-items-center" routerLink="/register">
                                 <span>Register</span>
                               </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/register"
+                              [queryParams]="{ access: 'agent' }"
+                              queryParamsHandling="merge">
+                                <span>Become an agent</span>
+                              </a>
                             </div>
 
                               <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/overview">

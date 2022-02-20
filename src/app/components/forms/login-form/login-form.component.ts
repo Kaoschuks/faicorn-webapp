@@ -53,11 +53,13 @@ export class LoginFormComponent implements OnInit {
   }
 
   async login() {
-    const res: any = await this._userService.login(this.loginForm.value)
-    this._globals.spinner.hide();
-
-    if(res.error) this.error = res.error;
-    if(res == "logged in") this._globals.router.navigate(['/accounts/overview'])
+    this._userService.login(this.loginForm.value).then(() => {
+      this._globals.spinner.hide();
+      this._globals.router.navigate(['/accounts/overview'])
+    }).catch((error: any) => {
+      this._globals.spinner.hide();
+      this.error = error.error
+    })
   }
 
   async socialLogin(provider: string) {

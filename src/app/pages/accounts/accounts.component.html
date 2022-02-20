@@ -6,3 +6,4 @@
 <accounts-security *ngIf="_global.url.split('/')[2] == 'security'"></accounts-security>
 <profile-form *ngIf="_global.url.split('/')[2] == 'profile'"></profile-form>
 <accounts-orders *ngIf="_global.url.split('/')[2] == 'orders'"></accounts-orders>
+<listing-form *ngIf="_global.url.split('/')[2] == 'listings' && _global.url.split('/')[3]"></listing-form>

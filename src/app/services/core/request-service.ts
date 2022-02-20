@@ -111,25 +111,21 @@ export class RequestService
     })
   }
 
-  async uploadImg(routes: string, formData: any){
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${this.jwt}`);
-    let requestOptions: any = {
-      method: 'POST',
-      headers: myHeaders,
-      body: formData,
-      redirect: 'follow'
-    };
-    return await new Promise((resolve, reject) => {
-      fetch(this.url + routes, requestOptions)
-      .then(this.json)
-      .then(response => {
-        resolve(response);
-      }) // parses response to JSON
-      .catch(error => {
-        console.log(error);
-        reject(error.error || error.message || error);
-      });
+  async upload(url: string, data: any) {
+    return await new Promise((resolve, reject) => { 
+      try {
+        let requestOptions: any = {
+          method: 'POST',
+          body: data,
+          redirect: 'follow'
+        };
+        
+        fetch(environment.cloudinary.url + url, requestOptions).then(response => response.json())
+        .then(result => resolve(result))
+        .catch(error => {throw new Error(error)});
+      } catch(ex) {
+        reject(ex)
+      }
     })
   }
 }

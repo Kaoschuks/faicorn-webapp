@@ -39,25 +39,25 @@
           </ul>
           <!-- End List -->
 
-          <span class="text-cap" *ngIf="_userService?.user?.access != 'user'">Your Ads</span>
+          <span class="text-cap">Your Ads</span>
 
           <!-- List -->
-          <ul class="nav nav-sm nav-tabs nav-vertical mb-4" *ngIf="_userService?.user?.access != 'user'">
+          <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
             <li class="nav-item">
               <a class="nav-link " routerLink="/accounts/listings" routerLinkActive="active">
                 <i class="bi-basket nav-icon"></i> Your Listings
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link " routerLink="/accounts/orders" routerLinkActive="active">
                 <i class="bi-basket nav-icon"></i> Your orders
               </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/accounts/payments" routerLinkActive="active">
                 <i class="bi-credit-card nav-icon"></i> Payments
               </a>
-            </li>
+            </li> -->
           </ul>
           <!-- End List -->
 

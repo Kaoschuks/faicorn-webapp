@@ -10,5 +10,9 @@ export const environment = {
         storageBucket: "kaosdeisgns.appspot.com",
         messagingSenderId: "205350071061",
         appId: "1:205350071061:web:4ae88446b28718c1a0571c"
-    }
+    },
+    cloudinary: {
+      url: 'https://api.cloudinary.com/v1_1/kaoschuks/image/upload/',
+      upload_preset: 'akzjs6d9'
+    },
 };

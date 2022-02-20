@@ -9,15 +9,20 @@ import { ListingsService } from 'src/app/services/features/listings/listings.ser
 })
 export class ListingsComponent implements OnInit {
 
+  ads: any[] = []
+  p: number = 1;
   limit: any = 10
   constructor(
     private _global: GlobalsService,
     public _listingservices: ListingsService
   ){}
 
-  async ngOnInit() {
-    await this._listingservices.getlistings('', ``)
-    console.log(this._listingservices?.listings);
+  ngOnInit() {
+    this._listingservices.getlistings('', ``).then((resp: any) => {
+      this.ads = resp
+    }).catch((err: any) => {
+      this.ads = []
+    })
   }
 
 }

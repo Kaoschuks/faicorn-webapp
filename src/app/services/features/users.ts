@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import jwt_decode from 'jwt-decode';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -18,10 +19,6 @@ export class UsersService {
         private globals: GlobalsService,
         private auth: AngularFireAuth,
     ) { }
-
-    async uploadImage(id: any, form: any) {
-        return this.api.uploadImg(`files/users${id}/upload`, form)
-    }
 
     async isLoggedOn(): Promise<any> {
         return await new Promise((resolve: any, reject: any) => {
@@ -141,11 +138,16 @@ export class UsersService {
         })
     }
 
-    async upload(form: any) {
+    async uploadProfile(file: any) {
         return await new Promise(async (resolve, reject) => {
             this.globals.spinner.show()
             try {
-                const resp: any = await this.api.uploadImg(`upload`, form);
+                const myFormData = new FormData();
+                myFormData.append("file", file);
+                myFormData.append("upload_preset", environment.cloudinary.upload_preset);
+                myFormData.append("skipAuthorization", "true");
+
+                const resp: any = await this.api.upload(`/faicorn/users`, myFormData);
                 if (resp.error) throw new Error(resp.error || resp);
 
                 this.globals.spinner.hide()

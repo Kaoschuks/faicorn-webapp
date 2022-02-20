@@ -5,7 +5,7 @@
 
     <!-- Body -->
     <div class="card-body">
-      <table class="table" *ngIf="_listingservices?.listings.length > 0">
+      <table class="table" *ngIf="ads.length > 0">
         <thead>
           <tr>
             <th>Image</th>
@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let ad of _listingservices?.listings | paginate: { itemsPerPage: limit, currentPage: p }; let i = index">
+          <tr *ngFor="let ad of ads | paginate: { itemsPerPage: limit, currentPage: p }; let i = index">
             <!-- <td>{{i + 1}}</td> -->
             <td>
               <img [src]="ad?.images[0]" style="height: 50px;width: 50px" alt="...">
@@ -34,12 +34,12 @@
         </tbody>
       </table>
       <br />
-      <pagination-controls *ngIf="_listingservices?.listings.length > 10" (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls *ngIf="ads.length > 10" (pageChange)="p = $event"></pagination-controls>
     
     
     
     
-    <no-content *ngIf="_listingservices?.listings?.length == 0">
+    <no-content *ngIf="ads?.length == 0">
         <h2>No ads listings found</h2>
         <p>The content you requested is not available.</p>
     </no-content>
