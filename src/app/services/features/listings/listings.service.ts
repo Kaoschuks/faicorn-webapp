@@ -33,14 +33,14 @@ export class ListingsService {
 
         this.loader.listings = false;
         // console.log(resp.message)
-        let filterArray = [];
+
         for (let index = 0; index < resp.message.length; index++) {
           resp.message[index].price = Number(resp.message[index]?.price?.replace('$',''));
-          filterArray.push(resp.message[index])
-          console.log(filterArray)
+          this.listings.push(resp.message[index])
+          console.log(this.listings)
         }
     
-        resolve(filterArray);
+        resolve(this.listings);
       }catch(ex: any) {
         this.loader.listings = false;
         reject({

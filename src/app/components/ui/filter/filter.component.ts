@@ -17,11 +17,6 @@ export class FilterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    for (let index = 0; index < this._listingservices.listings.length; index++) {
-      this._listingservices.listings[index].price = Number(this._listingservices.listings[index]?.price?.replace('$',''));
-      this.filterArray.push(this._listingservices.listings[index])
-      console.log(this.filterArray)
-    }
   }
 
   generateID(id: string): string {
