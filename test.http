@@ -1,0 +1,9 @@
+@APIURL = http://faicornapi.kreadortech.xyz/
+
+//////////////////////////////////////////////
+POST {{APIURL}}/listings/search
+Content-Type: application/json
+
+{
+    "search": "Shoe"
+}

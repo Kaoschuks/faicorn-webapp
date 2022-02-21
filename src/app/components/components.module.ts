@@ -40,6 +40,7 @@ import { OverviewComponent } from './accounts/overview/overview.component';
 import { ListingsComponent } from './accounts/listings/listings.component';
 import { OrdersComponent } from './accounts/orders/orders.component';
 import { ListingFormComponent } from './forms/listing-form/listing-form.component';
+import { ListingsFilterPipe } from '../pipes/listingsFilter';
 
 export const component: Array<any> = [
 	LoadingComponent,  NoContentComponent, NavbarComponent, FooterComponent, 
@@ -48,7 +49,7 @@ export const component: Array<any> = [
 	LoginFormComponent, RegisterFormComponent, ForgotFormComponent, ChangepasswordFormComponent, ProfileFormComponent, ListingFormComponent,
 	IndexLayoutComponent, ListingsLayoutComponent, AccountsLayoutComponent,
 	AdsListsComponent, AdsGridComponent, AdsInfoComponent, AdsCategoryScrollComponent,
-	PaymentsComponent, SecurityComponent, OverviewComponent, ListingsComponent, OrdersComponent
+	PaymentsComponent, SecurityComponent, OverviewComponent, ListingsComponent, OrdersComponent, ListingsFilterPipe
 ]
 
 @NgModule({

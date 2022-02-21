@@ -39,11 +39,19 @@
                   <span class="input-group-prepend input-group-text">
                     <i class="bi-search"></i>
                   </span>
-                  <input type="text" class="form-control" id="jobTitleForm" placeholder="Search through our global store and categories listing ..." aria-label="Job, title, skills, or company">
+                  <input type="text" class="form-control" id="jobTitleForm" placeholder="Search through our global store and categories listing ..." aria-label="Job, title, skills, or company" (keyup)="sendData($event)">
                 </div>
               </div>
               <button type="button" class="btn btn-primary btn-xs">Search</button>
             </div>
+            <!-- <section class="search-results">
+              <ng-template>
+                <hr/>
+                <p>Gari</p>
+                <p>Gari</p>
+                <p>Gari</p>
+              </ng-template>
+            </section> -->
             <!-- End Input Card -->
           </form>
   

@@ -26,4 +26,13 @@ export class IndexPagesComponent implements OnInit, AfterViewInit {
     return id.replace(' & ', '-').split(' ').join('').toLowerCase();
   }
 
+  sendData(e: any){
+    // console.log(e.target.value);
+    let query: string = e.target.value;
+    let matchSpaces: any = query.match(/\s*/);
+    if (matchSpaces[0] === query) {
+      this._listingservices.listings = []
+      return;
+    }
+  }
 }

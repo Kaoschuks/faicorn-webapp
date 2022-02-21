@@ -32,7 +32,15 @@ export class ListingsService {
         if(type == 'single') this.listingInfo = resp.message[0];
 
         this.loader.listings = false;
-        resolve( resp.message);
+        // console.log(resp.message)
+        let filterArray = [];
+        for (let index = 0; index < resp.message.length; index++) {
+          resp.message[index].price = Number(resp.message[index]?.price?.replace('$',''));
+          filterArray.push(resp.message[index])
+          console.log(filterArray)
+        }
+    
+        resolve(filterArray);
       }catch(ex: any) {
         this.loader.listings = false;
         reject({
@@ -82,4 +90,5 @@ export class ListingsService {
           }
       })
   }
+
 }

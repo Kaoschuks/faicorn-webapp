@@ -69,21 +69,21 @@
 
                     <div class="d-grid gap-2">
                         <div class="form-check">
+                            <input class="form-range" type="range" value="" id="customRange" min="0" max="10" step="0.5" [ngModel]="rangeTerm" name="rangeTerm" (change)="onRangeChange($event)">
+                            <label class="form-check-label" for="customRange">${{rangeTerm}} to $10 </label>
+                        </div>
+                        <!-- <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menCheckbox" checked="">
+                            <label class="form-check-label" for="menCheckbox">GHS 615 to GHS 1538</label>
+                        </div>
+                        <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="menCheckbox" checked="">
                             <label class="form-check-label" for="menCheckbox">GHS 615 and under </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="menCheckbox" checked="">
                             <label class="form-check-label" for="menCheckbox">GHS 615 to GHS 1538</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="menCheckbox" checked="">
-                            <label class="form-check-label" for="menCheckbox">GHS 615 and under </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="menCheckbox" checked="">
-                            <label class="form-check-label" for="menCheckbox">GHS 615 to GHS 1538</label>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
