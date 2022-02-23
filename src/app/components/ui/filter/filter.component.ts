@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 
 @Component({
@@ -9,8 +10,30 @@ import { ListingsService } from 'src/app/services/features/listings/listings.ser
 export class FilterComponent implements OnInit {
   
   @Input() categories: any[] = []
-  @Input() rangeTerm: number = 0
-  filterArray: any[] = []
+  // ageControl = new FormControl();
+  public minTerm: number = 0;
+  public maxTerm: number = 0;
+  genderFilter = {
+    men: false,
+    women: false
+  }
+  brandFilter = {
+    adidas: false,
+    newBalance: false,
+    nike: false,
+    fredPerry: false,
+    theNorthFace: false,
+    gucci: false,
+    mango: false
+  }
+  sizeFilter = {
+    S: false,
+    M: false,
+    L: false,
+    XL: false,
+    XXL: false
+  }
+  
 
   constructor(
     public _listingservices: ListingsService
@@ -24,7 +47,43 @@ export class FilterComponent implements OnInit {
   }
 
   onRangeChange(e: any){
-    this.rangeTerm = e.target.value;
-    // this._listingservices.listings =  this.filterArray.filter(item => { return (Number(item.prices) >= Number(e.target.value) && Number(item.prices) <= 7) ? item : this._listingservices.listings = this.filterArray})
+    (e.target.id === 'minRange' ? this.minTerm = Number(e.target.value) : this.maxTerm = Number(e.target.value))
+    console.log(this.minTerm)
+    console.log(this.maxTerm)
+
+    console.log(this._listingservices.listings.filter(product => {
+      return product.price >= this.minTerm
+          && product.price <= this.maxTerm
+    }))
   }
-}
+
+  clearAllFilter(){
+    this.minTerm = 0;
+    this.maxTerm = 0;
+    this.genderFilter = {
+      men: false,
+      women: false
+    }
+    this.brandFilter = {
+      adidas: false,
+      newBalance: false,
+      nike: false,
+      fredPerry: false,
+      theNorthFace: false,
+      gucci: false,
+      mango: false
+    }
+    this.sizeFilter = {
+      S: false,
+      M: false,
+      L: false,
+      XL: false,
+      XXL: false
+    }
+  
+  }
+
+  changeValue(value: any){
+    value == !value;
+    console.log(value)
+ }}

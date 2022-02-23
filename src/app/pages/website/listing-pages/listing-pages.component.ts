@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 import { Event, NavigationStart} from '@angular/router';
+import { FilterComponent } from 'src/app/components/ui/filter/filter.component';
 
 @Component({
   selector: 'app-listing-pages',
@@ -14,6 +15,7 @@ export class ListingPagesComponent implements OnInit {
   constructor(
     private _global: GlobalsService,
     public _listingservices: ListingsService,
+    public filterComponent: FilterComponent,
   ) { }
 
   async ngOnInit() {

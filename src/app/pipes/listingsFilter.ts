@@ -5,27 +5,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ListingsFilterPipe implements PipeTransform {
 
-    transform(items: any, filter: any): any {
-        if (!filter) {
+    transform(items: any[], minTerm: Number, maxTerm: Number): any {
+        if (!items || !minTerm || !maxTerm) {
+            console.log('Filter Works: ', minTerm, maxTerm);
+            console.log(items.filter(product => {
+                return product.price >= minTerm
+                    && product.price <= maxTerm
+            }))
             return items;
         }
 
-        if (!Array.isArray(items)) {
-            return items;
-        }
-
-        if (filter && Array.isArray(items)) {
-            let filteredData: any[] = [];
-            items.forEach(item => {
-                var array = item.price.split(" ");
-                var prices = array.filter((i: any) => { return i !== 'GHS' && i !== 'to'});
-            
-                if (Number(prices[0]) >= filter && Number(prices[0]) <= 1600) {
-                    filteredData.push(item);
-                }
-            })
-            
-            return filteredData;
-        }
+        return items.filter(product => {
+            return product.price >= minTerm
+                && product.price <= maxTerm
+        });    
     }
 }

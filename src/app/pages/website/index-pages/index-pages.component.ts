@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FilterComponent } from 'src/app/components/ui/filter/filter.component';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 declare var HSCore: any;
 
@@ -12,6 +13,7 @@ export class IndexPagesComponent implements OnInit, AfterViewInit {
   snowcount: Array<any> = Array.from(Array(1000).keys())
   constructor(
     public _listingservices: ListingsService,
+    public filterComponent: FilterComponent,
   ) { }
 
   async ngOnInit() {
