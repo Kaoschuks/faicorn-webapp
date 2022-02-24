@@ -97,14 +97,14 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" [(ngModel)]="genderFilter.men" [ngModelOptions]="{standalone: true}" (change)="changeValue(this.genderFilter.men)" id="menCheckbox">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="genderFilter.men" [ngModelOptions]="{standalone: true}" (change)="changeValue((genderFilter.men ? 'Men' : null), $event)" id="menCheckbox">
                             <label class="form-check-label" for="menCheckbox">Men (73)</label>
                         </div>
                         <!-- End Checkboxes -->
 
                         <!-- Checkboxes -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" [(ngModel)]="genderFilter.women" [ngModelOptions]="{standalone: true}" id="womenCheckbox" (change)="changeValue(this.genderFilter.women)">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="genderFilter.women" [ngModelOptions]="{standalone: true}" id="womenCheckbox" (change)="changeValue((this.genderFilter.women ? 'Women' : null), $event)">
                             <label class="form-check-label" for="womenCheckbox">Women (51)</label>
                         </div>
                         <!-- End Checkboxes -->
@@ -117,35 +117,35 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" [(ngModel)]="brandFilter.adidas" [ngModelOptions]="{standalone: true}" (change)="changeValue(this.brandFilter.adidas)" id="adidasCheckbox">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="brandFilter.adidas" [ngModelOptions]="{standalone: true}" (change)="changeValue((this.brandFilter.adidas ? 'Adidas' : null), $event)" id="adidasCheckbox">
                             <label class="form-check-label" for="adidasCheckbox">Adidas (16)</label>
                         </div>
                         <!-- End Checkboxes -->
 
                         <!-- Checkboxes -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" [(ngModel)]="brandFilter.newBalance" [ngModelOptions]="{standalone: true}" (change)="changeValue(this.brandFilter.newBalance)" id="newBalanceCheckbox">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="brandFilter.newBalance" [ngModelOptions]="{standalone: true}" (change)="changeValue((this.brandFilter.newBalance ? 'New Balance' : null), $event)" id="newBalanceCheckbox">
                             <label class="form-check-label" for="newBalanceCheckbox">New Balance (8)</label>
                         </div>
                         <!-- End Checkboxes -->
 
                         <!-- Checkboxes -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="nikeCheckbox" [checked]="brandFilter.nike">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="brandFilter.nike" [ngModelOptions]="{standalone: true}" (change)="changeValue((this.brandFilter.nike ? 'Nike' : null), $event)" id="nikeCheckbox">
                             <label class="form-check-label" for="nikeCheckbox">Nike (35)</label>
                         </div>
                         <!-- End Checkboxes -->
 
                         <!-- Checkboxes -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="fredPerryCheckbox" [checked]="brandFilter.fredPerry">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="brandFilter.fredPerry" [ngModelOptions]="{standalone: true}" (change)="changeValue((this.brandFilter.fredPerry ? 'Fred Perry' : null), $event)" id="fredPerryCheckbox">
                             <label class="form-check-label" for="fredPerryCheckbox">Fred Perry (5)</label>
                         </div>
                         <!-- End Checkboxes -->
 
                         <!-- Checkboxes -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="tnfCheckbox" [checked]="brandFilter.theNorthFace">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="brandFilter.theNorthFace" [ngModelOptions]="{standalone: true}" (change)="changeValue((this.brandFilter.theNorthFace ? 'The North Face' : null), $event)" id="tnfCheckbox">
                             <label class="form-check-label" for="tnfCheckbox">The North Face (1)</label>
                         </div>
                         <!-- End Checkboxes -->
@@ -156,14 +156,14 @@
                         <div class="d-grid gap-2">
                             <!-- Checkboxes -->
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="gucciCheckbox" [checked]="brandFilter.gucci">
+                                <input class="form-check-input" type="checkbox" [(ngModel)]="brandFilter.gucci" [ngModelOptions]="{standalone: true}" (change)="changeValue((this.brandFilter.gucci ? 'Gucci' : null), $event)" id="gucciCheckbox" >
                                 <label class="form-check-label" for="gucciCheckbox">Gucci (5)</label>
                             </div>
                             <!-- End Checkboxes -->
 
                             <!-- Checkboxes -->
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="mangoCheckbox" [checked]="brandFilter.mango">
+                                <input class="form-check-input" type="checkbox" [(ngModel)]="brandFilter.mango" [ngModelOptions]="{standalone: true}" (change)="changeValue((this.brandFilter.mango ? 'Mango' : null), $event)" id="mangoCheckbox">
                                 <label class="form-check-label" for="mangoCheckbox">Mango (1)</label>
                             </div>
                             <!-- End Checkboxes -->
@@ -186,35 +186,35 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" [(ngModel)]="sizeFilter.S" [ngModelOptions]="{standalone: true}" (change)="changeValue(this.sizeFilter.S)" id="sizeSCheckbox">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="sizeFilter.S" [ngModelOptions]="{standalone: true}" (change)="changeValue((this.sizeFilter.S ? 'S' : null), $event)" id="sizeSCheckbox">
                             <label class="form-check-label" for="sizeSCheckbox">S (27)</label>
                         </div>
                         <!-- End Checkboxes -->
 
                         <!-- Checkboxes -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" [(ngModel)]="sizeFilter.M" [ngModelOptions]="{standalone: true}" (change)="changeValue(this.sizeFilter.M)" id="sizeMCheckbox">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="sizeFilter.M" [ngModelOptions]="{standalone: true}" (change)="changeValue((this.sizeFilter.M ? 'M' : null), $event)" id="sizeMCheckbox">
                             <label class="form-check-label" for="sizeMCheckbox">M (18)</label>
                         </div>
                         <!-- End Checkboxes -->
 
                         <!-- Checkboxes -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" [(ngModel)]="sizeFilter.L" [ngModelOptions]="{standalone: true}" (change)="changeValue(this.sizeFilter.L)" id="sizeLCheckbox" >
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="sizeFilter.L" [ngModelOptions]="{standalone: true}" (change)="changeValue((this.sizeFilter.L ? 'L' : null), $event)" id="sizeLCheckbox" >
                             <label class="form-check-label" for="sizeLCheckbox">L (0)</label>
                         </div>
                         <!-- End Checkboxes -->
 
                         <!-- Checkboxes -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" [(ngModel)]="sizeFilter.XL" [ngModelOptions]="{standalone: true}" (change)="changeValue(this.sizeFilter.XL)" id="sizeXLCheckbox">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="sizeFilter.XL" [ngModelOptions]="{standalone: true}" (change)="changeValue((this.sizeFilter.XL ? 'XL' : null), $event)" id="sizeXLCheckbox">
                             <label class="form-check-label" for="sizeXLCheckbox">XL (1)</label>
                         </div>
                         <!-- End Checkboxes -->
 
                         <!-- Checkboxes -->
                         <div class="form-check">
-                            <input class="form-check-input" [(ngModel)]="sizeFilter.XXL" [ngModelOptions]="{standalone: true}" (change)="changeValue(this.sizeFilter.XXL)" type="checkbox" id="sizeXXLCheckbox" >
+                            <input class="form-check-input" [(ngModel)]="sizeFilter.XXL" [ngModelOptions]="{standalone: true}" (change)="changeValue((this.sizeFilter.XXL ? 'XXL' : null), $event)" type="checkbox" id="sizeXXLCheckbox" >
                             <label class="form-check-label" for="sizeXXLCheckbox">XXL (2)</label>
                         </div>
                         <!-- End Checkboxes -->

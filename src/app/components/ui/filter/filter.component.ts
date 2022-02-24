@@ -33,7 +33,7 @@ export class FilterComponent implements OnInit {
     XL: false,
     XXL: false
   }
-  
+  queries: any[] = [];
 
   constructor(
     public _listingservices: ListingsService
@@ -80,10 +80,11 @@ export class FilterComponent implements OnInit {
       XL: false,
       XXL: false
     }
-  
+    this.queries = [];
   }
 
-  changeValue(value: any){
-    value == !value;
-    console.log(value)
+  changeValue(value: any, e: any){
+    if(value !== null) this.queries.push(value);
+    let filteredArr = this.queries.filter((element, i) => {return i === this.queries.indexOf(element)})
+    console.log(filteredArr);
  }}
