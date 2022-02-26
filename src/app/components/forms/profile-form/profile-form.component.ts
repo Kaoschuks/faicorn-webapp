@@ -11,12 +11,12 @@ declare let document: any;
 })
 export class ProfileFormComponent implements OnInit {
 
-	// separateDialCode = false;
+  // separateDialCode = false;
 	// SearchCountryField = SearchCountryField;
 	// CountryISO = CountryISO;
   // PhoneNumberFormat = PhoneNumberFormat;
 	// preferredCountries: CountryISO[] = [CountryISO.Japan, CountryISO.China];
-
+  filePath: string | undefined;
   profileForm: FormGroup = this.formBuilder.group({
     fullname: new FormControl('', Validators.compose([
       Validators.required
@@ -55,6 +55,7 @@ export class ProfileFormComponent implements OnInit {
       Validators.required
     ]))
   })
+  
   constructor(
     public formBuilder: FormBuilder,
     public _userService: UsersService
@@ -67,6 +68,7 @@ export class ProfileFormComponent implements OnInit {
 
   async saveProfile(form: any) {
     let formData: any = form;
+    console.log(formData)
     form.uid = this._userService.user.uid;
     form.access = this._userService.user.access;
     form.otherinfo = {
@@ -81,10 +83,10 @@ export class ProfileFormComponent implements OnInit {
         "state": form.address2_state,
       },
     }
-    const resp: any = await this._userService.updateUserInfo(formData);
-    if(resp == 'user updated') {
-      await this.processForm()
-    }
+    // const resp: any = await this._userService.updateUserInfo(formData);
+    // if(resp == 'user updated') {
+    //   await this.processForm()
+    // }
   }
 
   async processForm() {
@@ -111,4 +113,19 @@ export class ProfileFormComponent implements OnInit {
     });
   }
 
+  onFileChanged(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.filePath = reader.result as string;
+      this.profileForm.patchValue({
+        image: this.filePath,
+      })
+    }
+    reader.readAsDataURL(file);
+    this.profileForm.patchValue({
+      image: file
+    })
+    // console.log(file)
+  }
 }
