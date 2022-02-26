@@ -20,7 +20,18 @@
                     </li>
                 </ul>
 
-                <form onsubmit="event.preventDefault()" class="form-inline"><input type="search" placeholder="Search for a product" class="form-control form-control-sm bg-soft-light mt-1"></form>
+                <form onsubmit="event.preventDefault()" class="form-inline"><input type="search" placeholder="Search for a product" class="form-control form-control-sm bg-soft-light mt-1" (keyup)="sendData($event)"></form>
+                <ul class="results" >
+                  <li *ngFor="let i of result">
+                    <a href="index.html">{{i.name}}<br />
+                      <span class="text-danger">Description...</span>
+                    </a>
+                  </li>
+                  <!-- <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+                  <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+                  <li><a href="index.html">Search Result #4</a></li> -->
+                </ul>
+    
 
                 <ul class="navbar-nav justify-content-end me-auto mb-2 mb-xl-0">
                     <li class="nav-item dropdown">

@@ -1,5 +1,9 @@
 @APIURL = https://faicornapi.kreadortech.xyz/
 
 //////////////////////////////////////////////
-POST {{APIURL}}/listings/all?category=clothings&limit=1000
+POST {{APIURL}}/listings/search
 Content-Type: application/json
+
+{
+    "search": "Shoe"
+}

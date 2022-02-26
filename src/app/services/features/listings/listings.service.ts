@@ -92,4 +92,25 @@ export class ListingsService {
       })
   }
 
+  async getSearch(route: string = '/search', params: any) {
+    return await new Promise(async (resolve: any, reject: any) => {
+      this.loader.listings = true;
+      try {
+        let data = { search: params}
+        const resp: any = await this.api.post('listings' + route, data)
+        if(resp.error) throw new Error(resp.error);
+
+        this.loader.listings = false;
+        // console.log(resp.message)
+        resolve(resp.message);
+      }catch(ex: any) {
+        this.loader.listings = false;
+        reject({
+          error: ex.message || ex.error || ex || "Error getting search listings"
+        })
+      }
+    })
+  }
+
+
 }

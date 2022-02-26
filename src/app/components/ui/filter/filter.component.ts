@@ -12,7 +12,7 @@ export class FilterComponent implements OnInit {
   @Input() categories: any[] = []
   // ageControl = new FormControl();
   public minTerm: number = 0;
-  public maxTerm: number = 0;
+  public maxTerm: number = 10;
   genderFilter = {
     men: false,
     women: false
@@ -34,6 +34,8 @@ export class FilterComponent implements OnInit {
     XXL: false
   }
   queries: any[] = [];
+  filter: boolean = false;
+  filteredArray: any[] = [];
 
   constructor(
     public _listingservices: ListingsService
@@ -50,6 +52,11 @@ export class FilterComponent implements OnInit {
     (e.target.id === 'minRange' ? this.minTerm = Number(e.target.value) : this.maxTerm = Number(e.target.value))
     console.log(this.minTerm)
     console.log(this.maxTerm)
+    this.filter = true;
+    this.filteredArray =  this._listingservices.listings.filter(product => {
+      return product.price >= this.minTerm
+          && product.price <= this.maxTerm
+    })
 
     console.log(this._listingservices.listings.filter(product => {
       return product.price >= this.minTerm

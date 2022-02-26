@@ -39,19 +39,21 @@
                   <span class="input-group-prepend input-group-text">
                     <i class="bi-search"></i>
                   </span>
-                  <input type="text" class="form-control" id="jobTitleForm" placeholder="Search through our global store and categories listing ..." aria-label="Job, title, skills, or company" (keyup)="sendData($event)">
+                  <input type="text" id="searchInput" (focus)="focus = true" class="form-control" id="jobTitleForm" placeholder="Search through our global store and categories listing ..." aria-label="Job, title, skills, or company" (keyup)="sendData($event)">
                 </div>
               </div>
               <button type="button" class="btn btn-primary btn-xs">Search</button>
             </div>
-            <!-- <section class="search-results">
-              <ng-template>
-                <hr/>
-                <p>Gari</p>
-                <p>Gari</p>
-                <p>Gari</p>
-              </ng-template>
-            </section> -->
+            <ul class="results" >
+              <li *ngFor="let i of result">
+                <a href="index.html">{{i.name}}<br />
+                  <span class="text-danger">Description...</span>
+                </a>
+              </li>
+              <!-- <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+              <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+              <li><a href="index.html">Search Result #4</a></li> -->
+            </ul>
             <!-- End Input Card -->
           </form>
   

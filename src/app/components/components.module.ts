@@ -41,6 +41,7 @@ import { ListingsComponent } from './accounts/listings/listings.component';
 import { OrdersComponent } from './accounts/orders/orders.component';
 import { ListingFormComponent } from './forms/listing-form/listing-form.component';
 import { ListingsFilterPipe } from '../pipes/listingsFilter';
+import { ListingPagesComponent } from '../pages/website/listing-pages/listing-pages.component';
 
 export const component: Array<any> = [
 	LoadingComponent,  NoContentComponent, NavbarComponent, FooterComponent, 
@@ -64,6 +65,7 @@ export const component: Array<any> = [
 		ReactiveFormsModule,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	exports: component
+	exports: component,
+	providers: [ListingPagesComponent]
 })
 export class ComponentsModule {}
