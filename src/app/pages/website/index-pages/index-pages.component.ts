@@ -42,8 +42,7 @@ export class IndexPagesComponent implements OnInit, AfterViewInit {
 
     this.result = await this._listingservices.getSearch('/search', query) as any[];
     let displayResults = document.querySelector('.results') as HTMLElement;
-    
-    (this.focus && this.result !== [] ? displayResults.style.display = 'block' : console.log(this.focus))    
+    displayResults.style.display = 'block';
     // for (let index = 0; index < this.result.length; index++) {
     //   console.log(this.result[index])
     //   var optionElement = document.createElement("option");

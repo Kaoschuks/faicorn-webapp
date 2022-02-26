@@ -14,7 +14,7 @@ form input {
   background-color: transparent !important;
 }
 
-.results {
+.nav-results {
   display: block;
   position: absolute;
   top: 165px;
@@ -51,16 +51,16 @@ form input {
   overflow-x: hidden;
 }
 
-.results li {
+.nav-results li {
   display: block;
 }
 
-.results li:first-child {
+.nav-results li:first-child {
   margin-top: -1px;
 }
 
-.results li:first-child:before,
-.results li:first-child:after {
+.nav-results li:first-child:before,
+.nav-results li:first-child:after {
   display: block;
   content: "";
   width: 0;
@@ -71,26 +71,26 @@ form input {
   border: 5px outset transparent;
 }
 
-.results li:first-child:before {
+.nav-results li:first-child:before {
   border-bottom: 5px solid #c4c7d7;
   top: -11px;
 }
 
-.results li:first-child:after {
+.nav-results li:first-child:after {
   border-bottom: 5px solid #fdfdfd;
   top: -10px;
 }
 
-.results li:first-child:hover:before,
-.results li:first-child:hover:after {
+.nav-results li:first-child:hover:before,
+.nav-results li:first-child:hover:after {
   display: none;
 }
 
-.results li:last-child {
+.nav-results li:last-child {
   margin-bottom: -1px;
 }
 
-.results a {
+.nav-results a {
   display: block;
   position: relative;
   margin: 0 -1px;
@@ -102,11 +102,11 @@ form input {
   border-radius: 3px;
 }
 
-.results a span {
+.nav-results a span {
   font-weight: 200;
 }
 
-.results a:before {
+.nav-results a:before {
   content: "";
   width: 18px;
   height: 18px;
@@ -118,7 +118,7 @@ form input {
     no-repeat;
 }
 
-.results a:hover {
+.nav-results a:hover {
   text-decoration: none;
   color: #fff;
   text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
@@ -148,7 +148,7 @@ form input {
 
 /* Extra small devices (phones, 580px and down) */
 @media only screen and (max-width: 580px) {
-  .results {
+  .nav-results {
     display: none;
     position: absolute;
     top: 205px;
@@ -188,7 +188,7 @@ form input {
 
 /* Small devices (portrait tablets and large phones, 580px and up) */
 @media only screen and (min-width: 580px) {
-  .results {
+  .nav-results {
     display: none;
     position: absolute;
     top: 160px;
@@ -228,7 +228,7 @@ form input {
 
 /* Extra large devices (large laptops and desktops, 1000px and up) */
 @media only screen and (min-width: 1000px) {
-  .results {
+  .nav-results {
     display: none;
     position: absolute;
     top: 58px;
@@ -263,5 +263,9 @@ form input {
     height: 300px;
     overflow-y: scroll;
     overflow-x: hidden;
+  }
+
+  #form-inline input[type="search"]:focus + .nav-results {
+    display: block;
   }
 }

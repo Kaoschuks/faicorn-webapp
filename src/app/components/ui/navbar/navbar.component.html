@@ -21,7 +21,7 @@
                 </ul>
 
                 <form onsubmit="event.preventDefault()" class="form-inline"><input type="search" placeholder="Search for a product" class="form-control form-control-sm bg-soft-light mt-1" (keyup)="sendData($event)"></form>
-                <ul class="results" >
+                <ul class="nav-results" >
                   <li *ngFor="let i of result">
                     <a href="index.html">{{i.name}}<br />
                       <span class="text-danger">Description...</span>

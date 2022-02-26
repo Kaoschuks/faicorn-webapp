@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
       return;
     }
     this.result = await this._listingservices.getSearch('/search', query) as any[];
-    let displayResults = document.querySelector('.results') as HTMLElement;
+    let displayResults = document.querySelector('.nav-results') as HTMLElement;
     displayResults.style.display = 'block';
 
   }
