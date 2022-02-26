@@ -22,9 +22,11 @@ speed-measure-plugin*.json
 *.launch
 .settings/
 *.sublime-workspace
+*.http
 
 # IDE - VSCode
 .vscode/*
+/.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -41,6 +43,7 @@ yarn-error.log
 testem.log
 /typings
 /public
+.package-lock.json
 
 # System Files
 .DS_Store

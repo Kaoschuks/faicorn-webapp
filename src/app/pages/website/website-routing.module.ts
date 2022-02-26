@@ -19,6 +19,15 @@ const routes: Routes = [
     loadChildren: () => import('../auth/auth.module').then( m => m.AuthModule) 
   },
   { 
+    path: 'search', component: ListingsLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: ListingPagesComponent
+      }
+    ]
+  },
+  { 
     path: ':categories', 
     component: ListingsLayoutComponent,
     children: [
