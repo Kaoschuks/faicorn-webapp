@@ -8,6 +8,7 @@ import { DetailPagesComponent } from './detail-pages/detail-pages.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { ComingComponent } from './coming/coming.component';
 import { FilterComponent } from 'src/app/components/ui/filter/filter.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FilterComponent } from 'src/app/components/ui/filter/filter.component';
   imports: [
     CommonModule,
     ComponentsModule,
-    WebsiteRoutingModule
+    WebsiteRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [FilterComponent],
 })
