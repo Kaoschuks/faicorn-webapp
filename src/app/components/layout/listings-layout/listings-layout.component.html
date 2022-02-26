@@ -6,7 +6,7 @@
         </div>
 
         <div class="col-lg-9">
-            <ads-category-scroll [categories]="_listingservices?.categories || []" *ngIf="_globals.url.split('/').length == 2"></ads-category-scroll>
+            <ads-category-scroll [categories]="_listingservices?.categories || []" *ngIf="_globals.url.split('/').length == 2 && _globals.url.split('/')[1] != 'search'"></ads-category-scroll>
             
             <div class="bg-img-start rounded-2 p-5 mb-5" style="background-image: url(https://htmlstream.com/front-v4.0/assets/img/1920x800/img9.jpg);">
                 <div class="row align-items-md-center">
