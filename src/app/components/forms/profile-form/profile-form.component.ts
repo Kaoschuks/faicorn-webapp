@@ -123,9 +123,6 @@ export class ProfileFormComponent implements OnInit {
       })
     }
     reader.readAsDataURL(file);
-    this.profileForm.patchValue({
-      image: file
-    })
     // console.log(file)
   }
 }

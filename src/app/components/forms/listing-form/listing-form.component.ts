@@ -83,4 +83,8 @@ export class ListingFormComponent implements OnInit {
     return false;
   }
 
+  onSubmit(form: any){
+    let formData: any = form;
+    console.log(formData)
+  }
 }
