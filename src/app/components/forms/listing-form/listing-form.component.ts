@@ -86,6 +86,8 @@ export class ListingFormComponent implements OnInit {
 
   async onSubmit(form: any){
     let formData: any = form;
-    const resp = await this._listingservices.postlistings(formData)
+    const resp = await this._listingservices.postlistings(formData);
+    console.log(resp)
+    this.listingForm.reset();
   }
 }
