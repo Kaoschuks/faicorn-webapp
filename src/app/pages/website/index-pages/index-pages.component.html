@@ -30,7 +30,7 @@
           </div>
           <!-- End Heading -->
   
-          <form>
+          <form [formGroup]="searchForm" (ngSubmit)="submitSearch()">
             <!-- Input Card -->
             <div class="input-card input-card-sm">
               <div class="input-card-form">
@@ -39,10 +39,10 @@
                   <span class="input-group-prepend input-group-text">
                     <i class="bi-search"></i>
                   </span>
-                  <input type="text" id="searchInput" (focus)="focus = true" class="form-control" id="jobTitleForm" placeholder="Search through our global store and categories listing ..." aria-label="Job, title, skills, or company" (keyup)="sendData($event)">
+                  <input type="text" id="searchInput" formControlName="search" class="form-control" id="jobTitleForm" placeholder="Search through our global store and categories listing ..." aria-label="Job, title, skills, or company" (keyup)="sendData($event)">
                 </div>
               </div>
-              <button type="button" class="btn btn-primary btn-xs">Search</button>
+              <button type="submit" class="btn btn-primary btn-xs">Search</button>
             </div>
             <ul class="results" >
               <li *ngFor="let i of result">

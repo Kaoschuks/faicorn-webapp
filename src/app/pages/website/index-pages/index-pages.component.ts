@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FilterComponent } from 'src/app/components/ui/filter/filter.component';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 declare var HSCore: any;
@@ -13,10 +15,15 @@ export class IndexPagesComponent implements OnInit, AfterViewInit {
   snowcount: Array<any> = Array.from(Array(1000).keys())
   result: any[] = [];
   focus: boolean = false;
+  searchForm = this.formBuilder.group({
+    search: ''
+  });
 
   constructor(
     public _listingservices: ListingsService,
     public filterComponent: FilterComponent,
+    private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
   async ngOnInit() {
@@ -44,6 +51,7 @@ export class IndexPagesComponent implements OnInit, AfterViewInit {
     let displayResults = document.querySelector('.results') as HTMLElement;
     
     (this.focus && this.result !== [] ? displayResults.style.display = 'block' : console.log(this.focus))    
+    displayResults.style.display = 'block';
     // for (let index = 0; index < this.result.length; index++) {
     //   console.log(this.result[index])
     //   var optionElement = document.createElement("option");
@@ -51,5 +59,10 @@ export class IndexPagesComponent implements OnInit, AfterViewInit {
     //   let wait = document.getElementById('search-results') as HTMLElement;
     //   wait.appendChild(optionElement)
     // }
+  }
+
+  submitSearch(){
+    // console.log(this.searchForm.value.search);
+    this.router.navigate([`/search/${this.searchForm.value.search}`])
   }
 }

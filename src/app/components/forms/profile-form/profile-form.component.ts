@@ -16,7 +16,7 @@ export class ProfileFormComponent implements OnInit {
 	// CountryISO = CountryISO;
   // PhoneNumberFormat = PhoneNumberFormat;
 	// preferredCountries: CountryISO[] = [CountryISO.Japan, CountryISO.China];
-
+  filePath: string | undefined;
   profileForm: FormGroup = this.formBuilder.group({
     fullname: new FormControl('', Validators.compose([
       Validators.required
@@ -81,10 +81,10 @@ export class ProfileFormComponent implements OnInit {
         "state": form.address2_state,
       },
     }
-    const resp: any = await this._userService.updateUserInfo(formData);
-    if(resp == 'user updated') {
-      await this.processForm()
-    }
+    // const resp: any = await this._userService.updateUserInfo(formData);
+    // if(resp == 'user updated') {
+    //   await this.processForm()
+    // }
   }
 
   async processForm() {
@@ -111,4 +111,16 @@ export class ProfileFormComponent implements OnInit {
     });
   }
 
+  onFileChanged(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.filePath = reader.result as string;
+      this.profileForm.patchValue({
+        image: this.filePath,
+      })
+    }
+    reader.readAsDataURL(file);
+    // console.log(file)
+  }
 }

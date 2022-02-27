@@ -20,7 +20,7 @@ export class ListingFormComponent implements OnInit {
     brands: new FormControl("", Validators.compose([ Validators.required ])),
     isFeatured: new FormControl(false),
     featuredName: new FormControl(""),
-    images: new FormControl("", Validators.compose([ Validators.required ])),
+    images: new FormControl([], Validators.compose([ Validators.required ])),
   });
   validation_messages = {
     name: [
@@ -74,6 +74,7 @@ export class ListingFormComponent implements OnInit {
       Promise.all(promise)
       .then((values) => {
         // this._globals.spinner.hide();
+        console.log(values)
         this.images = fileArr;
       })
       .catch((err: any) => {
@@ -83,4 +84,10 @@ export class ListingFormComponent implements OnInit {
     return false;
   }
 
+  async onSubmit(form: any){
+    let formData: any = form;
+    const resp = await this._listingservices.postlistings(formData);
+    console.log(resp)
+    this.listingForm.reset();
+  }
 }

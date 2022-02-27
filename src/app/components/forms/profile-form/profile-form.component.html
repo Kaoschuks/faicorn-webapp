@@ -20,7 +20,7 @@
 
               <div class="d-grid d-sm-flex gap-2 ms-4">
                 <div class="form-attachment-btn btn btn-primary btn-sm">Change photo
-                  <input type="file" class="js-file-attach form-attachment-btn-label" id="avatarUploader">
+                  <input type="file" class="js-file-attach form-attachment-btn-label" id="avatarUploader" (change)="onFileChanged($event)">
                 </div>
               </div>
             </div>
@@ -46,7 +46,7 @@
           <label for="emailLabel" class="col-sm-3 col-form-label form-label">Username <span class="form-label-danger">(required)</span></label>
 
           <div class="col-sm-9">
-            <input type="text" class="form-control" formControlName="username" id="emailLabel" placeholder="clarice@example.com" aria-label="clarice@example.com">
+            <input type="text" class="form-control" formControlName="username" id="emailLabel" placeholder="John Doe" aria-label="clarice@example.com">
           </div>
         </div>
         <!-- End Form -->
