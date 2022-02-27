@@ -1,0 +1,120 @@
+<header>
+    <nav class="navbar navbar-expand-xl fixed-top navbar-light text-white bg-danger" aria-label="Sixth navbar example">
+        <div class="container">
+            <a class="navbar-brand" routerLink="/">
+              <img src="assets/img/red-logo.jpeg" alt="" width="120" height="45" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample06"
+                aria-controls="navbarsExample06" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-white"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample06">
+                <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fs-14 bold text-white" href="#" id="dropdown06" data-bs-toggle="dropdown"
+                            aria-expanded="false"> Categories</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown06">
+                          <a *ngFor="let category of _listingservices?.categories" class="dropdown-item" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">{{category?.name | titlecase}}</a>
+                        </ul>
+                    </li>
+                </ul>
+
+                <form onsubmit="event.preventDefault()" class="form-inline"><input type="search" placeholder="Search for a product" class="form-control form-control-sm bg-soft-light mt-1" (keyup)="sendData($event)"></form>
+                <ul class="results" >
+                  <li *ngFor="let i of result">
+                    <a href="index.html">{{i.name}}<br />
+                      <span class="text-danger">Description...</span>
+                    </a>
+                  </li>
+                  <!-- <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+                  <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+                  <li><a href="index.html">Search Result #4</a></li> -->
+                </ul>
+    
+
+                <ul class="navbar-nav justify-content-end me-auto mb-2 mb-xl-0">
+                    <li class="nav-item dropdown">
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-xs dropdown-toggle" id="footerSelectLanguage" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
+                            <span class="d-flex align-items-center">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/>
+                              <span class="fs-14  text-white">English (US)</span>
+                            </span>
+                          </button>
+          
+                          <div class="dropdown-menu" aria-labelledby="footerSelectLanguage">
+                            <a class="dropdown-item d-flex align-items-center active" href="#">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/>
+                              <span>English (US)</span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Image description" width="16"/>
+                              <span>Deutsch</span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/es.svg" alt="Image description" width="16"/>
+                              <span>Español</span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Image description" width="16"/>
+                              <span>中文 (繁體)</span>
+                            </a>
+                          </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <div class="btn-group">
+                          <button type="button" class="btn dropdown-toggle" id="footerAccount" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
+                            <span class="d-flex align-items-center">
+                              <span class="fs-14 text-white">Accounts</span>
+                            </span>
+                          </button>
+          
+                          <div class="dropdown-menu" aria-labelledby="footerAccount">
+                            <div *ngIf="!_userService.user">
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/login">
+                                <span>Sign In</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/register">
+                                <span>Register</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/register"
+                              [queryParams]="{ access: 'agent' }"
+                              queryParamsHandling="merge">
+                                <span>Become an agent</span>
+                              </a>
+                            </div>
+
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/overview">
+                                <span>Overview</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/profile">
+                                <span>Profile</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/listings">
+                                <span>Listings</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/messages">
+                                <span>Messages</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/orders">
+                                <span>Orders</span>
+                              </a>
+                              <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/settings">
+                                <span>Settings</span>
+                              </a>
+                          </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="fs-14 btn bg-white text-danger btn-xs bold" routerLink="/accounts/listings/add">Post an Ad</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+<br />

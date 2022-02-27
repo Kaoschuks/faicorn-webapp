@@ -1,0 +1,130 @@
+<section class="container content-space-t-md-2 content-space-b-2 content-space-b-lg-3">
+    <br class="d-lg-none" />
+    <br class="d-lg-none" />
+    <br class="d-lg-none" />
+    <breadcrumb></breadcrumb>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <ads-info [adsInfo]="_listingservices?.listingInfo"></ads-info>
+
+            <br />
+            <br />
+            <br />
+            <div class="row align-items-center mb-5 mt-5">
+                <div class="col-sm mb-3 mb-sm-0">
+                  <h6 class="mb-0 fs-20 bold">Related Listings</h6>
+                </div>
+              </div>
+            <ads-listing [limit]="3" [ads]="_listingservices?.listings"></ads-listing>
+        </div>
+
+        <div class="col-lg-4">
+            <br />
+            <br />
+            <div class="card mb-3">
+                <div class="card-body">
+                  <h3 class="card-title">{{_listingservices?.listingInfo?.price}}</h3>
+                  <div class="d-grid gap-2">
+                    <button class="btn btn-outline-danger btn-xs fs-16 bold" type="button">Make an Offer</button>
+                  </div>
+                </div>
+            </div>
+
+            <div class="card mb-2">
+                <div class="card-body">
+                  <div class="d-sm-flex mb-3 mt-3">
+                      <br />
+                      <div class="flex-shrink-0 mb-2 mb-sm-0">
+                          <a>
+                            <img class="avatar avatar-lg mb-3" [src]="_listingservices?.listingInfo?.user?.image || 'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_1280.png'" alt="Image Description">
+                          </a>
+                      </div>
+              
+                      <div class="flex-grow-1 ms-sm-4">
+                          <div class="row">
+                          <div class="col">
+                              <h1 class="page-header-title fs-18 bold">{{_listingservices?.listingInfo?.user?.fullname || _listingservices?.listingInfo?.user?.username || 'John Doe'}}</h1>
+                          </div>
+                          <!-- End Col -->
+              
+                          <div class="col-auto">
+                              <!-- Checkbbox Bookmark -->
+                              <div class="form-check form-check-bookmark">
+                              <input class="form-check-input" type="checkbox" value="" id="jobsPageHeaderBookmarkCheck">
+                              <label class="form-check-label" for="jobsPageHeaderBookmarkCheck">
+                                  <span class="form-check-bookmark-default">
+                                  <i class="bi-star me-1"></i> Save this job
+                                  </span>
+                                  <span class="form-check-bookmark-active">
+                                  <i class="bi-star-fill me-1"></i> Saved
+                                  </span>
+                              </label>
+                              </div>
+                              <!-- End Checkbbox Bookmark -->
+                          </div>
+                          <!-- End Col -->
+                          </div>
+                          <!-- End Row -->
+              
+                          <ul class="list-inline list-separator small text-body mb-2">
+                              <li class="list-inline-item">Last Online {{_listingservices?.listingInfo?.user?.date_added | date}}</li>
+                              <!-- <li class="list-inline-item">97 Ads Listings</li> -->
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="d-grid gap-2" style="margin-top: -15px">
+                      <button (click)="toogle()" *ngIf="!showContact" class="btn btn-success btn-xs fs-16 bold" type="button">Show Contact</button>
+                      <a *ngIf="showContact" class="btn btn-outlink-success btn-xs fs-16 bold" href="tel://{{_listingservices?.listingInfo?.user?.phone}}">Call {{_listingservices?.listingInfo?.user?.phone}}</a>
+                      <!-- <a *ngIf="showContact && _listingservices?.listingInfo?.user?.phone == ''" class="btn btn-outlink-success btn-xs fs-16 bold" href="mailto://{{_listingservices?.listingInfo?.user?.email}}">Email {{_listingservices?.listingInfo?.user?.username}}</a> -->
+                      <button routerLink="/accounts/messages?uid={{_listingservices?.listingInfo?.user?.uid}}" class="btn btn-outline-dark btn-xs fs-16 bold" type="button">Send a Message</button>
+                  </div>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <br />
+                    <h3 class="card-title fs-18 bold" align="center">Safety Tips</h3>
+                    <ul>
+                      <li>Avoid paying inspection fees</li>
+                      <li>If possible, go for viewing with friends</li>
+                      <li>Check everything carefully to make sure it's what you need</li>
+                      <li>Don't pay in advance if it's impossible to move in immediately</li>
+                    </ul>
+                    <button class="btn btn-danger btn-xs fs-14" type="button">Report aD</button>
+                </div>
+            </div>
+
+
+            <div class="mb-7">
+                <div class="mb-3">
+                    <h3>Tags</h3>
+                </div>
+    
+                <a *ngFor="let tag of _listingservices?.listingInfo?.tags" class="btn btn-soft-secondary btn-xs mb-1">{{tag}}</a>
+            </div>
+
+
+            <div class="bg-img-start rounded-2 p-5 mb-5 mt-5" style="background-image: url(https://htmlstream.com/front-v4.0/assets/img/1920x800/img9.jpg);">
+                <div class="row align-items-md-center">
+                  <div class="col-sm mb-3 mb-md-0">
+                    <h1 class="h4 mb-1">Save up to 30% with orders above $50</h1>
+                    <a class="btn btn-primary btn-sm btn-transition rounded-pill" href="#">Shop now</a>
+                  </div>
+                </div>
+            </div>
+
+            <div class="card mb-5">
+                <div class="card-body">
+                  <div class="d-grid gap-2">
+                      <button routerLink="/accounts/listings/add" class="btn btn-outline-success btn-xs fs-16 bold" type="button">Post AD Like This</button>
+                  </div>
+                </div>
+            </div>
+
+            <review-listing [reviews]="_listingservices?.listingInfo?.reviews"></review-listing>
+        </div>
+
+    </div>
+</section>

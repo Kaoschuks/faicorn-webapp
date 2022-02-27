@@ -1,0 +1,8 @@
+/* app-loading {
+    height: 100% !important;
+} */
+
+app-loading h2 *, app-loading p * {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}

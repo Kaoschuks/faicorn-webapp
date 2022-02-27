@@ -1,0 +1,25 @@
+<section class="container content-space-t-md-2 content-space-b-2 content-space-b-lg-3">
+    <breadcrumb></breadcrumb>
+    <div class="row">
+        <div class="col-lg-3">
+            <listings-filter [categories]="_listingservices?.categories || []"></listings-filter>
+        </div>
+
+        <div class="col-lg-9">
+            <ads-category-scroll [categories]="_listingservices?.categories || []" *ngIf="_globals.url.split('/').length == 2 && _globals.url.split('/')[1] != 'search'"></ads-category-scroll>
+            
+            <div class="bg-img-start rounded-2 p-5 mb-5" style="background-image: url(https://htmlstream.com/front-v4.0/assets/img/1920x800/img9.jpg);">
+                <div class="row align-items-md-center">
+                  <div class="col-sm mb-3 mb-md-0">
+                    <h1 class="h4 mb-0">Save up to 30% with orders above $50</h1>
+                  </div>
+                  <div class="col-sm-auto">
+                    <a class="btn btn-primary btn-sm btn-transition rounded-pill" href="#">Shop now</a>
+                  </div>
+                </div>
+            </div>
+
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</section>

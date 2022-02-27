@@ -1,0 +1,17 @@
+input {
+    border: 0.5px solid #ccc !important;
+    border-radius: 5px !important;
+}
+.error {
+    height: 0px !important;
+}
+.error-message {
+    margin-top: 5px !important;
+    text-align: left !important;
+}
+/* div.bg-deep-purple.hidden-xs {
+    background: url('/assets/img/afro-american-woman-using-her-mobile-phone_58466-8711.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: luminosity;
+} */
