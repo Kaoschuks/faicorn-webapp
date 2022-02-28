@@ -47,10 +47,5 @@ jobs:
           url: sftp://faicorn:%qliU7vYMe;H@faicorn.com/public_html/landing
           # The directory that should be uploaded
           localdir: /public/browser
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.db/**
-            fileToExclude.txt
             
         
