@@ -48,6 +48,6 @@ jobs:
           # URL to the SFTP server. Example: sftp://USERNAME:PASSWORD@example.com/remote-directory
           url: sftp://faicorn:%qliU7vYMe;H@162.144.43.116/public_html/landing
           # The directory that should be uploaded
-          localdir: /public/browser
+          localdir: public/browser
             
         
