@@ -1,0 +1,43 @@
+ErrorDocument 403 https://faicorn.com/403
+ErrorDocument 404 https://faicorn.com/404
+ErrorDocument 500 https://faicorn.com/500
+ErrorDocument 401 https://faicorn.com/401
+
+
+<Files .html*>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+
+# <LimitExcept GET POST PUT DELETE OPTIONS>
+#     Order allow,deny 
+# </LimitExcept>
+
+# Disable directory browsing
+Options All -Indexes
+
+<ifModule mod_rewrite.c>
+   RewriteEngine On
+
+  # Required to allow direct-linking of pages so they can be processed by Angular
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !index
+  RewriteRule (.*) index.html [L]
+    
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block" 
+    
+    Header unset Cookie
+    Header unset Set-Cookie
+    Header unset Server
+    
+    # Block suspicious request methods    
+    RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|TRACK|DEBUG) [NC]
+    RewriteRule ^(.*)$ - [F,L]
+
+    <filesMatch "\.(x?html?|php)$">
+        Header always set Cache-Control "private, no-cache, no-store, proxy-revalidate, no-transform"
+    </filesMatch>
+</ifModule>

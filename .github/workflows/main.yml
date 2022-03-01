@@ -39,8 +39,7 @@ jobs:
       - name: Build for web project
         run: |
           ng build --prod --aot --source-map=false
-          cd public/browser
-          ls -shal
+          cp .htaccess public/browser/
       
       - name: Upload Files to Server
         uses: wangyucode/sftp-upload-action@v1.1
