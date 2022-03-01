@@ -39,8 +39,8 @@ jobs:
       - name: Build for web project
         run: |
           ng build --prod --aot --source-map=false
-          ls -shal
           cd public/browser
+          ls -shal
       
       - name: Upload Files to Server
         uses: Atyn/simple-sftp-action@0.0.2
