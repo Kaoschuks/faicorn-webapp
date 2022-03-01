@@ -48,7 +48,7 @@ jobs:
           server: '162.144.43.116'
           username: 'faicorn'
           password: '%qliU7vYMe;H'
-          local-dir: '/public/browser'
+          local-dir: '/public/browser/'
           protocol: 'ftps'
           server-dir: '/public_html/landing/'
             
