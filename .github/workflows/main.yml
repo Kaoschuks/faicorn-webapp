@@ -49,7 +49,7 @@ jobs:
           username: 'faicorn'
           password: '%qliU7vYMe;H'
           local-dir: '/public/browser'
-          protocol: 'sftp'
+          protocol: 'ftps'
           server-dir: '/public_html/landing/'
             
         
