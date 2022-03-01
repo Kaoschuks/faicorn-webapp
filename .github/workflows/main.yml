@@ -43,11 +43,13 @@ jobs:
           ls -shal
       
       - name: Upload Files to Server
-        uses: Atyn/simple-sftp-action@0.0.2
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
-          # URL to the SFTP server. Example: sftp://USERNAME:PASSWORD@example.com/remote-directory
-          url: sftp://faicorn:%qliU7vYMe;H@162.144.43.116/public_html/landing
-          # The directory that should be uploaded
-          localdir: public/browser
+          ftp-server: '162.144.43.116'
+          ftp-username: 'faicorn'
+          ftp-password: '%qliU7vYMe;H'
+          local-dir: 'public/browser'
+          protocol: sftp
+          server-dir: '/public_html/landing/'
             
         
