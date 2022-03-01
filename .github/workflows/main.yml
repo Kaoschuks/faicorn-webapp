@@ -43,13 +43,12 @@ jobs:
           ls -shal
       
       - name: Upload Files to Server
-        uses: SamKirkland/FTP-Deploy-Action@4.2.0
+        uses: wangyucode/sftp-upload-action@v1.1
         with:
-          server: '162.144.43.116'
+          host: '162.144.43.116'
           username: 'faicorn'
           password: '%qliU7vYMe;H'
-          local-dir: 'public/browser/'
-          protocol: 'ftps'
-          server-dir: '/public_html/landing/'
+          localDir: 'public/browser/'
+          remoteDir: '/public_html/landing/'
             
         
