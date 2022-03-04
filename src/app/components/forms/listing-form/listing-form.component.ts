@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 import * as blobutil from 'blob-util';
-import { PaystackOptions } from 'angular4-paystack';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { OrdersService } from 'src/app/services/features/orders/orders.service';
 declare var document: any;
@@ -96,6 +95,9 @@ export class ListingFormComponent implements OnInit {
   async onSubmit(form: any, ref: any = null) {
     let formData: any = form;
     formData.image = this.images
+
+    // check if transaction was saved before continue for featured listings
+    if(formData.isFeatured == 'true') await this._orderservices.saveTransaction(ref)
     
     const resp = await this._listingservices.postlistings(formData);
     console.log(resp)

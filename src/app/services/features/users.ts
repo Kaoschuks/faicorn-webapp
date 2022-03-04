@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { RequestService } from '../core/request-service';
 import { GlobalsService } from '../core/globals.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import jwt_decode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
 
@@ -44,8 +44,8 @@ export class UsersService {
         return await new Promise(async (resolve, reject) => {
             try {
                 let _provider: any = null;
-                if (provider === 'GoogleAuthProvider') _provider = new firebase.default.auth.GoogleAuthProvider();
-                if (provider === 'FacebookAuthProvider') _provider = new firebase.default.auth.FacebookAuthProvider();
+                if (provider === 'GoogleAuthProvider') _provider = new firebase.auth.GoogleAuthProvider();
+                if (provider === 'FacebookAuthProvider') _provider = new firebase.auth.FacebookAuthProvider();
                 const result: any = await this.auth.signInWithPopup(_provider);
 
                 resolve({

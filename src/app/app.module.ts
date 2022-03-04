@@ -13,7 +13,7 @@ import { AccountsComponent } from './pages/accounts/accounts.component';
 
 import { ServicesModule } from './services/services.module';
 import { ComponentsModule } from './components/components.module';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 

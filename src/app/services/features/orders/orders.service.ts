@@ -61,4 +61,17 @@ export class OrdersService {
       }
     })
   }
+
+  async saveTransaction(data: any) {
+    return await new Promise(async (resolve: any, reject: any) => {
+      try {
+        console.log(data);
+      }catch(ex: any) {
+
+        reject({
+          error: ex.message || ex.error || ex
+        })
+      }
+    })
+  }
 }
