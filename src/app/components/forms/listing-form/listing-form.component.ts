@@ -21,6 +21,10 @@ export class ListingFormComponent implements OnInit {
     price: new FormControl("", Validators.compose([ Validators.required ])),
     category: new FormControl("", Validators.compose([ Validators.required ])),
     subcategory: new FormControl(""),
+    country: new FormControl("", Validators.compose([ Validators.required ])),
+    region: new FormControl("", Validators.compose([ Validators.required ])),
+    city: new FormControl("", Validators.compose([ Validators.required ])),
+    gender: new FormControl("", Validators.compose([ Validators.required ])),
     tags: new FormControl("", Validators.compose([ Validators.required ])),
     brands: new FormControl("", Validators.compose([ Validators.required ])),
     isFeatured: new FormControl(false),
@@ -110,8 +114,9 @@ export class ListingFormComponent implements OnInit {
     let category: any = await this.listingForm.controls['category'].value;
     if (category == '') return;
 
+    // filter subcategory using category name
     let filteredCat: any = await this._listingservices.categories.filter( e => { return e?.name == category});
     this.subCategories = filteredCat[0]?.subcategory;
-    console.log(filteredCat[0]?.subcategory);
+    // console.log(filteredCat[0]?.subcategory);
   }
 }
