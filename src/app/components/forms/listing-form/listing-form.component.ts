@@ -14,11 +14,13 @@ declare var document: any;
 export class ListingFormComponent implements OnInit {
   reference = '';
   title = '';
+  subCategories: any[] = [];
   listingForm: FormGroup = new FormGroup({
     name: new FormControl("", Validators.compose([ Validators.required ])),
     description: new FormControl("", Validators.compose([ Validators.required ])),
     price: new FormControl("", Validators.compose([ Validators.required ])),
     category: new FormControl("", Validators.compose([ Validators.required ])),
+    subcategory: new FormControl(""),
     tags: new FormControl("", Validators.compose([ Validators.required ])),
     brands: new FormControl("", Validators.compose([ Validators.required ])),
     isFeatured: new FormControl(false),
@@ -54,7 +56,7 @@ export class ListingFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._orderservices.paystackInfo.ref = Math.ceil(Math.random() * 10e10)
+    this._orderservices.paystackInfo.ref = Math.ceil(Math.random() * 10e10);
   }
 
   open() {
@@ -104,4 +106,12 @@ export class ListingFormComponent implements OnInit {
     this.listingForm.reset();
   }
 
+  async selectSubCategories(){
+    let category: any = await this.listingForm.controls['category'].value;
+    if (category == '') return;
+
+    let filteredCat: any = await this._listingservices.categories.filter( e => { return e?.name == category});
+    this.subCategories = filteredCat[0]?.subcategory;
+    console.log(filteredCat[0]?.subcategory);
+  }
 }

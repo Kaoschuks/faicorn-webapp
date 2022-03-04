@@ -60,6 +60,7 @@ export class ListingsService {
 
         this.categories = resp
         this.loader.category = false;
+        // console.log(this.categories)
         resolve(this.categories)
       }catch(ex: any) {
         this.loader.category = false;

@@ -63,18 +63,18 @@
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Category</label>
-                                <select class="form-control" formControlName="category">
+                                <select class="form-control" formControlName="category" (change)="selectSubCategories()">
                                     <option value="">Choose a Category</option>
                                     <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option>
                                 </select>
                             </div>
-                            <!-- <div class="col-md-4">
+                            <div class="col-md-4">
                                 <label class="form-label">Sub Category</label>
-                                <select class="form-control">
+                                <select class="form-control" formControlName="subcategory">
                                     <option value="">Choose a Sub Category</option>
-                                    <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option>
+                                    <option  *ngFor="let subcategory of subCategories">{{subcategory?.name | titlecase}}</option>
                                 </select>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -156,4 +156,3 @@
     </div>
 
 </div>
-
