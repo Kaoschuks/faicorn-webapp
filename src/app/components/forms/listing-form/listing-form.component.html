@@ -106,21 +106,6 @@
                                     <option value="true">Yes, I want to promote this ad listing</option>
                                 </select>
                                 <span class="text-muted fs-12">e.g "Wanted your ad to be promoted or featured ?"</span>
-                                <div class="pt-3">
-                                  <!-- <button class="btn btn-primary">Pay with Paystack</button> -->
-                                  <angular4-paystack
-                                    [email]="'mailexample@mail.com'"
-                                    [amount]="5000000"
-                                    [ref]="reference"
-                                    [paystackOptions]="options"
-                                    [channels]="['bank']"
-                                    [class]="'btn btn-primary'"
-                                    (onClose)="paymentCancel()"
-                                    (callback)="paymentDone($event)"
-                                  >
-                                    Pay with Paystack
-                                  </angular4-paystack>
-                                </div>
                             </div>
                             <div class="col-md-7">
                                 <label class="form-label">Featured season</label>
@@ -151,7 +136,19 @@
         <!-- Footer -->
         <div class="card-footer pt-0">
           <div class="d-flex justify-content-end gap-3">
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <angular4-paystack *ngIf="listingForm.value.isFeatured == 'true'"
+              [email]="_orderservices?.paystackInfo?.email"
+              [amount]="_orderservices?.paystackInfo?.amount"
+              [ref]="_orderservices?.paystackInfo?.ref"
+              [paystackOptions]="_orderservices?.paystackInfo"
+              [channels]="_orderservices?.paystackInfo?.channel"
+              [class]="'btn btn-primary hidden'"
+              (onClose)="_orderservices?.paymentCancel($event)"
+              (callback)="onSubmit($event)"
+            >
+              Subscribe to Featured Listing & Save Advert
+            </angular4-paystack>
+            <button *ngIf="listingForm.value.isFeatured == 'false'" type="submit" class="btn btn-primary">Save Advert</button>
           </div>
         </div>
         <!-- End Footer -->

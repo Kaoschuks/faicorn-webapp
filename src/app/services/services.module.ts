@@ -9,6 +9,7 @@ import { StorageServices } from './core/storage-services.service';
 import { UsersService } from './features/users';
 import { ListingsService } from './features/listings/listings.service';
 import { MessagingService } from './features/messaging/messaging.service';
+import { OrdersService } from './features/orders/orders.service';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -18,7 +19,7 @@ import { environment } from 'src/environments/environment';
 
 export const providers: Array<any> = [
   GlobalsService, RequestService, StorageServices,
-  ListingsService, MessagingService, UsersService,
+  ListingsService, MessagingService, UsersService, OrdersService
 ]
 
 @NgModule({

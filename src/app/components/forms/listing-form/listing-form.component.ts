@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 import * as blobutil from 'blob-util';
 import { PaystackOptions } from 'angular4-paystack';
+import { GlobalsService } from 'src/app/services/core/globals.service';
+import { OrdersService } from 'src/app/services/features/orders/orders.service';
 declare var document: any;
 
 @Component({
@@ -13,12 +15,6 @@ declare var document: any;
 export class ListingFormComponent implements OnInit {
   reference = '';
   title = '';
-  options: PaystackOptions = {
-    amount: 50000,
-    email: 'jasonaddy51@gmail.com',
-    ref: `${Math.ceil(Math.random() * 10e10)}`,
-    currency: 'GHS'
-  }
   listingForm: FormGroup = new FormGroup({
     name: new FormControl("", Validators.compose([ Validators.required ])),
     description: new FormControl("", Validators.compose([ Validators.required ])),
@@ -53,11 +49,13 @@ export class ListingFormComponent implements OnInit {
   images: Array<any> = []
 
   constructor(
+    public _orderservices: OrdersService,
+    private _globals: GlobalsService,
     public _listingservices: ListingsService
   ) { }
 
   ngOnInit() {
-    this.reference = `ref-${Math.ceil(Math.random() * 10e13)}`;
+    this._orderservices.paystackInfo.ref = Math.ceil(Math.random() * 10e10)
   }
 
   open() {
@@ -67,51 +65,41 @@ export class ListingFormComponent implements OnInit {
 
   onFile(event: any) {
     event.preventDefault()
-    // if(event.target.files.length > 5) this._globals.notifyAlert('', 'You can`t choose more than 5 images')
+    if(event.target.files.length > 5) alert('You can`t choose more than 5 images')
     if(event.target.files.length <= 5)  {
-      // this._globals.spinner.show();
+      this._globals.spinner.show();
       let fileArr: any = [], promise = [];
       for (let i = 0; i < event.target.files.length; i++) {
         const file = event.target.files[i];
-        this._listingservices.upload(file)
         promise[i] = new Promise(async (resolve, reject) => {
+          const file_resp: any = await this._listingservices.upload(file);
           const image:any = await blobutil.blobToDataURL(file)
           fileArr.push(image)
-          resolve('resolved');
+          if(file_resp.secure_url) resolve(file_resp.secure_url)
+          if(file_resp.secure_url) reject(file_resp)
         })
       }
       Promise.all(promise)
       .then((values) => {
-        // this._globals.spinner.hide();
-        console.log(values)
-        this.images = fileArr;
+        this._globals.spinner.hide();
+        
+        this.images = values;
       })
       .catch((err: any) => {
+        this._globals.spinner.hide();
         console.error(err);
       });
     }
     return false;
   }
 
-  async onSubmit(form: any){
+  async onSubmit(form: any, ref: any = null) {
     let formData: any = form;
-    console.log(formData)
+    formData.image = this.images
+    
     const resp = await this._listingservices.postlistings(formData);
     console.log(resp)
     this.listingForm.reset();
-  }
-
-  paymentInit() {
-    console.log('Payment initialized');
-  }
-
-  paymentDone(ref: any) {
-    this.title = 'Payment successfully made';
-    console.log(this.title, ref);
-  }
-
-  paymentCancel() {
-    console.log('payment failed');
   }
 
 }
