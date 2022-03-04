@@ -105,7 +105,22 @@
                                     <option value="false">No, this is a regular ad listing</option>
                                     <option value="true">Yes, I want to promote this ad listing</option>
                                 </select>
-                                <span class="text-muted fs-12">e.g "Wanted your ad to be promoted or featured ??"</span>
+                                <span class="text-muted fs-12">e.g "Wanted your ad to be promoted or featured ?"</span>
+                                <div class="pt-3">
+                                  <!-- <button class="btn btn-primary">Pay with Paystack</button> -->
+                                  <angular4-paystack
+                                    [email]="'mailexample@mail.com'"
+                                    [amount]="5000000"
+                                    [ref]="reference"
+                                    [paystackOptions]="options"
+                                    [channels]="['bank']"
+                                    [class]="'btn btn-primary'"
+                                    (onClose)="paymentCancel()"
+                                    (callback)="paymentDone($event)"
+                                  >
+                                    Pay with Paystack
+                                  </angular4-paystack>
+                                </div>
                             </div>
                             <div class="col-md-7">
                                 <label class="form-label">Featured season</label>

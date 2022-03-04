@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 import * as blobutil from 'blob-util';
+import { PaystackOptions } from 'angular4-paystack';
 declare var document: any;
 
 @Component({
@@ -10,7 +11,14 @@ declare var document: any;
   styleUrls: ['./listing-form.component.css']
 })
 export class ListingFormComponent implements OnInit {
-
+  reference = '';
+  title = '';
+  options: PaystackOptions = {
+    amount: 50000,
+    email: 'jasonaddy51@gmail.com',
+    ref: `${Math.ceil(Math.random() * 10e10)}`,
+    currency: 'GHS'
+  }
   listingForm: FormGroup = new FormGroup({
     name: new FormControl("", Validators.compose([ Validators.required ])),
     description: new FormControl("", Validators.compose([ Validators.required ])),
@@ -48,7 +56,8 @@ export class ListingFormComponent implements OnInit {
     public _listingservices: ListingsService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.reference = `ref-${Math.ceil(Math.random() * 10e13)}`;
   }
 
   open() {
@@ -86,8 +95,23 @@ export class ListingFormComponent implements OnInit {
 
   async onSubmit(form: any){
     let formData: any = form;
+    console.log(formData)
     const resp = await this._listingservices.postlistings(formData);
     console.log(resp)
     this.listingForm.reset();
   }
+
+  paymentInit() {
+    console.log('Payment initialized');
+  }
+
+  paymentDone(ref: any) {
+    this.title = 'Payment successfull';
+    console.log(this.title, ref);
+  }
+
+  paymentCancel() {
+    console.log('payment failed');
+  }
+
 }
