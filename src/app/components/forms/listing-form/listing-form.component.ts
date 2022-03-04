@@ -106,7 +106,7 @@ export class ListingFormComponent implements OnInit {
   }
 
   paymentDone(ref: any) {
-    this.title = 'Payment successfull';
+    this.title = 'Payment successfully made';
     console.log(this.title, ref);
   }
 
