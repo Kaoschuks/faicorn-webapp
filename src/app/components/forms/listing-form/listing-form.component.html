@@ -55,25 +55,34 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="form-label">Country</label>
-                                <input type="text" class="form-control" placeholder="Type something" formControlName="country">
-                            </div>
+                                <select class="form-control" formControlName="country">
+                                  <option value="">Choose a Country</option>
+                                  <!-- <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option> -->
+                              </select>
+                          </div>
                             <div class="col-md-4">
                                 <label class="form-label">Region</label>
-                                <select class="form-control" formControlName="category">
+                                <select class="form-control" formControlName="region">
                                     <option value="">Choose a Region</option>
                                     <!-- <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option> -->
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Gender</label>
-                                <input type="text" class="form-control" placeholder="Type something" formControlName="gender">
-                            </div>
+                                <select class="form-control" formControlName="gender">
+                                  <option value="">Choose your Gender</option>
+                                  <!-- <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option> -->
+                              </select>
+                          </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">City</label>
-                        <input type="text" class="form-control" placeholder="Type something" formControlName="city">
-                    </div>
+                        <select class="form-control" formControlName="city">
+                          <option value="">Choose your City</option>
+                          <!-- <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option> -->
+                      </select>
+          </div>
                     <!-- <div class="mb-3">
                         <label class="form-label">Description / Summary</label>
                         <textarea class="form-control" placeholder="..." rows="5" formControlName="description"></textarea>
