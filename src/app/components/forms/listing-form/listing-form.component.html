@@ -52,25 +52,29 @@
                   </a>
                   <div id="advertCollapse" class="collapse" data-parent="#accordion">
                     <div class="mb-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label class="form-label">Country</label>
-                                <select class="form-control" formControlName="country">
-                                  <option value="">Choose a Country</option>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <label class="form-label">Country</label>
+                            <select class="form-control" formControlName="country">
+                              <option value="" disabled>Choose a Country</option>
+                              <option value="Ghana">Ghana</option>
                                   <!-- <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option> -->
-                              </select>
+                            </select>
                           </div>
                             <div class="col-md-4">
                                 <label class="form-label">Region</label>
                                 <select class="form-control" formControlName="region">
-                                    <option value="">Choose a Region</option>
-                                    <!-- <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option> -->
+                                    <option value="" disabled>Choose a Region</option>
+                                    <option value="Greater Accra">Greater Accra</option>
+                                          <!-- <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option> -->
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Gender</label>
                                 <select class="form-control" formControlName="gender">
-                                  <option value="">Choose your Gender</option>
+                                  <option value="" disabled>Choose your Gender</option>
+                                  <option value="Male">Male</option>
+                                  <option value="Female">Female</option>
                                   <!-- <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option> -->
                               </select>
                           </div>
@@ -79,10 +83,11 @@
                     <div class="mb-3">
                         <label class="form-label">City</label>
                         <select class="form-control" formControlName="city">
-                          <option value="">Choose your City</option>
+                          <option value="" disabled>Choose your City</option>
+                          <option value="Accra">Accra</option>
                           <!-- <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option> -->
                       </select>
-          </div>
+                    </div>
                     <!-- <div class="mb-3">
                         <label class="form-label">Description / Summary</label>
                         <textarea class="form-control" placeholder="..." rows="5" formControlName="description"></textarea>
@@ -128,14 +133,14 @@
                             <div class="col-md-4">
                                 <label class="form-label">Category</label>
                                 <select class="form-control" formControlName="category" (change)="selectSubCategories()">
-                                    <option value="">Choose a Category</option>
+                                    <option value="" disabled>Choose a Category</option>
                                     <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Sub Category</label>
                                 <select class="form-control" formControlName="subcategory">
-                                    <option value="">Choose a Sub Category</option>
+                                    <option value="" disabled>Choose a Sub Category</option>
                                     <option  *ngFor="let subcategory of subCategories">{{subcategory?.name | titlecase}}</option>
                                 </select>
                             </div>
@@ -148,13 +153,13 @@
                     <div class="mb-3">
                         <label class="form-label">Listing Tags</label>
                         <select class="form-control" formControlName="tags">
-                            <option value="">Choose various tags</option>
+                            <option value="" disabled>Choose various tags</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Brands</label>
                         <select class="form-control" formControlName="brands">
-                            <option value="">Choose a band name</option>
+                            <option value="" disabled>Choose a band name</option>
                         </select>
                     </div>
                     <br />
@@ -171,10 +176,10 @@
                                 </select>
                                 <span class="text-muted fs-12">e.g "Wanted your ad to be promoted or featured ?"</span>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-7" *ngIf="listingForm.value.isFeatured == 'true'">
                                 <label class="form-label">Featured season</label>
                                 <select class="form-control" formControlName="featuredName">
-                                    <option value="">Choose a promotional / featured season or type</option>
+                                    <option value="" disabled>Choose a promotional / featured season or type</option>
                                     <option value="general">General (Monthly subscription cost)</option>
                                     <option value="easter">Easter Promotion</option>
                                     <option value="xmas">Xmas Promotion</option>
@@ -191,7 +196,7 @@
         <!-- Footer -->
         <div class="card-footer pt-0">
           <div class="d-flex justify-content-end gap-3">
-            <angular4-paystack *ngIf="listingForm.value.isFeatured == 'true'"
+            <angular4-paystack *ngIf="listingForm.value.isFeatured == 'true' ; else elseBlock"
               [email]="_orderservices?.paystackInfo?.email"
               [amount]="_orderservices?.paystackInfo?.amount"
               [ref]="_orderservices?.paystackInfo?.ref"
@@ -203,7 +208,9 @@
             >
               Subscribe to Featured Listing & Save Advert
             </angular4-paystack>
-            <button *ngIf="listingForm.value.isFeatured == 'false'" type="submit" class="btn btn-primary">Save Advert</button>
+            <ng-template #elseBlock>
+              <button type="submit" class="btn btn-primary">Save Advert</button>
+            </ng-template>
           </div>
         </div>
         <!-- End Footer -->

@@ -25,11 +25,10 @@ export class ListingFormComponent implements OnInit {
     region: new FormControl("", Validators.compose([ Validators.required ])),
     city: new FormControl("", Validators.compose([ Validators.required ])),
     gender: new FormControl("", Validators.compose([ Validators.required ])),
-    tags: new FormControl("", Validators.compose([ Validators.required ])),
+    tags: new FormControl([], Validators.compose([ Validators.required ])),
     brands: new FormControl("", Validators.compose([ Validators.required ])),
     isFeatured: new FormControl(false),
-    featuredName: new FormControl(""),
-    images: new FormControl([], Validators.compose([ Validators.required ])),
+    featuredName: new FormControl("")
   });
   validation_messages = {
     name: [
@@ -100,11 +99,13 @@ export class ListingFormComponent implements OnInit {
 
   async onSubmit(form: any, ref: any = null) {
     let formData: any = form;
-    formData.image = this.images
+    formData.image = this.images;
+    formData.isFeatured = Boolean(formData.isFeatured);
 
     // check if transaction was saved before continue for featured listings
-    if(formData.isFeatured == 'true') await this._orderservices.saveTransaction(ref)
-    
+    if(formData.isFeatured == true) await this._orderservices.saveTransaction(ref)
+
+    // console.log(formData)
     const resp = await this._listingservices.postlistings(formData);
     console.log(resp)
     this.listingForm.reset();
