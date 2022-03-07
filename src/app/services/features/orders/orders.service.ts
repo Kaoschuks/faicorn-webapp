@@ -23,7 +23,20 @@ export class OrdersService {
   ) {
   }
 
-  async getOrders(data: any) {
+  async getOrders() {
+    return await new Promise(async (resolve: any, reject: any) => {
+      try {
+        
+      }catch(ex: any) {
+
+        reject({
+          error: ex.message || ex.error || ex
+        })
+      }
+    })
+  }
+
+  async createOrders(data: any) {
     return await new Promise(async (resolve: any, reject: any) => {
       try {
         
@@ -66,17 +79,23 @@ export class OrdersService {
     return await new Promise(async (resolve: any, reject: any) => {
       try {
         console.log(data);
-        let trx = {
-          summary: 'Payment of Featured Ad ' + name,
-          total_amount: this.paystackInfo?.amount,
-          order_type: "one-time",
-          payment_gateway: 'paystack'
-        }
-        console.log(trx)
-
-        // const resp: any = await this.api.post('transactions', trx)
-        // if(resp.error) throw new Error(resp.error);
-        // resolve(resp.message);
+        // create order information
+        const order_resp: any = await this.createOrders({
+          "summary": "",
+          "total_amount": data.amount,
+          "order_type": "one-time",
+          "payment_gateway": "paystack"
+        })
+        // save transaction information
+        const trans_resp: any = await this.api.post('transactions', {
+          "orderid": order_resp.orderid,
+          "transid": data.ref,
+          "summary": "",
+          "amount": data.amount,
+          "status": data.status,
+          "uid": "",
+          "transaction_info": JSON.stringify({'source': 'paystack'})
+        })
       }catch(ex: any) {
 
         reject({

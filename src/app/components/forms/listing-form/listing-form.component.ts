@@ -4,7 +4,8 @@ import { ListingsService } from 'src/app/services/features/listings/listings.ser
 import * as blobutil from 'blob-util';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { OrdersService } from 'src/app/services/features/orders/orders.service';
-declare var document: any;
+import { environment } from 'src/environments/environment';
+declare var document: any, Tagin: any;
 
 @Component({
   selector: 'listing-form',
@@ -12,16 +13,18 @@ declare var document: any;
   styleUrls: ['./listing-form.component.css']
 })
 export class ListingFormComponent implements OnInit {
-  reference = '';
-  title = '';
+  regions: any = environment.states
+  cities: any = []
   subCategories: any[] = [];
+  tags: any;
+
   listingForm: FormGroup = new FormGroup({
     name: new FormControl("", Validators.compose([ Validators.required ])),
     description: new FormControl("", Validators.compose([ Validators.required ])),
     price: new FormControl("", Validators.compose([ Validators.required ])),
     category: new FormControl("", Validators.compose([ Validators.required ])),
     subcategory: new FormControl(""),
-    country: new FormControl("", Validators.compose([ Validators.required ])),
+    country: new FormControl(environment.country, Validators.compose([ Validators.required ])),
     region: new FormControl("", Validators.compose([ Validators.required ])),
     city: new FormControl("", Validators.compose([ Validators.required ])),
     gender: new FormControl("", Validators.compose([ Validators.required ])),
@@ -59,13 +62,36 @@ export class ListingFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.tags = new Tagin(document.querySelector('.tagin'), {
+      separator: ',', // default: ','
+      duplicate: false, // default: false
+      enter: true, // default: false
+    })
     this._orderservices.paystackInfo.ref = Math.ceil(Math.random() * 10e10);
     this.onEditFillForm();
   }
 
   open() {
     document.getElementById('imageUploader').click();
-    console.log('click');
+  }
+
+  selectChange(type: string = 'city') {
+
+    if(type === 'city') {
+      const regions = this.regions[this.listingForm.value.country];
+      this.cities = []
+      for (const key in regions) {
+        if (regions[key]['state']['name'] == this.listingForm.value.region) this.cities = regions[key]['state']['locals']
+      }
+    }
+
+    if(type === 'category') {
+      this.subCategories = []
+      for (const key in this._listingservices.categories) {
+        if(this._listingservices.categories[key]['name'] === this.listingForm.value.category) this.subCategories = this._listingservices.categories[key]['subcategory']
+      }
+    }
+
   }
 
   onFile(event: any) {
@@ -99,12 +125,14 @@ export class ListingFormComponent implements OnInit {
   }
 
   async onSubmit(form: any, ref: any = null) {
+    form.tags = this.tags.getTags()
     let formData: any = form;
     formData.images = this.images;
 
     // check if transaction was saved before continue for featured listings
     if(formData.isFeatured == 'true') await this._orderservices.saveTransaction(ref, formData.name)
 
+<<<<<<< HEAD
     // console.log(formData)
     let ads_id = this._globals.url.split('/')[4];
     const resp = await (this._globals.url.split('/')[3] !== 'edit' ? this._listingservices.postlistings(formData) : this._listingservices.editlistingbyId(ads_id, formData));
@@ -145,4 +173,11 @@ export class ListingFormComponent implements OnInit {
       featuredName: resp?.featuredName
     })
   }
+=======
+    console.log(formData)
+    const resp = await this._listingservices.postlistings(formData);
+    console.log(resp)
+    this.listingForm.reset();
+  }
+>>>>>>> 37d0c8d464ed7975bd35053df3974e898b92adbf
 }

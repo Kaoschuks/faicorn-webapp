@@ -49,7 +49,7 @@ const routes: Routes = [
         component: AccountsComponent
       },
       {
-        path: 'messages?uid=:uid',
+        path: 'messages/:msgid',
         canActivate: [AuthGuardsService],
         component: AccountsComponent
       },
