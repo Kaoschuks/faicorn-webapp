@@ -23,8 +23,8 @@ export class ListingsComponent implements OnInit {
 
   async refreshAds(){
     await this._listingservices.getlistings('', ``).then((resp: any) => {
-      this.ads = resp.results;
-      console.log(this.ads)
+      this.ads = resp;
+      // console.log(resp)
     }).catch((err: any) => {
       this.ads = []
     })

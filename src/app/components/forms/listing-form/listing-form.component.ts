@@ -132,7 +132,6 @@ export class ListingFormComponent implements OnInit {
     // check if transaction was saved before continue for featured listings
     if(formData.isFeatured == 'true') await this._orderservices.saveTransaction(ref, formData.name)
 
-<<<<<<< HEAD
     // console.log(formData)
     let ads_id = this._globals.url.split('/')[4];
     const resp = await (this._globals.url.split('/')[3] !== 'edit' ? this._listingservices.postlistings(formData) : this._listingservices.editlistingbyId(ads_id, formData));
@@ -173,11 +172,9 @@ export class ListingFormComponent implements OnInit {
       featuredName: resp?.featuredName
     })
   }
-=======
-    console.log(formData)
-    const resp = await this._listingservices.postlistings(formData);
-    console.log(resp)
-    this.listingForm.reset();
-  }
->>>>>>> 37d0c8d464ed7975bd35053df3974e898b92adbf
+  //   console.log(formData)
+  //   const resp = await this._listingservices.postlistings(formData);
+  //   console.log(resp)
+  //   this.listingForm.reset();
+  // }
 }
