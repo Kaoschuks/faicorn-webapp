@@ -38,10 +38,10 @@ export class ListingsService {
         for (let index = 0; index < resp.message.length; index++) {
           resp.message[index].price = Number(resp.message[index]?.price?.replace('$',''));
           filterArray.push(resp.message[index])
-          // console.log(filterArray)
         }
         this.listings = filterArray;
-        resolve(filterArray);
+        // console.log(filterArray)
+        resolve((filterArray.length == 0 ? resp.message : filterArray));
       }catch(ex: any) {
         this.loader.listings = false;
         reject({
@@ -125,6 +125,58 @@ export class ListingsService {
         this.loader.listings = false;
         reject({
           error: ex.message || ex.error || ex || "Error posting listings"
+        })
+      }
+    })
+  }
+
+  async deletelisting(id: any) {
+    return await new Promise(async (resolve: any, reject: any) => {
+      this.loader.listings = true;
+      try {
+        const resp: any = await this.api.delete(`listings/${id}`)
+        if(resp.error) throw new Error(resp.error);
+
+        resolve(resp.message);
+      }catch(ex: any) {
+        this.loader.listings = false;
+        reject({
+          error: ex.message || ex.error || ex || "Error deleting listing"
+        })
+      }
+    })
+  }
+
+  async getlistingbyId(params: string = "", type: string = "all") {
+    return await new Promise(async (resolve: any, reject: any) => {
+      this.loader.listings = true;
+      try {
+        const resp: any = await this.api.get('listings/' + params)
+        if(resp.error) throw new Error(resp.error);
+
+        resolve(resp.message.results[0]);
+      }catch(ex: any) {
+        this.loader.listings = false;
+        reject({
+          error: ex.message || ex.error || ex || "Error getting listing by id"
+        })
+      }
+    })
+  }
+
+  async editlistingbyId(params: string = "", data: any) {
+    return await new Promise(async (resolve: any, reject: any) => {
+      this.loader.listings = true;
+      try {
+        // console.log(data)
+        const resp: any = await this.api.update('listings/' + params, data)
+        if(resp.error) throw new Error(resp.error);
+
+        // resolve(resp.message);
+      }catch(ex: any) {
+        this.loader.listings = false;
+        reject({
+          error: ex.message || ex.error || ex || "Error putting listing by id"
         })
       }
     })

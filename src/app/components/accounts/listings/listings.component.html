@@ -27,8 +27,8 @@
             <td>{{ad?.category?.name}}</td>
             <td>{{ad?.brands | titlecase}}</td>
             <td>
-              <button class="btn btn-xs btn-success">Edit</button>
-              <button class="btn btn-xs btn-danger">Delete</button>
+              <button class="btn btn-xs btn-success" (click)="onEdit(ad?.ads_id)">Edit</button>
+              <button class="btn btn-xs btn-danger" (click)="onDelete(ad?.ads_id)">Delete</button>
             </td>
           </tr>
         </tbody>

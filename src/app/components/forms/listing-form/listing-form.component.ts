@@ -27,7 +27,7 @@ export class ListingFormComponent implements OnInit {
     gender: new FormControl("", Validators.compose([ Validators.required ])),
     tags: new FormControl([], Validators.compose([ Validators.required ])),
     brands: new FormControl("", Validators.compose([ Validators.required ])),
-    isFeatured: new FormControl(false),
+    isFeatured: new FormControl(false, Validators.compose([ Validators.required ])),
     featuredName: new FormControl("")
   });
   validation_messages = {
@@ -60,6 +60,7 @@ export class ListingFormComponent implements OnInit {
 
   ngOnInit() {
     this._orderservices.paystackInfo.ref = Math.ceil(Math.random() * 10e10);
+    this.onEditFillForm();
   }
 
   open() {
@@ -99,14 +100,14 @@ export class ListingFormComponent implements OnInit {
 
   async onSubmit(form: any, ref: any = null) {
     let formData: any = form;
-    formData.image = this.images;
-    formData.isFeatured = Boolean(formData.isFeatured);
+    formData.images = this.images;
 
     // check if transaction was saved before continue for featured listings
-    if(formData.isFeatured == true) await this._orderservices.saveTransaction(ref)
+    if(formData.isFeatured == 'true') await this._orderservices.saveTransaction(ref, formData.name)
 
     // console.log(formData)
-    const resp = await this._listingservices.postlistings(formData);
+    let ads_id = this._globals.url.split('/')[4];
+    const resp = await (this._globals.url.split('/')[3] !== 'edit' ? this._listingservices.postlistings(formData) : this._listingservices.editlistingbyId(ads_id, formData));
     console.log(resp)
     this.listingForm.reset();
   }
@@ -119,5 +120,29 @@ export class ListingFormComponent implements OnInit {
     let filteredCat: any = await this._listingservices.categories.filter( e => { return e?.name == category});
     this.subCategories = filteredCat[0]?.subcategory;
     // console.log(filteredCat[0]?.subcategory);
+  }
+
+  async onEditFillForm(){
+    // check for edit in url and return if not else continue function
+    if (this._globals.url.split('/')[3] !== 'edit') return;
+    let ads_id = this._globals.url.split('/')[4];
+    // get id for ads and fill the form with response
+    const resp: any = await this._listingservices.getlistingbyId(ads_id);
+    this.images = resp?.images;
+    this.listingForm.patchValue({
+      name: resp?.name,
+      description: resp?.description,
+      price: resp?.price,
+      category: resp?.category,
+      subcategory: resp?.subcategory,
+      country: resp?.country,
+      region: resp?.region,
+      city: resp?.city,
+      gender: resp?.gender,
+      tags: resp?.tags,
+      brands: resp?.brands,
+      isFeatured: resp?.isFeatured,
+      featuredName: resp?.featuredName
+    })
   }
 }

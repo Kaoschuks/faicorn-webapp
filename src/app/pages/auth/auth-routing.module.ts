@@ -39,6 +39,11 @@ const routes: Routes = [
         component: AccountsComponent
       },
       {
+        path: 'listings/edit/:ads_id',
+        canActivate: [AuthGuardsService],
+        component: AccountsComponent
+      },
+      {
         path: 'messages',
         canActivate: [AuthGuardsService],
         component: AccountsComponent

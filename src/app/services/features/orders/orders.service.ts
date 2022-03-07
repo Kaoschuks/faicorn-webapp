@@ -12,7 +12,7 @@ export class OrdersService {
   paystackInfo: any = {
     amount: 100,
     email: 'jasonaddy51@gmail.com',
-    currency: 'NGN',
+    currency: 'GHS',
     channel: ['bank'],
     ref: ''
   }
@@ -62,10 +62,21 @@ export class OrdersService {
     })
   }
 
-  async saveTransaction(data: any) {
+  async saveTransaction(data: any, name: any) {
     return await new Promise(async (resolve: any, reject: any) => {
       try {
         console.log(data);
+        let trx = {
+          summary: 'Payment of Featured Ad ' + name,
+          total_amount: this.paystackInfo?.amount,
+          order_type: "one-time",
+          payment_gateway: 'paystack'
+        }
+        console.log(trx)
+
+        // const resp: any = await this.api.post('transactions', trx)
+        // if(resp.error) throw new Error(resp.error);
+        // resolve(resp.message);
       }catch(ex: any) {
 
         reject({
@@ -75,3 +86,15 @@ export class OrdersService {
     })
   }
 }
+
+
+// let trx = {
+//   orderid: '',
+//   transid: data?.transaction,
+//   summary: '',
+//   amount: this.paystackInfo.amount,
+//   status: data?.status,
+//   uid: '',
+//   transaction_info: {'source': 'paystack'},
+// }
+// console.log(trx)

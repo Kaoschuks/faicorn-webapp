@@ -134,7 +134,7 @@
                                 <label class="form-label">Category</label>
                                 <select class="form-control" formControlName="category" (change)="selectSubCategories()">
                                     <option value="" disabled>Choose a Category</option>
-                                    <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option>
+                                    <option *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -204,7 +204,7 @@
               [channels]="_orderservices?.paystackInfo?.channel"
               [class]="'btn btn-primary hidden'"
               (onClose)="_orderservices?.paymentCancel($event)"
-              (callback)="onSubmit($event)"
+              (callback)="onSubmit(listingForm.value, $event)"
             >
               Subscribe to Featured Listing & Save Advert
             </angular4-paystack>
