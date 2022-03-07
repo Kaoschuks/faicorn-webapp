@@ -32,7 +32,6 @@ jobs:
         
       - name: Install dependencies
         run: |
-          npm ci
           npm i -g @angular/cli
           npm i --force
           

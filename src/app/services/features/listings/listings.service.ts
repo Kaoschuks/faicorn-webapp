@@ -28,20 +28,11 @@ export class ListingsService {
         const resp: any = await this.api.get('listings' + route + params)
         if(resp.error) throw new Error(resp.error);
 
-        if(type == 'all') this.listings = resp.message;
-        if(type == 'single') this.listingInfo = resp.message[0];
+        if(type == 'all') this.listings = resp.message.results;
+        if(type == 'single') this.listingInfo = resp.message.results[0];
 
         this.loader.listings = false;
-        // console.log(resp.message)
-        let filterArray = [];
-        
-        for (let index = 0; index < resp.message.length; index++) {
-          resp.message[index].price = Number(resp.message[index]?.price?.replace('$',''));
-          filterArray.push(resp.message[index])
-          // console.log(filterArray)
-        }
-        this.listings = filterArray;
-        resolve(filterArray);
+        resolve(this.listings);
       }catch(ex: any) {
         this.loader.listings = false;
         reject({
