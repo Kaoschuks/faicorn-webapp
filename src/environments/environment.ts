@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  // url: 'https://apis.faicorn.com/',
-  // url: 'https://faicornapi.kreadortech.xyz/',
-  url: 'http://127.0.0.1:8000/',
+  // url: 'http://apis.faicorn.com:5000/',
+  url: 'https://faicornapi.kreadortech.xyz/',
+  // url: 'http://127.0.0.1:8000/',
   secretKey: 'MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8',
   cloudinary: {
     url: 'https://api.cloudinary.com/v1_1/kaoschuks/image/upload/',
