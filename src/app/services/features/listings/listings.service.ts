@@ -93,7 +93,8 @@ export class ListingsService {
         if(resp.error) throw new Error(resp.error);
 
         this.loader.listings = false;
-        // console.log(resp.message)
+        this.listings = resp.message;
+        console.log(resp.message)
         resolve(resp.message);
       }catch(ex: any) {
         this.loader.listings = false;

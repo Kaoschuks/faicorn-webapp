@@ -1,6 +1,6 @@
 <ul class="list-unstyled" *ngIf="ads.length > 0">
-    <li *ngFor="let ad of ads | listingsFilter: filterComponent.minTerm : filterComponent.maxTerm | paginate: { itemsPerPage: limit, currentPage: p } " class="card card-bordered mb-3 no-shadow">
-        <a routerLink="/{{ad?.category?.name.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.brands.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.ads_id}}" class="row">
+    <li *ngFor="let ad of ads | paginate: { itemsPerPage: limit, currentPage: p } " class="card card-bordered mb-3 no-shadow">
+        <a routerLink="/{{ad?.category?.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.brands.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.ads_id}}" class="row">
             <div class="col-10">
                 <img [src]="ad?.images[0]" style="height: 150px;width: 150px;float: left; margin-left: 10px; margin-right: 20px" class="mr-3 pull-left" alt="...">
                 <h2 class="fs-20 text-dark bold">{{ad?.name | slice: 0: 100}}</h2>
