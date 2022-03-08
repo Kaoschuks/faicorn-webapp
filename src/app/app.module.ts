@@ -16,6 +16,7 @@ import { ComponentsModule } from './components/components.module';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,10 @@ import 'firebase/firestore';
     BrowserAnimationsModule, CommonModule, HttpClientModule,
     NgxSpinnerModule, AppRoutingModule,
 		NgxSpinnerModule,
-    ComponentsModule, ServicesModule,
+    ComponentsModule, ServicesModule, ToastrModule.forRoot({
+      timeOut: 3000,
+      preventDuplicates: true,
+    }),
   ],
   bootstrap: [AppComponent]
 })

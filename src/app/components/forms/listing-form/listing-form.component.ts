@@ -5,6 +5,7 @@ import * as blobutil from 'blob-util';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { OrdersService } from 'src/app/services/features/orders/orders.service';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 declare var document: any, Tagin: any;
 
 @Component({
@@ -58,7 +59,8 @@ export class ListingFormComponent implements OnInit {
   constructor(
     public _orderservices: OrdersService,
     private _globals: GlobalsService,
-    public _listingservices: ListingsService
+    public _listingservices: ListingsService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -136,6 +138,7 @@ export class ListingFormComponent implements OnInit {
     let ads_id = this._globals.url.split('/')[4];
     const resp = await (this._globals.url.split('/')[3] !== 'edit' ? this._listingservices.postlistings(formData) : this._listingservices.editlistingbyId(ads_id, formData));
     // console.log(resp)
+    this.toastr.success('Ad posted successfully.', 'Ad Posted!');
     this.images = [];
     this.listingForm.reset();
   }

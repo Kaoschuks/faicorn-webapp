@@ -41,6 +41,7 @@ import { OrdersComponent } from './accounts/orders/orders.component';
 import { ListingFormComponent } from './forms/listing-form/listing-form.component';
 import { ListingsFilterPipe } from '../pipes/listingsFilter';
 import { Angular4PaystackModule } from 'angular4-paystack';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const component: Array<any> = [
 	LoadingComponent,  NoContentComponent, NavbarComponent, FooterComponent, 
@@ -60,6 +61,7 @@ export const component: Array<any> = [
 		NgxPaginationModule,
 		RouterModule,
 		NgxSpinnerModule,
+		// BrowserAnimationsModule,
 		ReactiveFormsModule,
 		Angular4PaystackModule.forRoot('pk_test_02eeec488ebae76eb4d4d5ade993b1ceb9068a91'),
 	],
