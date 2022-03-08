@@ -38,29 +38,6 @@ export class IndexPagesComponent implements OnInit, AfterViewInit {
     return id.replace(' & ', '-').split(' ').join('').toLowerCase();
   }
 
-  async sendData(e: any){
-    let query: string = e.target.value;
-    let matchSpaces: any = query.match(/\s*/);
-    if (matchSpaces[0] === query) {
-      this._listingservices.listings = []
-      return;
-    }
-    // console.log(e.target.value);
-
-    this.result = await this._listingservices.getSearch('/search', query) as any[];
-    let displayResults = document.querySelector('.results') as HTMLElement;
-    
-    (this.focus && this.result !== [] ? displayResults.style.display = 'block' : console.log(this.focus))    
-    displayResults.style.display = 'block';
-    // for (let index = 0; index < this.result.length; index++) {
-    //   console.log(this.result[index])
-    //   var optionElement = document.createElement("option");
-    //   optionElement.innerHTML = this.result[index].name;
-    //   let wait = document.getElementById('search-results') as HTMLElement;
-    //   wait.appendChild(optionElement)
-    // }
-  }
-
   submitSearch(){
     // console.log(this.searchForm.value.search);
     this.router.navigate([`/search/${this.searchForm.value.search}`])
