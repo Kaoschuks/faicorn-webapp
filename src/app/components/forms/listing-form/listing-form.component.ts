@@ -134,48 +134,33 @@ export class ListingFormComponent implements OnInit {
     // check if transaction was saved before continue for featured listings
     if(formData.isFeatured == 'true') await this._orderservices.saveTransaction(ref, formData.name)
 
-    console.log(formData)
     let ads_id = this._globals.url.split('/')[4];
     const resp = (this._globals.url.split('/')[3] !== 'edit' ? await this._listingservices.postlistings(formData) : await this._listingservices.editlistingbyId(ads_id, formData));
     this.listingForm.reset();
     this.images = [];
     (resp == 'ads info updated' ? this.toastr.success('Ads Info updated successfully.', 'Ad Updated!') : this.toastr.success('Ad posted successfully.', 'Ad Posted!'))
-    // this.toastr.success('Ad posted successfully.', 'Ad Posted!');
   }
 
-  async selectSubCategories(){
-    let category: any = await this.listingForm.controls['category'].value;
-    if (category == '') return;
+  async onEditFillForm() {
+    try {
+      if (this._globals.url.split('/')[3] !== 'edit') return;
+      let ads_id = this._globals.url.split('/')[4];
+  
+      const resp: any = await this._listingservices.getlistings(`/${ads_id}`, '', 'single');
+      if(resp.error) throw new Error(resp.error);
 
-    // filter subcategory using category name
-    let filteredCat: any = await this._listingservices.categories.filter( e => { return e?.name == category});
-    this.subCategories = filteredCat[0]?.subcategory;
-    // console.log(filteredCat[0]?.subcategory);
-  }
+      this.images = resp.images;
+      this.tags.addTag(resp.tags)
+      this.listingForm.patchValue(this._listingservices.listingInfo)
+      this.listingForm.patchValue({
+        category: this._listingservices.listingInfo.category.name
+      })
+      this.selectChange()
+      this.selectChange('category')
 
-  async onEditFillForm(){
-    // check for edit in url and return if not else continue function
-    if (this._globals.url.split('/')[3] !== 'edit') return;
-    let ads_id = this._globals.url.split('/')[4];
-    // get id for ads and fill the form with response
-    const resp: any = await this._listingservices.getlistingbyId(ads_id);
-    console.log(resp)
-    this.images = resp?.images;
-    this.listingForm.patchValue({
-      name: resp?.name,
-      description: resp?.description,
-      price: resp?.price,
-      category: resp?.category,
-      subcategory: resp?.subcategory,
-      country: resp?.country,
-      region: resp?.region,
-      city: resp?.city,
-      gender: resp?.gender,
-      tags: resp?.tags,
-      brands: resp?.brands,
-      isFeatured: resp?.isFeatured,
-      featuredName: resp?.featuredName
-    })
-    this.selectChange()
+    } catch(ex: any) {
+      this.toastr.error(ex.error || ex.message || ex, 'Error')
+    }
+    // this.selectChange()
   }
 }

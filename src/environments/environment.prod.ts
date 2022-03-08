@@ -7,6 +7,9 @@ export const environment = {
     url: 'https://api.cloudinary.com/v1_1/kaoschuks/image/upload/',
     upload_preset: 'akzjs6d9'
   },
+  paystack: {
+    key: 'pk_test_02eeec488ebae76eb4d4d5ade993b1ceb9068a91'
+  },
   firebase: {
     apiKey: "AIzaSyBS3Y-qGHEtojlrvG5fB7FGRR9SykOjWB0",
     authDomain: "kaosdeisgns.firebaseapp.com",

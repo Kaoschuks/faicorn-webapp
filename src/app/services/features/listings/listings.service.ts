@@ -32,7 +32,7 @@ export class ListingsService {
         if(type == 'single') this.listingInfo = resp.message.results[0];
 
         this.loader.listings = false;
-        resolve(this.listings);
+        resolve((type == 'single') ? this.listingInfo : this.listings);
       }catch(ex: any) {
         this.loader.listings = false;
         reject({
@@ -134,23 +134,6 @@ export class ListingsService {
         this.loader.listings = false;
         reject({
           error: ex.message || ex.error || ex || "Error deleting listing"
-        })
-      }
-    })
-  }
-
-  async getlistingbyId(params: string = "", type: string = "all") {
-    return await new Promise(async (resolve: any, reject: any) => {
-      this.loader.listings = true;
-      try {
-        const resp: any = await this.api.get('listings/' + params)
-        if(resp.error) throw new Error(resp.error);
-
-        resolve(resp.message.results[0]);
-      }catch(ex: any) {
-        this.loader.listings = false;
-        reject({
-          error: ex.message || ex.error || ex || "Error getting listing by id"
         })
       }
     })

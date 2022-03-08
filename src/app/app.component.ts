@@ -22,11 +22,9 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     this.router.events.subscribe((event) => {
       if ( event instanceof NavigationStart ) {
-        console.log("start")
         this.globals.spinner.show()
       }
       if ( event instanceof NavigationEnd || event instanceof NavigationCancel ) {
-        console.log("end")
         this.globals.spinner.hide()
       }
     });
