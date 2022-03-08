@@ -159,11 +159,12 @@ export class ListingsService {
     return await new Promise(async (resolve: any, reject: any) => {
       this.loader.listings = true;
       try {
-        // console.log(data)
         const resp: any = await this.api.update('listings/' + params, data)
+        console.log(resp.message)
+
         if(resp.error) throw new Error(resp.error);
 
-        // resolve(resp.message);
+        resolve(resp.message);
       }catch(ex: any) {
         this.loader.listings = false;
         reject({
