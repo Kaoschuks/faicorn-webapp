@@ -12,7 +12,7 @@ export class OrdersService {
   paystackInfo: any = {
     amount: 100,
     email: 'jasonaddy51@gmail.com',
-    currency: 'GHS',
+    currency: 'NGN',
     channel: ['bank'],
     ref: ''
   }
