@@ -136,11 +136,11 @@ export class ListingFormComponent implements OnInit {
 
     console.log(formData)
     let ads_id = this._globals.url.split('/')[4];
-    const resp = await (this._globals.url.split('/')[3] !== 'edit' ? this._listingservices.postlistings(formData) : this._listingservices.editlistingbyId(ads_id, formData));
-    // console.log(resp)
-    this.toastr.success('Ad posted successfully.', 'Ad Posted!');
-    this.images = [];
+    const resp = (this._globals.url.split('/')[3] !== 'edit' ? await this._listingservices.postlistings(formData) : await this._listingservices.editlistingbyId(ads_id, formData));
     this.listingForm.reset();
+    this.images = [];
+    (resp == 'ads info updated' ? this.toastr.success('Ads Info updated successfully.', 'Ad Updated!') : this.toastr.success('Ad posted successfully.', 'Ad Posted!'))
+    // this.toastr.success('Ad posted successfully.', 'Ad Posted!');
   }
 
   async selectSubCategories(){
