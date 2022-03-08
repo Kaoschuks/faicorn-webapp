@@ -176,10 +176,6 @@ export class ListingFormComponent implements OnInit {
       isFeatured: resp?.isFeatured,
       featuredName: resp?.featuredName
     })
+    this.selectChange()
   }
-  //   console.log(formData)
-  //   const resp = await this._listingservices.postlistings(formData);
-  //   console.log(resp)
-  //   this.listingForm.reset();
-  // }
 }
