@@ -94,7 +94,7 @@ export class ListingsService {
 
         this.loader.listings = false;
         this.listings = resp.message;
-        console.log(resp.message)
+        // console.log(resp.message)
         resolve(resp.message);
       }catch(ex: any) {
         this.loader.listings = false;
