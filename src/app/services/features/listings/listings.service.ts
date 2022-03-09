@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { GlobalsService } from '../../core/globals.service';
 import { RequestService } from '../../core/request-service';
+import { UsersService } from '../users';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class ListingsService {
   listingInfo: any
   categories: Array<any> = []
   constructor(
+    private _user: UsersService,
       private api: RequestService,
       private globals: GlobalsService
   ) {}
@@ -162,19 +164,32 @@ export class ListingsService {
     return await new Promise(async (resolve: any, reject: any) => {
       this.loader.listings = true;
       try {
-        const resp: any = await this.api.post('listings' + route, {
-            "ads_id": data.ads_id,
-            "type": data.type,
-            "likes": data.type == 'like' ? "true" : "[]",
-            "saved": data.type == 'save' ? "true" : "[]",
-            "comments": data.type == 'comments' ? data.comments : "[]",
-            "dislikes": data.type == 'dislike' ? "true" : "[]"
+        this.globals.storage.getItem('user').then(async (res: any) => {
+            if (res) {
+              this._user.user = res;
+              const jwt = await this.globals.storage.getItem('jwt')
+              // console.log(jwt)
+              this.api.setJwt(jwt.access_token)
+              const resp: any = await this.api.post('listings' + route, {
+                  "ads_id": data.ads_id,
+                  "type": data.type,
+                  "likes": data.type == 'like' ? "true" : "[]",
+                  "saved": data.type == 'save' ? "true" : "[]",
+                  "comments": data.type == 'comments' ? data.comments : "[]",
+                  "dislikes": data.type == 'dislike' ? "true" : "[]"
+              })
+      
+              if(resp.error) throw new Error(resp.error);
+      
+              resolve(resp.message);
+            } else {
+              throw new Error("Your not logged in")
+            }
         })
-        console.log(resp.message)
-
-        if(resp.error) throw new Error(resp.error);
-
-        resolve(resp.message);
+        .catch((ex: any) => {
+          this.loader.listings = false;
+          this.globals.router.navigateByUrl('/login')
+        });
       }catch(ex: any) {
         this.loader.listings = false;
         reject({
