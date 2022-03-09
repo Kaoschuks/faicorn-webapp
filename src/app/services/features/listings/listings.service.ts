@@ -93,7 +93,7 @@ export class ListingsService {
         if(resp.error) throw new Error(resp.error);
 
         this.loader.listings = false;
-        this.listings = resp.message;
+        this.listings = resp.message?.results;
         // console.log(resp.message)
         resolve(resp.message);
       }catch(ex: any) {
@@ -144,6 +144,32 @@ export class ListingsService {
       this.loader.listings = true;
       try {
         const resp: any = await this.api.update('listings/' + params, data)
+        console.log(resp.message)
+
+        if(resp.error) throw new Error(resp.error);
+
+        resolve(resp.message);
+      }catch(ex: any) {
+        this.loader.listings = false;
+        reject({
+          error: ex.message || ex.error || ex || "Error putting listing by id"
+        })
+      }
+    })
+  }
+
+  async addReview(route: string = "/reviews", data: any, type: string = "all") {
+    return await new Promise(async (resolve: any, reject: any) => {
+      this.loader.listings = true;
+      try {
+        const resp: any = await this.api.post('listings' + route, {
+            "ads_id": data.ads_id,
+            "type": data.type,
+            "likes": data.type == 'like' ? "true" : "[]",
+            "saved": data.type == 'save' ? "true" : "[]",
+            "comments": data.type == 'comments' ? data.comments : "[]",
+            "dislikes": data.type == 'dislike' ? "true" : "[]"
+        })
         console.log(resp.message)
 
         if(resp.error) throw new Error(resp.error);
