@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    await this._userService.isLoggedOn()
     await this._listingservices.getlistingscategories()
   }
 

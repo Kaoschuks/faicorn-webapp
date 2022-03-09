@@ -63,7 +63,7 @@
                           </div>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" *ngIf="_userService?.user">
                         <div class="btn-group">
                           <button type="button" class="btn dropdown-toggle" id="footerAccount" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
                             <span class="d-flex align-items-center">
@@ -72,19 +72,6 @@
                           </button>
           
                           <div class="dropdown-menu" aria-labelledby="footerAccount">
-                            <div *ngIf="!_userService.user">
-                              <a class="dropdown-item d-flex align-items-center" routerLink="/login">
-                                <span>Sign In</span>
-                              </a>
-                              <a class="dropdown-item d-flex align-items-center" routerLink="/register">
-                                <span>Register</span>
-                              </a>
-                              <a class="dropdown-item d-flex align-items-center" routerLink="/register"
-                              [queryParams]="{ access: 'agent' }"
-                              queryParamsHandling="merge">
-                                <span>Become an agent</span>
-                              </a>
-                            </div>
 
                               <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/overview">
                                 <span>Overview</span>
@@ -106,6 +93,9 @@
                               </a>
                           </div>
                         </div>
+                    </li>
+                    <li class="nav-item" *ngIf="!_userService?.user">
+                        <a class="fs-14 btnbtn-outline-danger text-white btn-xs bold" routerLink="/login">Sign In</a>
                     </li>
                     <li class="nav-item">
                         <a class="fs-14 btn bg-white text-danger btn-xs bold" routerLink="/accounts/listings/add">Post an Ad</a>
