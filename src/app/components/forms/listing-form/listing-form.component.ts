@@ -161,6 +161,5 @@ export class ListingFormComponent implements OnInit {
     } catch(ex: any) {
       this.toastr.error(ex.error || ex.message || ex, 'Error')
     }
-    // this.selectChange()
   }
 }
