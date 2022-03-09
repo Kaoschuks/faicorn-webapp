@@ -11,6 +11,7 @@ import { ListingsService } from 'src/app/services/features/listings/listings.ser
 export class ReviewListingComponent implements OnInit {
 
   @Input() reviews: any = [];
+  @Input() listings: any = [];
   reviewForm: FormGroup = new FormGroup({
     ads_id: new FormControl('', Validators.compose([Validators.required])),
     type: new FormControl('', Validators.compose([Validators.required])),
@@ -29,12 +30,12 @@ export class ReviewListingComponent implements OnInit {
     
   }
 
-  async addAComment(form: any){
+  async addAComment(form: any, type?: any){
     let formData: any = form;
-    formData.type = 'comments';
+    type = 'like' ? formData.type = type : type = 'dislike' ? formData.type = type : formData.type = 'comments';
     formData.ads_id = this._global.url.split('/')[3];
+    // console.log(formData)
     const resp = await this._listingservices.addReview('/reviews', formData);
-    console.log(resp)
     this.reviewForm.reset();
   }
 }
