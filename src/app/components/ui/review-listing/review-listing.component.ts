@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
+import { UsersService } from 'src/app/services/features/users';
 
 @Component({
   selector: 'review-listing',
@@ -24,6 +25,7 @@ export class ReviewListingComponent implements OnInit {
   constructor(
     public _listingservices: ListingsService,
     private _global: GlobalsService,
+    private usersService: UsersService
   ) { }
 
   ngOnInit(): void {
@@ -31,8 +33,12 @@ export class ReviewListingComponent implements OnInit {
   }
 
   async addAComment(form: any, type?: any){
+    let userLoggedOn = await this.usersService.isLoggedOn();
+    if (!userLoggedOn) return;
+
     let thumbsup = document.querySelector('.bi-hand-thumbs-up');
     let thumbsdown = document.querySelector('.bi-hand-thumbs-down');
+    
     let formData: any = form;
     type = 'like' ? (formData.type = type, thumbsup?.classList.replace('bi-hand-thumbs-up', 'bi-hand-thumbs-up-fill'))
     : type = 'dislike' ? (formData.type = type, thumbsdown?.classList.replace('bi-hand-thumbs-up', 'bi-hand-thumbs-down-fill'))
