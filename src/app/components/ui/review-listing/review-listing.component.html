@@ -9,7 +9,7 @@
 
         <ul class="list-comment list-comment-divider mb-5">
             <!-- Item -->
-            <li *ngFor="let review of reviews" class="list-comment-item">
+            <li class="list-comment-item">
   
               <!-- Media -->
               <div class="d-flex align-items-center mb-3">
@@ -40,10 +40,10 @@
                 <span class="small me-2">Was this helpful?</span>
   
                 <div class="d-flex gap-2">
-                  <a class="btn btn-white btn-xs" href="javascript:;">
+                  <a class="btn btn-white btn-xs" href="javascript:void(0);">
                     <i class="bi-hand-thumbs-up me-1"></i> Yes <span>(45)</span>
                   </a>
-                  <a class="btn btn-white btn-xs" href="javascript:;">
+                  <a class="btn btn-white btn-xs" href="javascript:void(0);">
                     <i class="bi-hand-thumbs-down me-1"></i> No <span>(21)</span>
                   </a>
                 </div>
@@ -51,4 +51,10 @@
               <!-- End Media -->
             </li>
             <!-- End Item -->
+            <!-- Review-Form -->
+            <form [formGroup]="reviewForm" (keyup.enter)="addAComment(reviewForm.value)">
+              <img src="" alt="">
+              <input type="text" class="form-control" name="comment" id="comment" formControlName="comments" placeholder="Write your comments....">
+            </form>
+            <!-- End Review-Form -->
           </ul>

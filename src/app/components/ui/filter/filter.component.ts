@@ -8,8 +8,8 @@ import { ListingsService } from 'src/app/services/features/listings/listings.ser
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  
   @Input() categories: any[] = []
+  @Input() filterData: any = {};
   // ageControl = new FormControl();
   public minTerm: number = 0;
   public maxTerm: number = 10;
@@ -94,4 +94,6 @@ export class FilterComponent implements OnInit {
     if(value !== null) this.queries.push(value);
     let filteredArr = this.queries.filter((element, i) => {return i === this.queries.indexOf(element)})
     console.log(filteredArr);
- }}
+ }
+
+}

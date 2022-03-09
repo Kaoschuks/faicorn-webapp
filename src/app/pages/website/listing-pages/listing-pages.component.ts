@@ -21,7 +21,7 @@ export class ListingPagesComponent implements OnInit {
   async ngOnInit() {
     if(this.url.length === 3) await this._listingservices.getlistings('/all', `?brands=${this.url[this.url.length - 1]}&limit=1000`)
     if(this.url.length === 2) await this._listingservices.getlistings('/all', `?category=${this.url[this.url.length - 1]}&limit=1000`)
-    if(this.url[1] === 'search') await this._listingservices.getSearch('/search', `${this.url[2]}`)
+    if(this.url[1] === 'search') await this._listingservices.getSearch('/search', `${this.url[2]}`)//.then(res => console.log(res))
     this.getAds()
   }
 
