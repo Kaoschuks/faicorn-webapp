@@ -40,6 +40,7 @@ export class ReviewListingComponent implements OnInit {
     formData.ads_id = this._global.url.split('/')[3];
     // console.log(formData)
     const resp = await this._listingservices.addReview('/reviews', formData);
+    console.log(resp);
     this.reviewForm.reset();
   }
 }

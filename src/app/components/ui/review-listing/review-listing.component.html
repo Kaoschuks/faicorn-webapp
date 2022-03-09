@@ -52,7 +52,7 @@
             </li>
             <!-- End Item -->
             <!-- Review-Form -->
-            <form [formGroup]="reviewForm" (keyup.enter)="addAComment(reviewForm.value)">
+            <form [formGroup]="reviewForm" (keyup.enter)="addAComment(reviewForm.value, 'comments')">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="flex-shrink-0">
                   <img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img9.jpg" alt="Image Description">
