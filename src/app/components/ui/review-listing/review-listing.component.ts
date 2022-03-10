@@ -40,9 +40,9 @@ export class ReviewListingComponent implements OnInit {
     let thumbsdown = document.querySelector('.bi-hand-thumbs-down');
     
     let formData: any = form;
-    type = 'like' ? (formData.type = type, thumbsup?.classList.replace('bi-hand-thumbs-up', 'bi-hand-thumbs-up-fill'))
-    : type = 'dislike' ? (formData.type = type, thumbsdown?.classList.replace('bi-hand-thumbs-up', 'bi-hand-thumbs-down-fill'))
-    : formData.type = 'comments';
+    (type = 'like' ? (formData.type = type && thumbsup?.classList.replace('bi-hand-thumbs-up', 'bi-hand-thumbs-up-fill'))
+    : type = 'dislike' ? (formData.type = type && thumbsdown?.classList.replace('bi-hand-thumbs-up', 'bi-hand-thumbs-down-fill'))
+    : formData.type = 'comments');
     formData.ads_id = this._global.url.split('/')[3];
     // console.log(formData)
     const resp = await this._listingservices.addReview('/reviews', formData);

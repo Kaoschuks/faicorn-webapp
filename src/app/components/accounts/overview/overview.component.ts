@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ListingsService } from 'src/app/services/features/listings/listings.service';
 
 @Component({
   selector: 'accounts-overview',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./overview.component.css']
 })
 export class OverviewComponent implements OnInit {
+  ads: any[] = []
 
-  constructor() { }
+  constructor(
+    private _listingservices: ListingsService
+  ) { }
 
   ngOnInit(): void {
+    this.refreshAds();
+  }
+
+  async refreshAds(){
+    await this._listingservices.getlistings('', ``).then((resp: any) => {
+      this.ads = resp.slice(0,3);
+    }).catch((err: any) => {
+      this.ads = []
+    })
   }
 
 }
