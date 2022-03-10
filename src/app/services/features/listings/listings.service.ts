@@ -166,7 +166,7 @@ export class ListingsService {
       try {
         this.globals.storage.getItem('user').then(async (res: any) => {
             if (res) {
-              // console.log(res)
+              console.log(data)
               this._user.user = res;
               const jwt = await this.globals.storage.getItem('jwt')
               this.api.setJwt(jwt.access_token)
