@@ -193,7 +193,7 @@ export class ListingsService {
       }catch(ex: any) {
         this.loader.listings = false;
         reject({
-          error: ex.message || ex.error || ex || "Error putting listing by id"
+          error: ex.message || ex.error || ex || "Error adding reviews"
         })
       }
     })
