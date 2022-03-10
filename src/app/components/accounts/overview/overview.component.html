@@ -17,7 +17,7 @@
                     <div class="col-sm mb-1 mb-sm-0">
                       <h6 class="mb-1 fs-16">{{ad?.name}} <span class="badge bg-primary ms-1">Current</span></h6>
                       <ul class="list-inline list-separator text-body small">
-                        <li class="list-inline-item"><span class="fw-semi-bold">Amount:</span> NGN {{ad?.price}}</li>
+                        <li class="list-inline-item"><span class="fw-semi-bold">Amount:</span> NGN {{ad?.price | currency:'':''}}</li>
                         <li class="list-inline-item"><span class="fw-semi-bold">Last active:</span> Now</li>
                       </ul>
                     </div>
