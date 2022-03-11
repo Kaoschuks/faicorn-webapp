@@ -166,9 +166,9 @@ export class ListingsService {
       try {
         this.globals.storage.getItem('user').then(async (res: any) => {
             if (res) {
+              console.log(data)
               this._user.user = res;
               const jwt = await this.globals.storage.getItem('jwt')
-              // console.log(jwt)
               this.api.setJwt(jwt.access_token)
               const resp: any = await this.api.post('listings' + route, {
                   "ads_id": data.ads_id,
@@ -183,7 +183,7 @@ export class ListingsService {
       
               resolve(resp.message);
             } else {
-              throw new Error("Your not logged in")
+              throw new Error("You are not logged in")
             }
         })
         .catch((ex: any) => {
@@ -193,7 +193,7 @@ export class ListingsService {
       }catch(ex: any) {
         this.loader.listings = false;
         reject({
-          error: ex.message || ex.error || ex || "Error putting listing by id"
+          error: ex.message || ex.error || ex || "Error adding reviews"
         })
       }
     })
