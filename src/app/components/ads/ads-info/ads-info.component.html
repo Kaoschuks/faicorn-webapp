@@ -76,7 +76,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <ul class="list-py-2 mb-0">
-                    <li>Price: {{adsInfo?.price}}</li>
+                    <li>Price: {{adsInfo?.price | currency: 'NGN '}}</li>
                     <li>Uploaded On: {{adsInfo?.date_added | date}}</li>
                     <!-- <li>Soft twill</li>  -->
                 </ul>

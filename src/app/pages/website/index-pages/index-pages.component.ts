@@ -38,7 +38,6 @@ export class IndexPagesComponent implements OnInit, AfterViewInit {
   }
 
   submitSearch(){
-    // console.log(this.searchForm.value.search);
     this.router.navigate([`/search/${this.searchForm.value.search}`])
   }
 }
