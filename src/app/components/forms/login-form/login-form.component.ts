@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { UsersService } from 'src/app/services/features/users';
 
@@ -45,7 +46,8 @@ export class LoginFormComponent implements OnInit {
   error: string = ''
   constructor(
     private _userService: UsersService,
-    private _globals: GlobalsService
+    private _globals: GlobalsService,
+    private toastr: ToastrService
   ) {
   }
 
@@ -55,10 +57,12 @@ export class LoginFormComponent implements OnInit {
   async login() {
     this._userService.login(this.loginForm.value).then(() => {
       this._globals.spinner.hide();
+      this.toastr.success('Logged In Successfully', 'Login Success')
       this._globals.router.navigate(['/accounts/overview'])
     }).catch((error: any) => {
-      this._globals.spinner.hide();
       this.error = error.error
+      this.toastr.warning(this.error, 'Login Failed')
+      this._globals.spinner.hide();
     })
   }
 
