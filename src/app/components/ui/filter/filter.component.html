@@ -19,20 +19,6 @@
     </div>
     
     <!-- End Navbar Toggle -->
-    <div class="mb-5">
-        <h5 class="mb-3">Last updated</h5>
-
-        <!-- Select -->
-        <select class="form-select form-select-sm">
-            <option value="within last day">within last day</option>
-            <option value="within last week">within last week</option>
-            <option value="within last month">within last month</option>
-            <option value="within last 3 months">within last 3 months</option>
-            <option value="within last 6 months" selected>within last 6 months</option>
-            <option value="show all resumes">show all resumes</option>
-        </select>
-        <!-- End Select -->
-    </div>
 
     <div id="navbarVerticalNavMenu" class="collapse navbar-collapse">
         <div id="shopNavCategories" class="nav nav-pills nav-vertical">
@@ -161,19 +147,6 @@
                         <div class="form-check" *ngFor="let tag of tagsData">
                             <input class="form-check-input" type="checkbox" id="{{tag?.name}}">
                             <label class="form-check-label" for="{{tag?.name}}">{{tag?.name}} ({{tag?.count}})</label>
-                        </div>
-                        <!-- End Checkboxes -->
-                    </div>
-                </div>
-
-                <div class="border-bottom pb-4 mb-4">
-                    <h5>Categories</h5>
-
-                    <div class="d-grid gap-2">
-                        <!-- Checkboxes -->
-                        <div class="form-check" *ngFor="let category of filterData?.filter?.categories">
-                            <input class="form-check-input" type="checkbox" id="{{category}}">
-                            <label class="form-check-label" for="{{category}}">{{category}}</label>
                         </div>
                         <!-- End Checkboxes -->
                     </div>
