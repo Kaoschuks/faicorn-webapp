@@ -23,7 +23,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ComponentsModule,
     WebsiteRoutingModule,
     ReactiveFormsModule
-  ],
-  providers: [FilterComponent],
+  ]
 })
 export class WebsiteModule { }

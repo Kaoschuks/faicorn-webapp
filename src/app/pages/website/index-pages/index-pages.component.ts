@@ -21,7 +21,6 @@ export class IndexPagesComponent implements OnInit, AfterViewInit {
 
   constructor(
     public _listingservices: ListingsService,
-    public filterComponent: FilterComponent,
     private formBuilder: FormBuilder,
     private router: Router
   ) { }

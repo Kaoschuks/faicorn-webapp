@@ -14,8 +14,7 @@ export class ListingPagesComponent implements OnInit {
   url: any = this._global.url.split('/')
   constructor(
     private _global: GlobalsService,
-    public _listingservices: ListingsService,
-    public filterComponent: FilterComponent,
+    public _listingservices: ListingsService
   ) { }
 
   async ngOnInit() {

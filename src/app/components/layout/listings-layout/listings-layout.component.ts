@@ -14,7 +14,7 @@ export class ListingsLayoutComponent implements OnInit {
     public _globals: GlobalsService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }

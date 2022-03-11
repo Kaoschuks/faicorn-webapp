@@ -14,7 +14,7 @@ export class AdsListsComponent implements OnInit {
   // @Input() minTerm: number = 0;
   // @Input() maxTerm: number = 0;
 
-  constructor(public filterComponent: FilterComponent ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

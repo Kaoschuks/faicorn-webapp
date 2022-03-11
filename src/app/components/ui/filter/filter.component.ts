@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { GlobalsService } from 'src/app/services/core/globals.service';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 
 @Component({
@@ -9,91 +10,55 @@ import { ListingsService } from 'src/app/services/features/listings/listings.ser
 })
 export class FilterComponent implements OnInit {
   @Input() categories: any[] = []
-  @Input() filterData: any = {};
-  // ageControl = new FormControl();
-  public minTerm: number = 0;
-  public maxTerm: number = 10;
-  genderFilter = {
-    men: false,
-    women: false
-  }
-  brandFilter = {
-    adidas: false,
-    newBalance: false,
-    nike: false,
-    fredPerry: false,
-    theNorthFace: false,
-    gucci: false,
-    mango: false
-  }
-  sizeFilter = {
-    S: false,
-    M: false,
-    L: false,
-    XL: false,
-    XXL: false
-  }
-  queries: any[] = [];
-  filter: boolean = false;
-  filteredArray: any[] = [];
+  filterData: any;
+  tagsData: any[] = [];
+  url: any = this._globals.url.split('/')
 
   constructor(
-    public _listingservices: ListingsService
+    public _listingservices: ListingsService,
+    public _globals: GlobalsService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    if(this.url[1] === 'search') await this._listingservices.getSearch('/search', `${this.url[2]}`).then((res: any) => {
+      this.filterData = res;
+      this.pushToArray(res?.filter?.tags, this.tagsData)
+      console.log(res?.filter)
+      // console.log(this.tagsData)
+    })
   }
 
   generateID(id: string): string {
     return id.replace(' & ', '-').split(' ').join('').toLowerCase();
   }
 
-  onRangeChange(e: any){
-    (e.target.id === 'minRange' ? this.minTerm = Number(e.target.value) : this.maxTerm = Number(e.target.value))
-    console.log(this.minTerm)
-    console.log(this.maxTerm)
-    this.filter = true;
-    this.filteredArray =  this._listingservices.listings.filter(product => {
-      return product.price >= this.minTerm
-          && product.price <= this.maxTerm
-    })
+  // onRangeChange(e: any){
+  //   (e.target.id === 'minRange' ? this.minTerm = Number(e.target.value) : this.maxTerm = Number(e.target.value))
+  //   console.log(this.minTerm)
+  //   console.log(this.maxTerm)
+  //   this.filter = true;
+  //   this.filteredArray =  this._listingservices.listings.filter(product => {
+  //     return product.price >= this.minTerm
+  //         && product.price <= this.maxTerm
+  //   })
 
-    console.log(this._listingservices.listings.filter(product => {
-      return product.price >= this.minTerm
-          && product.price <= this.maxTerm
-    }))
-  }
+  //   console.log(this._listingservices.listings.filter(product => {
+  //     return product.price >= this.minTerm
+  //         && product.price <= this.maxTerm
+  //   }))
+  // }
 
   clearAllFilter(){
-    this.minTerm = 0;
-    this.maxTerm = 0;
-    this.genderFilter = {
-      men: false,
-      women: false
-    }
-    this.brandFilter = {
-      adidas: false,
-      newBalance: false,
-      nike: false,
-      fredPerry: false,
-      theNorthFace: false,
-      gucci: false,
-      mango: false
-    }
-    this.sizeFilter = {
-      S: false,
-      M: false,
-      L: false,
-      XL: false,
-      XXL: false
-    }
-    this.queries = [];
   }
 
-  changeValue(value: any, e: any){
-    if(value !== null) this.queries.push(value);
-    let filteredArr = this.queries.filter((element, i) => {return i === this.queries.indexOf(element)})
-    console.log(filteredArr);
- }
+  async pushToArray(objects: any, array: any[]){
+    for (var prop in objects) {
+      if (objects.hasOwnProperty(prop)) {
+        var innerObj: any = {};
+        innerObj[prop] = objects[prop];
+        array.push(innerObj[prop]);
+      }
+    }
+  }
 
 }
