@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 
@@ -10,69 +9,42 @@ import { ListingsService } from 'src/app/services/features/listings/listings.ser
 })
 export class FilterComponent implements OnInit {
   @Input() categories: any[] = []
+  @Input() filterData: any
+  @Output() filters = new EventEmitter<any>();
   url: any = this._globals.url.split('/');
-  filterData: any;
-  tagsData: any[] = [];
-  filter: any[] = [];
 
   constructor(
     public _listingservices: ListingsService,
-    public _globals: GlobalsService
+    private _globals: GlobalsService
   ) { }
 
-  async ngOnInit() {
-    if(this.url[1] === 'search') await this._listingservices.getSearch('/search', `${this.url[2]}`).then((res: any) => {
-      this.filterData = res;
-      this.pushToArray(res?.filter?.tags, this.tagsData)
-      // console.log(res?.filter)
-      // console.log(this.tagsData)
-    })
+  ngOnInit() {
   }
 
   generateID(id: string): string {
     return id.replace(' & ', '-').split(' ').join('').toLowerCase();
   }
 
-  // onRangeChange(e: any){
-  //   (e.target.id === 'minRange' ? this.minTerm = Number(e.target.value) : this.maxTerm = Number(e.target.value))
-  //   console.log(this.minTerm)
-  //   console.log(this.maxTerm)
-  //   this.filter = true;
-  //   this.filteredArray =  this._listingservices.listings.filter(product => {
-  //     return product.price >= this.minTerm
-  //         && product.price <= this.maxTerm
-  //   })
-
-  //   console.log(this._listingservices.listings.filter(product => {
-  //     return product.price >= this.minTerm
-  //         && product.price <= this.maxTerm
-  //   }))
-  // }
-
-  clearAllFilter(){
+  clearFilter(){
+    this._listingservices.filterSearch = {
+      "tags": {},
+      "price": 0,
+      "cities": {},
+      "regions": {},
+      "brands": {},
+      "categories": {},
+      "subcategories": {},
+      "countries": "Nigeria",
+      "gender": {}
+    }
+    this._listingservices.listings = this._listingservices.oldlistings
   }
 
-  async pushToArray(objects: any, array: any[]){
-    for (var prop in objects) {
-      if (objects.hasOwnProperty(prop)) {
-        var innerObj: any = {};
-        innerObj[prop] = objects[prop];
-        array.push(innerObj[prop]);
-      }
-    }
-  }
-
-  async useFilter(data: any){
-    const query = (<HTMLInputElement>document.getElementById(data)).checked;
-    if (query) {
-      this.filter.push(data);
-    } else {
-      var index = this.filter.indexOf(data); 
-      if (index !== -1){
-        this.filter.splice(index, 1);
-      }
-    }
-    this._listingservices.filterListings(this._listingservices.listings, this.filter)
-    // console.log(this.filter)
+  async useFilter(){
+    const listing: any = await this._listingservices.filterProducts(
+      this._listingservices.filterSearch, this._listingservices.listings
+    )
+    this._listingservices.listings = listing
+    if(listing.length == 0) this.clearFilter()
   }
 }
