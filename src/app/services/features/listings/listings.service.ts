@@ -224,9 +224,9 @@ export class ListingsService {
 
       for (let index = 0; index < searchTerms.length; index++) {
         const element = searchTerms[index];
-        console.log(element)
+        // console.log(element)
         if(element){
-          // listings = listings.filter((item) => console.log(item));
+          listings = listings.filter((item) => console.log(item[element]));
         }
       }
 

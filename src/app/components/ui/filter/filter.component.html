@@ -83,7 +83,7 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let gender of filterData?.filter?.gender">
-                            <input class="form-check-input" type="checkbox" id="{{gender}}" (change)="useFilter({gender})">
+                            <input class="form-check-input" type="checkbox" id="{{gender}}" (change)="useFilter(gender)">
                             <label class="form-check-label" for="{{gender}}">{{gender | titlecase}} (73)</label>
                         </div>
                         <!-- End Checkboxes -->
@@ -103,7 +103,7 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let brand of filterData?.filter?.brands">
-                            <input class="form-check-input" type="checkbox" id="{{brand}}">
+                            <input class="form-check-input" type="checkbox" id="{{brand}}" (change)="useFilter(brand)">
                             <label class="form-check-label" for="{{brand}}">{{brand}}</label>
                         </div>
                         <!-- End Checkboxes -->
@@ -145,7 +145,7 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let tag of tagsData">
-                            <input class="form-check-input" type="checkbox" id="{{tag?.name}}">
+                            <input class="form-check-input" type="checkbox" id="{{tag?.name}}" (change)="useFilter(tag?.name)">
                             <label class="form-check-label" for="{{tag?.name}}">{{tag?.name}} ({{tag?.count}})</label>
                         </div>
                         <!-- End Checkboxes -->
@@ -158,7 +158,7 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let country of filterData?.filter?.countries">
-                            <input class="form-check-input" type="checkbox" id="{{country}}">
+                            <input class="form-check-input" type="checkbox" id="{{country}}" (change)="useFilter(country)">
                             <label class="form-check-label" for="{{country}}">{{country}}</label>
                         </div>
                         <!-- End Checkboxes -->
@@ -171,7 +171,7 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let city of filterData?.filter?.cities">
-                            <input class="form-check-input" type="checkbox" id="{{city}}">
+                            <input class="form-check-input" type="checkbox" id="{{city}}" (change)="useFilter(city)">
                             <label class="form-check-label" for="{{city}}">{{city}}</label>
                         </div>
                         <!-- End Checkboxes -->
@@ -184,7 +184,7 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let region of filterData?.filter?.regions">
-                            <input class="form-check-input" type="checkbox" id="{{region}}">
+                            <input class="form-check-input" type="checkbox" id="{{region}}" (change)="useFilter(region)">
                             <label class="form-check-label" for="{{region}}">{{region}}</label>
                         </div>
                         <!-- End Checkboxes -->
