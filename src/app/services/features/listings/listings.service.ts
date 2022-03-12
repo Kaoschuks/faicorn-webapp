@@ -218,4 +218,21 @@ export class ListingsService {
   //   })
   // }
 
+    filterListings(listings: any[], searchTerms: any[]): any[]{
+      if(!listings || !searchTerms)
+      return listings;
+
+      for (let index = 0; index < searchTerms.length; index++) {
+        const element = searchTerms[index];
+        console.log(element)
+        if(element){
+          // listings = listings.filter((item) => console.log(item));
+        }
+      }
+
+      // console.log(listings)
+    
+      return listings;
+
+  }
 }

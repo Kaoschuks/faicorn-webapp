@@ -63,16 +63,16 @@ export class FilterComponent implements OnInit {
   }
 
   async useFilter(data: any){
-    const query = (<HTMLInputElement>document.getElementById(data?.gen)).checked;
+    const query = (<HTMLInputElement>document.getElementById(data?.gender)).checked;
     if (query) {
-      this.filter.push(data?.gen);
+      this.filter.push(data);
     } else {
-      var index = this.filter.indexOf(data?.gen); 
+      var index = this.filter.indexOf(data); 
       if (index !== -1){
         this.filter.splice(index, 1);
       }
     }
-    
-    console.log(this.filter)
+    this._listingservices.filterListings(this._listingservices.listings, this.filter)
+    // console.log(this.filter)
   }
 }
