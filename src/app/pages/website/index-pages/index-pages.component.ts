@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { FilterComponent } from 'src/app/components/ui/filter/filter.component';
+import { NavigationStart, Router } from '@angular/router';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 declare var HSCore: any;
 
@@ -26,7 +25,7 @@ export class IndexPagesComponent implements OnInit, AfterViewInit {
   ) { }
 
   async ngOnInit() {
-    await this._listingservices.getlistings('/all', `?limit=20`)
+    await this._listingservices.getlistings('/all', `?limit=20&isFeatured=true`)
   }
 
   ngAfterViewInit() {

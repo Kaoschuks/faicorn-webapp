@@ -8,6 +8,7 @@ import { ListingsService } from 'src/app/services/features/listings/listings.ser
   styleUrls: ['./listings-layout.component.css']
 })
 export class ListingsLayoutComponent implements OnInit {
+  listings: any[] = [];
 
   constructor(
     public _listingservices: ListingsService,

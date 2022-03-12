@@ -14,7 +14,22 @@ export class ListingsService {
     listings: false,
     detail: false
   };
+
+  filters: any
+  filterSearch: any = {
+    "tags": {},
+    "price": 0,
+    "cities": {},
+    "regions": {},
+    "brands": {},
+    "categories": {},
+    "subcategories": {},
+    "countries": "Nigeria",
+    "gender": {}
+  }
+
   listings: Array<any> = []
+  oldlistings: Array<any> = []
   listingInfo: any
   categories: Array<any> = []
   constructor(
@@ -30,8 +45,18 @@ export class ListingsService {
         const resp: any = await this.api.get('listings' + route + params)
         if(resp.error) throw new Error(resp.error);
 
-        if(type == 'all') this.listings = resp.message.results;
+        if(type == 'all') {
+          this.listings = resp.message.results;
+          this.oldlistings = resp.message.results;
+        }
         if(type == 'single') this.listingInfo = resp.message.results[0];
+
+        this.filters = resp.message.filter;
+        let tags: any = []
+        for(let tag in this.filters['tags']) {
+          tags.push(this.filters['tags'][tag])
+        }
+        this.filters['tags'] = tags
 
         this.loader.listings = false;
         resolve((type == 'single') ? this.listingInfo : this.listings);
@@ -200,38 +225,29 @@ export class ListingsService {
     })
   }
 
-  // async filterlistings(route: string = "/filter", category: string = "", tags: string = "", brands: string = "") {
-  //   return await new Promise(async (resolve: any, reject: any) => {
-  //     this.loader.listings = true;
-  //     try {
-  //       const resp: any = await this.api.post(`listings/${route}?category=${category}&tags=${tags}&brands=${brands}`, null)
-  //       console.log(resp.message)
-
-  //       if(resp.error) throw new Error(resp.error);
-
-  //       resolve(resp.message);
-  //     }catch(ex: any) {
-  //       this.loader.listings = false;
-  //       reject({
-  //         error: ex.message || ex.error || ex || "Error filtering listings"
-  //       })
-  //     }
-  //   })
-  // }
-
-    filterListings(listings: any[], searchTerms: any[]): any[]{
-      if(!listings || !searchTerms)
-      return listings;
-
-      searchTerms.forEach(element => {
-        if(element.gender){
-          listings = listings.filter(item => item.gender === element.gender); // item => item.public == true
+	async filterProducts(filter: any, products: any) {
+		return await new Promise(async (resolve, reject) => {
+			let _products: any = products.filter((e: any) => {
+        for(let i in filter.tags) {
+          if(e.tags.includes(i) && filter.tags[i] == true) return e
         }
-        console.log(listings)
-        // return listings;
-      });
-
-      return listings;
-
-    }
+        for(let i in filter.subcategories) {
+          if(e.subcategories.includes(i) && filter.subcategories[i] == true) return e
+        }
+        for(let i in filter.regions) {
+          if(e.region = i && filter.regions[i] == true) return e
+        }
+        for(let i in filter.cities) {
+          if(e.city = i && filter.cities[i] == true) return e
+        }
+        for(let i in filter.gender) {
+          if(e.gender = i && filter.gender[i] == true) return e
+        }
+        // for(let i in filter.brands) {
+        //   if(e.brands = i && filter.brands[i] == true) return e
+        // }
+			});
+			resolve(_products)
+		});
+	}
 }

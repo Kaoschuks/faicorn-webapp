@@ -42,8 +42,10 @@ import { ListingFormComponent } from './forms/listing-form/listing-form.componen
 import { ListingsFilterPipe } from '../pipes/listingsFilter';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { environment } from 'src/environments/environment';
+import { SearchPipe } from '../pipes/search';
 
 export const component: Array<any> = [
+	SearchPipe,
 	LoadingComponent,  NoContentComponent, NavbarComponent, FooterComponent, 
 	BreadcrumbComponent, FilterComponent, ReviewListingComponent, AccountsSidebarComponent,
 	ErrorComponent,

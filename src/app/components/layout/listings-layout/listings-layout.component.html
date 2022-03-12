@@ -2,7 +2,7 @@
     <breadcrumb></breadcrumb>
     <div class="row">
         <div class="col-lg-3">
-            <listings-filter [categories]="_listingservices?.categories || []"></listings-filter>
+            <listings-filter [filterData]="_listingservices?.filters || []" [categories]="_listingservices?.categories || []"></listings-filter>
         </div>
 
         <div class="col-lg-9">
