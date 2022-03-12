@@ -83,7 +83,7 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let gen of filterData?.filter?.gender">
-                            <input class="form-check-input" type="checkbox" id="{{gen}}">
+                            <input class="form-check-input" type="checkbox" id="{{gen}}" (change)="useFilter({gen})">
                             <label class="form-check-label" for="{{gen}}">{{gen | titlecase}} (73)</label>
                         </div>
                         <!-- End Checkboxes -->

@@ -10,9 +10,10 @@ import { ListingsService } from 'src/app/services/features/listings/listings.ser
 })
 export class FilterComponent implements OnInit {
   @Input() categories: any[] = []
+  url: any = this._globals.url.split('/');
   filterData: any;
   tagsData: any[] = [];
-  url: any = this._globals.url.split('/')
+  filter: any[] = [];
 
   constructor(
     public _listingservices: ListingsService,
@@ -23,7 +24,7 @@ export class FilterComponent implements OnInit {
     if(this.url[1] === 'search') await this._listingservices.getSearch('/search', `${this.url[2]}`).then((res: any) => {
       this.filterData = res;
       this.pushToArray(res?.filter?.tags, this.tagsData)
-      console.log(res?.filter)
+      // console.log(res?.filter)
       // console.log(this.tagsData)
     })
   }
@@ -61,4 +62,17 @@ export class FilterComponent implements OnInit {
     }
   }
 
+  async useFilter(data: any){
+    const query = (<HTMLInputElement>document.getElementById(data?.gen)).checked;
+    if (query) {
+      this.filter.push(data?.gen);
+    } else {
+      var index = this.filter.indexOf(data?.gen); 
+      if (index !== -1){
+        this.filter.splice(index, 1);
+      }
+    }
+    
+    console.log(this.filter)
+  }
 }

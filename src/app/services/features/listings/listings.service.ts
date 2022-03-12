@@ -199,4 +199,23 @@ export class ListingsService {
     })
   }
 
+  // async filterlistings(route: string = "/filter", category: string = "", tags: string = "", brands: string = "") {
+  //   return await new Promise(async (resolve: any, reject: any) => {
+  //     this.loader.listings = true;
+  //     try {
+  //       const resp: any = await this.api.post(`listings/${route}?category=${category}&tags=${tags}&brands=${brands}`, null)
+  //       console.log(resp.message)
+
+  //       if(resp.error) throw new Error(resp.error);
+
+  //       resolve(resp.message);
+  //     }catch(ex: any) {
+  //       this.loader.listings = false;
+  //       reject({
+  //         error: ex.message || ex.error || ex || "Error filtering listings"
+  //       })
+  //     }
+  //   })
+  // }
+
 }
