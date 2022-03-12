@@ -10,8 +10,9 @@ import { UsersService } from 'src/app/services/features/users';
   styleUrls: ['./review-listing.component.css']
 })
 export class ReviewListingComponent implements OnInit {
-
+  url: any = this._global.url.split('/')
   @Input() reviews: any = [];
+  @Input() listings: any = [];
   reviewForm: FormGroup = new FormGroup({
     ads_id: new FormControl('', Validators.compose([Validators.required])),
     id: new FormControl('', Validators.compose([Validators.required])),
@@ -31,22 +32,26 @@ export class ReviewListingComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  
 
   async addAComment(form: any, type: any){
     let userLoggedOn = await this.usersService.isLoggedOn();
     if (!userLoggedOn) return;
 
-    let thumbsup = document.querySelector('.bi-hand-thumbs-up');
-    let thumbsdown = document.querySelector('.bi-hand-thumbs-down');
-    
     let formData: any = form;
     (type === "like" ? formData.type = "like"
     : type === "dislike" ? formData.type = "dislike" : formData.type = "comments");
     formData.ads_id = this._global.url.split('/')[3];
     formData.id = this.reviews.id;
-    console.log(formData)
+    // console.log(formData)
     const resp = await this._listingservices.addReview('/reviews', formData);
-    console.log(resp);
+    // console.log(resp);
     this.reviewForm.reset();
+    this.refreshReview();
+  }
+
+  async refreshReview(){
+    await this._listingservices.getlistings(`/${this.url[this.url.length - 1]}`, ``, 'single')
+
   }
 }
