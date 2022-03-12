@@ -112,13 +112,8 @@
 
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
-<<<<<<< HEAD
-                        <div class="form-check" *ngFor="let gender of filterData?.filter?.gender">
-                            <input class="form-check-input" type="checkbox" id="{{gender}}" (change)="useFilter({gender})">
-=======
                         <div class="form-check" *ngFor="let gender of filterData?.gender">
                             <input class="form-check-input" type="checkbox" id="{{gender}}" (change)="useFilter()" [(ngModel)]="_listingservices.filterSearch.gender[gender]" [ngModelOptions]="{standalone: true}">
->>>>>>> aa7490be2c24d1a40810607b19c88e0cfb793821
                             <label class="form-check-label" for="{{gender}}">{{gender | titlecase}} (73)</label>
                         </div>
                         <!-- End Checkboxes -->
