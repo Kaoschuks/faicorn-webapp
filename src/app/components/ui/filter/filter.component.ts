@@ -63,7 +63,7 @@ export class FilterComponent implements OnInit {
   }
 
   async useFilter(data: any){
-    const query = (<HTMLInputElement>document.getElementById(data)).checked;
+    const query = (<HTMLInputElement>document.getElementById(data?.gender)).checked;
     if (query) {
       this.filter.push(data);
     } else {

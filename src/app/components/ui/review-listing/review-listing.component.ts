@@ -12,9 +12,9 @@ import { UsersService } from 'src/app/services/features/users';
 export class ReviewListingComponent implements OnInit {
 
   @Input() reviews: any = [];
-  @Input() listings: any = [];
   reviewForm: FormGroup = new FormGroup({
     ads_id: new FormControl('', Validators.compose([Validators.required])),
+    id: new FormControl('', Validators.compose([Validators.required])),
     type: new FormControl('', Validators.compose([Validators.required])),
     comments: new FormControl(''),
     likes: new FormControl(''),
@@ -43,7 +43,8 @@ export class ReviewListingComponent implements OnInit {
     (type === "like" ? formData.type = "like"
     : type === "dislike" ? formData.type = "dislike" : formData.type = "comments");
     formData.ads_id = this._global.url.split('/')[3];
-    // console.log(formData)
+    formData.id = this.reviews.id;
+    console.log(formData)
     const resp = await this._listingservices.addReview('/reviews', formData);
     console.log(resp);
     this.reviewForm.reset();

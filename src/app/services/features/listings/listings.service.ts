@@ -172,6 +172,7 @@ export class ListingsService {
               this.api.setJwt(jwt.access_token)
               const resp: any = await this.api.post('listings' + route, {
                   "ads_id": data.ads_id,
+                  "id": data.id,
                   "type": data.type,
                   "likes": data.type == 'like' ? "true" : "[]",
                   "saved": data.type == 'save' ? "true" : "[]",
@@ -222,17 +223,15 @@ export class ListingsService {
       if(!listings || !searchTerms)
       return listings;
 
-      for (let index = 0; index < searchTerms.length; index++) {
-        const element = searchTerms[index];
-        // console.log(element)
-        if(element){
-          listings = listings.filter((item) => console.log(item[element]));
+      searchTerms.forEach(element => {
+        if(element.gender){
+          listings = listings.filter(item => item.gender === element.gender); // item => item.public == true
         }
-      }
+        console.log(listings)
+        // return listings;
+      });
 
-      // console.log(listings)
-    
       return listings;
 
-  }
+    }
 }
