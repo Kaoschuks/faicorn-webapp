@@ -10,7 +10,7 @@ import { UsersService } from 'src/app/services/features/users';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-
+  show: boolean = false;
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(
       "",
@@ -86,5 +86,8 @@ export class LoginFormComponent implements OnInit {
 
   }
 
+  togglePassword(){
+    this.show = !this.show;
+  }
 }
 
