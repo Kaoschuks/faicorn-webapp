@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 import { UsersService } from 'src/app/services/features/users';
@@ -10,11 +11,12 @@ import { UsersService } from 'src/app/services/features/users';
   styleUrls: ['./review-listing.component.css']
 })
 export class ReviewListingComponent implements OnInit {
-
+  url: any = this._global.url.split('/')
   @Input() reviews: any = [];
   @Input() listings: any = [];
   reviewForm: FormGroup = new FormGroup({
     ads_id: new FormControl('', Validators.compose([Validators.required])),
+    id: new FormControl('', Validators.compose([Validators.required])),
     type: new FormControl('', Validators.compose([Validators.required])),
     comments: new FormControl(''),
     likes: new FormControl(''),
@@ -25,27 +27,33 @@ export class ReviewListingComponent implements OnInit {
   constructor(
     public _listingservices: ListingsService,
     private _global: GlobalsService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
     
   }
+  
 
-  async addAComment(form: any, type: any){
+  async addAComment(form: any, type: string){
     let userLoggedOn = await this.usersService.isLoggedOn();
-    if (!userLoggedOn) return;
+    if (!userLoggedOn) this.toastr.warning('You need to log in before you can '+ type.charAt(0).toUpperCase(), 'Review Post Failed');
 
-    let thumbsup = document.querySelector('.bi-hand-thumbs-up');
-    let thumbsdown = document.querySelector('.bi-hand-thumbs-down');
-    
     let formData: any = form;
     (type === "like" ? formData.type = "like"
     : type === "dislike" ? formData.type = "dislike" : formData.type = "comments");
     formData.ads_id = this._global.url.split('/')[3];
+    formData.id = this.reviews.id;
     // console.log(formData)
     const resp = await this._listingservices.addReview('/reviews', formData);
     console.log(resp);
     this.reviewForm.reset();
+    this.refreshReview();
+  }
+
+  async refreshReview(){
+    await this._listingservices.getlistings(`/${this.url[this.url.length - 1]}`, ``, 'single')
+
   }
 }

@@ -9,50 +9,50 @@
 
         <ul class="list-comment list-comment-divider mb-5">
             <!-- Item -->
-            <li class="list-comment-item">
+            <li class="list-comment-item" *ngFor="let review of reviews?.reviews?.comments">
   
               <!-- Media -->
-              <div class="d-flex align-items-center mb-3">
+              <div class="d-flex align-items-center mb-3" >
                 <div class="flex-shrink-0">
-                  <img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img9.jpg" alt="Image Description">
+                  <img class="avatar avatar-sm avatar-circle" [src]="review?.user?.image" alt="Image Description">
                 </div>
   
                 <div class="flex-grow-1 ms-3">
                   <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Christina Kray</h5>
-                    <span class="d-block small text-muted">April 3, 2019</span>
+                    <h5 class="mb-0">{{review?.user?.username}}</h5>
+                    <span class="d-block small text-muted">{{review?.posted_on | date: 'longDate'}}</span>
                   </div>
                 </div>
               </div>
               <!-- End Media -->
   
               <div class="mb-5">
-                <p>I bought this hat for my boyfriend, but then i found out he cheated on me so I kept it and I love it!! I wear it all the time and there is no problem with the fit even though its a “mens” hat.</p>
+                <p>{{review?.comments}}</p>
               </div>
   
-              <div class="mb-2">
-                <span class="text-dark fw-semi-bold">Christina</span>
+              <div class="mb-0">
+                <span class="text-dark fw-semi-bold">{{review?.user?.username}}</span>
                 <span>- Verified Purchase</span>
               </div>
   
-              <!-- Media -->
-              <div class="d-flex align-items-center">
-                <span class="small me-2">Was this helpful?</span>
-  
-                <div class="d-flex gap-2">
-                  <a class="btn btn-white btn-xs" href="javascript:void(0);" (click)="addAComment(reviewForm.value, 'like')" >
-                    <i class="bi-hand-thumbs-up me-1"></i> Yes <span>(45)</span>
-                  </a>
-                  <a class="btn btn-white btn-xs" href="javascript:void(0);" (click)="addAComment(reviewForm.value, 'dislike')">
-                    <i class="bi-hand-thumbs-down me-1"></i> No <span>(21)</span>
-                  </a>
-                </div>
-              </div>
-              <!-- End Media -->
             </li>
+            <!-- Media -->
+            <div class="d-flex align-items-center p-2">
+              <span class="small me-2">Was this helpful?</span>
+
+              <div class="d-flex gap-2">
+                <a class="btn btn-white btn-xs" href="javascript:void(0);" (click)="addAComment(reviewForm.value, 'like')" >
+                  <i class="bi-hand-thumbs-up me-1"></i> Yes <span>(45)</span>
+                </a>
+                <a class="btn btn-white btn-xs" href="javascript:void(0);" (click)="addAComment(reviewForm.value, 'dislike')">
+                  <i class="bi-hand-thumbs-down me-1"></i> No <span>(21)</span>
+                </a>
+              </div>
+            </div>
+            <!-- End Media -->
             <!-- End Item -->
             <!-- Review-Form -->
-            <form [formGroup]="reviewForm" (keyup.enter)="addAComment(reviewForm.value, 'comments')">
+            <form [formGroup]="reviewForm" (ngSubmit)="addAComment(reviewForm.value, 'comments')">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="flex-shrink-0">
                   <img class="avatar avatar-sm avatar-circle" [src]="listings?.user?.image" alt="Image Description">
@@ -61,7 +61,10 @@
                 <div class="flex-grow-1 ms-3">
                   <input type="text" class="form-control" name="comment" id="comment" formControlName="comments" placeholder="Write your comments....">
                 </div>
-
+                
+                <div class="p-2">
+                  <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+                </div>
               </div>
             </form>
             <!-- End Review-Form -->

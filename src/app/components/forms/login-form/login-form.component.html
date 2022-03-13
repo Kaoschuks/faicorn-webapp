@@ -31,9 +31,9 @@
                 </div>
 
                 <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                  <input type="password" class="js-toggle-password form-control form-control-lg" formControlName="password" id="signupModalFormLoginPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8">
-                  <a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;">
-                    <i id="changePassIcon" class="bi-eye"></i>
+                  <input [type]="show ? 'text' : 'password'" class="js-toggle-password form-control form-control-lg" formControlName="password" id="signupModalFormLoginPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8">
+                  <a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;" (click)="togglePassword()">
+                    <i id="changePassIcon" [ngClass]="show ? 'bi-eye' : 'bi-eye-slash'"></i>
                   </a>
                 </div>
               </div>
