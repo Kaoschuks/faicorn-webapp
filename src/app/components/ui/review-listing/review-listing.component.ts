@@ -32,7 +32,7 @@ export class ReviewListingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // console.log(this.reviews)
+    
   }
   
 
@@ -45,7 +45,7 @@ export class ReviewListingComponent implements OnInit {
     : type === "dislike" ? formData.type = "dislike" : formData.type = "comments");
     formData.ads_id = this._global.url.split('/')[3];
     formData.id = this.reviews.id;
-    console.log(formData)
+    // console.log(formData)
     const resp = await this._listingservices.addReview('/reviews', formData);
     console.log(resp);
     this.reviewForm.reset();
