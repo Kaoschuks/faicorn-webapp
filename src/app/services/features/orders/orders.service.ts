@@ -26,11 +26,15 @@ export class OrdersService {
   async getOrders() {
     return await new Promise(async (resolve: any, reject: any) => {
       try {
-        
+        const resp: any = await this.api.get('orders?limits=100')
+        if(resp.error) throw new Error(resp.error);
+
+        this.orders = resp.message
+        resolve(resp.message)
       }catch(ex: any) {
 
         reject({
-          error: ex.message || ex.error || ex
+          error: ex.message || ex.error || ex || 'Error in retrieving orders'
         })
       }
     })
