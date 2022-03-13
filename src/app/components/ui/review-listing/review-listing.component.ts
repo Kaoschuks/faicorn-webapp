@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 import { UsersService } from 'src/app/services/features/users';
@@ -26,24 +27,25 @@ export class ReviewListingComponent implements OnInit {
   constructor(
     public _listingservices: ListingsService,
     private _global: GlobalsService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
-    
+    // console.log(this.reviews)
   }
   
 
-  async addAComment(form: any, type: any){
+  async addAComment(form: any, type: string){
     let userLoggedOn = await this.usersService.isLoggedOn();
-    if (!userLoggedOn) return;
+    if (!userLoggedOn) this.toastr.warning('You need to log in before you can '+ type.charAt(0).toUpperCase(), 'Review Post Failed');
 
     let formData: any = form;
     (type === "like" ? formData.type = "like"
     : type === "dislike" ? formData.type = "dislike" : formData.type = "comments");
     formData.ads_id = this._global.url.split('/')[3];
     formData.id = this.reviews.id;
-    // console.log(formData)
+    console.log(formData)
     const resp = await this._listingservices.addReview('/reviews', formData);
     console.log(resp);
     this.reviewForm.reset();
