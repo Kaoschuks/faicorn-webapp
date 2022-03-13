@@ -160,6 +160,21 @@ export class UsersService {
         })
     }
 
+    async deleteUser() {
+        return await new Promise(async (resolve, reject) => {
+            try {
+                const resp: any = await this.api.delete(`/remove`);
+                if (resp.error) throw new Error(resp.error || resp);
+
+                console.log(resp.message)
+            } catch (ex: any) {
+                this.globals.spinner.hide()
+                console.log(ex)
+                reject({ error: ex.error || ex.message || ex })
+            }
+        })
+    }
+
     async logout() {
         await this.auth.signOut();
         await this.globals.storage.clear();
