@@ -191,7 +191,15 @@ export class ListingsService {
       try {
         this.globals.storage.getItem('user').then(async (res: any) => {
             if (res) {
-              console.log(data)
+              console.log({
+                "ads_id": data.ads_id,
+                  "id": data.id,
+                  "type": data.type,
+                  "likes": data.type == 'like' ? "true" : "[]",
+                  "saved": data.type == 'save' ? "true" : "[]",
+                  "comments": data.type == 'comments' ? data.comments : "[]",
+                  "dislikes": data.type == 'dislike' ? "true" : "[]"
+              })
               this._user.user = res;
               const jwt = await this.globals.storage.getItem('jwt')
               this.api.setJwt(jwt.access_token)

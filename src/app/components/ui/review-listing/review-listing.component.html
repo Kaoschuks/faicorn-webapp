@@ -9,10 +9,10 @@
 
         <ul class="list-comment list-comment-divider mb-5">
             <!-- Item -->
-            <li class="list-comment-item" *ngFor="let review of reviews?.reviews?.comments">
+            <li class="list-comment-item" >
   
               <!-- Media -->
-              <div class="d-flex align-items-center mb-3">
+              <div class="d-flex align-items-center mb-3" *ngFor="let review of reviews?.reviews?.comments">
                 <div class="flex-shrink-0">
                   <img class="avatar avatar-sm avatar-circle" [src]="review?.user?.image" alt="Image Description">
                 </div>
@@ -26,11 +26,11 @@
               </div>
               <!-- End Media -->
   
-              <div class="mb-5">
+              <div class="mb-5" *ngFor="let review of reviews?.reviews?.comments">
                 <p>{{review?.comments}}</p>
               </div>
   
-              <div class="mb-2">
+              <div class="mb-2" *ngFor="let review of reviews?.reviews?.comments">
                 <span class="text-dark fw-semi-bold">{{review?.user?.username}}</span>
                 <span>- Verified Purchase</span>
               </div>

@@ -45,7 +45,7 @@ export class ReviewListingComponent implements OnInit {
     formData.id = this.reviews.id;
     // console.log(formData)
     const resp = await this._listingservices.addReview('/reviews', formData);
-    // console.log(resp);
+    console.log(resp);
     this.reviewForm.reset();
     this.refreshReview();
   }
