@@ -1,4 +1,4 @@
-<!-- <div class="card">
+<div class="card">
     <div class="card-header">
       <h4 class="card-header-title">Your Orders</h4>
     </div>
@@ -7,18 +7,20 @@
       <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
         <thead class="thead-light">
           <tr>
-            <th>Name</th>
+            <th>Summary</th>
+            <th>Total Amount</th>
+            <th>Amount Paid</th>
+            <th>Order Type</th>
             <th>Status</th>
-            <th>Access</th>
             <th style="width: 5%;"></th>
           </tr>
         </thead>
 
-        <tbody>
+        <tbody *ngFor="let order of ordersService.orders">
           
           <tr>
             <td>
-              <div class="d-flex align-items-center">
+              <!-- <div class="d-flex align-items-center">
                 <div class="flex-shrink-0">
                   <span class="avatar avatar-sm avatar-warning avatar-circle">
                     <span class="avatar-initials">FH</span>
@@ -31,24 +33,34 @@
                   </a>
                   <small class="d-block">finch@example.com</small>
                 </div>
-              </div>
+              </div> -->
+              {{order?.summary}}
             </td>
             <td>
-              <div class="tom-select-custom">
+              <!-- <div class="tom-select-custom">
                 <select class="js-select form-select form-select-sm tomselected" id="tomselect-5" tabindex="-1" hidden="hidden"><option value="memberStatusLabelActive4" data-option-template="<span class=&quot;d-flex align-items-center&quot;><span class=&quot;legend-indicator bg-success me-2&quot;></span> Active</span>" selected="true">Active</option>
                   
                   <option value="memberStatusLabelInactive4" data-option-template="<span class=&quot;d-flex align-items-center&quot;><span class=&quot;legend-indicator bg-danger me-2&quot;></span> Inactive</span>">Inactive</option>
                 </select><div class="ts-control js-select form-select form-select-sm single plugin-change_listener plugin-hs_smart_position plugin-dropdown_input" tabindex="0"><div class="items ts-input full has-items"><span class="d-flex align-items-center item" data-value="memberStatusLabelActive4"><span class="legend-indicator bg-success me-2"></span> Active</span></div><div class="tom-select-custom"><div class="ts-dropdown single js-select form-select form-select-sm plugin-change_listener plugin-hs_smart_position plugin-dropdown_input" style="display: none;"><div class="dropdown-input-wrap"></div><div role="listbox" id="tomselect-5-ts-dropdown" tabindex="-1" class="ts-dropdown-content"></div></div></div></div>
-              </div>
+              </div> -->
+              {{order?.total_amount}}
             </td>
             <td>
-              <div class="tom-select-custom">
+              <!-- <div class="tom-select-custom">
                 <select class="js-select form-select form-select-sm tomselected" id="tomselect-6" tabindex="-1" hidden="hidden"><option value="memberStatusLabelCanView4" selected="true">Can view</option>
                   <option value="memberStatusLabelAdmin4">Admin</option>
                   <option value="memberStatusLabelCanEdit4">Can edit</option>
                   
                 </select><div class="ts-control js-select form-select form-select-sm single plugin-change_listener plugin-hs_smart_position plugin-dropdown_input" tabindex="0"><div class="items ts-input full has-items"><div data-value="memberStatusLabelCanView4" class="item">Can view</div></div><div class="tom-select-custom"><div class="ts-dropdown single js-select form-select form-select-sm plugin-change_listener plugin-hs_smart_position plugin-dropdown_input" style="display: none;"><div class="dropdown-input-wrap"></div><div role="listbox" id="tomselect-6-ts-dropdown" tabindex="-1" class="ts-dropdown-content"></div></div></div></div>
-              </div>
+              </div> -->
+              {{order?.amount_paid}}
+            </td>
+            <td>
+              {{order?.order_type}}
+            </td>
+            <td>
+              <span *ngIf="order?.status === 'true'" class="badge bg-soft-success text-success">Successful</span>
+              <span *ngIf="order?.status === 'false'" class="badge bg-soft-danger text-dander">Failed</span>
             </td>
             <td>
               <a class="text-body" href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Remove member">
@@ -59,10 +71,10 @@
         </tbody>
       </table>
     </div>
-  </div> -->
+  </div>
 
 
-<no-content>
+<!-- <no-content *ngIf="ordersService.orders?.length == 0">
   <h2>No Orders</h2>
   <p>Your Account has not made any order request to show right now.</p>
-</no-content>
+</no-content> -->
