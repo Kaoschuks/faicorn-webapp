@@ -30,8 +30,8 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let country of filterData?.countries">
-                            <input class="form-check-input" type="checkbox" id="{{country}}"[(ngModel)]="_listingservices.filterSearch.countries" [ngModelOptions]="{standalone: true}">
-                            <label class="form-check-label" for="{{country}}">{{country}}</label>
+                            <input class="form-check-input" type="checkbox" id="{{country.name}}" [(ngModel)]="_listingservices.filterSearch.countries" [ngModelOptions]="{standalone: true}">
+                            <label class="form-check-label" for="{{country.name}}">{{country.name}} ({{country?.count}})</label>
                         </div>
                         <!-- End Checkboxes -->
                     </div>
@@ -43,8 +43,8 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let city of filterData?.cities">
-                            <input class="form-check-input" type="checkbox" id="{{city}}" (change)="useFilter()"  [(ngModel)]="_listingservices.filterSearch.cities[city]" [ngModelOptions]="{standalone: true}">
-                            <label class="form-check-label" for="{{city}}">{{city}}</label>
+                            <input class="form-check-input" type="checkbox" id="{{city.name}}" (change)="useFilter()"  [(ngModel)]="_listingservices.filterSearch.cities[city.name]" [ngModelOptions]="{standalone: true}">
+                            <label class="form-check-label" for="{{city.name}}">{{city.name}} ({{city?.count}})</label>
                         </div>
                         <!-- End Checkboxes -->
                     </div>
@@ -56,8 +56,8 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let region of filterData?.regions">
-                            <input class="form-check-input" type="checkbox" id="{{region}}" (change)="useFilter()" [(ngModel)]="_listingservices.filterSearch.regions[region]" [ngModelOptions]="{standalone: true}">
-                            <label class="form-check-label" for="{{region}}">{{region}}</label>
+                            <input class="form-check-input" type="checkbox" id="{{region.name}}" (change)="useFilter()" [(ngModel)]="_listingservices.filterSearch.regions[region.name]" [ngModelOptions]="{standalone: true}">
+                            <label class="form-check-label" for="{{region.name}}">{{region.name}}  ({{region?.count}})</label>
                         </div>
                         <!-- End Checkboxes -->
                     </div>
@@ -113,8 +113,8 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let gender of filterData?.gender">
-                            <input class="form-check-input" type="checkbox" id="{{gender}}" (change)="useFilter()" [(ngModel)]="_listingservices.filterSearch.gender[gender]" [ngModelOptions]="{standalone: true}">
-                            <label class="form-check-label" for="{{gender}}">{{gender | titlecase}} (73)</label>
+                            <input class="form-check-input" type="checkbox" id="{{gender.name}}" (change)="useFilter()" [(ngModel)]="_listingservices.filterSearch.gender[gender.name]" [ngModelOptions]="{standalone: true}">
+                            <label class="form-check-label" for="{{gender.name}}">{{gender.name | titlecase}} ({{gender?.count}})</label>
                         </div>
                         <!-- End Checkboxes -->
                     </div>
@@ -126,8 +126,8 @@
                     <div class="d-grid gap-2">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let brand of filterData?.brands">
-                            <input class="form-check-input" type="checkbox" id="{{brand}}" (change)="useFilter()" [(ngModel)]="_listingservices.filterSearch.brands[brand]" [ngModelOptions]="{standalone: true}">
-                            <label class="form-check-label" for="{{brand}}">{{brand}}</label>
+                            <input class="form-check-input" type="checkbox" id="{{brand.name}}" (change)="useFilter()" [(ngModel)]="_listingservices.filterSearch.brands[brand.name]" [ngModelOptions]="{standalone: true}">
+                            <label class="form-check-label" for="{{brand.name}}">{{brand.name}} ({{brand?.count}})</label>
                         </div>
                         <!-- End Checkboxes -->
 
