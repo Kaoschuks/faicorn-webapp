@@ -61,7 +61,7 @@ export class LoginFormComponent implements OnInit {
       this._globals.router.navigate(['/accounts/overview'])
     }).catch((error: any) => {
       this.error = error.error
-      this.toastr.warning(this.error, 'Login Failed')
+      this.toastr.error(this.error, 'Login Failed')
       this._globals.spinner.hide();
     })
   }
@@ -75,12 +75,14 @@ export class LoginFormComponent implements OnInit {
     if(resp.error) {
       console.log(resp.error);
       this._globals.spinner.hide();
+      this.toastr.error(resp.error, 'Login Failed')
     } 
 
     if(!resp.error) {
       const res: any = await this._userService.login(resp, provider);
-      if(res.error) console.log(res.error);
+      if(res.error) this.toastr.error(res.error, 'Login Failed')      ;
       if(res == "logged in") this._globals.router.navigate(['/accounts/overview'])
+      this.toastr.success('Logged In Successfully', 'Login Success')
       this._globals.spinner.hide();
     }
 

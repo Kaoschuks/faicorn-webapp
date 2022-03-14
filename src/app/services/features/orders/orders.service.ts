@@ -10,9 +10,9 @@ export class OrdersService {
   orderInfo: any
   orders: Array<any> = []
   paystackInfo: any = {
-    amount: 100,
+    amount: 1000,
     email: 'jasonaddy51@gmail.com',
-    currency: 'GHS',
+    currency: 'NGN',
     channel: ['bank'],
     ref: ''
   }
@@ -82,11 +82,11 @@ export class OrdersService {
   async saveTransaction(data: any, name: any) {
     return await new Promise(async (resolve: any, reject: any) => {
       try {
-        console.log(data);
+        // console.log(data);
         // create order information
         const order_resp: any = await this.createOrders({
           "summary": "",
-          "total_amount": data.amount,
+          "total_amount": this.paystackInfo.amount,
           "order_type": "one-time",
           "payment_gateway": "paystack"
         })

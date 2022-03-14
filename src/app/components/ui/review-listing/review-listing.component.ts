@@ -46,8 +46,8 @@ export class ReviewListingComponent implements OnInit {
     formData.ads_id = this._global.url.split('/')[3];
     formData.id = this.reviews.id;
     // console.log(formData)
-    const resp = await this._listingservices.addReview('/reviews', formData);
-    console.log(resp);
+    const resp: any = await this._listingservices.addReview('/reviews', formData);
+    (resp == 'review saved' ? this.toastr.success('Review Saved successfully.', 'Review Saved!') : this.toastr.error(resp.error, 'Review Save Error!'))
     this.reviewForm.reset();
     this.refreshReview();
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { UsersService } from 'src/app/services/features/users';
 
@@ -50,7 +51,8 @@ export class RegisterFormComponent implements OnInit {
   error: any
   constructor(
     public _userService: UsersService,
-    private _globals: GlobalsService
+    private _globals: GlobalsService,
+    private toastr: ToastrService,
   ) {
   }
 
@@ -63,8 +65,10 @@ export class RegisterFormComponent implements OnInit {
     if(res.error) {
       this._globals.spinner.hide();
       this.error = res.error;
+      this.toastr.warning(this.error, 'Registeration Successfully')
     }
-    if(res == "register") this._globals.router.navigate(['/accounts/login'])
+    if(res == "register") this._globals.router.navigate(['/accounts/login']);
+    this.toastr.success('You have been registed successfully.', 'Registeration Successfully')
     this._globals.spinner.hide();
   }
 
@@ -83,6 +87,7 @@ export class RegisterFormComponent implements OnInit {
       const res: any = await this._userService.login(resp, provider);
       if(res.error) this.error = res.error;
       if(res == "logged in") this._globals.router.navigate(['/accounts/overview'])
+      this.toastr.success('You have been registed successfully.', 'Registeration Successfully')
       this._globals.spinner.hide();
     }
   }

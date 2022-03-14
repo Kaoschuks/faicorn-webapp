@@ -30,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
     ComponentsModule, ServicesModule, ToastrModule.forRoot({
       timeOut: 3000,
       preventDuplicates: true,
+      positionClass: 'toast-bottom-left'
     }),
   ],
   bootstrap: [AppComponent]
