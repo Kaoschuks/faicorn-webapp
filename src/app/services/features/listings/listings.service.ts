@@ -41,6 +41,7 @@ export class ListingsService {
   async getlistings(route: string = '/all', params: string = "", type: string = "all") {
     return await new Promise(async (resolve: any, reject: any) => {
       this.loader.listings = true;
+      this.oldlistings = this.listings = []
       try {
         const resp: any = await this.api.get('listings' + route + params)
         if(resp.error) throw new Error(resp.error);

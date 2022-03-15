@@ -18,17 +18,18 @@ export class DetailPagesComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    await this._listingservices.getlistings('/all', `?brands=${this.url[this.url.length - 2]}&limit=1000`)
-    await this._listingservices.getlistings(`/${this.url[this.url.length - 1]}`, ``, 'single').then(res => console.log(res))
-    this.getAds()
+    console.log(this.url.length)
+    if(this.url.length === 4) await this._listingservices.getlistings('/all', `?brands=${this.url[this.url.length - 2]}&limit=1000`)
+    if(this.url.length === 4) await this._listingservices.getlistings(`/${this.url[this.url.length - 1]}`, ``, 'single')
+    // this.getAds()
   }
 
   getAds() {
     this._global.router.events.subscribe(async (event: Event) => {
       if (event instanceof NavigationStart) {
         let url = event.url.split('/');
-        await this._listingservices.getlistings('/all', `?brands=${url[url.length - 2]}&limit=1000`)
-        await this._listingservices.getlistings(`/${url[url.length - 1]}`, ``, 'single')
+        if(url.length === 4) await this._listingservices.getlistings('/all', `?brands=${url[url.length - 2]}&limit=1000`)
+        if(url.length === 4) await this._listingservices.getlistings(`/${url[url.length - 1]}`, ``, 'single')
       }
     });
   }
