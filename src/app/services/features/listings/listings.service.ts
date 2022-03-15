@@ -236,14 +236,26 @@ export class ListingsService {
 	async filterProducts(filter: any, products: any) {
 		return await new Promise(async (resolve, reject) => {
 			let _products: any = products.filter((e: any) => {
-        for( let key in filter) {
-          if(key != 'price' && key != 'categories')  {
-            for(let i in filter[key]) {
-              if(e[key].includes(i) && filter[key][i] == true) return e
-            }
-          }
+        for(let i in filter.tags) {
+          if(e.tags.includes(i) && filter.tags[i] == true) return e
+        }
+        for(let i in filter.subcategories) {
+          if(e.subcategories.includes(i) && filter.subcategories[i] == true) return e
+        }
+        for(let i in filter.regions) {
+          if(e.region = i && filter.regions[i] == true) return e
+        }
+        for(let i in filter.cities) {
+          if(e.city = i && filter.cities[i] == true) return e
+        }
+        for(let i in filter.gender) {
+          if(e.gender = i && filter.gender[i] == true) return e
+        }
+        for(let i in filter.brands) {
+          if(e.brands = i && filter.brands[i] == true) return e
         }
 			});
+          // console.log(_products)
 			resolve(_products)
 		});
 	}
