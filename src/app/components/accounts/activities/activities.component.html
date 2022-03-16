@@ -1,0 +1,14 @@
+<ng-template #elseBlock>
+  <div class="card">
+      <div class="card-header">
+        <h4 class="card-header-title">Your Activities</h4>
+      </div>
+
+    </div>
+</ng-template>
+
+
+<no-content *ngIf="usersService.activities?.length == 0; else elseBlock">
+  <h2>No Activities</h2>
+  <p>Your Account has not made any activities to show right now.</p>
+</no-content>

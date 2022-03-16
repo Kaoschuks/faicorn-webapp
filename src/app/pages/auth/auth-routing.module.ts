@@ -29,6 +29,11 @@ const routes: Routes = [
         component: AccountsComponent
       },
       {
+        path: 'activities',
+        canActivate: [AuthGuardsService],
+        component: AccountsComponent
+      },
+      {
         path: 'listings',
         canActivate: [AuthGuardsService],
         component: AccountsComponent

@@ -43,6 +43,7 @@ import { ListingsFilterPipe } from '../pipes/listingsFilter';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { environment } from 'src/environments/environment';
 import { SearchPipe } from '../pipes/search';
+import { ActivitiesComponent } from './accounts/activities/activities.component';
 
 export const component: Array<any> = [
 	SearchPipe,
@@ -52,7 +53,7 @@ export const component: Array<any> = [
 	LoginFormComponent, RegisterFormComponent, ForgotFormComponent, ChangepasswordFormComponent, ProfileFormComponent, ListingFormComponent,
 	IndexLayoutComponent, ListingsLayoutComponent, AccountsLayoutComponent,
 	AdsListsComponent, AdsGridComponent, AdsInfoComponent, AdsCategoryScrollComponent,
-	PaymentsComponent, SecurityComponent, OverviewComponent, ListingsComponent, OrdersComponent, ListingsFilterPipe
+	PaymentsComponent, SecurityComponent, OverviewComponent, ListingsComponent, OrdersComponent, ActivitiesComponent, ListingsFilterPipe
 ]
 
 @NgModule({
