@@ -21,10 +21,10 @@
                     <li class="nav-item form-search-input">
                       <div class="col-lg-6 mobile-form">
                         <form [formGroup]="searchForm" (ngSubmit)="submitSearch()" class="form-inline">
-                          <div class="input-group">
+                          <div class="input-group d-flex justify-content-center align-items-center">
                             <input type="search" placeholder="Search for a product" class="form-control form-control-sm bg-soft-light mt-1" formControlName="search">
                             <span class="input-group-btn">
-                              <button class="btn btn-default" type="button">Go!</button>
+                              <button class="btn btn-default fs-14 text-danger bg-white bold" type="button">Go!</button>
                             </span>
                           </div>
                         </form>    
