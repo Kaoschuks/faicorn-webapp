@@ -39,10 +39,6 @@ const routes: Routes = [
         path: ':subcategories',
         component: ListingPagesComponent
       },
-      // {
-      //   path: ':subcategories/:type',
-      //   component: ListingPagesComponent
-      // },
     ]
   },
   { path: ':categories/:subscategories/:id', component: DetailPagesComponent },
