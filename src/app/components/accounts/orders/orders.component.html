@@ -57,11 +57,11 @@
                 {{order?.amount_paid}}
               </td>
               <td>
-                {{order?.order_type}}
+                {{order?.order_type | titlecase}}
               </td>
               <td>
-                <span *ngIf="order?.status === 'true'" class="badge bg-soft-success text-success">Successful</span>
-                <span *ngIf="order?.status === 'false'" class="badge bg-soft-danger text-dander">Failed</span>
+                <span *ngIf="order?.status == true" class="badge bg-soft-success text-success">Successful</span>
+                <span *ngIf="order?.status == false" class="badge bg-soft-danger text-danger">Failed</span>
               </td>
               <td>
                 <a class="text-body" href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Remove member">
