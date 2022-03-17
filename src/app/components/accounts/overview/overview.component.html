@@ -7,7 +7,7 @@
       <div class="card-body">
         <form>
           <div class="list-group list-group-flush list-group-no-gutters">
-              <div class="list-group-item" *ngFor="let ad of ads">
+              <div class="list-group-item" *ngFor="let ad of ads | slice:0:5">
                 <div class="d-flex">
                   <div class="flex-shrink-0">
                     <img [src]="ad?.images[0]" style="height: 70px;float: left; margin-left: 10px; margin-right: 20px; width: 70px; object-fit: cover; object-position: center center;" class="mr-3 pull-left" alt="...">
@@ -62,56 +62,57 @@
     <div class="card-header">
       <h5 class="card-header-title">Orders history</h5>
     </div>
-    <div class="table-responsive">
-      <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle">
-        <thead class="thead-light">
-          <tr>
-            <th>Summary</th>
-            <th>Total Amount</th>
-            <th>Amount Paid</th>
-            <th>Order Type</th>
-            <th>Date</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-
-        <tbody *ngFor="let order of ordersService.orders">
-          <tr>
-            <td><a href="#">{{order?.summary}}</a></td>
-            <td>NGN {{order?.total_amount}}</td>
-            <td>NGN {{order?.amount_paid}}</td>
-            <td>{{order?.order_type | titlecase}}</td>
-            <td>{{order?.date_updated | date: 'mediumDate'}}</td>
-            <td>
-              <span *ngIf="order?.status == false" class="badge bg-soft-danger text-danger">Failed</span>
-              <span *ngIf="order?.status == true" class="badge bg-soft-success text-success">Successful</span>
-            </td>
+    <ng-template #elseShow>
+      <div class="table-responsive" >
+        <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle">
+          <thead class="thead-light">
+            <tr>
+              <th>Summary</th>
+              <th>Total Amount</th>
+              <th>Amount Paid</th>
+              <th>Order Type</th>
+              <th>Date</th>
+              <th>Status</th>
           </tr>
-<!-- 
-          <tr>
-            <td><a href="#">#2333234</a></td>
-            <td><span class="badge bg-soft-success text-success">Successful</span></td>
-            <td>$264</td>
-            <td>22/04/2019</td>
-            <td><a class="btn btn-white btn-xs" href="./page-invoice.html"><i class="bi-file-earmark-arrow-down-fill me-1"></i> PDF</a></td>
-            <td><a class="btn btn-white btn-xs" href="javascript:;" data-bs-toggle="modal" data-bs-target="#accountInvoiceReceiptModal"><i class="bi-eye-fill me-1"></i> Quick view</a></td>
-          </tr>
+          </thead>
 
-          <tr>
-            <td><a href="#">#9834283</a></td>
-            <td><span class="badge bg-soft-success text-success">Successful</span></td>
-            <td>$264</td>
-            <td>22/04/2018</td>
-            <td><a class="btn btn-white btn-xs" href="./page-invoice.html"><i class="bi-file-earmark-arrow-down-fill me-1"></i> PDF</a></td>
-            <td><a class="btn btn-white btn-xs" href="javascript:;" data-bs-toggle="modal" data-bs-target="#accountInvoiceReceiptModal"><i class="bi-eye-fill me-1"></i> Quick view</a></td>
-          </tr> -->
-        </tbody>
-      </table>
-    </div>
+          <tbody *ngFor="let order of ordersService.orders | slice:0:5">
+            <tr>
+              <td><a href="#">{{order?.summary}}</a></td>
+              <td>NGN {{order?.total_amount}}</td>
+              <td>NGN {{order?.amount_paid}}</td>
+              <td>{{order?.order_type | titlecase}}</td>
+              <td>{{order?.date_updated | date: 'mediumDate'}}</td>
+              <td>
+                <span *ngIf="order?.status == false" class="badge bg-soft-danger text-danger">Failed</span>
+                <span *ngIf="order?.status == true" class="badge bg-soft-success text-success">Successful</span>
+              </td>
+            </tr>
+  <!-- 
+            <tr>
+              <td><a href="#">#2333234</a></td>
+              <td><span class="badge bg-soft-success text-success">Successful</span></td>
+              <td>$264</td>
+              <td>22/04/2019</td>
+              <td><a class="btn btn-white btn-xs" href="./page-invoice.html"><i class="bi-file-earmark-arrow-down-fill me-1"></i> PDF</a></td>
+              <td><a class="btn btn-white btn-xs" href="javascript:;" data-bs-toggle="modal" data-bs-target="#accountInvoiceReceiptModal"><i class="bi-eye-fill me-1"></i> Quick view</a></td>
+            </tr>
+
+            <tr>
+              <td><a href="#">#9834283</a></td>
+              <td><span class="badge bg-soft-success text-success">Successful</span></td>
+              <td>$264</td>
+              <td>22/04/2018</td>
+              <td><a class="btn btn-white btn-xs" href="./page-invoice.html"><i class="bi-file-earmark-arrow-down-fill me-1"></i> PDF</a></td>
+              <td><a class="btn btn-white btn-xs" href="javascript:;" data-bs-toggle="modal" data-bs-target="#accountInvoiceReceiptModal"><i class="bi-eye-fill me-1"></i> Quick view</a></td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+    <no-content *ngIf="ordersService.orders?.length == 0; else elseShow">
+      <h2>No Content</h2>
+      <p>Your Account has not data to show right now.</p>
+    </no-content>
   </div>
 
-
-<!-- <no-content>
-  <h2>No Content</h2>
-  <p>Your Account has not data to show right now.</p>
-</no-content> -->

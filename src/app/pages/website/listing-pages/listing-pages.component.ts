@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 import { Event, NavigationStart} from '@angular/router';
-import { FilterComponent } from 'src/app/components/ui/filter/filter.component';
 
 @Component({
   selector: 'app-listing-pages',
@@ -18,21 +17,7 @@ export class ListingPagesComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    if(this.url.length === 3) await this._listingservices.getlistings('/all', `?brands=${this.url[this.url.length - 1]}&limit=1000`)
-    if(this.url.length === 2) await this._listingservices.getlistings('/all', `?category=${this.url[this.url.length - 1]}&limit=1000`)
-    if(this.url[1] === 'search') await this._listingservices.getSearch('/search', `${this.url[2]}`)//.then(res => console.log(res))
-    this.getAds()
-  }
-
-  getAds() {
-    this._global.router.events.subscribe(async (event: Event) => {
-      if (event instanceof NavigationStart) {
-        let url = event.url.split('/');
-        if(this.url.length === 3) await this._listingservices.getlistings('/all', `?brands=${url[url.length - 1]}&limit=1000`)
-        if(this.url.length === 2) await this._listingservices.getlistings('/all', `?category=${url[url.length - 1]}&limit=1000`)
-        if(this.url[1] === 'search') await this._listingservices.getSearch('/search', `${this.url[2]}`)
-      }
-    });
+    await this._listingservices.process_routes(this.url);
   }
 
 }

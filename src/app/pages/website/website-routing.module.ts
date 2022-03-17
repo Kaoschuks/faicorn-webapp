@@ -22,9 +22,14 @@ const routes: Routes = [
     path: 'search', component: ListingsLayoutComponent,
     children: [
       {
-        path: '',
+        path: ':query',
         component: ListingPagesComponent
-      }
+      },
+      {
+        path: '',
+        redirectTo: '/',
+        pathMatch: 'full'
+      },
     ]
   },
   { 
@@ -39,18 +44,9 @@ const routes: Routes = [
         path: ':subcategories',
         component: ListingPagesComponent
       },
-      // {
-      //   path: ':subcategories/:type',
-      //   component: ListingPagesComponent
-      // },
     ]
   },
   { path: ':categories/:subscategories/:id', component: DetailPagesComponent },
-  {
-    path: '',
-    redirectTo: 'coming',
-    pathMatch: 'full'
-  },
 ];
 
 @NgModule({

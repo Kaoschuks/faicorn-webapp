@@ -28,7 +28,7 @@ export class AdsCategoryScrollComponent implements AfterViewInit {
           responsive: {
             0: {
               items: 3,
-              nav: true,
+              nav: false,
               loop: true,
             },
             600: {
@@ -38,7 +38,7 @@ export class AdsCategoryScrollComponent implements AfterViewInit {
             },
             1000: {
               items: 7,
-              nav: true,
+              nav: false,
               loop: true
             }
           }
