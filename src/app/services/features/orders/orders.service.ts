@@ -12,7 +12,7 @@ export class OrdersService {
   paystackInfo: any = {
     amount: 1000,
     email: 'jasonaddy51@gmail.com',
-    currency: 'NGN',
+    currency: 'GHS',
     channel: ['bank'],
     ref: ''
   }
@@ -43,11 +43,14 @@ export class OrdersService {
   async createOrders(data: any) {
     return await new Promise(async (resolve: any, reject: any) => {
       try {
-        
+        const resp: any = await this.api.post('orders', data);
+        if(resp.error) throw new Error(resp.error);
+
+        resolve(resp.message)
       }catch(ex: any) {
 
         reject({
-          error: ex.message || ex.error || ex
+          error: ex.message || ex.error || ex || 'Error in creating orders'
         })
       }
     })
@@ -82,24 +85,26 @@ export class OrdersService {
   async saveTransaction(data: any, name: any) {
     return await new Promise(async (resolve: any, reject: any) => {
       try {
-        // console.log(data);
         // create order information
         const order_resp: any = await this.createOrders({
-          "summary": "",
+          "summary": "Order Made for " + name,
           "total_amount": this.paystackInfo.amount,
           "order_type": "one-time",
-          "payment_gateway": "paystack"
+          "payment_gateway": "paystack",
+          "amount_paid": this.paystackInfo.amount
         })
         // save transaction information
         const trans_resp: any = await this.api.post('transactions', {
           "orderid": order_resp.orderid,
           "transid": data.ref,
-          "summary": "",
+          "summary": "Transaction for "+ name,
           "amount": data.amount,
           "status": data.status,
           "uid": "",
           "transaction_info": JSON.stringify({'source': 'paystack'})
         })
+        console.log('Created Order: ' + order_resp)
+        console.log('Saved Transaction: ' + trans_resp.message)
       }catch(ex: any) {
 
         reject({
