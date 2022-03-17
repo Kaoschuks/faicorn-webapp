@@ -25,7 +25,7 @@ export class IndexPagesComponent implements OnInit, AfterViewInit {
   ) { }
 
   async ngOnInit() {
-    await this._listingservices.getlistings('/all', `?limit=20&isFeatured=true`)
+    await this._listingservices.process_routes('/')
   }
 
   ngAfterViewInit() {

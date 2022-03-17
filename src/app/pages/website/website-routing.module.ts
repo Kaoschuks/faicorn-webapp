@@ -22,9 +22,17 @@ const routes: Routes = [
     path: 'search', component: ListingsLayoutComponent,
     children: [
       {
-        path: '',
+        path: ''
+      },
+      {
+        path: ':query',
         component: ListingPagesComponent
-      }
+      },
+      {
+        path: '',
+        redirectTo: '/',
+        pathMatch: 'full'
+      },
     ]
   },
   { 
@@ -42,11 +50,6 @@ const routes: Routes = [
     ]
   },
   { path: ':categories/:subscategories/:id', component: DetailPagesComponent },
-  {
-    path: '',
-    redirectTo: 'coming',
-    pathMatch: 'full'
-  },
 ];
 
 @NgModule({
