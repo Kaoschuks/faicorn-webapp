@@ -22,9 +22,6 @@ const routes: Routes = [
     path: 'search', component: ListingsLayoutComponent,
     children: [
       {
-        path: ''
-      },
-      {
         path: ':query',
         component: ListingPagesComponent
       },
