@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 export class UsersService {
     loader: boolean = false;
     user: any;
+    activities: any;
     constructor(
         private api: RequestService,
         private globals: GlobalsService,
@@ -114,6 +115,22 @@ export class UsersService {
                 this.user = user[0];
                 this.globals.storage.saveItem('user', user[0]);
                 resolve(user[0])
+            } catch (ex: any) {
+                console.log(ex)
+                reject({ error: ex.error || ex.message || ex })
+            }
+        })
+    }
+
+    async getUserActivities() {
+        return await new Promise(async (resolve, reject) => {
+            try {
+                const resp: any = await this.api.get(`activities`);
+                if (resp.error) throw new Error(resp.error || resp);
+
+                this.activities = resp.message;
+                console.log(resp)
+                resolve(resp.message)
             } catch (ex: any) {
                 console.log(ex)
                 reject({ error: ex.error || ex.message || ex })

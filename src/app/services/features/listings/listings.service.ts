@@ -244,16 +244,16 @@ export class ListingsService {
           if(e.subcategories.includes(i) && filter.subcategories[i] == true) return e
         }
         for(let i in filter.regions) {
-          if(e.region = i && filter.regions[i] == true) return e
+          if(e.region == i && filter.regions[i] == true) return e
         }
         for(let i in filter.cities) {
-          if(e.city = i && filter.cities[i] == true) return e
+          if(e.city == i && filter.cities[i] == true) return e
         }
         for(let i in filter.gender) {
-          if(e.gender = i && filter.gender[i] == true) return e
+          if(e.gender == i && filter.gender[i] == true) return e
         }
         for(let i in filter.brands) {
-          if(e.brands = i && filter.brands[i] == true) return e
+          if(e.brands == i && filter.brands[i] == true) return e
         }
 			});
 			resolve(_products)
