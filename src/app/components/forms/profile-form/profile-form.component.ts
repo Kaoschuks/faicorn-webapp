@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import * as intlTelInput from 'intl-tel-input';
+import { ToastrService } from 'ngx-toastr';
 import { UsersService } from 'src/app/services/features/users';
 declare let document: any;
 
@@ -57,7 +58,8 @@ export class ProfileFormComponent implements OnInit {
   })
   constructor(
     public formBuilder: FormBuilder,
-    public _userService: UsersService
+    public _userService: UsersService,
+    private toastr: ToastrService
   ) {
   }
 
@@ -81,10 +83,13 @@ export class ProfileFormComponent implements OnInit {
         "state": form.address2_state,
       },
     }
-    // const resp: any = await this._userService.updateUserInfo(formData);
-    // if(resp == 'user updated') {
-    //   await this.processForm()
-    // }
+    console.log(formData)
+    const resp: any = await this._userService.updateUserInfo(formData);
+    if(resp == 'user updated') {
+      await this.processForm()
+      this.toastr.success('User profile Updated Successfully', 'Profile Update Success!');
+    }else
+      this.toastr.error(resp.error, 'Profile Update Failed');
   }
 
   async processForm() {
