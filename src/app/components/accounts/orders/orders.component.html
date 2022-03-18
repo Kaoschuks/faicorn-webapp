@@ -69,12 +69,12 @@
                 </a>
               </td>
             </tr>
-            <pagination-controls *ngIf="ordersService.orders.length > 5" (pageChange)="p = $event"></pagination-controls>
           </tbody>
         </table>
       </div>
       
     </div>
+    <pagination-controls *ngIf="ordersService.orders.length > 5" (pageChange)="p = $event"></pagination-controls>
 </ng-template>
 
 

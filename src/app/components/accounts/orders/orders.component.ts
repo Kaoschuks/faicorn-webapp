@@ -8,7 +8,7 @@ import { OrdersService } from 'src/app/services/features/orders/orders.service';
 })
 export class OrdersComponent implements OnInit {
   p: number = 1;
-  limit: number = 10;
+  limit: number = 5;
 
   constructor(
     public ordersService: OrdersService
