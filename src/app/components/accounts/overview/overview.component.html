@@ -3,105 +3,116 @@
       <h5 class="card-header-title">Recently Added</h5>
     </div>
 
-    <div class="card-body">
-      <form>
-        <div class="list-group list-group-flush list-group-no-gutters">
-            <div class="list-group-item" *ngFor="let ad of ads">
+    <ng-template #elseBlock>
+      <div class="card-body">
+        <form>
+          <div class="list-group list-group-flush list-group-no-gutters">
+              <div class="list-group-item" *ngFor="let ad of ads | slice:0:5">
+                <div class="d-flex">
+                  <div class="flex-shrink-0">
+                    <img [src]="ad?.images[0]" style="height: 70px;float: left; margin-left: 10px; margin-right: 20px; width: 70px; object-fit: cover; object-position: center center;" class="mr-3 pull-left" alt="...">
+                  </div>
+    
+                  <div class="flex-grow-1">
+                    <div class="row align-items-center">
+                      <div class="col-sm mb-1 mb-sm-0">
+                        <h6 class="mb-1 fs-16">{{ad?.name}} <span class="badge bg-primary ms-1">Current</span></h6>
+                        <ul class="list-inline list-separator text-body small">
+                          <li class="list-inline-item"><span class="fw-semi-bold">Amount:</span> NGN {{ad?.price | currency:'':''}}</li>
+                          <li class="list-inline-item"><span class="fw-semi-bold">Last active:</span> Now</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!-- <div class="list-group-item">
               <div class="d-flex">
                 <div class="flex-shrink-0">
-                  <img [src]="ad?.images[0]" style="height: 70px;float: left; margin-left: 10px; margin-right: 20px; width: 70px; object-fit: cover; object-position: center center;" class="mr-3 pull-left" alt="...">
+                  <img src="http://faicorn.com/images/electronic6-removebg-preview.png" style="height: 70px;float: left; margin-left: 10px; margin-right: 20px" class="mr-3 pull-left" alt="...">
                 </div>
   
                 <div class="flex-grow-1">
                   <div class="row align-items-center">
                     <div class="col-sm mb-1 mb-sm-0">
-                      <h6 class="mb-1 fs-16">{{ad?.name}} <span class="badge bg-primary ms-1">Current</span></h6>
+                      <h6 class="mb-1 fs-16">Dell XPS 15 <span class="badge bg-primary ms-1">Current</span></h6>
                       <ul class="list-inline list-separator text-body small">
-                        <li class="list-inline-item"><span class="fw-semi-bold">Amount:</span> NGN {{ad?.price | currency:'':''}}</li>
+                        <li class="list-inline-item"><span class="fw-semi-bold">Amount:</span> #300,000</li>
                         <li class="list-inline-item"><span class="fw-semi-bold">Last active:</span> Now</li>
                       </ul>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          <!-- <div class="list-group-item">
-            <div class="d-flex">
-              <div class="flex-shrink-0">
-                <img src="http://faicorn.com/images/electronic6-removebg-preview.png" style="height: 70px;float: left; margin-left: 10px; margin-right: 20px" class="mr-3 pull-left" alt="...">
-              </div>
+            </div> -->
+          </div>
+        </form>
+      </div>
+    </ng-template>
 
-              <div class="flex-grow-1">
-                <div class="row align-items-center">
-                  <div class="col-sm mb-1 mb-sm-0">
-                    <h6 class="mb-1 fs-16">Dell XPS 15 <span class="badge bg-primary ms-1">Current</span></h6>
-                    <ul class="list-inline list-separator text-body small">
-                      <li class="list-inline-item"><span class="fw-semi-bold">Amount:</span> #300,000</li>
-                      <li class="list-inline-item"><span class="fw-semi-bold">Last active:</span> Now</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-        </div>
-      </form>
-    </div>
+    <no-content *ngIf="ads?.length == 0; else elseBlock">
+      <h2>No Content</h2>
+      <p>Your Account has not data to show right now.</p>
+    </no-content>
   </div>
 
   <br />
   <br />
   <div class="card">
     <div class="card-header">
-      <h5 class="card-header-title">Payment history</h5>
+      <h5 class="card-header-title">Orders history</h5>
     </div>
-    <div class="table-responsive">
-      <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle">
-        <thead class="thead-light">
-          <tr>
-            <th>Reference</th>
-            <th>Status</th>
-            <th>Amount</th>
-            <th>Updated</th>
-            <th>Invoice</th>
-            <th></th>
+    <ng-template #elseShow>
+      <div class="table-responsive" >
+        <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle">
+          <thead class="thead-light">
+            <tr>
+              <th>Summary</th>
+              <th>Total Amount</th>
+              <th>Amount Paid</th>
+              <th>Order Type</th>
+              <th>Date</th>
+              <th>Status</th>
           </tr>
-        </thead>
+          </thead>
 
-        <tbody>
-          <tr>
-            <td><a href="#">#3682303</a></td>
-            <td><span class="badge bg-soft-warning text-warning">Pending</span></td>
-            <td>$264</td>
-            <td>22/04/2020</td>
-            <td><a class="btn btn-white btn-xs" href="./page-invoice.html"><i class="bi-file-earmark-arrow-down-fill me-1"></i> PDF</a></td>
-            <td><a class="btn btn-white btn-xs" href="javascript:;" data-bs-toggle="modal" data-bs-target="#accountInvoiceReceiptModal"><i class="bi-eye-fill me-1"></i> Quick view</a></td>
-          </tr>
+          <tbody *ngFor="let order of ordersService.orders | slice:0:5">
+            <tr>
+              <td><a href="#">{{order?.summary}}</a></td>
+              <td>NGN {{order?.total_amount}}</td>
+              <td>NGN {{order?.amount_paid}}</td>
+              <td>{{order?.order_type | titlecase}}</td>
+              <td>{{order?.date_updated | date: 'mediumDate'}}</td>
+              <td>
+                <span *ngIf="order?.status == false" class="badge bg-soft-danger text-danger">Failed</span>
+                <span *ngIf="order?.status == true" class="badge bg-soft-success text-success">Successful</span>
+              </td>
+            </tr>
+  <!-- 
+            <tr>
+              <td><a href="#">#2333234</a></td>
+              <td><span class="badge bg-soft-success text-success">Successful</span></td>
+              <td>$264</td>
+              <td>22/04/2019</td>
+              <td><a class="btn btn-white btn-xs" href="./page-invoice.html"><i class="bi-file-earmark-arrow-down-fill me-1"></i> PDF</a></td>
+              <td><a class="btn btn-white btn-xs" href="javascript:;" data-bs-toggle="modal" data-bs-target="#accountInvoiceReceiptModal"><i class="bi-eye-fill me-1"></i> Quick view</a></td>
+            </tr>
 
-          <tr>
-            <td><a href="#">#2333234</a></td>
-            <td><span class="badge bg-soft-success text-success">Successful</span></td>
-            <td>$264</td>
-            <td>22/04/2019</td>
-            <td><a class="btn btn-white btn-xs" href="./page-invoice.html"><i class="bi-file-earmark-arrow-down-fill me-1"></i> PDF</a></td>
-            <td><a class="btn btn-white btn-xs" href="javascript:;" data-bs-toggle="modal" data-bs-target="#accountInvoiceReceiptModal"><i class="bi-eye-fill me-1"></i> Quick view</a></td>
-          </tr>
-
-          <tr>
-            <td><a href="#">#9834283</a></td>
-            <td><span class="badge bg-soft-success text-success">Successful</span></td>
-            <td>$264</td>
-            <td>22/04/2018</td>
-            <td><a class="btn btn-white btn-xs" href="./page-invoice.html"><i class="bi-file-earmark-arrow-down-fill me-1"></i> PDF</a></td>
-            <td><a class="btn btn-white btn-xs" href="javascript:;" data-bs-toggle="modal" data-bs-target="#accountInvoiceReceiptModal"><i class="bi-eye-fill me-1"></i> Quick view</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            <tr>
+              <td><a href="#">#9834283</a></td>
+              <td><span class="badge bg-soft-success text-success">Successful</span></td>
+              <td>$264</td>
+              <td>22/04/2018</td>
+              <td><a class="btn btn-white btn-xs" href="./page-invoice.html"><i class="bi-file-earmark-arrow-down-fill me-1"></i> PDF</a></td>
+              <td><a class="btn btn-white btn-xs" href="javascript:;" data-bs-toggle="modal" data-bs-target="#accountInvoiceReceiptModal"><i class="bi-eye-fill me-1"></i> Quick view</a></td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+    <no-content *ngIf="ordersService.orders?.length == 0; else elseShow">
+      <h2>No Content</h2>
+      <p>Your Account has not data to show right now.</p>
+    </no-content>
   </div>
 
-
-<!-- <no-content>
-  <h2>No Content</h2>
-  <p>Your Account has not data to show right now.</p>
-</no-content> -->

@@ -18,6 +18,6 @@ export class OrdersComponent implements OnInit {
 
   async getOrders(){
     const resp = await this.ordersService.getOrders();
-    console.log(resp)
+    // console.log(resp)
   }
 }

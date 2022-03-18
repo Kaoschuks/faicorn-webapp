@@ -186,27 +186,33 @@
 
 
         <!-- Footer -->
-        <div class="card-footer pt-0">
-          <div class="d-flex justify-content-end gap-3">
-            <angular4-paystack *ngIf="listingForm.value.isFeatured == 'true' ; else elseBlock"
-              [email]="_orderservices?.paystackInfo?.email"
-              [amount]="_orderservices?.paystackInfo?.amount"
-              [ref]="_orderservices?.paystackInfo?.ref"
-              [paystackOptions]="_orderservices?.paystackInfo"
-              [channels]="_orderservices?.paystackInfo?.channel"
-              [class]="'btn btn-primary hidden'"
-              (onClose)="_orderservices?.paymentCancel($event)"
-              (callback)="onSubmit(listingForm.value, $event)"
-            >
-              Subscribe to Featured Listing & Save Advert
-            </angular4-paystack>
-            <ng-template #elseBlock>
-              <button type="submit" class="btn btn-primary">Save and Continue</button>
-            </ng-template>
+        <ng-template #elseBlock>
+          <div class="card-footer pt-0" >
+            <div class="d-flex justify-content-end gap-3">
+                <button type="submit" class="btn btn-primary">Save Advert</button>
+             </div>
           </div>
-        </div>
+        </ng-template>
         <!-- End Footer -->
       </form>
+
+      <div class="card-footer pt-0" *ngIf="listingForm.value.isFeatured == 'true' ; else elseBlock">
+        <div class="d-flex justify-content-end gap-3">
+          <angular4-paystack
+            [email]="_orderservices?.paystackInfo?.email"
+            [amount]="_orderservices?.paystackInfo?.amount"
+            [ref]="_orderservices?.paystackInfo?.ref"
+            [paystackOptions]="_orderservices?.paystackInfo"
+            [channels]="_orderservices?.paystackInfo?.channel"
+            [class]="'btn btn-primary hidden'"
+            (onClose)="_orderservices?.paymentCancel($event)"
+            (callback)="onSubmit(listingForm.value, $event)"
+          >
+            Subscribe to Featured Listing & Save Advert
+          </angular4-paystack>
+        </div>
+      </div>
+
     </div>
 
 </div>
