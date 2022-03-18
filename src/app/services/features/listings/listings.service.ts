@@ -144,7 +144,8 @@ export class ListingsService {
     return await new Promise(async (resolve: any, reject: any) => {
       this.loader.listings = true;
       try {
-        const resp: any = await this.api.post('listings', data)
+        const resp: any = await this.api.post('listings', data);
+        console.log(resp)
         if(resp.error) throw new Error(resp.error);
 
         resolve(resp.message);

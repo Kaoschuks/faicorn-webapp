@@ -17,7 +17,7 @@
             </tr>
           </thead>
 
-          <tbody *ngFor="let order of ordersService.orders">
+          <tbody *ngFor="let order of ordersService.orders | paginate: { itemsPerPage: limit, currentPage: p }">
             
             <tr>
               <td>
@@ -69,9 +69,11 @@
                 </a>
               </td>
             </tr>
+            <pagination-controls *ngIf="ordersService.orders.length > 5" (pageChange)="p = $event"></pagination-controls>
           </tbody>
         </table>
       </div>
+      
     </div>
 </ng-template>
 

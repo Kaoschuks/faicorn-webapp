@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
-import { FilterComponent } from '../../ui/filter/filter.component';
 
 @Component({
   selector: 'ads-listing',

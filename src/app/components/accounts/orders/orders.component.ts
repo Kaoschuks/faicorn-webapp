@@ -7,6 +7,8 @@ import { OrdersService } from 'src/app/services/features/orders/orders.service';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
+  p: number = 1;
+  limit: number = 10;
 
   constructor(
     public ordersService: OrdersService

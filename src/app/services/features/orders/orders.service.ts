@@ -12,7 +12,7 @@ export class OrdersService {
   paystackInfo: any = {
     amount: 1000,
     email: 'jasonaddy51@gmail.com',
-    currency: 'GHS',
+    currency: 'NGN',
     channel: ['bank'],
     ref: ''
   }
@@ -46,7 +46,7 @@ export class OrdersService {
         const resp: any = await this.api.post('orders', data);
         if(resp.error) throw new Error(resp.error);
 
-        resolve(resp.message)
+        resolve(resp)
       }catch(ex: any) {
 
         reject({
@@ -98,31 +98,20 @@ export class OrdersService {
           "orderid": order_resp.orderid,
           "transid": data.ref,
           "summary": "Transaction for "+ name,
-          "amount": data.amount,
+          "amount": this.paystackInfo.amount,
           "status": data.status,
           "uid": "",
           "transaction_info": JSON.stringify({'source': 'paystack'})
         })
-        console.log('Created Order: ' + order_resp)
-        console.log('Saved Transaction: ' + trans_resp.message)
+        if(trans_resp.error) throw new Error(trans_resp.error);
+
+        resolve(trans_resp)
       }catch(ex: any) {
 
         reject({
-          error: ex.message || ex.error || ex
+          error: ex.message || ex.error || ex || 'Error in saving orders'
         })
       }
     })
   }
 }
-
-
-// let trx = {
-//   orderid: '',
-//   transid: data?.transaction,
-//   summary: '',
-//   amount: this.paystackInfo.amount,
-//   status: data?.status,
-//   uid: '',
-//   transaction_info: {'source': 'paystack'},
-// }
-// console.log(trx)

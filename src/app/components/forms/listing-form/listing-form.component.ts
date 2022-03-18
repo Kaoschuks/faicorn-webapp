@@ -137,9 +137,9 @@ export class ListingFormComponent implements OnInit {
 
     let ads_id = this._globals.url.split('/')[4];
     const resp = (this._globals.url.split('/')[3] !== 'edit' ? await this._listingservices.postlistings(formData) : await this._listingservices.editlistingbyId(ads_id, formData));
+    (resp == 'ads info updated' ? this.toastr.success('Ads Info updated successfully.', 'Ad Updated!') : this.toastr.success('Ad posted successfully.', 'Ad Posted!'))
     this.listingForm.reset();
     this.images = [];
-    (resp == 'ads info updated' ? this.toastr.success('Ads Info updated successfully.', 'Ad Updated!') : this.toastr.success('Ad posted successfully.', 'Ad Posted!'))
   }
 
   async onEditFillForm() {
