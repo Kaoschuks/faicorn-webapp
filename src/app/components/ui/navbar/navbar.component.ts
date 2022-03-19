@@ -37,7 +37,6 @@ export class NavbarComponent implements OnInit {
   }
 
   removeShow(){
-    console.log('Working')
     const nav = document.querySelector('nav');
     const showClass = document.getElementById('navbarsExample06') as HTMLElement;
     if (nav == document.activeElement) return

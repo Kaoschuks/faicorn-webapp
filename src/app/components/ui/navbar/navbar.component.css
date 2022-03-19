@@ -14,33 +14,21 @@ form input {
   width: auto !important;
 }
 
-.navbar-collapse {
-  background-color: transparent !important;
-}
-
-.navbar .dropdown-menu::before {
-  transition: 300ms all ease-in-out !important;
-}
-
-.mobile-form {
+.mobile-nav {
   display: none;
 }
 
 @media screen and (max-width: 992px) {
-  .mobile-form {
+  .mobile-nav {
     display: block;
   }
 
-  .large-screen-form {
+  .desktop-nav {
     display: none;
   }
 
-  .nav-item.form-search-input {
-    width: auto !important;
-  }
-
-  .navbar-nav {
-    padding-top: 4em;
+  .navbar-nav.mobile-nav {
+    padding: 1em 0em;
   }
 
   .navbar-collapse {
@@ -52,29 +40,46 @@ form input {
     display: block;
     padding: 20px 0px;
   }
+
   .navbar-collapse.collapsing {
     height: 100vh !important;
     margin-right: 50%;
     right: 50%;
     transition: all 0.2s ease-in-out;
   }
+
   .navbar-collapse.show {
     right: 20%;
     height: 100vh;
-    background-color: #c00000 !important;
+    background-color: white !important;
     box-shadow: 0 0 10px black;
+    overflow-y: scroll;
   }
 
-  .nav-item:nth-child(2),
-  .nav-item:nth-child(3),
-  .nav-item:nth-child(4),
-  .nav-item:nth-child(5) {
+  .nav-item {
     padding-bottom: 1em;
   }
 
   .navbar-toggler.close {
     float: right;
     margin-right: 20px;
+  }
+
+  .lg-categories {
+    display: none;
+  }
+
+  .sm-categories {
+    display: block;
+  }
+
+  .nav-item {
+    width: auto !important;
+  }
+
+  .close-sidebar {
+    display: flex;
+    justify-content: end;
   }
 }
 
