@@ -26,12 +26,21 @@ export class NavbarComponent implements OnInit {
 
   async ngOnInit() {
     await this._listingservices.getlistingscategories()
-    const resp: any = await this._userService.isLoggedOn()
+    const resp: any = await this._userService.isLoggedOn();
+    this.removeShow();
   }
 
   submitSearch(){
     // console.log(this.searchForm.value.search);
     this.router.navigate([`/search/${this.searchForm.value.search}`])
     this.searchForm.reset();
+  }
+
+  removeShow(){
+    console.log('Working')
+    const nav = document.querySelector('nav');
+    const showClass = document.getElementById('navbarsExample06') as HTMLElement;
+    if (nav == document.activeElement) return
+    showClass.classList.remove("show");
   }
 }

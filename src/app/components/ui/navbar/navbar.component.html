@@ -10,7 +10,8 @@
             </button>
 
             <div class="collapse navbar-collapse in" id="navbarsExample06">
-                <ul class="navbar-nav justify-content-end ms-auto me-auto mb-2 mb-xl-0">
+                <a href="javascript:void(0);" class="navbar-toggler close" (click)="removeShow()"><span class="bi bi-x-lg text-muted"></span></a>
+                <ul class="navbar-nav justify-content-end mb-2 mb-xl-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fs-14 bold text-white" href="#" id="dropdown06" data-bs-toggle="dropdown"
                             aria-expanded="false"> Categories</a>
@@ -24,7 +25,7 @@
                           <div class="input-group d-flex justify-content-center align-items-center">
                             <input type="search" placeholder="Search for a product" class="form-control form-control-sm bg-soft-light mt-1" formControlName="search">
                             <span class="input-group-btn">
-                              <button class="btn btn-default fs-14 text-danger bg-white bold" type="button">Go!</button>
+                              <button class="btn btn-default fs-14 text-danger bg-white bold" type="submit">Go!</button>
                             </span>
                           </div>
                         </form>    
@@ -115,6 +116,28 @@
 
                 <!-- <ul class="navbar-nav justify-content-end me-auto mb-2 mb-xl-0">
                 </ul> -->
+            </div>
+            
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <div>
+                  Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+                </div>
+                <div class="dropdown mt-3">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                    Dropdown button
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+                </div>
+              </div>
             </div>
         </div>
     </nav>
