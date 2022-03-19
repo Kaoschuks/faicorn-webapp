@@ -3,9 +3,24 @@
   margin-top: 20px !important;
 }
 
+.media > .d-sm-flex {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
 @media screen and (max-width: 992px) {
   h3.mt-5 {
     margin-top: 0px !important;
     font-size: calc(25px + 6 * ((100vw - 320px) / 680));
+  }
+
+  .media {
+    text-align: center;
+  }
+
+  .media > .d-sm-flex {
+    display: flex;
+    justify-content: space-around !important;
   }
 }
