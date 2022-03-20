@@ -31,7 +31,7 @@ export class ListingFormComponent implements OnInit {
     gender: new FormControl("", Validators.compose([ Validators.required ])),
     tags: new FormControl([], Validators.compose([ Validators.required ])),
     brands: new FormControl("", Validators.compose([ Validators.required ])),
-    isFeatured: new FormControl(false, Validators.compose([ Validators.required ])),
+    isFeatured: new FormControl('false', Validators.compose([ Validators.required ])),
     featuredName: new FormControl("")
   });
   validation_messages = {
@@ -132,7 +132,7 @@ export class ListingFormComponent implements OnInit {
     formData.images = this.images;
 
     // check if transaction was saved before continue for featured listings
-    console.log(formData)
+    // console.log(formData)
     if(formData.isFeatured == 'true') await this._orderservices.saveTransaction(ref, formData.name)
 
     let ads_id = this._globals.url.split('/')[4];
