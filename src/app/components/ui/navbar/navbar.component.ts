@@ -52,11 +52,5 @@ export class NavbarComponent implements OnInit {
   onRouterNavigate(){
     let collapse = document.getElementById('navbarsExample06');
     collapse?.classList.remove('show');
-    // this.router.events.subscribe((event) => {
-    //   if(event instanceof NavigationStart){
-    //     console.log(collapse?.classList.contains('show'))
-    //     if (!collapse?.classList.contains('show')) return;
-    //   }
-    // })
   }
 }
