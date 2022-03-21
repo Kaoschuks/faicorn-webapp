@@ -1,5 +1,5 @@
 .no-content {
-    height: 100vh;
+    min-height: 20vh;
 }
 .no-content img {
     margin-top: 4vh !important;

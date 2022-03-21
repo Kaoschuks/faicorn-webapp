@@ -87,3 +87,7 @@ form input {
     display: block;
   }
 }
+
+.text-white {
+  color: #fff !important;
+}

@@ -29,7 +29,7 @@ img {
       width: 18%;
       margin-right: 2.5%; }
       .preview-thumbnail.nav-tabs li img {
-        max-width: 100%;
+        height: 100px;
         display: block; }
       .preview-thumbnail.nav-tabs li a {
         padding: 0;

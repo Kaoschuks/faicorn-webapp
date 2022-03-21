@@ -18,7 +18,6 @@ export class DetailPagesComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    console.log(this.url.length)
     if(this.url.length === 4) await this._listingservices.getlistings('/all', `?brands=${this.url[this.url.length - 2]}&limit=1000`)
     if(this.url.length === 4) await this._listingservices.getlistings(`/${this.url[this.url.length - 1]}`, ``, 'single')
     // this.getAds()

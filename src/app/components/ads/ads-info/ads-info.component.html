@@ -8,7 +8,10 @@
         <div *ngFor="let img of adsInfo?.images;let i = index" class="tab-pane" [ngClass]="(i == 0) ? 'active' : ''" role="tabpanel" [id]="'pic' + i"><img [src]="img" /></div>
     </div>
     <ul class="preview-thumbnail nav nav-tabs" role="tablist">
-        <li [ngClass]="(i == 0) ? 'nav-item active' : ''" *ngFor="let img of adsInfo?.images;let i = index"><a [attr.data-bs-target]="'#pic' + i" data-bs-toggle="tab" role="tab"><img [src]="img" /></a>
+        <li [ngClass]="(i == 0) ? 'nav-item active' : ''" *ngFor="let img of adsInfo?.images;let i = index">
+            <a [attr.data-bs-target]="'#pic' + i" data-bs-toggle="tab" role="tab">
+                <img [src]="img" />
+            </a>
         </li>
     </ul>
 
@@ -18,10 +21,9 @@
 
 <div class="row">
     <div class="col-md-12 mb-5 mb-md-0">
-        <dl class="row">
+        <!-- <dl class="row">
             <dt class="col-sm-2">Share</dt>
             <dd class="col-sm-8">
-                <!-- Socials -->
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item">
                         <a class="btn btn-soft-secondary btn-xs btn-icon" href="#">
@@ -44,17 +46,14 @@
                         </a>
                     </li>
                 </ul>
-                <!-- End Socials -->
             </dd>
-        </dl>
+        </dl> -->
 
         <dl class="row">
             <dt class="col-sm-2">Brand Name</dt>
-            <dd class="col-sm-8">{{adsInfo?.brands}}</dd>
-        </dl>
-        <dl class="row">
+            <dd class="col-sm-4">{{adsInfo?.brands}}</dd>
             <dt class="col-sm-2">Tags</dt>
-            <dd class="col-sm-8"><span *ngFor="let tag of adsInfo?.tags">{{tag}}</span></dd>
+            <dd class="col-sm-4"><span *ngFor="let tag of adsInfo?.tags">{{tag}}</span></dd>
         </dl>
         <!-- End Row -->
 
