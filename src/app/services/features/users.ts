@@ -129,7 +129,7 @@ export class UsersService {
                 if (resp.error) throw new Error(resp.error || resp);
 
                 this.activities = resp.message;
-                console.log(resp)
+                // console.log(resp)
                 resolve(resp.message)
             } catch (ex: any) {
                 console.log(ex)

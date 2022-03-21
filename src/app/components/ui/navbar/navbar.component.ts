@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 import { UsersService } from 'src/app/services/features/users';
 
@@ -21,8 +21,7 @@ export class NavbarComponent implements OnInit {
     public _listingservices: ListingsService,
     private formBuilder: FormBuilder,
     private router: Router
-
-  ) { }
+  ) { document.addEventListener('click', this.offClickHandler.bind(this)); this.onRouterNavigate();}
 
   async ngOnInit() {
     await this._listingservices.getlistingscategories()
@@ -37,10 +36,21 @@ export class NavbarComponent implements OnInit {
   }
 
   removeShow(){
-    console.log('Working')
     const nav = document.querySelector('nav');
     const showClass = document.getElementById('navbarsExample06') as HTMLElement;
     if (nav == document.activeElement) return
     showClass.classList.remove("show");
+  }
+
+  offClickHandler(event:any) {
+    let collapse = document.getElementById('navbarsExample06');
+    if (!collapse?.contains(event.target)) { // check click origin
+        collapse?.classList.remove('show');
+    }
+  }
+
+  onRouterNavigate(){
+    let collapse = document.getElementById('navbarsExample06');
+    collapse?.classList.remove('show');
   }
 }

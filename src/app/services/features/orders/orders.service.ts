@@ -12,7 +12,7 @@ export class OrdersService {
   paystackInfo: any = {
     amount: 1000,
     email: 'jasonaddy51@gmail.com',
-    currency: 'NGN',
+    currency: 'GHS',
     channel: ['bank'],
     ref: ''
   }
@@ -94,9 +94,18 @@ export class OrdersService {
           "amount_paid": this.paystackInfo.amount
         })
         // save transaction information
+        console.log({
+          "orderid": order_resp.orderid,
+          "transid": data.reference,
+          "summary": "Transaction for "+ name,
+          "amount": this.paystackInfo.amount,
+          "status": data.status,
+          "uid": "",
+          "transaction_info": JSON.stringify({'source': 'paystack'})
+        })
         const trans_resp: any = await this.api.post('transactions', {
           "orderid": order_resp.orderid,
-          "transid": data.ref,
+          "transid": data.reference,
           "summary": "Transaction for "+ name,
           "amount": this.paystackInfo.amount,
           "status": data.status,

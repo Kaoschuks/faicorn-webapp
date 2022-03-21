@@ -1,17 +1,36 @@
 <ul class="list-unstyled" *ngIf="ads.length > 0">
-    <li *ngFor="let ad of ads | search: { price: _listingservices.filterSearch.price } | paginate: { itemsPerPage: limit, currentPage: p }" class="card card-bordered mb-3 no-shadow">
-        <a routerLink="/{{ad?.category?.name?.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.brands?.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.ads_id}}" class="row">
-            <div class="col-10">
-                <img [src]="ad?.images[0]" style="height: 150px;width: 150px;float: left; margin-left: 10px; margin-right: 20px" class="mr-3 pull-left" alt="...">
-                <h2 class="fs-20 text-dark bold">{{ad?.name | slice: 0: 100}}</h2>
-                <p class="fs-12 text-dark" style="margin-top: -5px">{{ad?.description | slice: 0: 150}}</p>
-                <p class="fs-14 text-dark bold" style="margin-top: -10px">{{ad?.category?.name | titlecase}} - {{ad?.brands | titlecase}}</p>
-                <p class="fs-12 bold" style="margin-top: 5px">Greater Accra, Accra Metropolis</p>
+    <li *ngFor="let ad of ads | search: { price: _listingservices.filterSearch.price } | paginate: { itemsPerPage: limit, currentPage: p }" class="card card-bordered mb-3">
+        <a routerLink="/{{ad?.category?.name?.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.brands?.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.ads_id}}" class="row large-screen">
+            <div class="d-sm-flex justify-content-between">
+                <div class="media d-block d-sm-flex">
+                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img [src]="ad?.images[0]" style="height: 200px;width: 200px; border-radius: .25rem .25rem .25rem .25rem;" class="mr-3 " alt="..."></a>
+                    <div class="row p-3">
+                        <h2 class="fs-20 text-dark bold">{{ad?.name | slice: 0: 100}}</h2>
+                        <p class="fs-12 text-dark" style="margin-top: -5px">{{ad?.description | slice: 0: 150}}</p>
+                        <p class="fs-14 text-dark bold" style="margin-top: -10px">{{ad?.category?.name | titlecase}} - {{ad?.brands | titlecase}}</p>
+                        <p class="fs-12 bold" style="margin-top: 5px">Greater Accra, Accra Metropolis</p>
+                    </div>
+                    <div class="d-sm-flex justify-content-around">
+                        <h3 class="mt-5 mr-2">{{ad?.price}}</h3>
+                        <div class="mt-1 mb-3" *ngIf="ad?.isFeatured">
+                            <button  class="btn btn-success btn-xs bold">Featured</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-12 col-lg-2" align="center">
-                <h3 class="mt-5 mr-2">{{ad?.price}}</h3>
-                <div class="mt-1 mb-3">
-                    <button *ngIf="ad?.isFeatured" class="btn btn-success btn-xs bold">Featured</button>
+        </a>
+        <a routerLink="/{{ad?.category?.name?.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.brands?.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.ads_id}}" class="mobile-screen">
+            <div class="row justify-content-center">
+                <div class="col-4 product-img-holder">
+                    <a class="product-img" href="#">
+                        <button *ngIf="ad?.isFeatured" class="btn btn-success btn-xs bold">Featured</button>
+                        <img [src]="ad?.images[0]" alt="...">
+                    </a>
+                </div>
+                <div class="col-8">
+                    <p class="fs-12 pt-2 bold">Greater Accra, Accra Metropolis</p>
+                    <p class="fs-12 text-dark pr-2">{{ad?.description | slice: 0: 50}}</p>
+                    <h3 class="fs-12">{{ad?.price}}</h3>
                 </div>
             </div>
         </a>

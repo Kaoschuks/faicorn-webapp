@@ -9,114 +9,229 @@
                 <span class="navbar-toggler-icon text-white"></span>
             </button>
 
-            <div class="collapse navbar-collapse in" id="navbarsExample06">
-                <a href="javascript:void(0);" class="navbar-toggler close" (click)="removeShow()"><span class="bi bi-x-lg text-muted"></span></a>
-                <ul class="navbar-nav justify-content-end mb-2 mb-xl-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fs-14 bold text-white" href="#" id="dropdown06" data-bs-toggle="dropdown"
-                            aria-expanded="false"> Categories</a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown06">
-                          <a *ngFor="let category of _listingservices?.categories" class="dropdown-item" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">{{category?.name | titlecase}}</a>
-                        </ul>
-                    </li>
-                    <li class="nav-item form-search-input">
-                      <div class="col-lg-6 mobile-form">
-                        <form [formGroup]="searchForm" (ngSubmit)="submitSearch()" class="form-inline">
-                          <div class="input-group d-flex justify-content-center align-items-center">
-                            <input type="search" placeholder="Search for a product" class="form-control form-control-sm bg-soft-light mt-1" formControlName="search">
-                            <span class="input-group-btn m-1">
-                              <button class="btn btn-default fs-14 text-danger bg-white bold" type="submit">Go!</button>
-                            </span>
-                          </div>
-                        </form>    
-                      </div>
-                      <form [formGroup]="searchForm" (ngSubmit)="submitSearch()" class="form-inline large-screen-form">
-                        <input type="search" placeholder="Search for a product" class="form-control form-control-sm bg-soft-light mt-1" formControlName="search">
-                      </form>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <!-- Desktop View -->
+            <ul class="navbar-nav justify-content-end mb-2 mb-xl-0 desktop-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fs-14 bold text-white" href="#" id="dropdown06" data-bs-toggle="dropdown"
+                        aria-expanded="false"> Categories</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown06">
+                      <a *ngFor="let category of _listingservices?.categories" class="dropdown-item" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">{{category?.name | titlecase}}</a>
+                    </ul>
+                </li>
+                <li class="nav-item form-search-input">
+                  <form [formGroup]="searchForm" (ngSubmit)="submitSearch()" class="form-inline large-screen-form">
+                    <input type="search" placeholder="Search for a product" class="form-control form-control-sm bg-soft-light mt-1" formControlName="search">
+                  </form>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/>
+                    <span class="fs-14 text-white">English (US)</span>
+                  </a>
+
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center active" href="#">
                         <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/>
-                        <span class="fs-14  text-white">English (US)</span>
+                        <span>English (US)</span>
                       </a>
-
-                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li>
-                          <a class="dropdown-item d-flex align-items-center active" href="#">
-                            <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/>
-                            <span>English (US)</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                            <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Image description" width="16"/>
-                            <span>Deutsch</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                            <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/es.svg" alt="Image description" width="16"/>
-                            <span>Español</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
-                            <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Image description" width="16"/>
-                            <span>中文 (繁體)</span>
-                          </a>
-                        </li>
-                      </ul>
                     </li>
-                    <li class="nav-item dropdown" *ngIf="_userService?.user">
-                      <a class="nav-link dropdown-toggle" href="#" id="footerAccount" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="fs-14 text-white">Accounts</span>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                        <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Image description" width="16"/>
+                        <span>Deutsch</span>
                       </a>
-
-                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="footerAccount">
-                        <li>
-                          <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/overview">
-                            <span>Overview</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/profile">
-                            <span>Profile</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/listings">
-                            <span>Listings</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/messages">
-                            <span>Messages</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/orders">
-                            <span>Orders</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/settings">
-                            <span>Settings</span>
-                          </a>
-                        </li>
-                      </ul>
                     </li>
-                    <li class="nav-item" *ngIf="!_userService?.user">
-                        <a class="fs-14 btnbtn-outline-danger text-white btn-xs bold" routerLink="/login">Sign In</a>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                        <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/es.svg" alt="Image description" width="16"/>
+                        <span>Español</span>
+                      </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="fs-14 btn bg-white text-danger btn-xs bold" routerLink="/accounts/listings/add">Post an Ad</a>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                        <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Image description" width="16"/>
+                        <span>中文 (繁體)</span>
+                      </a>
                     </li>
-                </ul>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown" *ngIf="_userService?.user">
+                  <a class="nav-link dropdown-toggle" href="#" id="footerAccount" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="fs-14 text-white">Accounts</span>
+                  </a>
 
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="footerAccount">
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/overview">
+                        <span>Overview</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/profile">
+                        <span>Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/listings">
+                        <span>Listings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/messages">
+                        <span>Messages</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/orders">
+                        <span>Orders</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/settings">
+                        <span>Settings</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item" *ngIf="!_userService?.user">
+                    <a class="fs-14 btnbtn-outline-danger text-white btn-xs bold" routerLink="/login">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="fs-14 btn bg-white text-danger btn-xs bold" routerLink="/accounts/listings/add">Post an Ad</a>
+                </li>
+            </ul>
+            <!-- Desktop View Ends -->
 
-                <!-- <ul class="navbar-nav justify-content-end me-auto mb-2 mb-xl-0">
-                </ul> -->
+            <!-- Mobile View -->
+            <div class="collapse navbar-collapse in" id="navbarsExample06">
+              <div class="close-sidebar">
+                <a href="javascript:void(0);" class="navbar-toggler close" (click)="removeShow()"><span class="bi bi-x-lg text-muted"></span></a>
+              </div>
+                
+              <ul class="navbar-nav justify-content-end mb-2 mb-xl-0 mobile-nav">
+                <li class="nav-item">
+                  <div class="p-2">
+                    <form [formGroup]="searchForm" (ngSubmit)="submitSearch()" class="form-inline">
+                      <div class="input-group d-flex justify-content-center align-items-center">
+                        <input type="search" placeholder="Search for a product" class="form-control form-control-sm bg-soft-light mt-1 text-dark" formControlName="search">
+                        <span class="input-group-btn m-1">
+                          <button class="btn btn-default fs-14 text-danger bg-white bold" type="submit">Go!</button>
+                        </span>
+                      </div>
+                    </form>    
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <div class="accordion" id="accordionExample">
+                    <div class="accordion-item" *ngFor="let category of _listingservices?.categories; let i = index">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed fs-14 text-dark" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i" aria-expanded="false" [attr.aria-controls]="'collapse'+i">
+                          {{category?.name | titlecase}}
+                        </button>
+                      </h2>
+                      <div [id]="'collapse'+i" class="accordion-collapse collapse" [ngClass]="{ 'show': i == null }" [attr.aria-labelledby]="'heading'+i" data-bs-parent="#accordionExample">
+                        <a class="dropdown-item" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}" (click)="onRouterNavigate()">All {{category?.name | titlecase}}</a>
+                        <div class="accordion-body text-danger" *ngFor="let subcategory of category?.subcategory">
+                          <a class="dropdown-item" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}" (click)="onRouterNavigate()">{{subcategory?.name | titlecase}}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed fs-14 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          English (US)
+                        </button>
+                      </h2>
+                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <li>
+                            <a class="dropdown-item d-flex align-items-center active" href="#">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/>
+                              <span>English (US)</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Image description" width="16"/>
+                              <span>Deutsch</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/es.svg" alt="Image description" width="16"/>
+                              <span>Español</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                              <img class="avatar avatar-xss avatar-circle me-2" src="assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Image description" width="16"/>
+                              <span>中文 (繁體)</span>
+                            </a>
+                          </li>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item dropdown" *ngIf="_userService?.user">
+                  <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed fs-14 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Accounts
+                        </button>
+                      </h2>
+                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <li>
+                            <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/overview" (click)="onRouterNavigate()">
+                              <span>Overview</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/profile" (click)="onRouterNavigate()">
+                              <span>Profile</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/listings" (click)="onRouterNavigate()">
+                              <span>Listings</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/messages" (click)="onRouterNavigate()">
+                              <span>Messages</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/orders" (click)="onRouterNavigate()">
+                              <span>Orders</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item d-flex align-items-center" routerLink="/accounts/settings" (click)="onRouterNavigate()">
+                              <span>Settings</span>
+                            </a>
+                          </li>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item" *ngIf="!_userService?.user">
+                    <a class="fs-14 btnbtn-outline-danger text-dark btn-xs bold" routerLink="/login" (click)="onRouterNavigate()">Sign In</a>
+                </li>
+                <li class="nav-item p-2">
+                    <a class="fs-14 btn bg-danger btn-xs bold text-white" routerLink="/accounts/listings/add" (click)="onRouterNavigate()">Post an Ad</a>
+                </li>
+              </ul>
             </div>            
+            <!-- Mobile View Ends -->
         </div>
     </nav>
     

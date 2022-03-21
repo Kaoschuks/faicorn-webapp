@@ -31,7 +31,7 @@ export class ListingFormComponent implements OnInit {
     gender: new FormControl("", Validators.compose([ Validators.required ])),
     tags: new FormControl([], Validators.compose([ Validators.required ])),
     brands: new FormControl("", Validators.compose([ Validators.required ])),
-    isFeatured: new FormControl(false, Validators.compose([ Validators.required ])),
+    isFeatured: new FormControl('false', Validators.compose([ Validators.required ])),
     featuredName: new FormControl("")
   });
   validation_messages = {
