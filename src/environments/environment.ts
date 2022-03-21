@@ -13,7 +13,7 @@ export const environment = {
     upload_preset: 'akzjs6d9'
   },
   paystack: {
-    key: 'pk_test_02eeec488ebae76eb4d4d5ade993b1ceb9068a91'
+    key: 'pk_test_168b9a3d26c300225684aa04a01160a700ff9510'
   },
   firebase: {
     apiKey: "AIzaSyBS3Y-qGHEtojlrvG5fB7FGRR9SykOjWB0",
