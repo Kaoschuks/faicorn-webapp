@@ -14,7 +14,7 @@
               <!-- Media -->
               <div class="d-flex align-items-center mb-3" >
                 <div class="flex-shrink-0">
-                  <img class="avatar avatar-sm avatar-circle" [src]="review?.user?.image" alt="Image Description">
+                  <img class="avatar avatar-sm avatar-circle" [src]="review?.user?.image || 'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_1280.png'" alt="Image Description">
                 </div>
   
                 <div class="flex-grow-1 ms-3">
@@ -42,10 +42,11 @@
 
               <div class="d-flex gap-2">
                 <a class="btn btn-white btn-xs" href="javascript:void(0);" (click)="addAComment(reviewForm.value, 'like')" >
-                  <i class="bi-hand-thumbs-up me-1"></i> Yes <span>(45)</span>
+                  <i class="bi-hand-thumbs-up me-1"></i> Yes
                 </a>
                 <a class="btn btn-white btn-xs" href="javascript:void(0);" (click)="addAComment(reviewForm.value, 'dislike')">
-                  <i class="bi-hand-thumbs-down me-1"></i> No <span>(21)</span>
+                  <i class="bi-hand-thumbs-down me-1"></i> No 
+                  <!-- <span>(21)</span> -->
                 </a>
               </div>
             </div>
