@@ -27,7 +27,7 @@ export class ReviewListingComponent implements OnInit {
   constructor(
     public _listingservices: ListingsService,
     private _global: GlobalsService,
-    private usersService: UsersService,
+    public usersService: UsersService,
     private toastr: ToastrService
   ) { }
 

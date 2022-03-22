@@ -56,7 +56,7 @@
             <form [formGroup]="reviewForm" (ngSubmit)="addAComment(reviewForm.value, 'comments')">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="flex-shrink-0">
-                  <img class="avatar avatar-sm avatar-circle" [src]="listings?.user?.image" alt="Image Description">
+                  <img class="avatar avatar-sm avatar-circle" [src]="usersService.user?.image" alt="Image Description">
                 </div>
   
                 <div class="flex-grow-1 ms-3">
