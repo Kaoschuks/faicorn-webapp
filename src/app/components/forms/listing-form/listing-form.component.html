@@ -44,6 +44,14 @@
                               <option *ngFor="let city of cities">{{city.name}}</option>
                             </select>
                           </div>
+                          <div class="col-md-6">
+                            <label class="form-label">Gender</label>
+                              <select class="form-control bg-muted" formControlName="gender">
+                                <option value="">Choose a Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                              </select>
+                          </div>
                         </div>
                     </div>
                   </div>
