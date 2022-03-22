@@ -50,10 +50,19 @@
                 </a>
               </div>
             </div>
+            <div class="d-flex align-items-center pt-3 pb-3" *ngIf="!usersService.user">
+              <span class="small me-2">Want to review this item? Login then!!</span>
+
+              <div class="d-flex gap-2">
+                <a class="btn btn-primary btn-xs text-white bold" href="javascript:void(0);" (click)="addAComment(reviewForm.value, 'like')" >
+                  Sign In
+                </a>
+              </div>
+            </div>
             <!-- End Media -->
             <!-- End Item -->
             <!-- Review-Form -->
-            <form [formGroup]="reviewForm" (ngSubmit)="addAComment(reviewForm.value, 'comments')">
+            <form [formGroup]="reviewForm" (ngSubmit)="addAComment(reviewForm.value, 'comments')" *ngIf="usersService.user" id="reviewForm">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="flex-shrink-0">
                   <img class="avatar avatar-sm avatar-circle" [src]="usersService.user?.image" alt="Image Description">

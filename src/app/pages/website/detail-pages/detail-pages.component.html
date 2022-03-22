@@ -8,15 +8,15 @@
         <div class="col-lg-8">
             <ads-info [adsInfo]="_listingservices?.listingInfo"></ads-info>
 
-            <br />
-            <br />
-            <br />
-            <div class="row align-items-center mb-5 mt-5">
+            <br class="large-screen">
+            <br class="large-screen">
+            <br class="large-screen">
+            <div class="row align-items-center mb-5 mt-5 large-screen">
                 <div class="col-sm mb-3 mb-sm-0">
                   <h6 class="mb-0 fs-20 bold">Related Listings</h6>
                 </div>
-              </div>
-            <ads-listing [limit]="3" [ads]="_listingservices?.listings"></ads-listing>
+            </div>
+            <ads-listing [limit]="3" [ads]="_listingservices?.listings" class="large-screen"></ads-listing>
         </div>
 
         <div class="col-lg-4">
@@ -24,7 +24,7 @@
             <br />
             <div class="card mb-3">
                 <div class="card-body">
-                  <h3 class="card-title">{{_listingservices?.listingInfo?.price}}</h3>
+                  <h3 class="card-title large-screen">{{_listingservices?.listingInfo?.price}}</h3>
                   <div class="d-grid gap-2">
                     <button class="btn btn-outline-danger btn-xs fs-16 bold" type="button">Make an Offer</button>
                   </div>
