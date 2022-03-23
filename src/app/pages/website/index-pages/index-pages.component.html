@@ -85,9 +85,12 @@
                       </a>
           
                       <div [id]="generateID(category?.name)" class="nav-collapse collapse" [ngClass]="(category?.subcategory?.length > 0) ? 'show' : ''" data-bs-parent="#shopNavCategories">
-                          <div id="shopNavCategoriesOne">
-                              <a *ngFor="let subcategory of category?.subcategory" class="nav-link" routerLink="/{{subcategory?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">{{subcategory?.name | titlecase}}</a>
-                          </div>
+                        <div id="shopNavCategoriesOne">
+                            <a class="nav-link" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">All {{category?.name.replace('&', 'and') | titlecase}}</a>
+                        </div>
+                        <div id="shopNavCategoriesOne">
+                            <a *ngFor="let subcategory of category?.subcategory" class="nav-link" routerLink="/{{subcategory?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">{{subcategory?.name.replace('&', 'and') | titlecase}}</a>
+                        </div>
                       </div>
                       <!-- End Collapse -->
                     </div>

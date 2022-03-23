@@ -44,6 +44,9 @@ import { Angular4PaystackModule } from 'angular4-paystack';
 import { environment } from 'src/environments/environment';
 import { SearchPipe } from '../pipes/search';
 import { ActivitiesComponent } from './accounts/activities/activities.component';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
 
 export const component: Array<any> = [
 	SearchPipe,
@@ -64,7 +67,11 @@ export const component: Array<any> = [
 		NgxPaginationModule,
 		RouterModule,
 		NgxSpinnerModule,
-		ReactiveFormsModule,
+		ReactiveFormsModule, ToastrModule.forRoot({
+			timeOut: 3000,
+			preventDuplicates: true,
+			positionClass: 'toast-bottom-left'
+		}), NgxSkeletonLoaderModule,
 		Angular4PaystackModule.forRoot(environment.paystack.key),
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],

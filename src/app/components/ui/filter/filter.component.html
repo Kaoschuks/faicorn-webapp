@@ -85,16 +85,16 @@
                 <!-- Collapse -->
                 <a *ngIf="category?.subcategory?.length > 0" class="nav-link collapsed" [ngClass]="(category?.subcategory?.length > 0) ? 'dropdown-toggle' : ''" [attr.data-bs-target]="generateID('#' + category?.name)" role="button" data-bs-toggle="collapse"
                     aria-expanded="false" [attr.aria-controls]="generateID(category?.name)">
-                     {{category?.name | titlecase}}
+                     {{category?.name.replace('&', 'and') | titlecase}}
                 </a>
                 <a *ngIf="category?.subcategory?.length == 0" class="nav-link collapsed" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">
-                     {{category?.name | titlecase}}
+                     {{category?.name.replace('&', 'and') | titlecase}}
                 </a>
     
                 <div *ngIf="category?.subcategory?.length > 0" [id]="generateID(category?.name)" class="nav-collapse collapse" data-bs-parent="#shopNavCategories">
                     <div id="shopNavCategoriesOne">
-                        <a class="nav-link" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">All {{category?.name | titlecase}}</a>
-                        <a *ngFor="let subcategory of category?.subcategory" class="nav-link" routerLink="/{{subcategory?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">{{subcategory?.name | titlecase}}</a>
+                        <a class="nav-link" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">All {{category?.name.replace('&', 'and') | titlecase}}</a>
+                        <a *ngFor="let subcategory of category?.subcategory" class="nav-link" routerLink="/{{subcategory?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">{{subcategory?.name.replace('&', 'and') | titlecase}}</a>
                     </div>
                 </div>
                 <!-- End Collapse -->
