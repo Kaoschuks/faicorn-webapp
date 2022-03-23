@@ -165,4 +165,8 @@ export class ListingFormComponent implements OnInit {
       this.toastr.error(ex.error || ex.message || ex, 'Error')
     }
   }
+
+  get country() { return this.listingForm.get('country'); }
+
+  get region() { return this.listingForm.get('region'); }
 }

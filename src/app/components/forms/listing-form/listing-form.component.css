@@ -9,3 +9,8 @@ a {
 .navigation-btn-double {
   padding: 0px 20px;
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
