@@ -57,14 +57,14 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end navigation-btn">
-                      <a class="fs-14 btn bg-danger text-white btn-sm bold collapsed" data-bs-target="#categoryCollapse" data-bs-toggle="collapse" aria-expanded="false" href="javascript:void(0);">Next</a>
+                      <a class="fs-14 btn bg-danger text-white btn-sm bold collapsed" [ngClass]="(listingForm.get('country')?.invalid && listingForm.get('region')?.invalid && listingForm.get('city')?.invalid) ? 'disabled' : ''" data-bs-target="#categoryCollapse" data-bs-toggle="collapse" aria-expanded="false" href="javascript:void(0);">Next</a>
                     </div>
                   </div>
                 </div>
               </div>
             </li>
           
-            <li class="step-item">
+            <li class="step-item" [ngClass]="(listingForm.get('country')?.invalid && listingForm.get('region')?.invalid && listingForm.get('city')?.invalid) ? 'disabled' : ''">
               <div class="step-content-wrapper">
                 <span class="step-icon step-icon-soft-primary">2</span>
                 <div class="step-content">
@@ -94,14 +94,14 @@
                     </div>
                     <div class="d-flex justify-content-between navigation-btn-double">
                       <a class="fs-14 btn bg-danger text-white btn-sm bold collapsed" data-bs-target="#locationCollapse" data-bs-toggle="collapse" aria-expanded="false" href="javascript:void(0);">Previous</a>
-                      <a class="fs-14 btn bg-danger text-white btn-sm bold collapsed" data-bs-target="#filesCollapse" data-bs-toggle="collapse" aria-expanded="false" href="javascript:void(0);">Next</a>
+                      <a class="fs-14 btn bg-danger text-white btn-sm bold collapsed" [ngClass]="listingForm.get('category')?.invalid ? 'disabled' : ''" data-bs-target="#filesCollapse" data-bs-toggle="collapse" aria-expanded="false" href="javascript:void(0);">Next</a>
                     </div>
                   </div>
                 </div>
               </div>
             </li>
 
-            <li class="step-item">
+            <li class="step-item" [ngClass]="listingForm.get('category')?.invalid ? 'disabled' : ''">
               <div class="step-content-wrapper">
                 <span class="step-icon step-icon-soft-primary">3</span>
                 <div class="step-content">
@@ -120,14 +120,14 @@
                     </div>
                     <div class="d-flex justify-content-between navigation-btn-double">
                       <a class="fs-14 btn bg-danger text-white btn-sm bold collapsed" data-bs-target="#categoryCollapse" data-bs-toggle="collapse" aria-expanded="false" href="javascript:void(0);">Previous</a>
-                      <a class="fs-14 btn bg-danger text-white btn-sm bold collapsed" data-bs-target="#advertCollapse" data-bs-toggle="collapse" aria-expanded="false" href="javascript:void(0);">Next</a>
+                      <a class="fs-14 btn bg-danger text-white btn-sm bold collapsed" [ngClass]="images.length == 0 ? 'disabled' : ''" data-bs-target="#advertCollapse" data-bs-toggle="collapse" aria-expanded="false" href="javascript:void(0);">Next</a>
                     </div>
                   </div>
                 </div>
               </div>
             </li>
           
-            <li class="step-item">
+            <li class="step-item" [ngClass]="images.length == 0 ? 'disabled' : ''">
               <div class="step-content-wrapper">
                 <span class="step-icon step-icon-soft-primary">4</span>
                 <div class="step-content">
@@ -161,14 +161,14 @@
                     </div>
                     <div class="d-flex justify-content-between navigation-btn-double">
                       <a class="fs-14 btn bg-danger text-white btn-sm bold collapsed" data-bs-target="#filesCollapse" data-bs-toggle="collapse" aria-expanded="false" href="javascript:void(0);">Previous</a>
-                      <a class="fs-14 btn bg-danger text-white btn-sm bold collapsed" data-bs-target="#settingsCollapse" data-bs-toggle="collapse" aria-expanded="false" href="javascript:void(0);">Next</a>
+                      <a class="fs-14 btn bg-danger text-white btn-sm bold collapsed" [ngClass]="(listingForm.get('name')?.invalid && listingForm.get('price')?.invalid && listingForm.get('brands')?.invalid && listingForm.get('tags')?.invalid && listingForm.get('description')?.invalid) ? 'disabled' : ''" data-bs-target="#settingsCollapse" data-bs-toggle="collapse" aria-expanded="false" href="javascript:void(0);">Next</a>
                     </div>
                   </div>
                 </div>
               </div>
             </li>
           
-            <li class="step-item">
+            <li class="step-item" [ngClass]="(listingForm.get('name')?.invalid && listingForm.get('price')?.invalid && listingForm.get('brands')?.invalid && listingForm.get('tags')?.invalid && listingForm.get('description')?.invalid) ? 'disabled' : ''">
               <div class="step-content-wrapper">
                 <span class="step-icon step-icon-soft-primary">5</span>
                 <div class="step-content">

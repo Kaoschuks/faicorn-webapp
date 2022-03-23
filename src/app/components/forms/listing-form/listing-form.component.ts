@@ -166,7 +166,4 @@ export class ListingFormComponent implements OnInit {
     }
   }
 
-  get country() { return this.listingForm.get('country'); }
-
-  get region() { return this.listingForm.get('region'); }
 }
