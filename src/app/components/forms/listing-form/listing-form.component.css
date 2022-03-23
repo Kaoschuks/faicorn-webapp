@@ -1,3 +1,11 @@
 a {
   cursor: pointer;
 }
+
+.navigation-btn {
+  padding: 0px 20px;
+}
+
+.navigation-btn-double {
+  padding: 0px 20px;
+}
