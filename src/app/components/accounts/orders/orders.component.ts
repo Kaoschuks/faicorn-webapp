@@ -19,11 +19,12 @@ export class OrdersComponent implements OnInit {
   ngOnInit(){
     this._globals.spinner.show();
     this.getOrders();
-    this._globals.spinner.hide();
+    
   }
 
   async getOrders(){
     const resp = await this.ordersService.getOrders();
     // console.log(resp)
+    this._globals.spinner.hide();
   }
 }
