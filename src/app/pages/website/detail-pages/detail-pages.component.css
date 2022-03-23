@@ -1,7 +1,25 @@
 section.container-fluid {
-    width: 90vw !important;
-    margin: 0px auto !important;
+  width: 90vw !important;
+  margin: 0px auto !important;
 }
 .card-body {
-    padding: 10px !important;
+  padding: 10px !important;
+}
+
+.mobile-screen {
+  display: none;
+}
+
+.large-screen {
+  display: block;
+}
+
+@media only screen and (max-width: 996px) {
+  .large-screen {
+    display: none;
+  }
+
+  .mobile-screen {
+    display: block;
+  }
 }

@@ -79,6 +79,7 @@ export class LoginFormComponent implements OnInit {
     } 
 
     if(!resp.error) {
+      // console.log(resp)
       const res: any = await this._userService.login(resp, provider);
       if(res.error) this.toastr.error(res.error, 'Login Failed')      ;
       if(res == "logged in") this._globals.router.navigate(['/accounts/overview'])
