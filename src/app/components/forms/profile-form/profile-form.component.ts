@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import * as intlTelInput from 'intl-tel-input';
 import { ToastrService } from 'ngx-toastr';
+import { GlobalsService } from 'src/app/services/core/globals.service';
 import { UsersService } from 'src/app/services/features/users';
 declare let document: any;
 
@@ -59,11 +60,13 @@ export class ProfileFormComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public _userService: UsersService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private globals: GlobalsService
   ) {
   }
 
   async ngOnInit() {
+    this.globals.spinner.show();
     await this.processForm()
   }
 
@@ -114,6 +117,7 @@ export class ProfileFormComponent implements OnInit {
       separateDialCode: true,
       preferredCountries: ['gh', 'ng'],
     });
+    this.globals.spinner.hide();
   }
 
   onFileChanged(event: any) {

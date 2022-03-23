@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalsService } from 'src/app/services/core/globals.service';
 import { OrdersService } from 'src/app/services/features/orders/orders.service';
 
 @Component({
@@ -11,11 +12,14 @@ export class OrdersComponent implements OnInit {
   limit: number = 5;
 
   constructor(
-    public ordersService: OrdersService
+    public ordersService: OrdersService,
+    private _globals: GlobalsService
   ) { }
 
   ngOnInit(){
+    this._globals.spinner.show();
     this.getOrders();
+    this._globals.spinner.hide();
   }
 
   async getOrders(){

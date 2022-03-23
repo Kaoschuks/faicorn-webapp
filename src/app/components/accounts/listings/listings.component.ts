@@ -20,13 +20,14 @@ export class ListingsComponent implements OnInit {
   ){}
 
   ngOnInit() {
+    this._global.spinner.show();
     this.refreshAds();
   }
 
   async refreshAds(){
     await this._listingservices.getlistings('', ``).then((resp: any) => {
       this.ads = resp;
-      // console.log(resp)
+      this._global.spinner.hide();
     }).catch((err: any) => {
       this.ads = []
     })

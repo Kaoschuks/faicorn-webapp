@@ -64,6 +64,7 @@ export class ListingFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this._globals.spinner.show();
     this.tags = new Tagin(document.querySelector('.tagin'), {
       separator: ',', // default: ','
       duplicate: false, // default: false
@@ -71,6 +72,7 @@ export class ListingFormComponent implements OnInit {
     })
     this._orderservices.paystackInfo.ref = Math.ceil(Math.random() * 10e10);
     this.onEditFillForm();
+    this._globals.spinner.hide();
   }
 
   open() {
