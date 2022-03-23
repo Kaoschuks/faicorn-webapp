@@ -94,12 +94,23 @@
                       </div>
                       <!-- End Collapse -->
                     </div>
+
+                    <div *ngIf="_listingservices.categories.length == 0 && _listingservices.loader.listings">
+                      <div id="shopNavCategoriesOne" *ngFor="let category of categorycount">
+                        <br />
+                        <ngx-skeleton-loader [theme]="{ height: '10px', width: '70%', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                        <br />
+                        <ngx-skeleton-loader [theme]="{ height: '10px', width: '100%', 'margin-left': '30px', 'border-radius': 0 }" count="5" animation="pulse"></ngx-skeleton-loader>
+                        <br />
+                        <br />
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
       </div>
       <div class="col-lg-9">
-        <ads-category-scroll *ngIf="_listingservices.categories.length > 0" [categories]="_listingservices?.categories || []"></ads-category-scroll>
+        <ads-category-scroll [categories]="_listingservices?.categories || []"></ads-category-scroll>
         <div class="bg-img-start rounded-2 p-5 mb-5" style="background-image: url(https://htmlstream.com/front-v4.0/assets/img/1920x800/img9.jpg);">
             <div class="row align-items-md-center">
               <div class="col-sm mb-3 mb-md-0">

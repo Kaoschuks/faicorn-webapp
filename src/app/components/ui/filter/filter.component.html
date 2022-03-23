@@ -27,7 +27,7 @@
                 <div class="pb-4 mb-2">
                     <h5>Country</h5>
 
-                    <div class="d-grid gap-2">
+                    <div class="d-grid gap-2" *ngIf="filterData?.countries.length > 0 && !_listingservices.loader.listings">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let country of filterData?.countries">
                             <input class="form-check-input" type="checkbox" id="{{country.name}}" [(ngModel)]="_listingservices.filterSearch.countries" [ngModelOptions]="{standalone: true}">
@@ -35,12 +35,14 @@
                         </div>
                         <!-- End Checkboxes -->
                     </div>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
                 </div>
 
                 <div class="pb-4 mb-2">
                     <h5>Cities</h5>
 
-                    <div class="d-grid gap-2">
+                    <div class="d-grid gap-2" *ngIf="filterData?.cities.length > 0 && !_listingservices.loader.listings">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let city of filterData?.cities">
                             <input class="form-check-input" type="checkbox" id="{{city.name}}" (change)="useFilter()"  [(ngModel)]="_listingservices.filterSearch.cities[city.name]" [ngModelOptions]="{standalone: true}">
@@ -48,12 +50,17 @@
                         </div>
                         <!-- End Checkboxes -->
                     </div>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
                 </div>
 
                 <div class="pb-4 mb-2">
                     <h5>Regions</h5>
 
-                    <div class="d-grid gap-2">
+                    <div class="d-grid gap-2" *ngIf="!_listingservices.loader.listings">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let region of filterData?.regions">
                             <input class="form-check-input" type="checkbox" id="{{region.name}}" (change)="useFilter()" [(ngModel)]="_listingservices.filterSearch.regions[region.name]" [ngModelOptions]="{standalone: true}">
@@ -61,6 +68,11 @@
                         </div>
                         <!-- End Checkboxes -->
                     </div>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
                 </div>
 
                 <div class="pb-4 mb-2">
@@ -68,8 +80,9 @@
 
                     <div class="d-grid gap-2" style="margin-left: -20px; width: 90%">
                         <div class="form-check">
-                            <input class="form-range" type="range" id="maxRange" (change)="useFilter()" min="{{filterData?.price?.minimum}}" max="{{filterData?.price?.maximum}}" [(ngModel)]="_listingservices.filterSearch.price" [ngModelOptions]="{standalone: true}">
-                            <label class="form-check-label bold" for="customRange">Min: {{filterData?.price?.minimum}} - Max: {{filterData?.price?.maximum | currency: "NGN"}} </label>
+                            <input *ngIf="filterData?.price == 0" class="form-range" type="range" id="maxRange" (change)="useFilter()" min="{{filterData?.price?.minimum}}" max="{{filterData?.price?.maximum}}" [(ngModel)]="_listingservices.filterSearch.price" [ngModelOptions]="{standalone: true}">
+                            <label *ngIf="filterData?.price == 0" class="form-check-label bold" for="customRange">Min: {{filterData?.price?.minimum}} - Max: {{filterData?.price?.maximum | currency: "NGN"}} </label>
+                            <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
                         </div>
                     </div>
                 </div>
@@ -81,24 +94,33 @@
         <div id="shopNavCategories" class="nav nav-pills nav-vertical">
             <h5>Categories Listing</h5>
 
-            <div *ngFor="let category of categories">
-                <!-- Collapse -->
-                <a *ngIf="category?.subcategory?.length > 0" class="nav-link collapsed" [ngClass]="(category?.subcategory?.length > 0) ? 'dropdown-toggle' : ''" [attr.data-bs-target]="generateID('#' + category?.name)" role="button" data-bs-toggle="collapse"
-                    aria-expanded="false" [attr.aria-controls]="generateID(category?.name)">
-                     {{category?.name.replace('&', 'and') | titlecase}}
-                </a>
-                <a *ngIf="category?.subcategory?.length == 0" class="nav-link collapsed" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">
-                     {{category?.name.replace('&', 'and') | titlecase}}
-                </a>
-    
-                <div *ngIf="category?.subcategory?.length > 0" [id]="generateID(category?.name)" class="nav-collapse collapse" data-bs-parent="#shopNavCategories">
-                    <div id="shopNavCategoriesOne">
-                        <a class="nav-link" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">All {{category?.name.replace('&', 'and') | titlecase}}</a>
-                        <a *ngFor="let subcategory of category?.subcategory" class="nav-link" routerLink="/{{subcategory?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">{{subcategory?.name.replace('&', 'and') | titlecase}}</a>
+            <div *ngIf="!_listingservices.loader.listings">
+                <div *ngFor="let category of categories">
+                    <!-- Collapse -->
+                    <a *ngIf="category?.subcategory?.length > 0" class="nav-link collapsed" [ngClass]="(category?.subcategory?.length > 0) ? 'dropdown-toggle' : ''" [attr.data-bs-target]="generateID('#' + category?.name)" role="button" data-bs-toggle="collapse"
+                        aria-expanded="false" [attr.aria-controls]="generateID(category?.name)">
+                         {{category?.name.replace('&', 'and') | titlecase}}
+                    </a>
+                    <a *ngIf="category?.subcategory?.length == 0" class="nav-link collapsed" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">
+                         {{category?.name.replace('&', 'and') | titlecase}}
+                    </a>
+        
+                    <div *ngIf="category?.subcategory?.length > 0" [id]="generateID(category?.name)" class="nav-collapse collapse" data-bs-parent="#shopNavCategories">
+                        <div id="shopNavCategoriesOne">
+                            <a class="nav-link" routerLink="/{{category?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">All {{category?.name.replace('&', 'and') | titlecase}}</a>
+                            <a *ngFor="let subcategory of category?.subcategory" class="nav-link" routerLink="/{{subcategory?.name.replace('&', 'and').split(' ').join('-') | lowercase}}">{{subcategory?.name.replace('&', 'and') | titlecase}}</a>
+                        </div>
                     </div>
+                    <!-- End Collapse -->
                 </div>
-                <!-- End Collapse -->
             </div>
+            <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+            <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+            <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+            <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+            <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+            <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+            <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
         </div>
     </div>
 
@@ -110,7 +132,7 @@
                 <div class="pb-4 mb-4" *ngIf="filterData?.gender?.length > 0">
                     <h5>Gender</h5>
 
-                    <div class="d-grid gap-2">
+                    <div class="d-grid gap-2" *ngIf="!_listingservices.loader.listings">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let gender of filterData?.gender">
                             <input class="form-check-input" type="checkbox" id="{{gender.name}}" (change)="useFilter()" [(ngModel)]="_listingservices.filterSearch.gender[gender.name]" [ngModelOptions]="{standalone: true}">
@@ -118,12 +140,14 @@
                         </div>
                         <!-- End Checkboxes -->
                     </div>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
                 </div>
 
                 <div class="pb-4 mb-4" *ngIf="filterData?.brands?.length > 0">
                     <h5>Brand</h5>
 
-                    <div class="d-grid gap-2">
+                    <div class="d-grid gap-2" *ngIf="!_listingservices.loader.listings">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let brand of filterData?.brands">
                             <input class="form-check-input" type="checkbox" id="{{brand.name}}" (change)="useFilter()" [(ngModel)]="_listingservices.filterSearch.brands[brand.name]" [ngModelOptions]="{standalone: true}">
@@ -132,12 +156,18 @@
                         <!-- End Checkboxes -->
 
                     </div>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
                 </div>
 
                 <div class="pb-4 mb-4" *ngIf="filterData?.tags?.length > 0">
                     <h5>Tags</h5>
 
-                    <div class="d-grid gap-2">
+                    <div class="d-grid gap-2" *ngIf="!_listingservices.loader.listings">
                         <!-- Checkboxes -->
                         <div class="form-check" *ngFor="let tag of filterData?.tags">
                             <input class="form-check-input" type="checkbox" id="{{tag?.name}}" (change)="useFilter()" [(ngModel)]="_listingservices.filterSearch.tags[tag.name]" [ngModelOptions]="{standalone: true}">
@@ -145,6 +175,13 @@
                         </div>
                         <!-- End Checkboxes -->
                     </div>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader *ngIf="_listingservices.loader.listings" [theme]="{ height: '10px', width: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
                 </div>
             </form>
             <!-- End Form -->

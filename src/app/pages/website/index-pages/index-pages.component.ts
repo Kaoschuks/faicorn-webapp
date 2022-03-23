@@ -18,6 +18,7 @@ export class IndexPagesComponent implements OnInit, AfterViewInit {
   searchForm = this.formBuilder.group({
     search: ''
   });
+  categorycount: Array<any> = Array.from(Array(10).keys())
 
   url: any = this._global.url.split('/')
   

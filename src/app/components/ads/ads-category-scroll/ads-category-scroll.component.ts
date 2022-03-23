@@ -10,6 +10,7 @@ declare var $: any;
 export class AdsCategoryScrollComponent implements AfterViewInit {
 
   @Input() categories: any[] = []
+  adscount: Array<any> = Array.from(Array(6).keys())
   constructor(
     public _listingservices: ListingsService,
   ) { }
@@ -44,7 +45,7 @@ export class AdsCategoryScrollComponent implements AfterViewInit {
           }
         });
       }
-    }, 1000)
+    }, 500)
   }
 
 }

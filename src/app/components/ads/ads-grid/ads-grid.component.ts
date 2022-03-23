@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ListingsService } from 'src/app/services/features/listings/listings.service';
 
 @Component({
   selector: 'ads-grid',
@@ -8,8 +9,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AdsGridComponent implements OnInit {
 
   @Input() ads: any = [];
-  // adscount: Array<any> = Array.from(Array(20).keys())
-  constructor() { }
+  adscount: Array<any> = Array.from(Array(20).keys())
+  constructor(
+    public _listingservices: ListingsService
+  ) { }
 
   ngOnInit(): void {
   }

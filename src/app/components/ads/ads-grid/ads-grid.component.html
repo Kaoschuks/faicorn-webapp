@@ -1,7 +1,14 @@
 <!-- Card Grid -->
 <div class="container-fluid no-padding">
 
-  <div class="row mb-5">
+  <div class="row mb-5" *ngIf="_listingservices.listings.length == 0 && _listingservices.loader.listings">
+    <div *ngFor="let ad of adscount" class="col-lg-3 col-md-4 col-6 mb-5">
+      <ngx-skeleton-loader count="1" animation="pulse" [theme]="{ height: '170px', 'border-radius': 0 }"></ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1" animation="pulse"></ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1" animation="pulse"></ngx-skeleton-loader>
+    </div>
+  </div>
+  <div class="row mb-5" *ngIf="_listingservices.listings.length > 0 && !_listingservices.loader.listings">
     <div *ngFor="let ad of ads" class="col-lg-3 col-md-4 col-6 mb-5">
       <!-- Card -->
       <a routerLink="/{{ad?.category?.name.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.brands.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.ads_id}}" class="card card-bordered h-100">

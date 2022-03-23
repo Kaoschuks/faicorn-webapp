@@ -49,6 +49,17 @@ export class ListingsService {
     return await new Promise(async (resolve: any, reject: any) => {
       this.loader.listings = true;
       this.oldlistings = this.listings = []
+      this.filterSearch = {
+        "tags": {},
+        "price": 0,
+        "cities": {},
+        "regions": {},
+        "brands": {},
+        "categories": {},
+        "subcategories": {},
+        "countries": "Nigeria",
+        "gender": {}
+      }
       try {
         const resp: any = await this.api.get('listings' + route + params)
         if(resp.error) throw new Error(resp.error);
@@ -86,7 +97,6 @@ export class ListingsService {
 
         this.categories = resp
         this.loader.category = false;
-        // console.log(this.categories)
         resolve(this.categories)
       }catch(ex: any) {
         this.loader.category = false;

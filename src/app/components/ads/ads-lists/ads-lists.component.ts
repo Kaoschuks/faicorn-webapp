@@ -10,6 +10,7 @@ export class AdsListsComponent implements OnInit {
 
   p: number = 1;
   @Input() ads: any = [];
+  adscount: Array<any> = Array.from(Array(20).keys())
   @Input() limit: number = 10;
   // @Input() minTerm: number = 0;
   // @Input() maxTerm: number = 0;

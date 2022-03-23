@@ -9,26 +9,21 @@
         <h6 class="mb-2 fs-20 bold">Shop Category</h6>
       </div>
     </div>
-    <div class="row"
-    *ngIf="_listingservices.loader.category">
-      <div class="categories d-flex flex-row flex-nowrap owl-carousel">
-        <a *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11,12]"
-          class="d-flex align-items-center justify-content-center flex-column product bg-white p-2  m-2">
-          <ngx-skeleton-loader style="width: 100%" [theme]="{ 'height.px': 100 }" animation="progress"></ngx-skeleton-loader>
-          <br />
-          <ngx-skeleton-loader></ngx-skeleton-loader>
-        </a>
+    <div class="row" *ngIf="categories.length == 0 && _listingservices.loader.category">
+      <div class="col-2" *ngFor="let i of adscount">
+        <ngx-skeleton-loader [theme]="{ height: '100px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+        <br />
+        <ngx-skeleton-loader [theme]="{ height: '10px', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{ height: '10px', width: '70%', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
       </div>
     </div>
-    <div class="row"
-    *ngIf="categories.length > 0 && !_listingservices.loader.category">
+    <div class="row" *ngIf="categories.length > 0 && !_listingservices.loader.category">
       <div class="categories d-flex flex-row flex-nowrap owl-carousel">
         <a routerLink="/{{category?.name.replace(' & ', '-').split(' ').join('-') | lowercase}}"
           *ngFor="let category of categories"
           class="d-flex align-items-center justify-content-center flex-column product bg-white p-2  m-2">
           <img style="width: 80px;height: 70px" [src]="category?.image" alt="">
-          <br />
-          <h6 class="cat-text text-center general-text">{{category?.name | titlecase}}</h6>
+          <h6 class="cat-text bold mt-2 text-center general-text">{{category?.name | titlecase}}</h6>
         </a>
       </div>
     </div>
