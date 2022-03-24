@@ -129,6 +129,7 @@ export class ListingFormComponent implements OnInit {
   }
 
   async onSubmit(form: any, ref: any = null) {
+    this._globals.spinner.show();
     form.tags = this.tags.getTags()
     let formData: any = form;
     formData.images = this.images;
@@ -142,6 +143,7 @@ export class ListingFormComponent implements OnInit {
     (resp == 'ads info updated' ? this.toastr.success('Ads Info updated successfully.', 'Ad Updated!') : this.toastr.success('Ad posted successfully.', 'Ad Posted!'))
     this.listingForm.reset();
     this.images = [];
+    this._globals.spinner.hide();
   }
 
   async onEditFillForm() {
