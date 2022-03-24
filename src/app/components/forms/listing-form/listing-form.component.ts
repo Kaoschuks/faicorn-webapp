@@ -139,11 +139,7 @@ export class ListingFormComponent implements OnInit {
     if(formData.isFeatured == 'true') await this._orderservices.saveTransaction(ref, formData.name)
 
     let ads_id = this._globals.url.split('/')[4];
-    const resp = (this._globals.url.split('/')[3] !== 'edit' ? await this._listingservices.postlistings(formData) : await this._listingservices.editlistingbyId(ads_id, formData));
-    (resp == 'ads info updated' ? this.toastr.success('Ads Info updated successfully.', 'Ad Updated!') : this.toastr.success('Ad posted successfully.', 'Ad Posted!'))
-    this.listingForm.reset();
-    this.images = [];
-    this._globals.spinner.hide();
+    const resp = (this._globals.url.split('/')[3] !== 'edit' ?  await this.postListings(formData) : await this.editListings(ads_id, formData));
   }
 
   async onEditFillForm() {
@@ -168,4 +164,29 @@ export class ListingFormComponent implements OnInit {
     }
   }
 
+  async postListings(formData: any){
+    const resp: any = await this._listingservices.postlistings(formData);
+    if (resp.error){
+      this._globals.spinner.hide();
+      this.toastr.error(resp.error, 'Ad Post Failed!');
+    }else{
+      this.listingForm.reset();
+      this.images = [];  
+      this._globals.spinner.hide();
+      this.toastr.success('Ad posted successfully.', 'Ad Posted!')
+    }
+  }
+
+  async editListings(ads_id: any, formData: any){
+    const resp: any = await this._listingservices.editlistingbyId(ads_id, formData);
+    if (resp !== 'ads info updated'){
+      this._globals.spinner.hide();
+      this.toastr.error(resp.error, 'Ad Post Failed!');
+    }else{
+      this.listingForm.reset();
+      this.images = [];  
+      this._globals.spinner.hide();
+      this.toastr.success('Ads Info updated successfully.', 'Ad Updated!')
+    }
+  }
 }

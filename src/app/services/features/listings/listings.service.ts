@@ -155,10 +155,10 @@ export class ListingsService {
       this.loader.listings = true;
       try {
         const resp: any = await this.api.post('listings', data);
-        console.log(resp)
-        if(resp.error) throw new Error(resp.error);
+        // console.log(resp)
+        // if(resp.error) throw new Error(resp.error);
 
-        resolve(resp.message);
+        resolve(resp);
       }catch(ex: any) {
         this.loader.listings = false;
         reject({
