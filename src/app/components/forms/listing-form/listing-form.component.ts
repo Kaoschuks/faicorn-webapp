@@ -72,7 +72,7 @@ export class ListingFormComponent implements OnInit {
     })
     this._orderservices.paystackInfo.ref = Math.ceil(Math.random() * 10e10);
     this.onEditFillForm();
-    this._globals.spinner.hide();
+    // this._globals.spinner.hide();
   }
 
   open() {
@@ -144,6 +144,7 @@ export class ListingFormComponent implements OnInit {
   async onEditFillForm() {
     try {
       if (this._globals.url.split('/')[3] !== 'edit') return;
+      this._globals.spinner.show();
       let ads_id = this._globals.url.split('/')[4];
   
       const resp: any = await this._listingservices.getlistings(`/${ads_id}`, '', 'single');
@@ -153,11 +154,12 @@ export class ListingFormComponent implements OnInit {
       this.tags.addTag(resp.tags)
       this.listingForm.patchValue(this._listingservices.listingInfo)
       this.listingForm.patchValue({
-        category: this._listingservices.listingInfo.category.name
+        category: this._listingservices.listingInfo.category.name,
+        isFeatured: this._listingservices.listingInfo.isFeatured.toString()
       })
       this.selectChange()
       this.selectChange('category')
-
+      this._globals.spinner.hide();
     } catch(ex: any) {
       this.toastr.error(ex.error || ex.message || ex, 'Error')
     }
