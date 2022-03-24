@@ -152,15 +152,15 @@ export class ListingsService {
 
   async postlistings(data: any) {
     return await new Promise(async (resolve: any, reject: any) => {
-      this.loader.listings = true;
+      this.globals.spinner.show();
       try {
         const resp: any = await this.api.post('listings', data);
-        // console.log(resp)
-        // if(resp.error) throw new Error(resp.error);
+        if(resp.error) throw new Error(resp.error);
 
+        this.globals.spinner.hide();
         resolve(resp);
       }catch(ex: any) {
-        this.loader.listings = false;
+        this.globals.spinner.hide();
         reject({
           error: ex.message || ex.error || ex || "Error posting listings"
         })
@@ -170,14 +170,15 @@ export class ListingsService {
 
   async deletelisting(id: any) {
     return await new Promise(async (resolve: any, reject: any) => {
-      this.loader.listings = true;
+      this.globals.spinner.show();
       try {
         const resp: any = await this.api.delete(`listings/${id}`)
         if(resp.error) throw new Error(resp.error);
 
+        this.globals.spinner.hide();
         resolve(resp.message);
       }catch(ex: any) {
-        this.loader.listings = false;
+        this.globals.spinner.hide();
         reject({
           error: ex.message || ex.error || ex || "Error deleting listing"
         })
@@ -187,16 +188,15 @@ export class ListingsService {
 
   async editlistingbyId(params: string = "", data: any) {
     return await new Promise(async (resolve: any, reject: any) => {
-      this.loader.listings = true;
+      this.globals.spinner.show();
       try {
         const resp: any = await this.api.update('listings/' + params, data)
-        console.log(resp.message)
-
         if(resp.error) throw new Error(resp.error);
 
+        this.globals.spinner.hide();
         resolve(resp.message);
       }catch(ex: any) {
-        this.loader.listings = false;
+        this.globals.spinner.hide();
         reject({
           error: ex.message || ex.error || ex || "Error putting listing by id"
         })
@@ -206,19 +206,10 @@ export class ListingsService {
 
   async addReview(route: string = "/reviews", data: any, type: string = "all") {
     return await new Promise(async (resolve: any, reject: any) => {
-      this.loader.listings = true;
+      this.globals.spinner.show();
       try {
         this.globals.storage.getItem('user').then(async (res: any) => {
             if (res) {
-              console.log({
-                "ads_id": data.ads_id,
-                  "id": data.id,
-                  "type": data.type,
-                  "likes": data.type == 'like' ? "true" : "[]",
-                  "saved": data.type == 'save' ? "true" : "[]",
-                  "comments": data.type == 'comments' ? data.comments : "[]",
-                  "dislikes": data.type == 'dislike' ? "true" : "[]"
-              })
               this._user.user = res;
               const jwt = await this.globals.storage.getItem('jwt')
               this.api.setJwt(jwt.access_token)
@@ -234,17 +225,18 @@ export class ListingsService {
       
               if(resp.error) throw new Error(resp.error);
       
+              this.globals.spinner.hide();
               resolve(resp.message);
             } else {
               throw new Error("You are not logged in")
             }
         })
         .catch((ex: any) => {
-          this.loader.listings = false;
+          this.globals.spinner.hide();
           this.globals.router.navigateByUrl('/login')
         });
       }catch(ex: any) {
-        this.loader.listings = false;
+        this.globals.spinner.hide();
         reject({
           error: ex.message || ex.error || ex || "Error adding reviews"
         })

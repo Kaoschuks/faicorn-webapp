@@ -135,7 +135,6 @@ export class ListingFormComponent implements OnInit {
     formData.images = this.images;
 
     // check if transaction was saved before continue for featured listings
-    // console.log(formData)
     if(formData.isFeatured == 'true') await this._orderservices.saveTransaction(ref, formData.name)
 
     let ads_id = this._globals.url.split('/')[4];
@@ -166,27 +165,28 @@ export class ListingFormComponent implements OnInit {
 
   async postListings(formData: any){
     const resp: any = await this._listingservices.postlistings(formData);
-    if (resp.error){
-      this._globals.spinner.hide();
-      this.toastr.error(resp.error, 'Ad Post Failed!');
-    }else{
+    this._globals.spinner.hide();
+
+    if (resp.error) this.toastr.error(resp.error, 'Ad Post Failed!');
+    if (!resp.error) {
       this.listingForm.reset();
+      this.listingForm.patchValue({
+        country: environment.country,
+        isFeatured: "false"
+      });
       this.images = [];  
-      this._globals.spinner.hide();
-      this.toastr.success('Ad posted successfully.', 'Ad Posted!')
+      this.toastr.success(resp.message || 'Ad posted successfully.', 'Ad Posted!')
     }
   }
 
   async editListings(ads_id: any, formData: any){
     const resp: any = await this._listingservices.editlistingbyId(ads_id, formData);
-    if (resp !== 'ads info updated'){
-      this._globals.spinner.hide();
-      this.toastr.error(resp.error, 'Ad Post Failed!');
-    }else{
-      this.listingForm.reset();
+    this._globals.spinner.hide();
+
+    if (resp.error) this.toastr.error(resp.error, 'Ad Post Failed!');
+    if (!resp.error) {
       this.images = [];  
-      this._globals.spinner.hide();
-      this.toastr.success('Ads Info updated successfully.', 'Ad Updated!')
+      this.toastr.success(resp.message || 'Ads Info updated successfully.', 'Ad Updated!')
     }
   }
 }
