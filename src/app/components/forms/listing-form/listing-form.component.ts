@@ -163,7 +163,10 @@ export class ListingFormComponent implements OnInit {
       })
       this.selectChange('category');
       setTimeout(() => {
-        this.listingForm.patchValue({city: this._listingservices.listingInfo.city})
+        this.listingForm.patchValue({
+          city: this._listingservices.listingInfo.city,
+          subcategory: this._listingservices.listingInfo.subcategory
+        })
       }, 100);
       this._globals.spinner.hide();
     } catch(ex: any) {
