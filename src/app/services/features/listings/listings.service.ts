@@ -41,7 +41,7 @@ export class ListingsService {
   async process_routes(url: any) {
     if(url.length === 2 && url[1] == '') await this.getlistings('/all', `?limit=20&isFeatured=true`)
     if(url.length === 2 && url[1] != '') await this.getlistings('/all', `?category=${url[url.length - 1]}&limit=1000`)
-    if(url.length === 3) await this.getlistings('/all', `?brands=${url[url.length - 1]}&limit=1000`)
+    if(url.length === 3 && url[1] != 'accounts') await this.getlistings('/all', `?brands=${url[url.length - 1]}&limit=1000`)
     if(url[1] === 'search') await this.getSearch('/search', `${url[2]}`)
   }
 
