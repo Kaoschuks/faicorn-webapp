@@ -18,6 +18,7 @@ export class ListingFormComponent implements OnInit {
   cities: any = []
   subCategories: any[] = [];
   tags: any;
+  edit: boolean = false;
 
   listingForm: FormGroup = new FormGroup({
     name: new FormControl("", Validators.compose([ Validators.required ])),
@@ -144,12 +145,13 @@ export class ListingFormComponent implements OnInit {
   async onEditFillForm() {
     try {
       if (this._globals.url.split('/')[3] !== 'edit') return;
+      this.edit = true;
       this._globals.spinner.show();
       let ads_id = this._globals.url.split('/')[4];
   
       const resp: any = await this._listingservices.getlistings(`/${ads_id}`, '', 'single');
       if(resp.error) throw new Error(resp.error);
-
+      
       this.images = resp.images;
       this.tags.addTag(resp.tags)
       this.listingForm.patchValue(this._listingservices.listingInfo)

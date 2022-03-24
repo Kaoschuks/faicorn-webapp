@@ -126,10 +126,10 @@ export class UsersService {
         return await new Promise(async (resolve, reject) => {
             try {
                 const resp: any = await this.api.get(`activities`);
+                // console.log(resp)
                 if (resp.error) throw new Error(resp.error || resp);
 
                 this.activities = resp.message;
-                // console.log(resp)
                 resolve(resp.message)
             } catch (ex: any) {
                 console.log(ex)

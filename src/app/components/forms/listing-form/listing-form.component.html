@@ -170,7 +170,7 @@
               </div>
             </li>
           
-            <li class="step-item" [ngClass]="(listingForm.get('name')?.invalid && listingForm.get('price')?.invalid && listingForm.get('brands')?.invalid && listingForm.get('tags')?.invalid && listingForm.get('description')?.invalid) ? 'disabled' : ''">
+            <li class="step-item" [hidden]="edit" [ngClass]="(listingForm.get('name')?.invalid && listingForm.get('price')?.invalid && listingForm.get('brands')?.invalid && listingForm.get('tags')?.invalid && listingForm.get('description')?.invalid) ? 'disabled' : ''">
               <div class="step-content-wrapper">
                 <span class="step-icon step-icon-soft-primary">5</span>
                 <div class="step-content">
@@ -222,7 +222,7 @@
         <!-- End Footer -->
       </form>
 
-      <div class="card-footer pt-0" *ngIf="listingForm.value.isFeatured == 'true'">
+      <div class="card-footer pt-0" [hidden]="edit" *ngIf="listingForm.value.isFeatured == 'true'">
         <div class="d-flex justify-content-end gap-3">
           <angular4-paystack
             [email]="_orderservices?.paystackInfo?.email"
