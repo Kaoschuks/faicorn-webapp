@@ -151,16 +151,20 @@ export class ListingFormComponent implements OnInit {
   
       const resp: any = await this._listingservices.getlistings(`/${ads_id}`, '', 'single');
       if(resp.error) throw new Error(resp.error);
-      
+      console.log(resp)
+
       this.images = resp.images;
       this.tags.addTag(resp.tags)
       this.listingForm.patchValue(this._listingservices.listingInfo)
+      this.selectChange()
       this.listingForm.patchValue({
         category: this._listingservices.listingInfo.category.name,
         isFeatured: this._listingservices.listingInfo.isFeatured.toString()
       })
-      this.selectChange()
-      this.selectChange('category')
+      this.selectChange('category');
+      setTimeout(() => {
+        this.listingForm.patchValue({city: this._listingservices.listingInfo.city})
+      }, 100);
       this._globals.spinner.hide();
     } catch(ex: any) {
       this.toastr.error(ex.error || ex.message || ex, 'Error')
