@@ -82,14 +82,14 @@
                           <label class="form-label">Category</label>
                           <select class="form-control" formControlName="category" (change)="selectChange('category')">
                               <option value="">Choose a Category</option>
-                              <option  *ngFor="let category of _listingservices?.categories">{{category?.name.replace('&', 'and') | titlecase}}</option>
+                              <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option>
                           </select>
                         </div>
                         <div class="col-md-6" *ngIf="subCategories.length > 0">
                           <label class="form-label">Sub Category</label>
                           <select class="form-control" formControlName="subcategory">
                               <option value="">Choose a Sub Category</option>
-                              <option  *ngFor="let subcategory of subCategories">{{subcategory?.name.replace('&', 'and') | titlecase}}</option>
+                              <option  *ngFor="let subcategory of subCategories">{{subcategory?.name | titlecase}}</option>
                           </select>
                         </div>
                       </div>
@@ -226,7 +226,7 @@
         <div class="d-flex justify-content-end gap-3">
           <angular4-paystack
             [email]="_orderservices?.paystackInfo?.email"
-            [amount]="_orderservices?.paystackInfo?.amount"
+            [amount]="_orderservices?.paystackInfo?.amount * 100"
             [ref]="_orderservices?.paystackInfo?.ref"
             [paystackOptions]="_orderservices?.paystackInfo"
             [channels]="_orderservices?.paystackInfo?.channel"
