@@ -11,7 +11,7 @@ export class OrdersService {
   orders: Array<any> = []
   paystackInfo: any = {
     amount: 1000,
-    email: 'jasonaddy51@gmail.com',
+    email: '',
     currency: 'NGN',
     channel: ['bank'],
     ref: ''
