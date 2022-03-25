@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GlobalsService } from '../../core/globals.service';
 import { RequestService } from '../../core/request-service';
+import { UsersService } from '../users';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class OrdersService {
   orders: Array<any> = []
   paystackInfo: any = {
     amount: 1000,
-    email: '',
+    email: 'demo@gmail.com',
     currency: 'NGN',
     channel: ['bank'],
     ref: ''
@@ -19,7 +20,8 @@ export class OrdersService {
 
   constructor(
       private api: RequestService,
-      private globals: GlobalsService
+      private globals: GlobalsService,
+      private userService: UsersService
   ) {
   }
 
@@ -59,9 +61,9 @@ export class OrdersService {
   async paymentInit(data: any) {
     return await new Promise(async (resolve: any, reject: any) => {
       try {
-        console.log('Payment initialized');
+        const resp: any = await this.globals.storage.getItem('user');
+        this.paystackInfo.email = resp.email;
       }catch(ex: any) {
-
         reject({
           error: ex.message || ex.error || ex
         })
@@ -92,16 +94,6 @@ export class OrdersService {
           "order_type": "one-time",
           "payment_gateway": "paystack",
           "amount_paid": this.paystackInfo.amount
-        })
-        // save transaction information
-        console.log({
-          "orderid": order_resp.orderid,
-          "transid": data.reference,
-          "summary": "Transaction for "+ name,
-          "amount": this.paystackInfo.amount,
-          "status": data.status,
-          "uid": "",
-          "transaction_info": JSON.stringify({'source': 'paystack'})
         })
         const trans_resp: any = await this.api.post('transactions', {
           "orderid": order_resp.orderid,
