@@ -53,7 +53,10 @@
                 <dt class="col-sm-2">Brand Name</dt>
                 <dd class="col-sm-4">{{adsInfo?.brands}}</dd>
                 <dt class="col-sm-2">Tags</dt>
-                <dd class="col-sm-4"><span *ngFor="let tag of adsInfo?.tags">{{tag}}</span></dd>
+                <dd class="col-sm-4">
+                    <a *ngFor="let tag of adsInfo?.tags" class="btn btn-outline-secondary btn-sm fs-14 bold mb-1 mr-1">{{tag}}</a>
+                    <!-- <span *ngFor="let tag of adsInfo?.tags">{{tag}}</span> -->
+                </dd>
             </dl>
             <!-- End Row -->
 
@@ -97,7 +100,7 @@
 </div>
 
 <div class="mobile-screen">
-    <div class="d-flex justify-content-between">
+    <!-- <div class="d-flex justify-content-between">
         <a href="javascript:void(0);" class="text-dark"><i class="bi bi-chevron-left"></i> Back</a>
         <div class="d-flex">
             <p class="text-dark pr-2">Share:</p>
@@ -126,7 +129,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <br>
 
@@ -158,9 +161,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-2" align="right">
+                <!-- <div class="col-sm-2" align="right">
                     <a href="#reviewForm"><p class="fs-14 bold text-muted"><u>Write a review</u></p></a>
-                </div>
+                </div> -->
                 <div class="col-sm-8">
                     <h1 class="title h4 mb-2">{{adsInfo?.price | currency: 'NGN '}}</h1>
                 </div>
