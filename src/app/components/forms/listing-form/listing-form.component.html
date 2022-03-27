@@ -215,15 +215,21 @@
 
         <!-- Footer -->
         <div class="card-footer pt-0" *ngIf="listingForm.value.isFeatured == 'false'">
-          <div class="d-flex justify-content-end gap-3">
+          <div [hidden]="!edit" class="d-flex justify-content-end gap-3">
+              <button type="submit" class="btn btn-primary">Update Advert</button>
+          </div>
+          <div [hidden]="edit" class="d-flex justify-content-end gap-3">
               <button type="submit" class="btn btn-primary">Save Advert</button>
             </div>
         </div>
         <!-- End Footer -->
       </form>
 
-      <div class="card-footer pt-0" [hidden]="edit" *ngIf="listingForm.value.isFeatured == 'true'">
-        <div class="d-flex justify-content-end gap-3">
+      <div class="card-footer pt-0" *ngIf="listingForm.value.isFeatured == 'true'">
+        <div [hidden]="!edit" class="d-flex justify-content-end gap-3">
+            <button type="submit" class="btn btn-primary">Update Advert</button>
+        </div>
+        <div [hidden]="edit" class="d-flex justify-content-end gap-3">
           <angular4-paystack
             [email]="_orderservices?.paystackInfo?.email"
             [amount]="_orderservices?.paystackInfo?.amount * 100"
