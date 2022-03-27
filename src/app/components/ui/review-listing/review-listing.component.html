@@ -9,33 +9,38 @@
 
         <ul class="list-comment list-comment-divider mb-5">
             <!-- Item -->
-            <li class="list-comment-item" *ngFor="let review of reviews?.reviews?.comments">
+            <ng-template #showComments>
+              <li class="list-comment-item" *ngFor="let review of reviews?.reviews?.comments">
   
-              <!-- Media -->
-              <div class="d-flex align-items-center mb-3" >
-                <div class="flex-shrink-0">
-                  <img class="avatar avatar-sm avatar-circle" [src]="review?.user?.image || 'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_1280.png'" alt="Image Description">
-                </div>
-  
-                <div class="flex-grow-1 ms-3">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">{{review?.user?.username}}</h5>
-                    <span class="d-block small text-muted">{{review?.posted_on | date: 'longDate'}}</span>
+                <!-- Media -->
+                <div class="d-flex align-items-center mb-3" >
+                  <div class="flex-shrink-0">
+                    <img class="avatar avatar-sm avatar-circle" [src]="review?.user?.image || 'https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_1280.png'" alt="Image Description">
+                  </div>
+    
+                  <div class="flex-grow-1 ms-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <h5 class="mb-0">{{review?.user?.username}}</h5>
+                      <span class="d-block small text-muted">{{review?.posted_on | date: 'longDate'}}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <!-- End Media -->
-  
-              <div class="mb-1">
-                <p>{{review?.comments}}</p>
-              </div>
-  
-              <!-- <div class="mb-0">
-                <span class="text-dark fw-semi-bold">{{review?.user?.username}}</span>
-                <span>- Verified Purchase</span>
-              </div>
-   -->
-            </li>
+                <!-- End Media -->
+    
+                <div class="mb-1">
+                  <p>{{review?.comments}}</p>
+                </div>
+    
+                <!-- <div class="mb-0">
+                  <span class="text-dark fw-semi-bold">{{review?.user?.username}}</span>
+                  <span>- Verified Purchase</span>
+                </div>
+     -->
+              </li>
+            </ng-template>
+            <li *ngIf="!reviews?.reviews?.comments; else showComments"><ngx-skeleton-loader [theme]="{ height: '300px', width: '100%', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader></li>
+
+
             <!-- Media -->
             <div class="d-flex align-items-center pt-3 pb-3">
               <span class="small me-2">Was this helpful?</span>

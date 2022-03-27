@@ -46,7 +46,6 @@ export class ListingsService {
   }
 
   async getlistings(route: string = '/all', params: string = "", type: string = "all") {
-    this.globals.spinner.show();
     return await new Promise(async (resolve: any, reject: any) => {
       this.loader.listings = true;
       this.oldlistings = this.listings = []
@@ -79,7 +78,6 @@ export class ListingsService {
         this.filters['tags'] = tags
 
         this.loader.listings = false;
-        this.globals.spinner.hide();
         resolve((type == 'single') ? this.listingInfo : this.listings);
       }catch(ex: any) {
         this.loader.listings = false;

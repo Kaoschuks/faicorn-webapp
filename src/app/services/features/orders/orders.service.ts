@@ -69,7 +69,7 @@ export class OrdersService {
         })
       }
     })
-  }
+  } 
 
   async paymentCancel(data: any) {
     return await new Promise(async (resolve: any, reject: any) => {
