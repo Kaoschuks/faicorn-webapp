@@ -214,7 +214,7 @@
 
 
         <!-- Footer -->
-        <div class="card-footer pt-0" *ngIf="listingForm.value.isFeatured == 'false'">
+        <div class="card-footer pt-0" *ngIf="!listingForm.value.isFeatured || listingForm.value.isFeatured == 'false'">
           <div [hidden]="!edit" class="d-flex justify-content-end gap-3">
               <button type="submit" class="btn btn-primary">Update Advert</button>
           </div>
@@ -225,7 +225,7 @@
         <!-- End Footer -->
       </form>
 
-      <div class="card-footer pt-0" *ngIf="listingForm.value.isFeatured == 'true'">
+      <div class="card-footer pt-0" *ngIf="listingForm.value.isFeatured || listingForm.value.isFeatured == 'true'">
         <div [hidden]="!edit" class="d-flex justify-content-end gap-3">
             <button type="submit" class="btn btn-primary">Update Advert</button>
         </div>
