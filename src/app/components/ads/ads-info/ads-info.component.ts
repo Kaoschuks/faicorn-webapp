@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ListingsService } from 'src/app/services/features/listings/listings.service';
 declare var document: any
 
 @Component({
@@ -10,7 +11,8 @@ export class AdsInfoComponent implements OnInit {
 
   @Input() adsInfo: any;
   imgId = 1;
-  constructor() { }
+  imgCount: Array<any> = Array.from(Array(5).keys())
+  constructor(public _listingservices: ListingsService) { }
 
   ngOnInit(): void {
     const imgs: any = document.querySelectorAll('.img-select a');

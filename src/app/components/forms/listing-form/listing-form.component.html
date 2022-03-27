@@ -232,6 +232,7 @@
             [channels]="_orderservices?.paystackInfo?.channel"
             [class]="'btn btn-primary hidden'"
             (onClose)="_orderservices?.paymentCancel($event)"
+            (paymentInit)="_orderservices?.paymentInit($event)"
             (callback)="onSubmit(listingForm.value, $event)"
           >
             Subscribe to Featured Listing & Save Advert
