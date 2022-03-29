@@ -125,14 +125,17 @@ export class UsersService {
     async getUserActivities() {
         return await new Promise(async (resolve, reject) => {
             try {
+                this.globals.spinner.show()
                 const resp: any = await this.api.get(`activities`);
                 // console.log(resp)
                 if (resp.error) throw new Error(resp.error || resp);
 
+                this.globals.spinner.hide()
                 this.activities = resp.message;
                 resolve(resp.message)
             } catch (ex: any) {
                 console.log(ex)
+                this.globals.spinner.hide()
                 reject({ error: ex.error || ex.message || ex })
             }
         })

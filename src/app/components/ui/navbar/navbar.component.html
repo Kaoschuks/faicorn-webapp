@@ -15,7 +15,7 @@
                     <a class="nav-link dropdown-toggle fs-14 bold text-white" href="#" id="dropdown06" data-bs-toggle="dropdown"
                         aria-expanded="false"> Categories</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown06">
-                      <a *ngFor="let category of _listingservices?.categories" class="dropdown-item" routerLink="/{{category?.name.split(' ').join('-') | lowercase}}">{{category?.name | titlecase}}</a>
+                      <a *ngFor="let category of _listingservices?.categories" class="dropdown-item" routerLink="/{{category?.name.split(' ').join('-').replace('&', 'and') | lowercase}}">{{category?.name.replace('&', 'and') | titlecase}}</a>
                     </ul>
                 </li>
                 <li class="nav-item form-search-input">
