@@ -25,7 +25,7 @@
                           <label class="form-label">Country</label>
                             <select class="form-control bg-muted" formControlName="country">
                               <option value="">Choose a Country</option>
-                              <option value="Nigeria">Nigeria</option>
+                              <option value="nigeria">Nigeria</option>
                             </select>
                           </div>
                         </div>
@@ -34,27 +34,15 @@
                             <label class="form-label">Region / State</label>
                             <select (change)="selectChange()" class="form-control" formControlName="region">
                                 <option value="">Choose a Region / State in {{listingForm.value.country}}</option>
-                                <option *ngFor="let region of regions[listingForm.value.country]" >{{region?.state?.name}}</option>
+                                <option value="{{region?.state?.name.toLowerCase()}}" *ngFor="let region of regions[listingForm.value.country]" >{{region?.state?.name | titlecase}}</option>
                             </select>
                           </div>
                           <div class="col-md-6" *ngIf="listingForm.value.region">
                             <label class="form-label">City</label>
                             <select class="form-control" formControlName="city">
                               <option value="">Choose a city in {{listingForm.value.region}}</option>
-                              <option *ngFor="let city of cities">{{city.name}}</option>
+                              <option value="{{city.name.toLowerCase()}}" *ngFor="let city of cities">{{city.name | titlecase}}</option>
                             </select>
-                          </div>
-                          <div class="row mt-3">
-                            <div class="col-md-6">
-                              <label class="form-label">Gender</label>
-                                <select class="form-control bg-muted" formControlName="gender">
-                                  <option value="">Choose a Gender</option>
-                                  <option value="Male">Male</option>
-                                  <option value="Female">Female</option>
-                                  <option value="Unisex">Unisex</option>
-                                  <option value="Not Specified">Not Specified</option>
-                                </select>
-                            </div>
                           </div>
                         </div>
                     </div>
@@ -82,15 +70,27 @@
                           <label class="form-label">Category</label>
                           <select class="form-control" formControlName="category" (change)="selectChange('category')">
                               <option value="">Choose a Category</option>
-                              <option  *ngFor="let category of _listingservices?.categories">{{category?.name | titlecase}}</option>
+                              <option value="{{category?.id}}" *ngFor="let category of _listingservices?.categories">{{category?.name | lowercase}}</option>
                           </select>
                         </div>
                         <div class="col-md-6" *ngIf="subCategories.length > 0">
                           <label class="form-label">Sub Category</label>
                           <select class="form-control" formControlName="subcategory">
                               <option value="">Choose a Sub Category</option>
-                              <option  *ngFor="let subcategory of subCategories">{{subcategory?.name | titlecase}}</option>
+                              <option value="{{subcategory?.id}}" *ngFor="let subcategory of subCategories">{{subcategory?.name | lowercase}}</option>
                           </select>
+                        </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-md-6">
+                          <label class="form-label">Gender</label>
+                            <select class="form-control bg-muted" formControlName="gender">
+                              <option value="">Choose a Gender</option>
+                              <option value="male">Male</option>
+                              <option value="female">Female</option>
+                              <option value="unisex">Unisex</option>
+                              <option value="not specified">Not Specified</option>
+                            </select>
                         </div>
                       </div>
                     </div>
@@ -214,22 +214,22 @@
 
 
         <!-- Footer -->
-        <div class="card-footer pt-0" *ngIf="!listingForm.value.isFeatured || listingForm.value.isFeatured == 'false'">
-          <div [hidden]="!edit" class="d-flex justify-content-end gap-3">
+        <div class="card-footer pt-0" *ngIf="listingForm.value.isFeatured.toString() == 'false'">
+          <div *ngIf="edit" class="d-flex justify-content-end gap-3">
               <button type="submit" class="btn btn-primary">Update Advert</button>
           </div>
-          <div [hidden]="edit" class="d-flex justify-content-end gap-3">
+          <div *ngIf="!edit" class="d-flex justify-content-end gap-3">
               <button type="submit" class="btn btn-primary">Save Advert</button>
             </div>
+        </div>
+        <div *ngIf="edit && listingForm.value.isFeatured.toString() == 'true'" class="d-flex justify-content-end gap-3">
+            <button type="submit" class="btn btn-primary">Update Fetaured Advert</button>
         </div>
         <!-- End Footer -->
       </form>
 
-      <div class="card-footer pt-0" *ngIf="listingForm.value.isFeatured || listingForm.value.isFeatured == 'true'">
-        <div [hidden]="!edit" class="d-flex justify-content-end gap-3">
-            <button type="submit" class="btn btn-primary">Update Advert</button>
-        </div>
-        <div [hidden]="edit" class="d-flex justify-content-end gap-3">
+      <div class="card-footer pt-0" *ngIf="listingForm.value.isFeatured.toString() == 'true'">
+        <div *ngIf="!edit" class="d-flex justify-content-end gap-3">
           <angular4-paystack
             [email]="_orderservices?.paystackInfo?.email"
             [amount]="_orderservices?.paystackInfo?.amount * 100"

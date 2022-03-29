@@ -25,6 +25,7 @@ export class ListingFormComponent implements OnInit {
     description: new FormControl("", Validators.compose([ Validators.required ])),
     price: new FormControl("", Validators.compose([ Validators.required ])),
     category: new FormControl("", Validators.compose([ Validators.required ])),
+    categoryname: new FormControl(""),
     subcategory: new FormControl(""),
     country: new FormControl(environment.country, Validators.compose([ Validators.required ])),
     region: new FormControl("", Validators.compose([ Validators.required ])),
@@ -86,14 +87,20 @@ export class ListingFormComponent implements OnInit {
       const regions = this.regions[this.listingForm.value.country];
       this.cities = []
       for (const key in regions) {
-        if (regions[key]['state']['name'] == this.listingForm.value.region) this.cities = regions[key]['state']['locals']
+        if (regions[key]['state']['name'].toLowerCase() == this.listingForm.value.region.toLowerCase()) this.cities = regions[key]['state']['locals']
       }
     }
 
     if(type === 'category') {
       this.subCategories = []
       for (const key in this._listingservices.categories) {
-        if(this._listingservices.categories[key]['name'] === this.listingForm.value.category) this.subCategories = this._listingservices.categories[key]['subcategory']
+        if(this._listingservices.categories[key]['id'].toString() === this.listingForm.value.category.toString()) {
+          this.subCategories = this._listingservices.categories[key]['subcategory']
+          this.listingForm.patchValue({
+            subcategory: '',
+            categoryname: this._listingservices.categories[key]['name'].toLowerCase()
+          })
+        }
       }
     }
 
@@ -136,10 +143,10 @@ export class ListingFormComponent implements OnInit {
     formData.images = this.images;
 
     // check if transaction was saved before continue for featured listings
-    if(formData.isFeatured == 'true') await this._orderservices.saveTransaction(ref, formData.name)
+    if(formData.isFeatured == 'true' && this._globals.url.split('/')[3] !== 'edit') await this._orderservices.saveTransaction(ref, formData.name)
 
     let ads_id = this._globals.url.split('/')[4];
-    const resp = (this._globals.url.split('/')[3] !== 'edit' ?  await this.postListings(formData) : await this.editListings(ads_id, formData));
+    const resp = (this._globals.url.split('/')[3] !== 'edit') ?  await this.postListings(formData) : await this.editListings(ads_id, formData);
   }
 
   async onEditFillForm() {
@@ -151,21 +158,20 @@ export class ListingFormComponent implements OnInit {
   
       const resp: any = await this._listingservices.getlistings(`/${ads_id}`, '', 'single');
       if(resp.error) throw new Error(resp.error);
-      console.log(resp)
 
       this.images = resp.images;
       this.tags.addTag(resp.tags)
       this.listingForm.patchValue(this._listingservices.listingInfo)
       this.selectChange()
       this.listingForm.patchValue({
-        category: this._listingservices.listingInfo.category.name,
+        category: this._listingservices.listingInfo.category.id,
         isFeatured: this._listingservices.listingInfo.isFeatured.toString()
       })
       this.selectChange('category');
       setTimeout(() => {
         this.listingForm.patchValue({
           city: this._listingservices.listingInfo.city,
-          subcategory: this._listingservices.listingInfo.subcategory
+          subcategory: this._listingservices.listingInfo.subcategory.id
         })
       }, 100);
       this._globals.spinner.hide();

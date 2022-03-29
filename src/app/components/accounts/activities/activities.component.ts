@@ -14,15 +14,7 @@ export class ActivitiesComponent implements OnInit {
     private toastr: ToastrService
   ) { }
 
-  ngOnInit(): void {
-    this.usersService.getUserActivities()
+  async ngOnInit() {
+    await this.usersService.getUserActivities();
   }
-
-  // async deleteUser(){
-  //   if(confirm('Are you sure you want to delete your account permanently?') == true){
-  //     await this.usersService.deleteUser();
-  //     await this.usersService.logout();
-  //     this.toastr.success('User deleted successfully.', 'Delete Ad!');
-	//   }
-  // }
 }

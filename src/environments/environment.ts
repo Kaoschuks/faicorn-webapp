@@ -26,7 +26,7 @@ export const environment = {
   },
   country: "Nigeria",
   states: {
-    "Nigeria": [
+    "nigeria": [
       {
           'state': {
               'name': 'Abia State',
