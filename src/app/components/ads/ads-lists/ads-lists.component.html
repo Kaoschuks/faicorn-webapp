@@ -4,7 +4,7 @@
             <a routerLink="/{{ad?.category?.name?.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.brands?.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.ads_id}}" class="row large-screen">
                 <div class="d-sm-flex justify-content-between">
                     <div class="media d-block d-sm-flex">
-                        <a class="cart-item-thumb mx-auto mr-sm-4"><img [src]="ad?.images[0]" style="height: 200px;width: 200px; border-radius: .25rem .25rem .25rem .25rem;" class="mr-3 " alt="..."></a>
+                        <a class="cart-item-thumb mx-auto mr-sm-4"><img [src]="ad?.images[0]" style="height: 200px;width: 200px; border-radius: .25rem .25rem .25rem .25rem;" class="mr-3 " alt="{{ad?.name | titlecase | slice: 0: 100}} image"></a>
                         <div class="row p-2">
                             <h2 class="fs-20 text-dark bold">{{ad?.name | titlecase | slice: 0: 100}}</h2>
                             <p class="fs-12 text-dark" style="margin-top: -5px">{{ad?.description | slice: 0: 150}}</p>
@@ -25,7 +25,7 @@
                     <div class="col-4 product-img-holder">
                         <a class="product-img">
                             <button *ngIf="ad?.isFeatured" class="btn btn-success btn-xs bold">Featured</button>
-                            <img [src]="ad?.images[0]" alt="...">
+                            <img [src]="ad?.images[0]" alt="{{ad?.name | titlecase | slice: 0: 100}} image">
                         </a>
                     </div>
                     <div class="col-8">
