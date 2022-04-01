@@ -137,6 +137,7 @@ export class ListingFormComponent implements OnInit {
   }
 
   async onSubmit(form: any, ref: any = null) {
+    if (!this.listingForm.valid) return
     this._globals.spinner.show();
     form.tags = this.tags.getTags()
     let formData: any = form;
@@ -206,4 +207,28 @@ export class ListingFormComponent implements OnInit {
       this.toastr.success(resp.message || 'Ads Info updated successfully.', 'Ad Updated!')
     }
   }
+
+  get name() { return this.listingForm.get('name'); }
+
+  get description() { return this.listingForm.get('description'); }
+
+  get price() { return this.listingForm.get('price'); }
+
+  get category() { return this.listingForm.get('category'); }
+
+  get categoryname() { return this.listingForm.get('categoryname'); }
+  
+  get country() { return this.listingForm.get('country'); }
+
+  get region() { return this.listingForm.get('region'); }
+
+  get city() { return this.listingForm.get('price'); }
+
+  get gender() { return this.listingForm.get('gender'); }
+
+  get tag() { return this.listingForm.get('tags'); }
+
+  get brands() { return this.listingForm.get('price'); }
+
+  get isFeatured() { return this.listingForm.get('isFeatured')};
 }
