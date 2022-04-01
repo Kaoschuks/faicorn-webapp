@@ -57,12 +57,13 @@
                       </div>
                   </div>
                   <div class="d-grid gap-2" style="margin-top: -15px">
-                      <button (click)="toogle()" *ngIf="!showContact" class="btn btn-dark btn-xs fs-16 bold" type="button">Show Contact</button>
-                      <a *ngIf="showContact" class="btn btn-dark btn-xs fs-16 bold" href="tel://{{_listingservices?.listingInfo?.user?.phone}}">Call {{_listingservices?.listingInfo?.user?.phone}}</a>
+                      <p *ngIf="_listingservices?.listingInfo?.user?.phone == ''" class="text-danger fs-14 bold">Seller Doesn't have contact information</p>
+                      <button (click)="toogle()" *ngIf="!showContact && _listingservices?.listingInfo?.user?.phone != ''" class="btn btn-dark btn-xs fs-16 bold" type="button">Show Contact</button>
+                      <a *ngIf="showContact && _listingservices?.listingInfo?.user?.phone != ''" class="btn btn-dark btn-xs fs-16 bold" href="tel://{{_listingservices?.listingInfo?.user?.phone}}">Call {{_listingservices?.listingInfo?.user?.phone}}</a>
                       <!-- <a *ngIf="showContact && _listingservices?.listingInfo?.user?.phone == ''" class="btn btn-outlink-success btn-xs fs-16 bold" href="mailto://{{_listingservices?.listingInfo?.user?.email}}">Email {{_listingservices?.listingInfo?.user?.username}}</a> -->
-                      <a href="sms://{{_listingservices?.listingInfo?.user?.phone}}" class="btn btn-danger btn-xs fs-16 bold">Send SMS</a>
-                      <a href="whatsapp://{{_listingservices?.listingInfo?.user?.phone}}" class="btn btn-success btn-xs fs-16 bold">Whatsapp Seller</a>
-                      <button routerLink="/accounts/messages?uid={{_listingservices?.listingInfo?.user?.uid}}" class="btn btn-secondary btn-xs fs-16 bold" type="button">Contact via Email</button>
+                      <a *ngIf="_listingservices?.listingInfo?.user?.phone != ''" href="sms://{{_listingservices?.listingInfo?.user?.phone}}" class="btn btn-danger btn-xs fs-16 bold">Send SMS</a>
+                      <a *ngIf="_listingservices?.listingInfo?.user?.phone != ''" href="whatsapp://{{_listingservices?.listingInfo?.user?.phone}}" class="btn btn-success btn-xs fs-16 bold">Whatsapp Seller</a>
+                      <!-- <button routerLink="/accounts/messages?uid={{_listingservices?.listingInfo?.user?.uid}}" class="btn btn-secondary btn-xs fs-16 bold" type="button">Contact via Email</button> -->
                   </div>
                 </div>
             </div>
