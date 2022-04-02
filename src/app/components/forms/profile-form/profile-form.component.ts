@@ -71,28 +71,32 @@ export class ProfileFormComponent implements OnInit {
   }
 
   async saveProfile(form: any) {
-    let formData: any = form;
-    form.uid = this._userService.user.uid;
-    form.access = this._userService.user.access;
-    form.otherinfo = {
-      "address1": {
-        "street": form.address1,
-        "country": form.address1_country,
-        "state": form.address1_state,
-      },
-      "address2": {
-        "street": form.address2,
-        "country": form.address2_country,
-        "state": form.address2_state,
-      },
-    }
-    console.log(formData)
-    const resp: any = await this._userService.updateUserInfo(formData);
-    if(resp == 'user updated') {
-      await this.processForm()
-      this.toastr.success('User profile Updated Successfully', 'Profile Update Success!');
+    if (form?.username !== '' || form?.phone !== '')
+    {
+      let formData: any = form;
+      form.uid = this._userService.user.uid;
+      form.access = this._userService.user.access;
+      form.otherinfo = {
+        "address1": {
+          "street": form.address1,
+          "country": form.address1_country,
+          "state": form.address1_state,
+        },
+        "address2": {
+          "street": form.address2,
+          "country": form.address2_country,
+          "state": form.address2_state,
+        },
+      }
+      console.log(formData)
+      const resp: any = await this._userService.updateUserInfo(formData);
+      if(resp == 'user updated') {
+        await this.processForm()
+        this.toastr.success('User profile Updated Successfully', 'Profile Update Success!');
+      }else
+        this.toastr.error(resp.error, 'Profile Update Failed');  
     }else
-      this.toastr.error(resp.error, 'Profile Update Failed');
+      this.toastr.error('Please complete the required fields', 'Profile Update Failed!');   
   }
 
   async processForm() {
@@ -132,4 +136,11 @@ export class ProfileFormComponent implements OnInit {
     reader.readAsDataURL(file);
     // console.log(file)
   }
+
+  get username() { return this.profileForm.get('username') }
+
+  get email() { return this.profileForm.get('email') }
+
+  get phone() { return this.profileForm.get('phone') }
+
 }

@@ -21,7 +21,7 @@ export class LoginFormComponent implements OnInit {
     ),
     password: new FormControl(
       "",
-      Validators.compose([Validators.required, Validators.minLength(6)])
+      Validators.compose([Validators.required, Validators.minLength(8)])
     )
   });
   validation_messages = {
@@ -92,5 +92,9 @@ export class LoginFormComponent implements OnInit {
   togglePassword(){
     this.show = !this.show;
   }
+
+  get email() { return this.loginForm.get('email');}
+
+  get password() { return this.loginForm.get('password');}
 }
 

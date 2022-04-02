@@ -20,8 +20,9 @@ export class ProfileGuardsService implements CanActivate {
   async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     setTimeout(async () => {
       var user = await this.globals.storage.getItem('user');
+      // console.log(user)
       var userLoggedIn = await this.uData.isLoggedOn();
-      if (user && userLoggedIn && user?.fullname === '') {
+      if (user && userLoggedIn && user?.fullname === '' ) {
         this.toastr.warning('Please complete your profile', 'User Profile Required!')
         this.router.navigate(['/accounts/profile']);
       }
