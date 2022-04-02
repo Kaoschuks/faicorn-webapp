@@ -50,13 +50,13 @@
 
                 <label class="form-label" for="signupModalFormLoginEmail">Confirm Password</label>
                 <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                  <input type="password" class="js-toggle-password form-control form-control-lg" formControlName="rpassword" id="signupModalFormLoginPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8">
-                  <div *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)"
-                  class="p-1 text-danger">
-                    <div *ngIf="confirmPassword?.errors?.['minlength']">Passwords do not match.</div>
-                    <div *ngIf="confirmPassword?.errors?.['required']">
-                      Confirm Password is required.
-                    </div>
+                  <input type="password" class="js-toggle-password form-control form-control-lg" formControlName="rpassword" id="signupModalFormLoginConfirmPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8">
+                </div>
+                <div *ngIf="rpassword?.invalid && (rpassword?.dirty || rpassword?.touched)"
+                class="p-1 text-danger">
+                  <div *ngIf="rpassword?.errors?.['passwordMismatch']">Passwords do not match.</div>
+                  <div *ngIf="rpassword?.errors?.['required']">
+                    Confirm Password is required.
                   </div>
                 </div>
               </div>

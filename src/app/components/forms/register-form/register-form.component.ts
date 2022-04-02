@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { UsersService } from 'src/app/services/features/users';
+import { MustMatch } from './MustMatch';
 
 @Component({
   selector: 'register-form',
@@ -28,25 +29,7 @@ export class RegisterFormComponent implements OnInit {
       "",
       Validators.compose([Validators.required, Validators.minLength(6)])
     )
-  });
-  validation_messages = {
-    email: [
-      { type: "required", message: "Email is required." },
-      {
-        type: "minlength",
-        message: "Email must be at least 5 characters long."
-      },
-      { type: "pattern", message: "Email must be valid." },
-      { type: "email", message: "Email must be valid" }
-    ],
-    password: [
-      { type: "required", message: "Password is required." },
-      {
-        type: "minlength",
-        message: "Password must be at least 6 characters long."
-      }
-    ]
-  };
+  }, { validators: MustMatch('password', 'rpassword') });
 
   error: any
   constructor(
@@ -62,13 +45,8 @@ export class RegisterFormComponent implements OnInit {
   async register() {
     this._globals.spinner.show();
     const res: any = await this._userService.register(this.registerForm.value)
-    if(res.error) {
-      this._globals.spinner.hide();
-      this.error = res.error;
-      this.toastr.warning(this.error, 'Registeration Successfully')
-    }
     if(res == "register") this._globals.router.navigate(['/accounts/login']);
-    this.toastr.success('You have been registed successfully.', 'Registeration Successfully')
+    this.toastr.success('You have been registed successfully.', 'Registeration Successfully!')
     this._globals.spinner.hide();
   }
 
@@ -96,25 +74,6 @@ export class RegisterFormComponent implements OnInit {
 
   get password() { return this.registerForm.get('password')}
 
-  get confirmPassword() { return this.registerForm.get('confirmPassword')}
+  get rpassword() { return this.registerForm.get('rpassword')}
 
-  
-  ConfirmedValidator(controlName: string, matchingControlName: string){
-    return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
-
-      if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
-        return;
-      }
-
-      // set error on matchingControl if validation fails
-      if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ mustMatch: true });
-      } else {
-        matchingControl.setErrors(null);
-      }
-      return null;
-    };
-}
-}
+  }

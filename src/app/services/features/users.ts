@@ -6,6 +6,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import jwt_decode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
     providedIn: 'root'
@@ -19,6 +20,7 @@ export class UsersService {
         private api: RequestService,
         private globals: GlobalsService,
         private auth: AngularFireAuth,
+        private toastr: ToastrService
     ) { }
 
     async isLoggedOn(): Promise<any> {
@@ -74,6 +76,7 @@ export class UsersService {
                 resolve("register");
             } catch (ex: any) {
                 this.globals.spinner.hide();
+                this.toastr.error(ex, 'Registeration Error!')          
                 reject({
                     error: ex.message || ex.error || ex
                 });
