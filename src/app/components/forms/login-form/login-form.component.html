@@ -11,14 +11,20 @@
               <p>Or Continue Using Email.</p>
             </div>
 
-            <p class="text-danger">{{error}}</p>
+            <!-- <p class="text-danger">{{error}}</p> -->
             <!-- Form -->
-            <form [formGroup]="loginForm" (ngSubmit)="login()" class="js-validate needs-validation" novalidate>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
               <!-- Form -->
               <div class="mb-4">
                 <label class="form-label" for="signupModalFormLoginEmail">Your email</label>
                 <input type="email" class="form-control form-control-lg" formControlName="email" id="signupModalFormLoginEmail" placeholder="email@site.com" aria-label="email@site.com" required>
-                <span class="invalid-feedback">Please enter a valid email address.</span>
+                <div *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+                  class="p-1 text-danger">
+                  <div *ngIf="email?.errors?.['pattern']">Please enter a valid email address.</div>
+                  <div *ngIf="email?.errors?.['required']">
+                    Email is required.
+                  </div>
+                </div>
               </div>
               <!-- End Form -->
 
@@ -35,6 +41,13 @@
                   <a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;" (click)="togglePassword()">
                     <i id="changePassIcon" [ngClass]="show ? 'bi-eye' : 'bi-eye-slash'"></i>
                   </a>
+                </div>
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+                  class="p-1 text-danger">
+                  <div *ngIf="password?.errors?.['minlength']">Password should be at least 8 characters long.</div>
+                  <div *ngIf="password?.errors?.['required']">
+                    Password is required.
+                  </div>
                 </div>
               </div>
               <!-- End Form -->

@@ -46,7 +46,13 @@
           <label for="emailLabel" class="col-sm-3 col-form-label form-label">Username <span class="form-label-danger">(required)</span></label>
 
           <div class="col-sm-9">
-            <input type="text" class="form-control" formControlName="username" id="emailLabel" placeholder="John Doe" aria-label="clarice@example.com">
+            <input type="text" class="form-control" formControlName="username" id="emailLabel" placeholder="John Doe" aria-label="clarice@example.com" required>
+            <div *ngIf="username?.invalid && (username?.dirty || username?.touched)"
+              class="p-1 text-danger">
+              <div *ngIf="username?.errors?.['required']">
+                Username is required.
+              </div>
+            </div>
           </div>
         </div>
         <!-- End Form -->
@@ -56,7 +62,13 @@
           <label for="emailLabel" class="col-sm-3 col-form-label form-label">Email <span class="form-label-danger">(required)</span></label>
 
           <div class="col-sm-9">
-            <input type="email" class="form-control" formControlName="email" id="emailLabel" placeholder="clarice@example.com" aria-label="clarice@example.com">
+            <input type="email" class="form-control" formControlName="email" id="emailLabel" placeholder="clarice@example.com" aria-label="clarice@example.com" required>
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+              class="p-1 text-danger">
+              <div *ngIf="email?.errors?.['required']">
+                Email is required.
+              </div>
+            </div>
           </div>
         </div>
         <!-- End Form -->
@@ -68,7 +80,12 @@
           <div class="col-sm-9">
             <div class="input-group">
               <input type="tel" class="js-input-mask form-control" id="phoneLabel" placeholder="+x(xxx)xxx-xx-xx" aria-label="+x(xxx)xxx-xx-xx" formControlName="phone">
-
+              <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)"
+                class="p-1 text-danger">
+                <div *ngIf="phone?.errors?.['required']">
+                  Phone is required.
+                </div>
+              </div>
             </div>
           </div>
         </div>

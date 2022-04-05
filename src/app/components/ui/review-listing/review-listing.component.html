@@ -59,7 +59,7 @@
               <span class="small me-2">Want to review this item? Login then!!</span>
 
               <div class="d-flex gap-2">
-                <a class="btn btn-primary btn-xs text-white bold" href="javascript:void(0);" (click)="addAComment(reviewForm.value, 'like')" >
+                <a class="btn btn-primary btn-xs text-white bold" href="javascript:void(0);" [routerLink]="['/accounts/login']" >
                   Sign In
                 </a>
               </div>

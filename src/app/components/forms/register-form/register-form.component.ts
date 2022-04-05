@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { UsersService } from 'src/app/services/features/users';
+import { MustMatch } from './MustMatch';
 
 @Component({
   selector: 'register-form',
@@ -28,25 +29,7 @@ export class RegisterFormComponent implements OnInit {
       "",
       Validators.compose([Validators.required, Validators.minLength(6)])
     )
-  });
-  validation_messages = {
-    email: [
-      { type: "required", message: "Email is required." },
-      {
-        type: "minlength",
-        message: "Email must be at least 5 characters long."
-      },
-      { type: "pattern", message: "Email must be valid." },
-      { type: "email", message: "Email must be valid" }
-    ],
-    password: [
-      { type: "required", message: "Password is required." },
-      {
-        type: "minlength",
-        message: "Password must be at least 6 characters long."
-      }
-    ]
-  };
+  }, { validators: MustMatch('password', 'rpassword') });
 
   error: any
   constructor(
@@ -70,7 +53,7 @@ export class RegisterFormComponent implements OnInit {
     }
 
     if(res == "register") {
-      this.toastr.success('You have been registed successfully.', 'Registeration Successfully')
+      this.toastr.success('You have been registed successfully.', 'Registration Successfully')
       this._globals.router.navigate(['/accounts/login']);
     }
   }
@@ -94,4 +77,11 @@ export class RegisterFormComponent implements OnInit {
       this._globals.spinner.hide();
     }
   }
-}
+
+  get email() { return this.registerForm.get('email')}
+
+  get password() { return this.registerForm.get('password')}
+
+  get rpassword() { return this.registerForm.get('rpassword')}
+
+  }

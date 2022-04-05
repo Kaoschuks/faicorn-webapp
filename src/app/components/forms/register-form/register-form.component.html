@@ -13,12 +13,18 @@
             
             <p class="text-danger">{{error}}</p>
             <!-- Form -->
-            <form [formGroup]="registerForm" (ngSubmit)="register()" class="js-validate needs-validation" novalidate>
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
               <!-- Form -->
               <div class="mb-4">
                 <label class="form-label" for="signupModalFormLoginEmail">Your email</label>
                 <input type="email" class="form-control form-control-lg" formControlName="email" id="signupModalFormLoginEmail" placeholder="email@site.com" aria-label="email@site.com" required>
-                <span class="invalid-feedback">Please enter a valid email address.</span>
+                <div *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+                  class="p-1 text-danger">
+                  <div *ngIf="email?.errors?.['pattern']">Please enter a valid email address.</div>
+                  <div *ngIf="email?.errors?.['required']">
+                    Email is required.
+                  </div>
+                </div>
               </div>
               <!-- End Form -->
 
@@ -28,6 +34,13 @@
                 <label class="form-label" for="signupModalFormLoginEmail">Your Password</label>
                 <div class="input-group input-group-merge" data-hs-validation-validate-class>
                   <input type="password" class="js-toggle-password form-control form-control-lg" formControlName="password" id="signupModalFormLoginPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8">
+                  <div *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+                  class="p-1 text-danger">
+                    <div *ngIf="password?.errors?.['minlength']">Password should be at least 8 characters long.</div>
+                    <div *ngIf="password?.errors?.['required']">
+                      Password is required.
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- End Form -->
@@ -37,7 +50,14 @@
 
                 <label class="form-label" for="signupModalFormLoginEmail">Confirm Password</label>
                 <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                  <input type="password" class="js-toggle-password form-control form-control-lg" formControlName="rpassword" id="signupModalFormLoginPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8">
+                  <input type="password" class="js-toggle-password form-control form-control-lg" formControlName="rpassword" id="signupModalFormLoginConfirmPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8">
+                </div>
+                <div *ngIf="rpassword?.invalid && (rpassword?.dirty || rpassword?.touched)"
+                class="p-1 text-danger">
+                  <div *ngIf="rpassword?.errors?.['passwordMismatch']">Passwords do not match.</div>
+                  <div *ngIf="rpassword?.errors?.['required']">
+                    Confirm Password is required.
+                  </div>
                 </div>
               </div>
               <!-- End Form -->

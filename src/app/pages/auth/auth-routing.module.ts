@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountsLayoutComponent } from 'src/app/components/layout/accounts-layout/accounts-layout.component';
-import { AuthGuardsService } from 'src/app/guards/app.guard';
+import { AuthGuardsService} from 'src/app/guards/app.guard';
+import { ProfileGuardsService } from 'src/app/guards/profile.guard';
 import { AccountsComponent } from '../accounts/accounts.component';
 import { AuthComponent } from './auth.component';
 
@@ -15,62 +16,62 @@ const routes: Routes = [
     children: [
       {
         path: 'overview',
-        canActivate: [AuthGuardsService],
+        canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent
       },
       {
         path: 'profile',
-        canActivate: [AuthGuardsService],
+        canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent
       },
       {
         path: 'orders',
-        canActivate: [AuthGuardsService],
+        canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent
       },
       {
         path: 'activities',
-        canActivate: [AuthGuardsService],
+        canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent
       },
       {
         path: 'listings',
-        canActivate: [AuthGuardsService],
+        canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent
       },
       {
         path: 'listings/add',
-        canActivate: [AuthGuardsService],
+        canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent
       },
       {
         path: 'listings/edit/:ads_id',
-        canActivate: [AuthGuardsService],
+        canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent
       },
       {
         path: 'messages',
-        canActivate: [AuthGuardsService],
+        canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent
       },
       {
         path: 'messages/:msgid',
-        canActivate: [AuthGuardsService],
+        canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent
       },
       {
         path: 'security',
-        canActivate: [AuthGuardsService],
+        canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent
       },
       {
         path: 'payments',
-        canActivate: [AuthGuardsService],
+        canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent
       },
       {
         path: 'settings',
-        canActivate: [AuthGuardsService],
+        canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent
       }
     ]
