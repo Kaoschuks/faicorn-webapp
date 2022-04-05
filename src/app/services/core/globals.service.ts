@@ -35,11 +35,9 @@ export class GlobalsService
   process_image(url: string = "") {
     if(url !== '') {
       let url_arr = url.split('/');
-      let image = url_arr[url_arr.length - 1];
-      url_arr[url_arr.length - 1] = "f_auto";
-      url_arr[url_arr.length] = image;
+      url_arr.splice(6, 0, "w_auto,f_auto,q_auto")
       url = url_arr.join('/');
-      console.log(url)
+      // console.log(url)
     }
     return url;
   }

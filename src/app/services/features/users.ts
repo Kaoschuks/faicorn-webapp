@@ -52,6 +52,7 @@ export class UsersService {
                 const result: any = await this.auth.signInWithPopup(_provider);
 
                 resolve({
+                    auth_type: (provider === 'GoogleAuthProvider') ? 'google' : 'facebook',
                     fullname: '',
                     username: result.user.providerData[0]['displayName'],
                     email: result.user.providerData[0]['email'],

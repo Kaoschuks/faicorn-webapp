@@ -6,13 +6,13 @@
 
         <div class="preview-pic tab-content">
             <ngx-skeleton-loader *ngIf="!adsInfo?.images" [theme]="{ height: '750px', width: '100%', 'border-radius': 0 }" count="1" animation="pulse"></ngx-skeleton-loader>
-            <div *ngFor="let img of adsInfo?.images;let i = index" class="tab-pane" [ngClass]="(i == 0) ? 'active' : ''" role="tabpanel" [id]="'pic' + i"><img [src]="img" /></div>
+            <div *ngFor="let img of adsInfo?.images;let i = index" class="tab-pane" [ngClass]="(i == 0) ? 'active' : ''" role="tabpanel" [id]="'pic' + i"><img [src]="_global.process_image(img)" /></div>
         </div>
         <ng-template #showAdsImg>
             <ul class="preview-thumbnail nav nav-tabs" role="tablist">
                 <li [ngClass]="(i == 0) ? 'nav-item active' : ''" *ngFor="let img of adsInfo?.images;let i = index">
                     <a [attr.data-bs-target]="'#pic' + i" data-bs-toggle="tab" role="tab">
-                        <img [src]="img" />
+                        <img [src]="_global.process_image(img)" />
                     </a>
                 </li>
             </ul>
