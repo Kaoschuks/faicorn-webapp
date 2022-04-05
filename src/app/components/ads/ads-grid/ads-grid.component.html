@@ -25,14 +25,14 @@
         <!-- Card Body -->
         <div class="card-body no-padding" style="padding: 10px !important">
           <small class="card-subtitle fs-10 bold">
-            <span class="d-block text-muted small"><del>{{(ad?.price + 100 | currency: 'NGN ')}}</del></span>
-            <h5 class="card-title fs-12">{{ad?.price | currency: 'NGN '}}</h5>
+            <!-- <span class="d-block text-muted small"><del>{{(ad?.price + 100)}}</del></span> -->
+            <h5 class="card-title fs-12">{{ad?.price}}</h5>
           </small>
 
           <div class="mb-3">
             <h3 class="card-title bold">
               <a class="text-dark fs-16 bold">{{ad?.name | titlecase | slice: 0: 40}}</a>
-              <p class="fs-14 text-danger mt-1 bold">{{ad?.category?.name | titlecase}}</p>
+              <p class="fs-12 text-danger mt-2 bold">{{ad?.category?.name | titlecase}}</p>
             </h3>
           </div>
         </div>

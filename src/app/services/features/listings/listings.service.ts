@@ -49,6 +49,7 @@ export class ListingsService {
     return await new Promise(async (resolve: any, reject: any) => {
       this.loader.listings = true;
       this.oldlistings = this.listings = []
+      this.listingInfo = {}
       this.filterSearch = {
         "tags": {},
         "price": 0,
@@ -65,9 +66,10 @@ export class ListingsService {
         if(resp.error) throw new Error(resp.error);
 
         if(type == 'all') {
-          this.listings = resp.message.results;
-          this.oldlistings = resp.message.results;
+          this.listings = resp.message.results
+          this.oldlistings = resp.message.results
         }
+
         if(type == 'single') this.listingInfo = resp.message.results[0];
 
         this.filters = resp.message.filter;
