@@ -4,8 +4,8 @@ export const environment = {
   url: 'https://faicornapi.kreadortech.xyz/',
   secretKey: 'MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8',
   cloudinary: {
-    url: 'https://api.cloudinary.com/v1_1/kaoschuks/image/upload/',
-    upload_preset: 'akzjs6d9'
+    url: 'https://api.cloudinary.com/v1_1/faicorn/image/upload/',
+    upload_preset: 'uvo1hbms'
   },
   paystack: {
     key: 'pk_test_168b9a3d26c300225684aa04a01160a700ff9510'
@@ -19,9 +19,9 @@ export const environment = {
     messagingSenderId: "205350071061",
     appId: "1:205350071061:web:4ae88446b28718c1a0571c"
   },
-  country: "Nigeria",
+  country: "nigeria",
   states: {
-    "Nigeria": [
+    "nigeria": [
       {
           'state': {
               'name': 'Abia State',

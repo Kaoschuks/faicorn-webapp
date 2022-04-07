@@ -66,6 +66,7 @@ export class ListingFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.regions)
     // this._globals.spinner.show();
     this.tags = new Tagin(document.querySelector('.tagin'), {
       separator: ',', // default: ','
