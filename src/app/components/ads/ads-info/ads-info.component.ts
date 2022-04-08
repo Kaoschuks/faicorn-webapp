@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { GlobalsService } from 'src/app/services/core/globals.service';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 declare var document: any
 
@@ -12,7 +13,10 @@ export class AdsInfoComponent implements OnInit {
   @Input() adsInfo: any;
   imgId = 1;
   imgCount: Array<any> = Array.from(Array(5).keys())
-  constructor(public _listingservices: ListingsService) { }
+  constructor(
+    public _global: GlobalsService,
+    public _listingservices: ListingsService
+  ) { }
 
   ngOnInit(): void {
     const imgs: any = document.querySelectorAll('.img-select a');

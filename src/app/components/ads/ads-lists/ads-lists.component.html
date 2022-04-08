@@ -25,7 +25,7 @@
                     <div class="col-4 product-img-holder">
                         <a class="product-img">
                             <button *ngIf="ad?.isFeatured" class="btn btn-success btn-xs bold">Featured</button>
-                            <img [src]="ad?.images[0]" alt="{{ad?.name | titlecase | slice: 0: 100}} image">
+                            <img [src]="_global.process_image(ad?.images[0])" alt="{{ad?.name | titlecase | slice: 0: 100}} image">
                         </a>
                     </div>
                     <div class="col-8">

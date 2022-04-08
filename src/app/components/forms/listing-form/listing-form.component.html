@@ -5,6 +5,7 @@
       <h3 class="card-header-title">Fill in your advert listing information</h3>
     </div>
   </div>
+<<<<<<< HEAD
   <!-- Body -->
   <div class="card-body">
     <form
@@ -56,6 +57,69 @@
                       >
                         <div *ngIf="country?.errors?.['required']">
                           Country is required.
+=======
+    <!-- Body -->
+    <div class="card-body">
+      <form [formGroup]="listingForm" (ngSubmit)="onSubmit(listingForm.value, null)" class="custom-validation mt-5">
+        <ul id="accordion" class="step custom-accordion accordion">         
+            <li class="step-item">
+              <div class="step-content-wrapper">
+                <span class="step-icon step-icon-soft-primary">1</span>
+                <div class="step-content">
+                  <a class="collapsed" data-bs-target="#locationCollapse" data-bs-toggle="collapse" aria-expanded="false">
+                    <h4 class="bold">Set Advert Target Location</h4>
+                    <p class="step-text fs-12">We strive to figure out ways to help your business grow through all platforms.</p>
+                  </a>
+                  <div id="locationCollapse" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+                    <div class="mb-3 accordion-body">
+                      <br />
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label class="form-label">Country</label>
+                            <select class="form-control bg-muted" formControlName="country" required>
+                              <option value="">Choose a Country</option>
+                              <option value="nigeria">Nigeria</option>
+                            </select>
+                            <div *ngIf="country?.invalid && (country?.dirty || country?.touched)"
+                                class="p-1 text-danger">
+
+                              <div *ngIf="country?.errors?.['required']">
+                                Country is required.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row mt-3">
+                          <div class="col-md-6" *ngIf="listingForm.value.country">
+                            <label class="form-label">Region / State</label>
+                            <select (change)="selectChange()" class="form-control" formControlName="region" required>
+                                <option value="">Choose a Region / State in {{listingForm.value.country}}</option>
+                                <option value="{{region?.state?.name.toLowerCase()}}" *ngFor="let region of regions[listingForm.value.country]" >{{region?.state?.name | titlecase}}</option>
+                            </select>
+                            <div *ngIf="region?.invalid && (region?.dirty || region?.touched)"
+                            class="p-1 text-danger">
+
+                              <div *ngIf="region?.errors?.['required']">
+                                Region is required.
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="col-md-6" *ngIf="listingForm.value.region">
+                            <label class="form-label">City</label>
+                            <select class="form-control" formControlName="city" required>
+                              <option value="">Choose a city in {{listingForm.value.region}}</option>
+                              <option value="{{city.name.toLowerCase()}}" *ngFor="let city of cities">{{city.name | titlecase}}</option>
+                            </select>
+                            <div *ngIf="city?.invalid && (city?.dirty || city?.touched)"
+                            class="p-1 text-danger">
+
+                              <div *ngIf="city?.errors?.['required']">
+                                City is required.
+                              </div>
+                            </div>
+                          </div>
+>>>>>>> 61f445c82c8f6d0f7e78d7f4da0d64ca67a20285
                         </div>
                       </div>
                     </div>

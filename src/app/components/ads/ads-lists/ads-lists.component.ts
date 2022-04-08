@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { GlobalsService } from 'src/app/services/core/globals.service';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class AdsListsComponent implements OnInit {
   // @Input() maxTerm: number = 0;
 
   constructor(
+    public _global: GlobalsService,
     public _listingservices: ListingsService
   ) { }
 

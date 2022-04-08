@@ -44,10 +44,18 @@ export class RegisterFormComponent implements OnInit {
 
   async register() {
     this._globals.spinner.show();
-    const res: any = await this._userService.register(this.registerForm.value)
-    if(res == "register") this._globals.router.navigate(['/accounts/login']);
-    this.toastr.success('You have been registed successfully.', 'Registeration Successfully!')
+    const res: any = await this._userService.register(this.registerForm.value);
     this._globals.spinner.hide();
+    
+    if(res.error) {
+      this.error = res.error;
+      this.toastr.error(this.error, 'Registeration not Successfully')
+    }
+
+    if(res == "register") {
+      this.toastr.success('You have been registed successfully.', 'Registration Successfully')
+      this._globals.router.navigate(['/accounts/login']);
+    }
   }
 
   async socialRegister(provider: string) {
