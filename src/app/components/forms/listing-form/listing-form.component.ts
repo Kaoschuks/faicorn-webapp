@@ -112,21 +112,18 @@ export class ListingFormComponent implements OnInit {
     if(event.target.files.length > 5) alert('You can`t choose more than 5 images')
     if(event.target.files.length <= 5)  {
       this._globals.spinner.show();
-      let fileArr: any = [], promise = [];
+      let promise = [];
       for (let i = 0; i < event.target.files.length; i++) {
         const file = event.target.files[i];
         promise[i] = new Promise(async (resolve, reject) => {
           const file_resp: any = await this._listingservices.upload(file);
-          const image:any = await blobutil.blobToDataURL(file)
-          fileArr.push(image)
-          if(file_resp.secure_url) resolve(file_resp.secure_url)
+          if(file_resp.secure_url) resolve(file_resp.secure_url.replace('image/upload/', 'image/upload/w_auto,f_auto,q_auto/'))
           if(file_resp.secure_url) reject(file_resp)
         })
       }
       Promise.all(promise)
       .then((values) => {
         this._globals.spinner.hide();
-        
         this.images = values;
       })
       .catch((err: any) => {

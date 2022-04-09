@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-//   url: 'http://apis.faicorn.com:5000/',
+//   url: 'https://apis.faicorn.com/',
   url: 'https://faicornapi.kreadortech.xyz/',
   secretKey: 'MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8',
   cloudinary: {

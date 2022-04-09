@@ -31,14 +31,4 @@ export class GlobalsService
       ? this.loader.show()
       : this.loader.hide();
   }
-
-  process_image(url: string = "") {
-    if(url !== '') {
-      let url_arr = url.split('/');
-      url_arr.splice(6, 0, "w_auto,f_auto,q_auto")
-      url = url_arr.join('/');
-      // console.log(url)
-    }
-    return url;
-  }
 }
