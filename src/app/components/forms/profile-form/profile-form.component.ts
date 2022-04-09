@@ -64,7 +64,7 @@ export class ProfileFormComponent implements OnInit {
   }
 
   async saveProfile(form: any) {
-    if (form?.username !== '' || form?.phone !== '') {
+    if (form?.username !== '' || form?.phone !== '' || form?.fullname !== '') {
       let formData: any = form;
       form.uid = this._userService.user.uid;
       form.access = this._userService.user.access;
