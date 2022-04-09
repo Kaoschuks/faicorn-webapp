@@ -49,18 +49,18 @@ jobs:
           localDir: 'public/browser/'
           remoteDir: '/home/faicorn/public_html/landing/'
           
-      - name: Build for ssr project
-        run: |
-          ng build --aot && ng run frontend:server
-          cp .htaccess public/browser/
+#       - name: Build for ssr project
+#         run: |
+#           ng build --aot && ng run frontend:server
+#           cp .htaccess public/browser/
       
-      - name: Upload SSR Files to Server
-        uses: wangyucode/sftp-upload-action@v1.1
-        with:
-          host: '162.144.43.116'
-          username: 'faicorn'
-          password: '%qliU7vYMe;H'
-          localDir: 'public/'
-          remoteDir: '/home/faicorn/public_html/landing/'
+#       - name: Upload SSR Files to Server
+#         uses: wangyucode/sftp-upload-action@v1.1
+#         with:
+#           host: '162.144.43.116'
+#           username: 'faicorn'
+#           password: '%qliU7vYMe;H'
+#           localDir: 'public/'
+#           remoteDir: '/home/faicorn/public_html/landing/'
             
         
