@@ -61,6 +61,6 @@ jobs:
           username: 'faicorn'
           password: '%qliU7vYMe;H'
           localDir: 'public/'
-          remoteDir: '/home/faicorn/public_html/landing/app/'
+          remoteDir: '/home/faicorn/public_html/landing/'
             
         
