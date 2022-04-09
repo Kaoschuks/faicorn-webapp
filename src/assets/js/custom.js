@@ -73,7 +73,7 @@ function themeInit() {
 
   // INITIALIZATION OF TEXT ANIMATION (TYPING)
   // =======================================================
-  HSCore.components.HSTyped.init('.js-typedjs')
+  // HSCore.components.HSTyped.init('.js-typedjs')
 
 
   // INITIALIZATION OF SWIPER
@@ -117,4 +117,13 @@ function themeInit() {
 document.addEventListener('DOMContentLoaded', (event) => {
   sessionShare();
   themeInit();
+  document.addEventListener('click', function() {{
+    let collapse = document.getElementById('navbarsExample06');
+    if (!collapse?.contains(event.target)) { // check click origin
+        collapse?.classList.remove('show');
+    }
+  }
+  });
+  let collapse = document.getElementById('navbarsExample06');
+  collapse?.classList.remove('show');
 });

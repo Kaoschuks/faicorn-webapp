@@ -24,8 +24,7 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     this.router.events.subscribe(async (event) => {
       if ( event instanceof NavigationStart ) {
-        this.globals.spinner.show()
-        await this._listingservices.process_routes(event.url.split('/'));
+        this._listingservices.process_routes(event.url.split('/'));
       }
       if ( event instanceof NavigationEnd || event instanceof NavigationCancel ) {
         this.globals.spinner.hide()
