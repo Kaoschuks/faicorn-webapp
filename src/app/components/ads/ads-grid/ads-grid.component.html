@@ -14,7 +14,7 @@
       <a routerLink="/{{ad?.category?.name.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.brands.toLowerCase().replace('&', 'and').split(' ').join('-')}}/{{ad?.ads_id}}" class="card card-bordered h-100">
         <!-- Card Pinned -->
         <div class="card-pinned">
-          <img style="height: 200px" class="card-img-top" [src]="_global.process_image(ad?.images[0])" alt="Image Description">
+          <img style="height: 200px" class="card-img-top" [src]="ad?.images[0]" alt="Image Description">
 
           <div class="card-pinned-top-start" *ngIf="ad.isFeatured">
             <small class="badge bg-success fs-12 rounded-pill">{{ad?.featuredName}}</small>

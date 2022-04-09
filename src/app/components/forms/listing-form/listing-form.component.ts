@@ -119,7 +119,7 @@ export class ListingFormComponent implements OnInit {
           const file_resp: any = await this._listingservices.upload(file);
           const image:any = await blobutil.blobToDataURL(file)
           fileArr.push(image)
-          if(file_resp.secure_url) resolve(file_resp.secure_url)
+          if(file_resp.secure_url) resolve(file_resp.secure_url.replace('image/upload/', 'image/upload/w_auto,f_auto,q_auto/'))
           if(file_resp.secure_url) reject(file_resp)
         })
       }
