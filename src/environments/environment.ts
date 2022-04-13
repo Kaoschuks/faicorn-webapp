@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  // url: 'http://apis.faicorn.com:5000/',
   url: 'https://faicornapi.kreadortech.xyz/',
   // url: 'http://127.0.0.1:8000/',
   secretKey: 'MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8',

@@ -122,37 +122,17 @@ export class ProfileFormComponent implements OnInit {
   }
 
   async onFileChanged(event: any) {
-    const file = event.target.files[0];
     this.globals.spinner.show();
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.filePath = reader.result as string;
-    };
-    reader.readAsDataURL(file);
-    let promise = new Promise(async (resolve, reject) => {
-      const file_resp: any = await this._listingsService.upload(file);
-      if (file_resp.secure_url)
-        resolve(
-          file_resp.secure_url.replace(
-            'image/upload/',
-            'image/upload/w_auto,f_auto,q_auto/'
-          )
-        );
-      if (file_resp.secure_url) reject(file_resp);
+    const file = event.target.files[0];
+    const file_resp: any = await this._listingsService.upload(file);
+    this.globals.spinner.hide();
+
+    if(file_resp.secure_url) this.profileForm.patchValue({
+      image: file_resp.secure_url.replace('image/upload/', 'image/upload/w_auto,f_auto,q_auto/')
     });
-    promise.then(
-      (res) => {
-        this.profileForm.patchValue({
-          image: res,
-        });
-        this.globals.spinner.hide();
-      },
-      (err) => {
-        this.globals.spinner.hide();
-        console.error(err);
-      }
-    );
+    if (!file_resp.secure_url) alert(file_resp);
   }
+  
   get username() {
     return this.profileForm.get('username');
   }
