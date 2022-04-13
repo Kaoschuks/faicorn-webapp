@@ -19,6 +19,9 @@ Options All -Indexes
 
 <ifModule mod_rewrite.c>
    RewriteEngine On
+    
+    RewriteCond %{HTTPS} off 
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # Required to allow direct-linking of pages so they can be processed by Angular
   RewriteCond %{REQUEST_FILENAME} !-f
