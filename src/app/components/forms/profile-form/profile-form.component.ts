@@ -127,12 +127,17 @@ export class ProfileFormComponent implements OnInit {
     const file_resp: any = await this._listingsService.upload(file);
     this.globals.spinner.hide();
 
-    if(file_resp.secure_url) this.profileForm.patchValue({
-      image: file_resp.secure_url.replace('image/upload/', 'image/upload/w_auto,f_auto,q_auto/')
-    });
     if (!file_resp.secure_url) alert(file_resp);
+
+    if (file_resp.secure_url)
+      this.profileForm.patchValue({
+        image: file_resp.secure_url.replace(
+          'image/upload/',
+          'image/upload/w_auto,f_auto,q_auto/'
+        ),
+      });
   }
-  
+
   get username() {
     return this.profileForm.get('username');
   }
