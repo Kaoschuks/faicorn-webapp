@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-//   url: 'https://apis.faicorn.com/',
-  url: 'https://faicornapi.kreadortech.xyz/',
+  url: 'https://apis.faicorn.com/',
+//   url: 'https://faicornapi.kreadortech.xyz/',
   secretKey: 'MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8MIICXAIBAAKBgQDfmlc2EgrdhvakQApmLCDOgP0nNERInBheMh7J/r5aU8PUAIpGXET/8',
   cloudinary: {
     url: 'https://api.cloudinary.com/v1_1/faicorn/image/upload/',
