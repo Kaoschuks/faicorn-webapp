@@ -197,7 +197,7 @@ export class UsersService {
         const resp: any = await this.api.delete(`/remove`);
         if (resp.error) throw new Error(resp.error || resp);
 
-        console.log(resp.message);
+        resolve(resp.message);
       } catch (ex: any) {
         this.globals.spinner.hide();
         console.log(ex);
