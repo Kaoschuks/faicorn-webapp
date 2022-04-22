@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
 import { LoadingComponent } from './ui/loading/loading.component';
 import { ErrorComponent } from './ui/error/error.component';
 import { NoContentComponent } from './ui/no-content/no-content.component';
@@ -46,35 +45,60 @@ import { SearchPipe } from '../pipes/search';
 import { ActivitiesComponent } from './accounts/activities/activities.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-
+import { MessagesComponent } from './accounts/messages/messages.component';
 
 export const component: Array<any> = [
-	SearchPipe,
-	LoadingComponent,  NoContentComponent, NavbarComponent, FooterComponent, 
-	BreadcrumbComponent, FilterComponent, ReviewListingComponent, AccountsSidebarComponent,
-	ErrorComponent,
-	LoginFormComponent, RegisterFormComponent, ForgotFormComponent, ChangepasswordFormComponent, ProfileFormComponent, ListingFormComponent,
-	IndexLayoutComponent, ListingsLayoutComponent, AccountsLayoutComponent,
-	AdsListsComponent, AdsGridComponent, AdsInfoComponent, AdsCategoryScrollComponent,
-	PaymentsComponent, SecurityComponent, OverviewComponent, ListingsComponent, OrdersComponent, ActivitiesComponent, ListingsFilterPipe
-]
+  SearchPipe,
+  LoadingComponent,
+  NoContentComponent,
+  NavbarComponent,
+  FooterComponent,
+  BreadcrumbComponent,
+  FilterComponent,
+  ReviewListingComponent,
+  AccountsSidebarComponent,
+  ErrorComponent,
+  LoginFormComponent,
+  RegisterFormComponent,
+  ForgotFormComponent,
+  ChangepasswordFormComponent,
+  ProfileFormComponent,
+  ListingFormComponent,
+  IndexLayoutComponent,
+  ListingsLayoutComponent,
+  AccountsLayoutComponent,
+  AdsListsComponent,
+  AdsGridComponent,
+  AdsInfoComponent,
+  AdsCategoryScrollComponent,
+  PaymentsComponent,
+  SecurityComponent,
+  OverviewComponent,
+  ListingsComponent,
+  OrdersComponent,
+  ActivitiesComponent,
+  ListingsFilterPipe,
+  MessagesComponent,
+];
 
 @NgModule({
-	declarations: component,
-	imports: [
-		CommonModule,
-		FormsModule,
-		NgxPaginationModule,
-		RouterModule,
-		NgxSpinnerModule,
-		ReactiveFormsModule, ToastrModule.forRoot({
-			timeOut: 3000,
-			preventDuplicates: true,
-			positionClass: 'toast-bottom-left'
-		}), NgxSkeletonLoaderModule,
-		Angular4PaystackModule.forRoot(environment.paystack.key),
-	],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	exports: component
+  declarations: component,
+  imports: [
+    CommonModule,
+    FormsModule,
+    NgxPaginationModule,
+    RouterModule,
+    NgxSpinnerModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      preventDuplicates: true,
+      positionClass: 'toast-bottom-left',
+    }),
+    NgxSkeletonLoaderModule,
+    Angular4PaystackModule.forRoot(environment.paystack.key),
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  exports: component,
 })
 export class ComponentsModule {}

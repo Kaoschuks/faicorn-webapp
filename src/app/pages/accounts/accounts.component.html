@@ -1,11 +1,36 @@
 <!-- <ads-listing></ads-listing> -->
 
-<accounts-listings *ngIf="_global.url.split('/')[2] == 'listings' && !_global.url.split('/')[3]"></accounts-listings>
-<accounts-overview *ngIf="_global.url.split('/')[2] == 'overview'"></accounts-overview>
-<accounts-payments *ngIf="_global.url.split('/')[2] == 'payments'"></accounts-payments>
-<accounts-security *ngIf="_global.url.split('/')[2] == 'security'"></accounts-security>
+<accounts-listings
+  *ngIf="_global.url.split('/')[2] == 'listings' && !_global.url.split('/')[3]"
+></accounts-listings>
+<accounts-overview
+  *ngIf="_global.url.split('/')[2] == 'overview'"
+></accounts-overview>
+<accounts-messages
+  *ngIf="_global.url.split('/')[2] == 'messages'"
+></accounts-messages>
+<accounts-payments
+  *ngIf="_global.url.split('/')[2] == 'payments'"
+></accounts-payments>
+<accounts-security
+  *ngIf="_global.url.split('/')[2] == 'security'"
+></accounts-security>
 <profile-form *ngIf="_global.url.split('/')[2] == 'profile'"></profile-form>
-<accounts-orders *ngIf="_global.url.split('/')[2] == 'orders'"></accounts-orders>
-<accounts-activities *ngIf="_global.url.split('/')[2] == 'activities'"></accounts-activities>
-<listing-form *ngIf="_global.url.split('/')[2] == 'listings' && _global.url.split('/')[3] == 'add'"></listing-form>
-<listing-form *ngIf="_global.url.split('/')[2] == 'listings' && _global.url.split('/')[3] == 'edit'"></listing-form>
+<accounts-orders
+  *ngIf="_global.url.split('/')[2] == 'orders'"
+></accounts-orders>
+<accounts-activities
+  *ngIf="_global.url.split('/')[2] == 'activities'"
+></accounts-activities>
+<listing-form
+  *ngIf="
+    _global.url.split('/')[2] == 'listings' &&
+    _global.url.split('/')[3] == 'add'
+  "
+></listing-form>
+<listing-form
+  *ngIf="
+    _global.url.split('/')[2] == 'listings' &&
+    _global.url.split('/')[3] == 'edit'
+  "
+></listing-form>
