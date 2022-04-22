@@ -3,21 +3,40 @@
 <br />
 <br />
 <br />
-          <div class="flex-grow-1 mx-auto">
+<div class="flex-grow-1 mx-auto">
+  <!-- Form -->
+  <form [formGroup]="forgotForm" (ngSubmit)="OnSubmit()">
+    <!-- Form -->
+    <div class="mb-4">
+      <label class="form-label" for="signupModalFormLoginEmail"
+        >Your email</label
+      >
+      <input
+        type="email"
+        class="form-control form-control-lg"
+        formControlName="email"
+        id="signupModalFormLoginEmail"
+        placeholder="email@site.com"
+        aria-label="email@site.com"
+        required
+      />
+      <div
+        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+        class="p-1 text-danger"
+      >
+        <div *ngIf="email?.errors?.['pattern']">
+          Please enter a valid email address.
+        </div>
+        <div *ngIf="email?.errors?.['required']">Email is required.</div>
+      </div>
+    </div>
+    <!-- End Form -->
 
-            <!-- Form -->
-            <form class="js-validate needs-validation" novalidate>
-              <!-- Form -->
-              <div class="mb-4">
-                <label class="form-label" for="signupModalFormLoginEmail">Your email</label>
-                <input type="email" class="form-control form-control-lg" name="email" id="signupModalFormLoginEmail" placeholder="email@site.com" aria-label="email@site.com" required>
-                <span class="invalid-feedback">Please enter a valid email address.</span>
-              </div>
-              <!-- End Form -->
-
-              <div class="d-grid mb-3">
-                <button type="submit" class="btn btn-secondary btn-sm">Recover Your Account</button>
-              </div>
-            </form>
-            <!-- End Form -->
-          </div>
+    <div class="d-grid mb-3">
+      <button type="submit" class="btn btn-secondary btn-sm">
+        Recover Your Account
+      </button>
+    </div>
+  </form>
+  <!-- End Form -->
+</div>
