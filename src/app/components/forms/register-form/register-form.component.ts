@@ -8,52 +8,55 @@ import { MustMatch } from './MustMatch';
 @Component({
   selector: 'register-form',
   templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.css']
+  styleUrls: ['./register-form.component.css'],
 })
 export class RegisterFormComponent implements OnInit {
+  registerForm: FormGroup = new FormGroup(
+    {
+      email: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+        ])
+      ),
+      password: new FormControl(
+        '',
+        Validators.compose([Validators.required, Validators.minLength(6)])
+      ),
+      rpassword: new FormControl(
+        '',
+        Validators.compose([Validators.required, Validators.minLength(6)])
+      ),
+    },
+    { validators: MustMatch('password', 'rpassword') }
+  );
 
-
-  registerForm: FormGroup = new FormGroup({
-    email: new FormControl(
-      "",
-      Validators.compose([
-        Validators.required,
-        Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
-      ])
-    ),
-    password: new FormControl(
-      "",
-      Validators.compose([Validators.required, Validators.minLength(6)])
-    ),
-    rpassword: new FormControl(
-      "",
-      Validators.compose([Validators.required, Validators.minLength(6)])
-    )
-  }, { validators: MustMatch('password', 'rpassword') });
-
-  error: any
+  error: any;
   constructor(
     public _userService: UsersService,
     private _globals: GlobalsService,
-    private toastr: ToastrService,
-  ) {
-  }
+    private toastr: ToastrService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async register() {
+    if (this.registerForm.errors && !this.registerForm.valid) return;
     this._globals.spinner.show();
     const res: any = await this._userService.register(this.registerForm.value);
     this._globals.spinner.hide();
-    
-    if(res.error) {
+
+    if (res.error) {
       this.error = res.error;
-      this.toastr.error(this.error, 'Registeration not Successfully')
+      this.toastr.error(this.error, 'Registeration not Successfully');
     }
 
-    if(res == "register") {
-      this.toastr.success('You have been registed successfully.', 'Registration Successfully')
+    if (res == 'register') {
+      this.toastr.success(
+        'You have been registed successfully.',
+        'Registration Successfully'
+      );
       this._globals.router.navigate(['/accounts/login']);
     }
   }
@@ -62,26 +65,35 @@ export class RegisterFormComponent implements OnInit {
     this._globals.spinner.show();
 
     const resp: any = await this._userService.socialregister(
-      (provider == 'google') ? 'GoogleAuthProvider' : 'FacebookAuthProvider'
+      provider == 'google' ? 'GoogleAuthProvider' : 'FacebookAuthProvider'
     );
-    if(resp.error) {
+    if (resp.error) {
       this.error = resp.error;
       this._globals.spinner.hide();
-    } 
+    }
 
-    if(!resp.error) {
+    if (!resp.error) {
       const res: any = await this._userService.login(resp, provider);
-      if(res.error) this.error = res.error;
-      if(res == "logged in") this._globals.router.navigate(['/accounts/overview'])
-      this.toastr.success('You have been registed successfully.', 'Registeration Successfully')
+      if (res.error) this.error = res.error;
+      if (res == 'logged in')
+        this._globals.router.navigate(['/accounts/overview']);
+      this.toastr.success(
+        'You have been registed successfully.',
+        'Registeration Successfully'
+      );
       this._globals.spinner.hide();
     }
   }
 
-  get email() { return this.registerForm.get('email')}
-
-  get password() { return this.registerForm.get('password')}
-
-  get rpassword() { return this.registerForm.get('rpassword')}
-
+  get email() {
+    return this.registerForm.get('email');
   }
+
+  get password() {
+    return this.registerForm.get('password');
+  }
+
+  get rpassword() {
+    return this.registerForm.get('rpassword');
+  }
+}

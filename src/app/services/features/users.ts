@@ -206,6 +206,40 @@ export class UsersService {
     });
   }
 
+  async confirmToken(token: string = '') {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        const resp: any = await this.api.get(`confirm/${token}`);
+        if (resp.error) throw new Error(resp.error || resp);
+
+        resolve(resp);
+      } catch (ex: any) {
+        this.globals.spinner.hide();
+        console.log(ex);
+        reject({
+          error: ex.error || ex.message || ex || 'Error in token check',
+        });
+      }
+    });
+  }
+
+  async changePassword(data: any) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        const resp: any = await this.api.post('/changepassword', data);
+        if (resp.error) throw new Error(resp.error || resp);
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (ex: any) {
+        this.globals.spinner.hide();
+        console.log(ex);
+        reject({
+          error: ex.error || ex.message || ex || 'Error in updating password',
+        });
+      }
+    });
+  }
+
   async logout() {
     await this.auth.signOut();
     await this.globals.storage.clear();

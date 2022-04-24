@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { GlobalsService } from 'src/app/services/core/globals.service';
 import { UsersService } from 'src/app/services/features/users';
 import { MustMatch } from '../register-form/MustMatch';
 
@@ -24,11 +26,34 @@ export class ResetPasswordFormComponent implements OnInit {
   );
 
   error: string = '';
-  constructor(public _userService: UsersService) {}
+  constructor(
+    public _userService: UsersService,
+    private _globals: GlobalsService,
+    private toastr: ToastrService
+  ) {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    await this.checkToken();
+  }
 
-  OnSubmit() {}
+  async OnSubmit() {
+    if (this.resetPasswordForm.errors && !this.resetPasswordForm.valid) return;
+    this._globals.spinner.show();
+    const resp: any = await this._userService.changePassword(
+      this.resetPasswordForm.value
+    );
+    this.toastr.success(
+      'Your password has been updated successfully.',
+      'Account Password Updated!'
+    );
+  }
+
+  async checkToken() {
+    this._globals.spinner.show();
+    let token = this._globals.url.split('/')[3];
+    const resp: any = await this._userService.confirmToken(token);
+    this._globals.spinner.hide();
+  }
 
   get password() {
     return this.resetPasswordForm.get('password');
