@@ -226,7 +226,7 @@ export class UsersService {
   async changePassword(data: any) {
     return await new Promise(async (resolve, reject) => {
       try {
-        const resp: any = await this.api.post('/changepassword', data);
+        const resp: any = await this.api.post('changepassword', data);
         if (resp.error) throw new Error(resp.error || resp);
         this.globals.spinner.hide();
         resolve(resp);

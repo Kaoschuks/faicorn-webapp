@@ -37,7 +37,7 @@ export class ResetPasswordFormComponent implements OnInit {
   }
 
   async OnSubmit() {
-    if (this.resetPasswordForm.errors && !this.resetPasswordForm.valid) return;
+    if (this.resetPasswordForm.errors || !this.resetPasswordForm.valid) return;
     this._globals.spinner.show();
     const resp: any = await this._userService.changePassword(
       this.resetPasswordForm.value

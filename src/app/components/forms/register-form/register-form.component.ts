@@ -42,7 +42,7 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() {}
 
   async register() {
-    if (this.registerForm.errors && !this.registerForm.valid) return;
+    if (this.registerForm.errors || !this.registerForm.valid) return;
     this._globals.spinner.show();
     const res: any = await this._userService.register(this.registerForm.value);
     this._globals.spinner.hide();
