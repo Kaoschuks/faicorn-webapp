@@ -46,6 +46,7 @@ import { ActivitiesComponent } from './accounts/activities/activities.component'
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { MessagesComponent } from './accounts/messages/messages.component';
+import { ResetPasswordFormComponent } from './forms/reset-password-form/reset-password-form.component';
 
 export const component: Array<any> = [
   SearchPipe,
@@ -79,6 +80,7 @@ export const component: Array<any> = [
   ActivitiesComponent,
   ListingsFilterPipe,
   MessagesComponent,
+  ResetPasswordFormComponent,
 ];
 
 @NgModule({
