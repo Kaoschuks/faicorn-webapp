@@ -1,0 +1,13 @@
+.chat:hover {
+  background-color: rgb(242, 242, 242);
+}
+
+.active {
+  background-color: rgb(218, 218, 218) !important;
+}
+
+@media only screen and (max-width: 480px) {
+  .card-body {
+    padding: 0;
+  }
+}

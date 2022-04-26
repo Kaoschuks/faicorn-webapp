@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 
 @Component({
-  selector: 'accounts-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css'],
+  selector: 'messages-id',
+  templateUrl: './id.component.html',
+  styleUrls: ['./id.component.css'],
 })
-export class MessagesComponent implements OnInit {
-  constructor(public _globals: GlobalsService) {}
+export class MessagesIdComponent implements OnInit {
+  constructor(private _globals: GlobalsService) {}
 
   ngOnInit() {
     this._globals.spinner.show();
