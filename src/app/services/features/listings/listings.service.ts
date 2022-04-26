@@ -249,7 +249,7 @@ export class ListingsService {
               this._user.user = res;
               const jwt = await this.globals.storage.getItem('jwt');
               this.api.setJwt(jwt.access_token);
-              const resp: any = await this.api.post('listings' + route, {
+              const resp: any = await this.api.post('users' + route, {
                 ads_id: data.ads_id,
                 id: data.id,
                 type: data.type,
