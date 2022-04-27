@@ -1,103 +1,92 @@
-<div class="card">
-  <div class="card-header">
-    <h4 class="card-header-title">Your Reviews</h4>
-  </div>
+<ng-template #elseBlock>
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-header-title">Your Reviews</h4>
+    </div>
 
-  <div class="table-responsive">
-    <table
-      class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
-    >
-      <thead class="thead-light">
-        <tr>
-          <th>User</th>
-          <th>Comments</th>
-          <th>Date Posted</th>
-          <!-- <th>Order Type</th>
-          <th>Status</th> -->
-          <th style="width: 5%"></th>
-        </tr>
-      </thead>
-
-      <tbody
-        *ngFor="
-          let com of reviews | paginate: { itemsPerPage: limit, currentPage: p }
-        "
+    <div class="table-responsive">
+      <table
+        class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
       >
-        <tr>
-          <td>
-            <div class="d-flex align-items-center">
-              <div class="flex-shrink-0">
-                <span class="avatar avatar-sm avatar-warning avatar-circle">
-                  <!-- <span class="avatar-initials">FH</span> -->
-                  <img
-                    class="avatar-initials"
-                    style="background-color: white"
-                    [src]="com?.user?.image"
-                    alt="User Image"
-                  />
-                </span>
-              </div>
+        <thead class="thead-light">
+          <tr>
+            <th>User</th>
+            <th>Comments</th>
+            <th>Date Posted</th>
+          </tr>
+        </thead>
 
-              <div class="flex-grow-1 ms-3">
-                <a class="d-inline-block link-dark" href="#">
-                  <h6 class="text-hover-primary mb-0">
-                    {{
-                      com?.user?.username || com?.user?.username || "not set"
-                    }}
-                  </h6>
-                </a>
-                <!-- <small class="d-block">finch@example.com</small> -->
+        <tbody
+          *ngFor="
+            let com of reviews
+              | paginate: { itemsPerPage: limit, currentPage: p }
+          "
+        >
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="flex-shrink-0">
+                  <span class="avatar avatar-sm avatar-warning avatar-circle">
+                    <!-- <span class="avatar-initials">FH</span> -->
+                    <img
+                      class="avatar-initials"
+                      style="background-color: white"
+                      [src]="com?.user?.image"
+                      alt="User Image"
+                    />
+                  </span>
+                </div>
+
+                <div class="flex-grow-1 ms-3">
+                  <a class="d-inline-block link-dark" href="#">
+                    <h6 class="text-hover-primary mb-0">
+                      {{
+                        com?.user?.username || com?.user?.username || "not set"
+                      }}
+                    </h6>
+                  </a>
+                  <!-- <small class="d-block">finch@example.com</small> -->
+                </div>
               </div>
-            </div>
-          </td>
-          <td>
-            {{ com?.comments }}
-          </td>
-          <td>
-            {{ com?.posted_on | date: "mediumDate" }}
-          </td>
-          <td>
-            <a
-              class="text-body"
-              href="javascript:;"
-              data-bs-toggle="tooltip"
-              data-bs-placement="top"
-              title=""
-              data-bs-original-title="Remove member"
-            >
-              <i class="bi-trash"></i>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="row">
-      <div class="col-sm-12 col-md-5">
-        <div
-          class="dataTables_info p-5"
-          id="DataTables_Table_0_info"
-          role="status"
-          aria-live="polite"
-        >
-          Showing 1 to 10 of {{ reviews.length }} entries
+            </td>
+            <td>
+              {{ com?.comments }}
+            </td>
+            <td>
+              {{ com?.posted_on | date: "mediumDate" }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-sm-12 col-md-5">
+          <div
+            class="dataTables_info"
+            style="padding-left: 2rem; padding-bottom: 1rem"
+            id="DataTables_Table_0_info"
+            role="status"
+            aria-live="polite"
+          >
+            Showing 1 to 10 of {{ reviews.length }} entries
+          </div>
         </div>
-      </div>
-      <div class="col-sm-12 col-md-7">
-        <div
-          class="dataTables_paginate paging_simple_numbers"
-          id="DataTables_Table_0_paginate"
-        >
-          <pagination-controls
-            *ngIf="reviews.length > 10"
-            (pageChange)="p = $event"
-          ></pagination-controls>
+        <div class="col-sm-12 col-md-7">
+          <div
+            class="dataTables_paginate paging_simple_numbers"
+            id="DataTables_Table_0_paginate"
+          >
+            <pagination-controls
+              *ngIf="reviews.length > 10"
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>
 
-<!-- <no-content>
+<no-content *ngIf="reviews?.length == 0; else elseBlock">
   <h2>No Reviews</h2>
   <p>Your Account hasn't had any reviews to show right now.</p>
-</no-content> -->
+</no-content>
