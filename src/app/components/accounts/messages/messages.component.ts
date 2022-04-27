@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalsService } from 'src/app/services/core/globals.service';
+import { MessagingService } from 'src/app/services/features/messaging/messaging.service';
 
 @Component({
   selector: 'accounts-messages',
@@ -7,7 +8,10 @@ import { GlobalsService } from 'src/app/services/core/globals.service';
   styleUrls: ['./messages.component.css'],
 })
 export class MessagesComponent implements OnInit {
-  constructor(public _globals: GlobalsService) {}
+  constructor(
+    public _globals: GlobalsService,
+    public messagingService: MessagingService
+  ) {}
 
   ngOnInit() {
     this._globals.spinner.show();
@@ -15,8 +19,8 @@ export class MessagesComponent implements OnInit {
   }
 
   async getMessages() {
-    // const resp = await this.ordersService.getOrders();
-    // console.log(resp)
+    const resp = await this.messagingService.getChannels();
+    console.log(resp);
     this._globals.spinner.hide();
   }
 }

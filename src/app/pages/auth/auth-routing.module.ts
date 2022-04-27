@@ -31,6 +31,11 @@ const routes: Routes = [
         component: AccountsComponent,
       },
       {
+        path: 'reviews',
+        canActivate: [AuthGuardsService, ProfileGuardsService],
+        component: AccountsComponent,
+      },
+      {
         path: 'activities',
         canActivate: [AuthGuardsService, ProfileGuardsService],
         component: AccountsComponent,
