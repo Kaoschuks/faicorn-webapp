@@ -34,6 +34,18 @@ export class MessagesIdComponent implements OnInit {
     this._globals.spinner.hide();
   }
 
+  async deleteMessage(message_id: string) {
+    this._globals.spinner.show();
+    let channel_id = this._globals.url.split('/')[3];
+    let data = {
+      channel_id,
+      message_id,
+    };
+    const resp = await this.messagingServices.deleteMessage(data);
+    // console.log(resp)
+    this._globals.spinner.hide();
+  }
+
   async OnSubmit() {
     if (!this.messageForm.valid) return;
     console.log(this.messageForm.value);

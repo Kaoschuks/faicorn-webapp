@@ -32,10 +32,10 @@ export class MessagingService {
     });
   }
 
-  async deleteMessage(id: string = '') {
+  async deleteMessage(data: any) {
     return await new Promise(async (resolve, reject) => {
       try {
-        const resp: any = await this.api.delete(`message/${id}`);
+        const resp: any = await this.api.delete('message', data);
         if (resp.error) throw new Error(resp.error || resp);
 
         resolve(resp.message);
