@@ -1,27 +1,27 @@
-<ng-template #elseBlock>
-  <div class="card">
-    <div class="card-header">
-      <h5 class="card-header-title">Recent</h5>
-    </div>
-    <div class="card-body">
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-header-title">Recent Activities</h5>
+  </div>
+  <div class="card-body">
+    <ng-template #elseBlock>
       <div class="row" *ngFor="let activity of usersService.activities">
         <div class="d-flex justify-content-start">
           <div class="pr-3">
             <i class="bi bi-person-circle"></i>
           </div>
           <div class="row mt-1">
-            <p class="bold lead fs-16">{{activity?.info}}</p>
-            <p style="margin-top: -10px" class="text-dangerlead fs-12">{{activity?.date | date}}</p>
+            <p class="bold lead fs-16">{{ activity?.info }}</p>
+            <p style="margin-top: -10px" class="text-dangerlead fs-12">
+              {{ activity?.date | date }}
+            </p>
           </div>
-        </div>          
+        </div>
       </div>
-    </div>
+    </ng-template>
+
+    <no-content *ngIf="usersService.activities?.length == 0; else elseBlock">
+      <h2>No Activities</h2>
+      <p>Your Account has not made any activities to show right now.</p>
+    </no-content>
   </div>
-
-</ng-template>
-
-
-<no-content *ngIf="usersService.activities?.length == 0; else elseBlock">
-  <h2>No Activities</h2>
-  <p>Your Account has not made any activities to show right now.</p>
-</no-content>
+</div>
