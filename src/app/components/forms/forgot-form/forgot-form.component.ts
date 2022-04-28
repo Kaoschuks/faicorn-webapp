@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { UsersService } from 'src/app/services/features/users';
 
 @Component({
@@ -17,24 +18,26 @@ export class ForgotFormComponent implements OnInit {
       ])
     ),
   });
-  validation_messages = {
-    email: [
-      { type: 'required', message: 'Email is required.' },
-      {
-        type: 'minlength',
-        message: 'Email must be at least 5 characters long.',
-      },
-      { type: 'pattern', message: 'Email must be valid.' },
-      { type: 'email', message: 'Email must be valid' },
-    ],
-  };
 
   error: string = '';
-  constructor(public _userService: UsersService) {}
+  constructor(
+    public _userService: UsersService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {}
 
-  OnSubmit() {}
+  async OnSubmit() {
+    if (!this.forgotForm.valid || this.forgotForm.errors) return;
+    const resp: any = await this._userService.recoverPassword(
+      this.forgotForm.value
+    );
+    this.toastr.success(
+      'Reset Link has been sent to your email.',
+      'Reset Link Posted!'
+    );
+    console.log(resp);
+  }
 
   get email() {
     return this.forgotForm.get('email');

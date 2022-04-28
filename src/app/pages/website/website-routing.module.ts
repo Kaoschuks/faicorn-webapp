@@ -14,43 +14,45 @@ const routes: Routes = [
   { path: 'privacy-policy', component: IndexPagesComponent },
   { path: 'login', redirectTo: 'accounts/login', pathMatch: 'full' },
   { path: 'register', redirectTo: 'accounts/register', pathMatch: 'full' },
-  { 
-    path: 'accounts', 
-    loadChildren: () => import('../auth/auth.module').then( m => m.AuthModule) 
+  { path: 'forgot', redirectTo: 'accounts/forgot', pathMatch: 'full' },
+  {
+    path: 'accounts',
+    loadChildren: () => import('../auth/auth.module').then((m) => m.AuthModule),
   },
-  { 
-    path: 'search', component: ListingsLayoutComponent,
+  {
+    path: 'search',
+    component: ListingsLayoutComponent,
     children: [
       {
         path: ':query',
-        component: ListingPagesComponent
+        component: ListingPagesComponent,
       },
       {
         path: '',
         redirectTo: '/',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
-    ]
+    ],
   },
-  { 
-    path: ':categories', 
+  {
+    path: ':categories',
     component: ListingsLayoutComponent,
     children: [
       {
         path: '',
-        component: ListingPagesComponent
+        component: ListingPagesComponent,
       },
       {
         path: ':subcategories',
-        component: ListingPagesComponent
+        component: ListingPagesComponent,
       },
-    ]
+    ],
   },
   { path: ':categories/:subscategories/:id', component: DetailPagesComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class WebsiteRoutingModule { }
+export class WebsiteRoutingModule {}

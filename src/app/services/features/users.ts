@@ -206,16 +206,38 @@ export class UsersService {
     });
   }
 
+  async recoverPassword(data: any) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        const resp: any = await this.api.post('recover', data);
+        if (resp.error) throw new Error(resp.error || resp);
+
+        resolve(resp.message);
+      } catch (ex: any) {
+        console.log(ex);
+        this.globals.spinner.hide();
+        this.toastr.error(ex, 'Reset Link Error!');
+        reject({
+          error: ex.error || ex.message || ex || 'Error in recovering email',
+        });
+      }
+    });
+  }
+
   async confirmToken(token: string = '') {
     return await new Promise(async (resolve, reject) => {
       try {
         const resp: any = await this.api.get(`confirm/${token}`);
-        if (resp.error) throw new Error(resp.error || resp);
+        if (resp.error) {
+          this.toastr.error(resp.error, 'Recover Token Error!');
+          throw new Error(resp.error || resp);
+        }
 
         resolve(resp);
       } catch (ex: any) {
         this.globals.spinner.hide();
         console.log(ex);
+        this.toastr.error(ex, 'Recover Token Error!');
         reject({
           error: ex.error || ex.message || ex || 'Error in token check',
         });
@@ -227,7 +249,13 @@ export class UsersService {
     return await new Promise(async (resolve, reject) => {
       try {
         const resp: any = await this.api.post('changepassword', data);
-        if (resp.error) throw new Error(resp.error || resp);
+        if (resp.error || resp.detail) {
+          this.toastr.error(
+            resp.detail || resp.error || resp,
+            'Reset Password Error!'
+          );
+          throw new Error(resp.detail || resp.error || resp);
+        }
         this.globals.spinner.hide();
         resolve(resp);
       } catch (ex: any) {
