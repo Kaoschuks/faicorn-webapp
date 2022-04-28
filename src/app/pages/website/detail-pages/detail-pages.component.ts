@@ -58,7 +58,7 @@ export class DetailPagesComponent implements OnInit {
     this.showContact = !this.showContact ? true : false;
   }
 
-  async sendMessage() {
+  async createChannel() {
     let channel = {
       channel_name: this._listingservices?.listingInfo?.name,
       users: [
