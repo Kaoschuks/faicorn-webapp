@@ -36,7 +36,6 @@ export class ForgotFormComponent implements OnInit {
       'Reset Link has been sent to your email.',
       'Reset Link Posted!'
     );
-    console.log(resp);
   }
 
   get email() {
