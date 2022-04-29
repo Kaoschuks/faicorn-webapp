@@ -13,6 +13,7 @@ import { UsersService } from 'src/app/services/features/users';
 export class DetailPagesComponent implements OnInit {
   showContact: boolean = false;
   url: any = this._global.url.split('/');
+  user: any;
   constructor(
     private _global: GlobalsService,
     public _listingservices: ListingsService,
@@ -31,7 +32,8 @@ export class DetailPagesComponent implements OnInit {
         ``,
         'single'
       );
-    // this.getAds()
+    this.user = await this._global.storage.getItem('user');
+    console.log(this._listingservices?.listingInfo);
   }
 
   getAds() {

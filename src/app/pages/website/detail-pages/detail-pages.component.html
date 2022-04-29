@@ -106,23 +106,37 @@
               *ngIf="
                 showContact && _listingservices?.listingInfo?.user?.phone != ''
               "
+              [class.disabled]="
+                user &&
+                user?.phone == _listingservices?.listingInfo?.user?.phone
+              "
               class="btn btn-dark btn-xs fs-16 bold"
               href="tel://{{ _listingservices?.listingInfo?.user?.phone }}"
-              >Call {{ _listingservices?.listingInfo?.user?.phone }}</a
             >
+              Call {{ _listingservices?.listingInfo?.user?.phone }}
+            </a>
             <!-- <a *ngIf="showContact && _listingservices?.listingInfo?.user?.phone == ''" class="btn btn-outlink-success btn-xs fs-16 bold" href="mailto://{{_listingservices?.listingInfo?.user?.email}}">Email {{_listingservices?.listingInfo?.user?.username}}</a> -->
             <a
               href="javascript:void(0);"
               (click)="createChannel()"
+              [class.disabled]="
+                user && user?.uid == _listingservices?.listingInfo?.user?.uid
+              "
               class="btn btn-danger btn-xs fs-16 bold"
-              >Send Message</a
             >
+              Send Message
+            </a>
             <a
               *ngIf="_listingservices?.listingInfo?.user?.phone != ''"
               href="whatsapp://{{ _listingservices?.listingInfo?.user?.phone }}"
+              [class.disabled]="
+                user &&
+                user?.phone == _listingservices?.listingInfo?.user?.phone
+              "
               class="btn btn-success btn-xs fs-16 bold"
-              >Whatsapp Seller</a
             >
+              Whatsapp Seller
+            </a>
             <!-- <button routerLink="/accounts/messages?uid={{_listingservices?.listingInfo?.user?.uid}}" class="btn btn-secondary btn-xs fs-16 bold" type="button">Contact via Email</button> -->
           </div>
         </div>
