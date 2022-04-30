@@ -26,7 +26,7 @@ export class MessagesIdComponent implements OnInit {
 
   async ngOnInit() {
     await this.getMessages();
-    let channel_id = this._globals.url.split('/')[3];
+    let channel_id = decodeURIComponent(this._globals.url.split('/')[3]);
     this.messageForm.patchValue({ channel_id });
   }
 
