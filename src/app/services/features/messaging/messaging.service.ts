@@ -21,7 +21,7 @@ export class MessagingService {
       try {
         const resp: any = await this.api.post('message', data);
         if (resp.error) throw new Error(resp.error);
-        resolve(resp.message);
+        resolve(resp);
       } catch (ex: any) {
         this.globals.spinner.hide();
         console.log(ex);
@@ -54,7 +54,7 @@ export class MessagingService {
       try {
         const resp: any = await this.api.get('channels');
         if (resp.error) throw new Error(resp.error);
-        resolve(resp.message);
+        resolve(resp);
       } catch (ex: any) {
         this.globals.spinner.hide();
         console.log(ex);
@@ -85,7 +85,7 @@ export class MessagingService {
       try {
         const resp: any = await this.api.get(`channels/${id}`);
         if (resp.error) throw new Error(resp.error);
-        resolve(resp.message);
+        resolve(resp);
       } catch (ex: any) {
         this.globals.spinner.hide();
         console.log(ex);

@@ -14,9 +14,9 @@ export class MessagesComponent implements OnInit {
     public messagingService: MessagingService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this._globals.spinner.show();
-    this.getMessages();
+    await this.getMessages();
   }
 
   async getMessages() {

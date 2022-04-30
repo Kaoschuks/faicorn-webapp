@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { ListingsService } from 'src/app/services/features/listings/listings.service';
@@ -13,9 +13,10 @@ export class MessagesIdComponent implements OnInit {
   messageForm: FormGroup = new FormGroup({
     channel_id: new FormControl('', Validators.compose([Validators.required])),
     messages: new FormControl('', Validators.compose([Validators.required])),
-    msg_type: new FormControl('', Validators.compose([Validators.required])),
+    msg_type: new FormControl(''),
   });
-  files: Array<any> = [];
+  messages: any[] = [];
+  receipient: any;
 
   constructor(
     private _globals: GlobalsService,
@@ -23,17 +24,20 @@ export class MessagesIdComponent implements OnInit {
     private _listingservices: ListingsService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.getMessages();
     let channel_id = this._globals.url.split('/')[3];
     this.messageForm.patchValue({ channel_id });
   }
 
   async OnSubmit(form: any) {
-    if (!this.messageForm.valid || this.messageForm.errors) return;
+    if (!this.messageForm.valid) return;
     let formData: any = form;
-    formData.files = this.files;
+    formData.files = [];
+    formData.msg_type = 'text';
+    console.log(formData);
     const resp = await this.messagingServices.postMessages(formData);
-    // console.log(resp)
+    console.log(resp);
     this._globals.spinner.hide();
   }
 
@@ -49,37 +53,13 @@ export class MessagesIdComponent implements OnInit {
     this._globals.spinner.hide();
   }
 
-  onFile(event: any) {
-    event.preventDefault();
-    if (event.target.files.length > 5)
-      alert('You can`t choose more than 5 files');
-    if (event.target.files.length <= 5) {
-      this._globals.spinner.show();
-      let promise = [];
-      for (let i = 0; i < event.target.files.length; i++) {
-        const file = event.target.files[i];
-        promise[i] = new Promise(async (resolve, reject) => {
-          const file_resp: any = await this._listingservices.upload(file);
-          if (file_resp.secure_url)
-            resolve(
-              file_resp.secure_url.replace(
-                'image/upload/',
-                'image/upload/w_auto,f_auto,q_auto/'
-              )
-            );
-          if (file_resp.secure_url) reject(file_resp);
-        });
-      }
-      Promise.all(promise)
-        .then((values) => {
-          this._globals.spinner.hide();
-          this.files = values;
-        })
-        .catch((err: any) => {
-          this._globals.spinner.hide();
-          console.error(err);
-        });
-    }
-    return false;
+  async getMessages() {
+    this._globals.spinner.show();
+    let channel_id = this._globals.url.split('/')[3];
+    const resp: any = await this.messagingServices.getChannel(channel_id);
+    this.messages = resp[0]?.messages;
+    var user = await this._globals.storage.getItem('user');
+    this.receipient = resp[0]?.users.filter((i: any) => i.uid !== user?.uid)[0];
+    this._globals.spinner.hide();
   }
 }
