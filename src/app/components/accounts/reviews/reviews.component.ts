@@ -24,7 +24,10 @@ export class ReviewsComponent implements OnInit {
 
   async getReviews() {
     const resp: any = await this.usersService.getUserInfo();
-    this.reviews = resp?.reviews.comments;
+    typeof resp?.reviews.comments === 'object'
+      ? (this.reviews = [])
+      : (this.reviews = resp?.reviews.comments);
+
     this._globals.spinner.hide();
   }
 }
