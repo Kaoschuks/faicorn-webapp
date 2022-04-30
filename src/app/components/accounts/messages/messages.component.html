@@ -4,9 +4,15 @@
       <div class="row">
         <ng-template #elseBlock>
           <div class="col-xl-12 mb-4 mb-md-0">
-            <h5 class="font-weight-bold mb-3 text-center text-lg-start">
-              Messages
-            </h5>
+            <div class="d-flex justify-content-between">
+              <h5 class="font-weight-bold mb-3 text-center text-lg-start">
+                Messages
+              </h5>
+              <p class="text-muted">
+                <span class="h4 text-danger">{{ messages?.length }}</span> no.
+                of messages
+              </p>
+            </div>
 
             <div class="card">
               <div class="card-body">
@@ -44,7 +50,7 @@
                               | dateAsAgo
                           }}
                         </p>
-                        <span class="badge bg-danger float-end">1</span>
+                        <!-- <span class="badge bg-danger float-end">1</span> -->
                       </div>
                     </a>
                   </li>
