@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GlobalsService } from 'src/app/services/core/globals.service';
-import { ListingsService } from 'src/app/services/features/listings/listings.service';
 import { MessagingService } from 'src/app/services/features/messaging/messaging.service';
 
 @Component({
@@ -10,24 +9,30 @@ import { MessagingService } from 'src/app/services/features/messaging/messaging.
   styleUrls: ['./id.component.css'],
 })
 export class MessagesIdComponent implements OnInit {
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef | any;
   messageForm: FormGroup = new FormGroup({
     channel_id: new FormControl('', Validators.compose([Validators.required])),
     messages: new FormControl('', Validators.compose([Validators.required])),
     msg_type: new FormControl(''),
   });
+  loggedInUser: any;
   messages: any[] = [];
   receipient: any;
 
   constructor(
     private _globals: GlobalsService,
-    public messagingServices: MessagingService,
-    private _listingservices: ListingsService
+    public messagingServices: MessagingService
   ) {}
 
   async ngOnInit() {
     await this.getMessages();
     let channel_id = decodeURIComponent(this._globals.url.split('/')[3]);
     this.messageForm.patchValue({ channel_id });
+    this.scrollToBottom();
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
   }
 
   async OnSubmit(form: any) {
@@ -35,9 +40,9 @@ export class MessagesIdComponent implements OnInit {
     let formData: any = form;
     formData.files = [];
     formData.msg_type = 'text';
-    console.log(formData);
-    const resp = await this.messagingServices.postMessages(formData);
-    console.log(resp);
+    const resp: any = await this.messagingServices.postMessages(formData);
+    this.messageForm.reset();
+    await this.getMessages();
     this._globals.spinner.hide();
   }
 
@@ -58,8 +63,22 @@ export class MessagesIdComponent implements OnInit {
     let channel_id = this._globals.url.split('/')[3];
     const resp: any = await this.messagingServices.getChannel(channel_id);
     this.messages = resp[0]?.messages;
-    var user = await this._globals.storage.getItem('user');
-    this.receipient = resp[0]?.users.filter((i: any) => i.uid !== user?.uid)[0];
+    this.loggedInUser = await this._globals.storage.getItem('user');
+    this.receipient = resp[0]?.users.filter(
+      (i: any) => i.uid !== this.loggedInUser?.uid
+    )[0];
     this._globals.spinner.hide();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scroll({
+        top: this.myScrollContainer.nativeElement.scrollHeight,
+
+        left: 0,
+
+        behavior: 'smooth',
+      });
+    } catch (err) {}
   }
 }

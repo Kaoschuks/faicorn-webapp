@@ -38,7 +38,7 @@ import { OverviewComponent } from './accounts/overview/overview.component';
 import { ListingsComponent } from './accounts/listings/listings.component';
 import { OrdersComponent } from './accounts/orders/orders.component';
 import { ListingFormComponent } from './forms/listing-form/listing-form.component';
-import { ListingsFilterPipe } from '../pipes/listingsFilter';
+import { DateAsAgoPipe } from '../pipes/dateAsAgo';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { environment } from 'src/environments/environment';
 import { SearchPipe } from '../pipes/search';
@@ -80,7 +80,7 @@ export const component: Array<any> = [
   ListingsComponent,
   OrdersComponent,
   ActivitiesComponent,
-  ListingsFilterPipe,
+  DateAsAgoPipe,
   MessagesComponent,
   ResetPasswordFormComponent,
   MessagesIdComponent,

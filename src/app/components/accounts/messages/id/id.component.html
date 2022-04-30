@@ -20,75 +20,63 @@
         </no-content>
 
         <ng-template #show>
-          <ul class="list-unstyled">
-            <li class="d-flex justify-content-between mb-4">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                alt="avatar"
-                class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
-                width="60"
-              />
-              <div class="card">
-                <div class="card-header d-flex justify-content-between p-3">
-                  <p class="fw-bold mb-0">Brad Pitt</p>
-                  <p class="text-muted small mb-0">
-                    <i class="far fa-clock"></i> 12 mins ago
-                  </p>
+          <ul class="list-unstyled" #scrollMe>
+            <li
+              class="d-flex mb-4"
+              *ngFor="let chat of messages"
+              [ngClass]="chat?.uid == loggedInUser?.uid ? 'owner' : ''"
+            >
+              <ng-template #showReceipient>
+                <img
+                  [src]="receipient?.image"
+                  alt="avatar"
+                  class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
+                  style="object-fit: cover; width: 60px; height: 60px"
+                />
+                <div class="card">
+                  <div class="card-header d-flex justify-content-between p-3">
+                    <p class="fw-bold mb-0">{{ receipient?.username }}</p>
+                    <p class="text-muted small mb-0" style="padding-left: 5em">
+                      <i class="far fa-clock"></i> {{ chat?.date | dateAsAgo }}
+                    </p>
+                  </div>
+                  <div class="card-body">
+                    <p class="mb-0">
+                      {{ chat?.messages }}
+                    </p>
+                  </div>
                 </div>
-                <div class="card-body">
-                  <p class="mb-0">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
+              </ng-template>
+
+              <div
+                class="d-flex justify-content-between"
+                *ngIf="chat?.uid == loggedInUser?.uid; else showReceipient"
+              >
+                <div class="card w-100">
+                  <div class="card-header d-flex justify-content-between p-3">
+                    <p class="fw-bold mb-0">{{ loggedInUser?.username }}</p>
+                    <p class="text-muted small mb-0" style="padding-left: 5em">
+                      <i class="far fa-clock"></i> {{ chat?.date | dateAsAgo }}
+                    </p>
+                  </div>
+                  <div class="card-body">
+                    <p class="mb-0">
+                      {{ chat?.messages }}
+                    </p>
+                  </div>
                 </div>
+                <img
+                  [src]="loggedInUser?.image"
+                  alt="avatar"
+                  class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong"
+                  style="object-fit: cover; width: 60px; height: 60px"
+                />
               </div>
             </li>
-            <li class="d-flex justify-content-between mb-4">
-              <div class="card w-100">
-                <div class="card-header d-flex justify-content-between p-3">
-                  <p class="fw-bold mb-0">Lara Croft</p>
-                  <p class="text-muted small mb-0">
-                    <i class="far fa-clock"></i> 13 mins ago
-                  </p>
-                </div>
-                <div class="card-body">
-                  <p class="mb-0">
-                    Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem accusantium doloremque laudantium.
-                  </p>
-                </div>
-              </div>
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
-                alt="avatar"
-                class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong"
-                width="60"
-              />
-            </li>
-            <li class="d-flex justify-content-between mb-4">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                alt="avatar"
-                class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
-                width="60"
-              />
-              <div class="card">
-                <div class="card-header d-flex justify-content-between p-3">
-                  <p class="fw-bold mb-0">Brad Pitt</p>
-                  <p class="text-muted small mb-0">
-                    <i class="far fa-clock"></i> 10 mins ago
-                  </p>
-                </div>
-                <div class="card-body">
-                  <p class="mb-0">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                </div>
-              </div>
-            </li>
+            <!-- <ng-template #showOwner>
+              <li class="d-flex justify-content-between mb-4">
+              </li>
+            </ng-template> -->
           </ul>
         </ng-template>
         <form
