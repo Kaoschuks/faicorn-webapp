@@ -21,7 +21,7 @@ export class MessagesComponent implements OnInit {
 
   async getMessages() {
     const resp: any = await this.messagingService.getChannels();
-    this.messages = resp;
+    resp?.message ? (this.messages = []) : (this.messages = resp);
     this._globals.spinner.hide();
   }
 }
