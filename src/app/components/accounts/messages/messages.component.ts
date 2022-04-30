@@ -8,6 +8,7 @@ import { MessagingService } from 'src/app/services/features/messaging/messaging.
   styleUrls: ['./messages.component.css'],
 })
 export class MessagesComponent implements OnInit {
+  messages: Array<any> = [];
   constructor(
     public _globals: GlobalsService,
     public messagingService: MessagingService
@@ -19,8 +20,8 @@ export class MessagesComponent implements OnInit {
   }
 
   async getMessages() {
-    const resp = await this.messagingService.getChannels();
-    console.log(resp);
+    const resp: any = await this.messagingService.getChannels();
+    this.messages = resp;
     this._globals.spinner.hide();
   }
 }
