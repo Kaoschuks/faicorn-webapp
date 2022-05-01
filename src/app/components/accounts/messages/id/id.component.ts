@@ -31,9 +31,9 @@ export class MessagesIdComponent implements OnInit {
     this.scrollToBottom();
   }
 
-  // ngAfterViewChecked() {
-  //   this.scrollToBottom();
-  // }
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
 
   async OnSubmit(form: any) {
     if (!this.messageForm.valid) return;
