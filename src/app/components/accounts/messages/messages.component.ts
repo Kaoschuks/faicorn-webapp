@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalsService } from 'src/app/services/core/globals.service';
 import { MessagingService } from 'src/app/services/features/messaging/messaging.service';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'accounts-messages',
@@ -9,10 +10,24 @@ import { MessagingService } from 'src/app/services/features/messaging/messaging.
 })
 export class MessagesComponent implements OnInit {
   messages: Array<any> = [];
+  public mobileView: boolean = false;
+
   constructor(
     public _globals: GlobalsService,
-    public messagingService: MessagingService
-  ) {}
+    public messagingService: MessagingService,
+    private breakpointObserver: BreakpointObserver
+  ) {
+    // detect screen size changes
+    this.breakpointObserver
+      .observe(['(max-width: 480px)'])
+      .subscribe((result: BreakpointState) => {
+        if (result.matches) {
+          this.mobileView = true;
+        } else {
+          this.mobileView = false;
+        }
+      });
+  }
 
   async ngOnInit() {
     this._globals.spinner.show();

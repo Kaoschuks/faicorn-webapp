@@ -1,5 +1,5 @@
-<div class="card">
-  <div class="container py-5">
+<div [ngClass]="mobileView ? '' : 'card'">
+  <div [ngClass]="mobileView ? '' : 'container py-5'">
     <ng-template #show>
       <div class="row">
         <ng-template #elseBlock>
