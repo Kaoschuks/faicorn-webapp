@@ -52,7 +52,9 @@ export class ListingsService {
         '/all',
         `?brands=${url[url.length - 1]}&limit=1000`
       );
-    if (url[1] === 'search') await this.getSearch('/search', `${url[2]}`);
+    if (url[1] === 'search') console.log(decodeURIComponent(url[2]));
+
+    // await this.getSearch('/search', `${decodeURIComponent(url[2])}`);
   }
 
   async getlistings(

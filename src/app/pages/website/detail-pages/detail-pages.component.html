@@ -128,7 +128,9 @@
             </a>
             <a
               *ngIf="_listingservices?.listingInfo?.user?.phone != ''"
-              href="whatsapp://{{ _listingservices?.listingInfo?.user?.phone }}"
+              href="https://api.whatsapp.com/send?phone={{
+                _listingservices?.listingInfo?.user?.phone
+              }}"
               [class.disabled]="
                 user &&
                 user?.phone == _listingservices?.listingInfo?.user?.phone

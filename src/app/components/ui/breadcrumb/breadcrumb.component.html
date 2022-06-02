@@ -1,12 +1,27 @@
-
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li *ngFor="let link of _global.url.split('/');let i = index" class="breadcrumb-item fs-14" [ngClass]="(i == _global.url.split('/').length - 1) ? 'active' : '' ">
-                        <a *ngIf="link == ''" routerLink="/">Home</a>
-                        <a *ngIf="i == 1" routerLink="/{{link}}">{{link.replace('-', ' ') | lowercase}}</a>
-                        <a *ngIf="i == 2" routerLink="/{{_global.url.split('/')[1]}}/{{link}}">{{link.replace('-', ' ') | lowercase}}</a>
-                        <a *ngIf="i == 3" routerLink="/{{_global.url.split('/')[1]}}/{{_global.url.split('/')[2]}}/{{link}}">{{link.replace('-', ' ') | lowercase}}</a>
-                    </li>
-                </ol>
-            </nav>
-            <br />
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li
+      *ngFor="let link of _global.url.split('/'); let i = index"
+      class="breadcrumb-item fs-14"
+      [ngClass]="i == _global.url.split('/').length - 1 ? 'active' : ''"
+    >
+      <a *ngIf="link == ''" routerLink="/">Home</a>
+      <a *ngIf="i == 1" routerLink="/{{ link }}">{{
+        link.replace("-", " ") | lowercase
+      }}</a>
+      <a
+        *ngIf="i == 2"
+        routerLink="/{{ _global.url.split('/')[1] }}/{{ link }}"
+        >{{ link.replace("-", " ") | lowercase }}</a
+      >
+      <a
+        *ngIf="i == 3"
+        routerLink="/{{ _global.url.split('/')[1] }}/{{
+          _global.url.split('/')[2]
+        }}/{{ link }}"
+        >{{ link.replace("-", " ") | lowercase }}</a
+      >
+    </li>
+  </ol>
+</nav>
+<br />
