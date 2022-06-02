@@ -43,7 +43,7 @@ export class ReviewListingComponent implements OnInit {
     let formData: any = form;
     (type === "like" ? formData.type = "like"
     : type === "dislike" ? formData.type = "dislike" : formData.type = "comments");
-    formData.ads_id = this._global.url.split('/')[3];
+    formData.ads_id = this.reviews.uid;
     formData.id = this.reviews.id;
     // console.log(formData)
     const resp: any = await this._listingservices.addReview('/reviews', formData);
