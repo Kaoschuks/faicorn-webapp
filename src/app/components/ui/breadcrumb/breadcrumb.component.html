@@ -7,19 +7,19 @@
     >
       <a *ngIf="link == ''" routerLink="/">Home</a>
       <a *ngIf="i == 1" routerLink="/{{ link }}">{{
-        decodeURI(link.replace("-", " ")) | lowercase
+        link.replace("-", " ") | lowercase
       }}</a>
       <a
         *ngIf="i == 2"
         routerLink="/{{ _global.url.split('/')[1] }}/{{ link }}"
-        >{{ decodeURI(link.replace("-", " ")) | lowercase }}</a
+        >{{ link.replace("-", " ") | lowercase }}</a
       >
       <a
         *ngIf="i == 3"
         routerLink="/{{ _global.url.split('/')[1] }}/{{
           _global.url.split('/')[2]
         }}/{{ link }}"
-        >{{ decodeURI(link.replace("-", " ")) | lowercase }}</a
+        >{{ link.replace("-", " ") | lowercase }}</a
       >
     </li>
   </ol>
